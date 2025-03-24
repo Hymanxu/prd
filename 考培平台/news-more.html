@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新闻列表 - 培训平台</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .news-list-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .news-filter {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+        }
+        
+        .filter-btn {
+            padding: 8px 15px;
+            border: none;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        
+        .filter-btn.active {
+            background-color: #2196F3;
+            color: white;
+        }
+        
+        .news-item {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: flex-start;
+            transition: background-color 0.3s;
+        }
+        
+        .news-item:hover {
+            background-color: #f9f9f9;
+        }
+        
+        .news-date-box {
+            flex-shrink: 0;
+            width: 60px;
+            height: 60px;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            border-radius: 4px;
+        }
+        
+        .date-day {
+            font-size: 22px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .date-month {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .news-info {
+            flex-grow: 1;
+        }
+        
+        .news-title {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .news-title a {
+            color: #333;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .news-title a:hover {
+            color: #2196F3;
+        }
+        
+        .news-summary {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+        
+        .news-meta {
+            font-size: 12px;
+            color: #999;
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            gap: 10px;
+        }
+        
+        .page-btn {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            background-color: white;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .page-btn.active {
+            background-color: #2196F3;
+            color: white;
+            border-color: #2196F3;
+        }
+        
+        .page-btn:hover:not(.active) {
+            background-color: #f5f5f5;
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部导航栏 -->
+    <header class="header">
+        <div class="logo-container">
+            <div class="logo">青软</div>
+            <div class="logo-text">职业技能等级认定培训平台</div>
+        </div>
+        <div class="user-info">
+            <span>学员</span>
+        </div>
+    </header>
+
+    <!-- 新闻列表 -->
+    <section class="section">
+        <h2 class="section-title">新闻通知</h2>
+        
+        <div class="news-list-container">
+            <div class="news-filter">
+                <button class="filter-btn active">全部</button>
+                <button class="filter-btn">通知公告</button>
+                <button class="filter-btn">活动新闻</button>
+            </div>
+            
+            <div class="news-list">
+                <div class="news-item">
+                    <div class="news-date-box">
+                        <div class="date-day">15</div>
+                        <div class="date-month">10月</div>
+                    </div>
+                    <div class="news-info">
+                        <h3 class="news-title"><a href="news-detail.html">2025年第四季度认证考试通知</a></h3>
+                        <p class="news-summary">关于开展2025年数据库认证考试的通知，请各位考生提前做好准备。本次考试包括初级、中级和高级三个等级的认证测试...</p>
+                        <div class="news-meta">
+                            <span>分类：通知公告</span>
+                            <span>浏览：1245次</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="news-item">
+                    <div class="news-date-box">
+                        <div class="date-day">28</div>
+                        <div class="date-month">9月</div>
+                    </div>
+                    <div class="news-info">
+                        <h3 class="news-title"><a href="news-detail.html">认证体系课程更新公告</a></h3>
+                        <p class="news-summary">根据最新行业发展需求，我们对认证课程内容进行了全面更新和优化，新增了云数据库、分布式数据库等相关内容...</p>
+                        <div class="news-meta">
+                            <span>分类：通知公告</span>
+                            <span>浏览：956次</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="news-item">
+                    <div class="news-date-box">
+                        <div class="date-day">10</div>
+                        <div class="date-month">9月</div>
+                    </div>
+                    <div class="news-info">
+                        <h3 class="news-title"><a href="news-detail.html">2025认证大会成功举办</a></h3>
+                        <p class="news-summary">2025年数据库认证技术大会在北京成功举办，多位行业专家分享技术趋势，超过500名技术人员参与了此次盛会...</p>
+                        <div class="news-meta">
+                            <span>分类：活动信息</span>
+                            <span>浏览：1302次</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="news-item">
+                    <div class="news-date-box">
+                        <div class="date-day">28</div>
+                        <div class="date-month">8月</div>
+                    </div>
+                    <div class="news-info">
+                        <h3 class="news-title"><a href="news-detail.html">数据库行业最新发展趋势分析</a></h3>
+                        <p class="news-summary">随着云计算和大数据的发展，数据库技术正在经历深刻变革。本文分析了当前数据库领域的主要发展趋势和关键技术...</p>
+                        <div class="news-meta">
+                            <span>分类：行业动态</span>
+                            <span>浏览：1876次</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="news-item">
+                    <div class="news-date-box">
+                        <div class="date-day">15</div>
+                        <div class="date-month">8月</div>
+                    </div>
+                    <div class="news-info">
+                        <h3 class="news-title"><a href="news-detail.html">第三期认证考试成绩公布</a></h3>
+                        <p class="news-summary">第三期认证考试成绩已于今日公布，考生可登录个人中心查询成绩。本期认证通过率达85%，较上期提高了5个百分点...</p>
+                        <div class="news-meta">
+                            <span>分类：通知公告</span>
+                            <span>浏览：982次</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="news-item">
+                    <div class="news-date-box">
+                        <div class="date-day">05</div>
+                        <div class="date-month">8月</div>
+                    </div>
+                    <div class="news-info">
+                        <h3 class="news-title"><a href="news-detail.html">数据库认证人才就业报告</a></h3>
+                        <p class="news-summary">我们对2022年获得认证的技术人员进行了就业情况跟踪调查，报告显示取得认证的人员平均薪资水平高于行业平均水平约15%...</p>
+                        <div class="news-meta">
+                            <span>分类：行业动态</span>
+                            <span>浏览：2104次</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="pagination">
+                <button class="page-btn active">1</button>
+                <button class="page-btn">2</button>
+                <button class="page-btn">3</button>
+                <button class="page-btn">4</button>
+                <button class="page-btn">5</button>
+                <button class="page-btn">下一页 &gt;</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 简化页脚 -->
+    <footer class="footer-simple">
+        <div class="container">
+            <p>Copyright © 2025 infotree信息技术有限公司 京ICP备xxxxxxxx号-1 京公网安备xxxxxxxx号</p>
+        </div>
+    </footer>
+</body>
+</html> 
