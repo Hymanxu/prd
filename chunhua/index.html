@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>每日激励 - 原型展示</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #0a1122;
+            color: #bfdbfe;
+            font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+        .container {
+            max-width: 1280px;
+        }
+        .device {
+            width: 390px;
+            height: 844px;
+            border-radius: 40px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 100, 255, 0.3);
+            border: 10px solid #172554;
+            background: #111827;
+            position: relative;
+        }
+        .screen {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #0f172a;
+        }
+        iframe {
+            border: none;
+            width: 100%;
+            height: 100%;
+        }
+        .prototype-label {
+            font-weight: 600;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            color: #60a5fa;
+        }
+        h1 {
+            text-shadow: 0 0 15px rgba(56, 189, 248, 0.5);
+            background: linear-gradient(to right, #60a5fa, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .tech-border {
+            position: relative;
+            padding: 5px;
+            margin-bottom: 20px;
+        }
+        .tech-border:before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #1e40af, transparent, #1e40af, transparent);
+            z-index: -1;
+            border-radius: 44px;
+            animation: borderAnimate 5s linear infinite;
+        }
+        @keyframes borderAnimate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        .feature-list li {
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        .feature-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #3b82f6;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body class="min-h-screen p-8">
+    <div class="container mx-auto">
+        <h1 class="text-3xl font-bold text-center mb-8">数字激励平台</h1>
+        <div class="text-center mb-8">
+            <p class="text-lg text-blue-300 mb-4">高效、智能的个人激励系统</p>
+            <p class="text-blue-400">系统功能概览:</p>
+            <ul class="feature-list text-left inline-block mt-2">
+                <li>智能激励语句推送</li>
+                <li>个性化语句定制</li>
+                <li>高效集成与归档</li>
+                <li>智能提醒系统</li>
+                <li>数据化进度监控</li>
+            </ul>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10 justify-items-center">
+            <!-- 首页原型 -->
+            <div class="flex flex-col items-center">
+                <div class="prototype-label">首页监控模块</div>
+                <div class="tech-border">
+                    <div class="device">
+                        <div class="screen">
+                            <iframe src="home.html" title="首页 - 每日激励"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 收藏页原型 -->
+            <div class="flex flex-col items-center">
+                <div class="prototype-label">数据资源库</div>
+                <div class="tech-border">
+                    <div class="device">
+                        <div class="screen">
+                            <iframe src="collection.html" title="收藏页 - 语句库"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 个人页面原型 -->
+            <div class="flex flex-col items-center">
+                <div class="prototype-label">用户配置中心</div>
+                <div class="tech-border">
+                    <div class="device">
+                        <div class="screen">
+                            <iframe src="profile.html" title="我的 - 设置与统计"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 
