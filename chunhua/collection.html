@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>每日激励 - 收藏</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #0f172a;
+            color: #e2e8f0;
+        }
+        .status-bar {
+            height: 44px;
+            background-color: #0f172a;
+            padding: 0 16px;
+            position: relative;
+            z-index: 10;
+        }
+        .tab-bar {
+            height: 83px;
+            background-color: #1e293b;
+            border-top: 1px solid #334155;
+        }
+        .quote-item {
+            border-radius: 10px;
+            transition: transform 0.2s;
+            background-color: #1e293b;
+            border: 1px solid #334155;
+        }
+        .quote-item.featured {
+            background: linear-gradient(to right, #0c4a6e, #0f172a);
+            border: 1px solid #0ea5e9;
+        }
+        .quote-item:active {
+            transform: scale(0.98);
+        }
+        .tag {
+            border-radius: 6px;
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            background-color: rgba(3, 105, 161, 0.2);
+            color: #7dd3fc;
+            border: 1px solid #0284c7;
+        }
+        .floating-button {
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            width: 56px;
+            height: 56px;
+            border-radius: 28px;
+            background: linear-gradient(135deg, #0369a1 0%, #0284c7 100%);
+            box-shadow: 0 4px 12px rgba(3, 105, 161, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            z-index: 100;
+            border: 1px solid #0ea5e9;
+        }
+        .search-bar {
+            border-radius: 8px;
+            background-color: #1e293b;
+            border: 1px solid #334155;
+        }
+        .segment-button {
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            background-color: #1e293b;
+            border: 1px solid #334155;
+        }
+        .segment-active {
+            background-color: #0c4a6e;
+            color: #7dd3fc;
+            border: 1px solid #0ea5e9;
+        }
+        .tech-line {
+            position: absolute;
+            height: 1px;
+            background: linear-gradient(to right, transparent, #0ea5e9, transparent);
+            width: 100%;
+            opacity: 0.3;
+        }
+        .tech-line-1 {
+            top: 120px;
+        }
+        .tech-line-2 {
+            top: 300px;
+        }
+        .tech-line-3 {
+            top: 500px;
+        }
+        .tech-circle {
+            position: fixed;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            border: 1px dashed rgba(56, 189, 248, 0.15);
+            top: 50%;
+            left: 0;
+            transform: translate(-70%, -50%);
+            z-index: -1;
+        }
+        .tech-dot {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background-color: #38bdf8;
+            border-radius: 50%;
+        }
+        .pulse-dot {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background-color: #0ea5e9;
+            border-radius: 50%;
+        }
+        .pulse-dot::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: #0ea5e9;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body class="h-full">
+    <!-- 科技感背景元素 -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none">
+        <div class="tech-circle"></div>
+        <div class="tech-line tech-line-1"></div>
+        <div class="tech-line tech-line-2"></div>
+        <div class="tech-line tech-line-3"></div>
+        <div class="pulse-dot" style="top: 15%; right: 10%;"></div>
+        <div class="pulse-dot" style="bottom: 20%; left: 15%;"></div>
+        <div class="tech-dot" style="top: 25%; right: 15%;"></div>
+        <div class="tech-dot" style="top: 40%; left: 20%;"></div>
+        <div class="tech-dot" style="bottom: 30%; right: 25%;"></div>
+    </div>
+
+    <!-- iOS 状态栏 -->
+    <div class="status-bar flex items-center justify-between">
+        <div class="text-sm font-semibold text-blue-300">9:41</div>
+        <div class="flex items-center space-x-1 text-blue-300">
+            <i class="fas fa-signal"></i>
+            <i class="fas fa-wifi"></i>
+            <i class="fas fa-battery-full"></i>
+        </div>
+    </div>
+
+    <!-- 页面标题和搜索 -->
+    <div class="px-4 pt-2 pb-3 sticky top-0 bg-opacity-90 bg-slate-900 backdrop-blur-sm z-10">
+        <h1 class="text-2xl font-bold mb-4 text-blue-400">数据资源库</h1>
+        
+        <!-- 搜索栏 -->
+        <div class="search-bar flex items-center px-3 py-2.5 mb-4">
+            <i class="fas fa-search text-blue-400 mr-2"></i>
+            <input type="text" placeholder="搜索资源..." class="bg-transparent w-full text-sm outline-none text-blue-100">
+        </div>
+        
+        <!-- 分段控制器 -->
+        <div class="flex space-x-2 mb-2 overflow-x-auto pb-1">
+            <button class="segment-button segment-active whitespace-nowrap">
+                全部
+            </button>
+            <button class="segment-button text-blue-500 whitespace-nowrap">
+                我的收藏
+            </button>
+            <button class="segment-button text-blue-500 whitespace-nowrap">
+                我的创建
+            </button>
+            <button class="segment-button text-blue-500 whitespace-nowrap">
+                职场励志
+            </button>
+            <button class="segment-button text-blue-500 whitespace-nowrap">
+                生活智慧
+            </button>
+        </div>
+    </div>
+
+    <!-- 主内容区 -->
+    <div class="flex flex-col h-[calc(100vh-200px)] overflow-y-auto px-4 pb-6">
+        <!-- 激励语句列表 -->
+        <div class="space-y-4">
+            <!-- 收藏的语句 1 -->
+            <div class="quote-item p-4">
+                <div class="flex justify-between items-start">
+                    <div class="tag mb-2">职场励志</div>
+                    <div class="flex space-x-2">
+                        <button class="text-blue-400">
+                            <i class="fas fa-volume-up"></i>
+                        </button>
+                        <button class="text-blue-500">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                    </div>
+                </div>
+                <h3 class="text-lg font-semibold mb-1 text-blue-200">成功不是偶然，而是日积月累的努力和坚持。</h3>
+                <p class="text-sm text-blue-400 mb-2 opacity-70">每一个清晨醒来，你都有机会重新定义自己的极限。</p>
+                <div class="flex justify-between items-center">
+                    <div class="text-xs text-blue-500">—— 马云</div>
+                    <div class="flex space-x-2">
+                        <span class="text-xs text-blue-500">使用次数: 5</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 收藏的语句 2 -->
+            <div class="quote-item p-4">
+                <div class="flex justify-between items-start">
+                    <div class="tag mb-2">生活智慧</div>
+                    <div class="flex space-x-2">
+                        <button class="text-blue-400">
+                            <i class="fas fa-volume-up"></i>
+                        </button>
+                        <button class="text-blue-500">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                    </div>
+                </div>
+                <h3 class="text-lg font-semibold mb-1 text-blue-200">生活不会因为你的懈怠而停下脚步，你必须快步前行。</h3>
+                <p class="text-sm text-blue-400 mb-2 opacity-70">珍惜每一天，因为每一天都是新的开始。</p>
+                <div class="flex justify-between items-center">
+                    <div class="text-xs text-blue-500">—— 奥普拉·温弗瑞</div>
+                    <div class="flex space-x-2">
+                        <span class="text-xs text-blue-500">使用次数: 3</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 自定义的语句 -->
+            <div class="quote-item featured p-4">
+                <div class="flex justify-between items-start">
+                    <div class="tag mb-2" style="background-color: rgba(3, 105, 161, 0.3); border-color: #38bdf8;">自定义</div>
+                    <div class="flex space-x-2">
+                        <button class="text-blue-300">
+                            <i class="fas fa-volume-up"></i>
+                        </button>
+                        <button class="text-blue-300">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                    </div>
+                </div>
+                <h3 class="text-lg font-semibold mb-1 text-blue-100">坚持不懈，追求自己的梦想，无论遇到什么困难。</h3>
+                <p class="text-sm text-blue-300 mb-2 opacity-70">我的目标是每天进步一点点，终将达到理想的彼岸。</p>
+                <div class="flex justify-between items-center">
+                    <div class="text-xs text-blue-400">—— 自己创建</div>
+                    <div class="flex space-x-2">
+                        <span class="text-xs text-blue-400">使用次数: 7</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 收藏的语句 3 -->
+            <div class="quote-item p-4">
+                <div class="flex justify-between items-start">
+                    <div class="tag mb-2">学习成长</div>
+                    <div class="flex space-x-2">
+                        <button class="text-blue-400">
+                            <i class="fas fa-volume-up"></i>
+                        </button>
+                        <button class="text-blue-500">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                    </div>
+                </div>
+                <h3 class="text-lg font-semibold mb-1 text-blue-200">学习是一个持续的过程，它没有终点，只有新的起点。</h3>
+                <p class="text-sm text-blue-400 mb-2 opacity-70">每天进步一点点，积累的力量将会是惊人的。</p>
+                <div class="flex justify-between items-center">
+                    <div class="text-xs text-blue-500">—— 爱因斯坦</div>
+                    <div class="flex space-x-2">
+                        <span class="text-xs text-blue-500">使用次数: 2</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 收藏的语句 4 -->
+            <div class="quote-item p-4">
+                <div class="flex justify-between items-start">
+                    <div class="tag mb-2">健康生活</div>
+                    <div class="flex space-x-2">
+                        <button class="text-blue-400">
+                            <i class="fas fa-volume-up"></i>
+                        </button>
+                        <button class="text-blue-500">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                    </div>
+                </div>
+                <h3 class="text-lg font-semibold mb-1 text-blue-200">健康的身体是实现梦想的基础，保持积极的生活方式。</h3>
+                <p class="text-sm text-blue-400 mb-2 opacity-70">每天锻炼30分钟，给自己一个更好的未来。</p>
+                <div class="flex justify-between items-center">
+                    <div class="text-xs text-blue-500">—— 李小龙</div>
+                    <div class="flex space-x-2">
+                        <span class="text-xs text-blue-500">使用次数: 1</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 浮动添加按钮 -->
+    <div class="floating-button">
+        <i class="fas fa-plus text-lg"></i>
+    </div>
+
+    <!-- 底部标签栏 -->
+    <div class="tab-bar flex justify-around items-center px-6 fixed bottom-0 w-full">
+        <div class="flex flex-col items-center">
+            <i class="fas fa-home text-lg text-blue-800"></i>
+            <span class="text-xs mt-1 text-blue-800">首页</span>
+        </div>
+        <div class="flex flex-col items-center">
+            <i class="fas fa-bookmark text-lg text-blue-500"></i>
+            <span class="text-xs mt-1 text-blue-400 font-medium">资源库</span>
+        </div>
+        <div class="flex flex-col items-center">
+            <i class="fas fa-user text-lg text-blue-800"></i>
+            <span class="text-xs mt-1 text-blue-800">配置</span>
+        </div>
+    </div>
+
+    <!-- 简单的JS交互 -->
+    <script>
+        /**
+         * 初始化分段控制器点击事件
+         * @returns {void}
+         */
+        document.querySelectorAll('.segment-button').forEach(button => {
+            button.addEventListener('click', function() {
+                document.querySelectorAll('.segment-button').forEach(btn => {
+                    btn.classList.remove('segment-active');
+                    btn.classList.add('text-blue-500');
+                });
+                this.classList.add('segment-active');
+                this.classList.remove('text-blue-500');
+            });
+        });
+
+        /**
+         * 模拟朗读功能
+         * @returns {void}
+         */
+        document.querySelectorAll('.fa-volume-up').forEach(icon => {
+            icon.parentElement.addEventListener('click', function() {
+                const quoteText = this.closest('.quote-item').querySelector('h3').textContent;
+                alert('朗读: ' + quoteText);
+            });
+        });
+
+        /**
+         * 模拟添加新的激励语句功能
+         * @returns {void}
+         */
+        document.querySelector('.floating-button').addEventListener('click', function() {
+            alert('添加新的数据资源');
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>每日激励 - 个人中心</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #0f172a;
+            color: #e2e8f0;
+        }
+        .status-bar {
+            height: 44px;
+            background-color: #0f172a;
+            padding: 0 16px;
+            position: relative;
+            z-index: 10;
+        }
+        .tab-bar {
+            height: 83px;
+            background-color: #1e293b;
+            border-top: 1px solid #334155;
+        }
+        .profile-card {
+            background: linear-gradient(135deg, #075985 0%, #0c4a6e 100%);
+            border-radius: 16px;
+            border: 1px solid #0ea5e9;
+            position: relative;
+            overflow: hidden;
+        }
+        .profile-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 60%;
+            background: linear-gradient(to bottom, rgba(14, 165, 233, 0.1), transparent);
+            pointer-events: none;
+        }
+        .stat-card {
+            border-radius: 12px;
+            background-color: #1e293b;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border: 1px solid #334155;
+        }
+        .menu-item {
+            border-radius: 12px;
+            background-color: #1e293b;
+            display: flex;
+            align-items: center;
+            padding: 16px;
+            margin-bottom: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            border: 1px solid #334155;
+        }
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 48px;
+            height: 26px;
+        }
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #1e293b;
+            transition: .4s;
+            border-radius: 26px;
+            border: 1px solid #475569;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 3px;
+            bottom: 2px;
+            background-color: #94a3b8;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked + .slider {
+            background-color: #0284c7;
+            border-color: #0ea5e9;
+        }
+        input:checked + .slider:before {
+            transform: translateX(22px);
+            background-color: #e0f2fe;
+        }
+        .avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 40px;
+            border: 3px solid #38bdf8;
+            object-fit: cover;
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
+        }
+        .section-title {
+            font-weight: 600;
+            font-size: 18px;
+            margin-bottom: 12px;
+            padding-left: 4px;
+            color: #38bdf8;
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 40px;
+            height: 2px;
+            background: linear-gradient(to right, #38bdf8, transparent);
+        }
+        .icon-circle {
+            background: rgba(14, 165, 233, 0.1);
+            border: 1px solid rgba(14, 165, 233, 0.3);
+        }
+        .badge {
+            background-color: rgba(14, 165, 233, 0.15);
+            border: 1px solid rgba(14, 165, 233, 0.3);
+            color: #7dd3fc;
+        }
+        .hexagon {
+            position: absolute;
+            right: -100px;
+            top: -100px;
+            width: 200px;
+            height: 200px;
+            background-color: rgba(14, 165, 233, 0.03);
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            z-index: -1;
+        }
+        .tech-dot {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background-color: #38bdf8;
+            border-radius: 50%;
+        }
+        .tech-line {
+            position: absolute;
+            height: 1px;
+            background: linear-gradient(to right, transparent, #0ea5e9, transparent);
+            width: 60%;
+            opacity: 0.2;
+            right: 0;
+        }
+    </style>
+</head>
+<body class="h-full">
+    <!-- 科技感背景元素 -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none">
+        <div class="hexagon" style="right: -100px; top: 50px;"></div>
+        <div class="hexagon" style="left: -150px; bottom: 100px;"></div>
+        <div class="tech-dot" style="top: 15%; right: 30%;"></div>
+        <div class="tech-dot" style="top: 25%; right: 15%;"></div>
+        <div class="tech-dot" style="bottom: 30%; left: 20%;"></div>
+        <div class="tech-line" style="top: 100px;"></div>
+        <div class="tech-line" style="top: 300px;"></div>
+        <div class="tech-line" style="bottom: 200px;"></div>
+    </div>
+    
+    <!-- iOS 状态栏 -->
+    <div class="status-bar flex items-center justify-between">
+        <div class="text-sm font-semibold text-blue-300">9:41</div>
+        <div class="flex items-center space-x-1 text-blue-300">
+            <i class="fas fa-signal"></i>
+            <i class="fas fa-wifi"></i>
+            <i class="fas fa-battery-full"></i>
+        </div>
+    </div>
+
+    <!-- 主内容区 -->
+    <div class="flex flex-col h-[calc(100vh-127px)] overflow-y-auto pb-6">
+        <!-- 个人资料卡片 -->
+        <div class="profile-card p-6 mx-4 my-3">
+            <div class="flex items-center">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="用户头像" class="avatar">
+                <div class="ml-4 text-blue-100">
+                    <h2 class="text-xl font-bold">张三</h2>
+                    <p class="opacity-90">系统配置管理员</p>
+                    <div class="flex items-center mt-1">
+                        <div class="badge px-2 py-0.5 rounded-full text-xs mr-2">
+                            <i class="fas fa-fire text-blue-300 mr-1"></i>
+                            <span>连续活跃12天</span>
+                        </div>
+                        <div class="badge px-2 py-0.5 rounded-full text-xs">
+                            <i class="fas fa-medal text-blue-300 mr-1"></i>
+                            <span>高级用户</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 统计信息 -->
+        <div class="px-4 mt-4">
+            <h3 class="section-title">数据统计</h3>
+            <div class="grid grid-cols-3 gap-3 mb-6">
+                <div class="stat-card p-3">
+                    <div class="text-blue-400 text-xs mb-1">运行天数</div>
+                    <div class="text-2xl font-bold text-blue-300">42</div>
+                </div>
+                <div class="stat-card p-3">
+                    <div class="text-blue-400 text-xs mb-1">资源总量</div>
+                    <div class="text-2xl font-bold text-blue-300">16</div>
+                </div>
+                <div class="stat-card p-3">
+                    <div class="text-blue-400 text-xs mb-1">处理次数</div>
+                    <div class="text-2xl font-bold text-blue-300">78</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 提醒设置 -->
+        <div class="px-4 mb-4">
+            <h3 class="section-title">系统通知设置</h3>
+            <div class="menu-item justify-between">
+                <div class="flex items-center">
+                    <div class="w-8 h-8 rounded-full icon-circle flex items-center justify-center mr-3">
+                        <i class="fas fa-bell text-blue-400"></i>
+                    </div>
+                    <div>
+                        <div class="font-medium text-blue-200">每日系统报告</div>
+                        <div class="text-xs text-blue-400">每天上午 9:00</div>
+                    </div>
+                </div>
+                <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="menu-item justify-between">
+                <div class="flex items-center">
+                    <div class="w-8 h-8 rounded-full icon-circle flex items-center justify-center mr-3">
+                        <i class="fas fa-volume-up text-blue-400"></i>
+                    </div>
+                    <div>
+                        <div class="font-medium text-blue-200">声音提示</div>
+                        <div class="text-xs text-blue-400">每天下午 3:00</div>
+                    </div>
+                </div>
+                <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="menu-item justify-between">
+                <div class="flex items-center">
+                    <div class="w-8 h-8 rounded-full icon-circle flex items-center justify-center mr-3">
+                        <i class="fas fa-tasks text-blue-400"></i>
+                    </div>
+                    <div>
+                        <div class="font-medium text-blue-200">待处理事项提醒</div>
+                        <div class="text-xs text-blue-400">每天晚上 8:00</div>
+                    </div>
+                </div>
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+
+        <!-- 应用设置 -->
+        <div class="px-4">
+            <h3 class="section-title">系统配置</h3>
+            <div class="menu-item">
+                <div class="w-8 h-8 rounded-full icon-circle flex items-center justify-center mr-3">
+                    <i class="fas fa-palette text-blue-400"></i>
+                </div>
+                <div class="flex-1">
+                    <div class="font-medium text-blue-200">界面主题</div>
+                </div>
+                <i class="fas fa-chevron-right text-blue-800"></i>
+            </div>
+            <div class="menu-item">
+                <div class="w-8 h-8 rounded-full icon-circle flex items-center justify-center mr-3">
+                    <i class="fas fa-sync text-blue-400"></i>
+                </div>
+                <div class="flex-1">
+                    <div class="font-medium text-blue-200">数据备份</div>
+                </div>
+                <i class="fas fa-chevron-right text-blue-800"></i>
+            </div>
+            <div class="menu-item">
+                <div class="w-8 h-8 rounded-full icon-circle flex items-center justify-center mr-3">
+                    <i class="fas fa-cog text-blue-400"></i>
+                </div>
+                <div class="flex-1">
+                    <div class="font-medium text-blue-200">高级设置</div>
+                </div>
+                <i class="fas fa-chevron-right text-blue-800"></i>
+            </div>
+            <div class="menu-item">
+                <div class="w-8 h-8 rounded-full icon-circle flex items-center justify-center mr-3">
+                    <i class="fas fa-info-circle text-blue-400"></i>
+                </div>
+                <div class="flex-1">
+                    <div class="font-medium text-blue-200">系统信息</div>
+                </div>
+                <i class="fas fa-chevron-right text-blue-800"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- 底部标签栏 -->
+    <div class="tab-bar flex justify-around items-center px-6 fixed bottom-0 w-full">
+        <div class="flex flex-col items-center">
+            <i class="fas fa-home text-lg text-blue-800"></i>
+            <span class="text-xs mt-1 text-blue-800">首页</span>
+        </div>
+        <div class="flex flex-col items-center">
+            <i class="fas fa-bookmark text-lg text-blue-800"></i>
+            <span class="text-xs mt-1 text-blue-800">资源库</span>
+        </div>
+        <div class="flex flex-col items-center">
+            <i class="fas fa-user text-lg text-blue-500"></i>
+            <span class="text-xs mt-1 text-blue-400 font-medium">配置</span>
+        </div>
+    </div>
+
+    <!-- 简单的JS交互 -->
+    <script>
+        /**
+         * 初始化开关控件交互
+         * @returns {void}
+         */
+        document.querySelectorAll('.switch input').forEach(switchInput => {
+            switchInput.addEventListener('change', function() {
+                const type = this.closest('.menu-item').querySelector('.font-medium').textContent;
+                if (this.checked) {
+                    alert(`已开启 ${type}`);
+                } else {
+                    alert(`已关闭 ${type}`);
+                }
+            });
+        });
+
+        /**
+         * 初始化菜单项点击事件
+         * @returns {void}
+         */
+        document.querySelectorAll('.menu-item').forEach(item => {
+            if (item.querySelector('.switch')) return; // 跳过有开关的项
+            
+            item.addEventListener('click', function() {
+                const type = this.querySelector('.font-medium').textContent;
+                alert(`进入 ${type}`);
+            });
+        });
+    </script>
+</body>
+</html> 
