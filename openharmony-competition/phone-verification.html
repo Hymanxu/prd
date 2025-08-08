@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>手机验证 - OpenHarmony 社区创新奖励计划</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'oh-blue': '#0066CC',
+                        'oh-light-blue': '#E6F3FF',
+                        'oh-dark': '#1a1a1a',
+                        'oh-gray': '#666666'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 min-h-screen flex items-center justify-center">
+    <div class="max-w-md w-full mx-4">
+        <!-- 返回按钮 -->
+        <div class="text-center mb-8">
+            <a href="registration.html" class="inline-flex items-center text-oh-blue hover:text-blue-700 transition-colors">
+                <i class="fas fa-arrow-left mr-2"></i>返回上一步
+            </a>
+        </div>
+        
+        <!-- 验证卡片 -->
+        <div class="bg-white rounded-2xl shadow-xl p-8">
+            <!-- 标题 -->
+            <div class="text-center mb-8">
+                <div class="bg-oh-light-blue rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-mobile-alt text-oh-blue text-2xl"></i>
+                </div>
+                <h1 class="text-2xl font-bold text-oh-dark mb-2">手机号验证</h1>
+                <p class="text-oh-gray">我们已向您的手机发送验证码</p>
+                <p class="text-sm text-oh-blue mt-2">138****5678</p>
+            </div>
+            
+            <!-- 验证码输入 -->
+            <form id="verificationForm">
+                <div class="mb-6">
+                    <label class="block text-sm font-medium text-oh-dark mb-3 text-center">请输入6位验证码</label>
+                    <div class="flex justify-center space-x-3">
+                        <input type="text" maxlength="1" 
+                               class="w-12 h-12 text-center text-xl font-bold border border-gray-300 rounded-lg focus:ring-2 focus:ring-oh-blue focus:border-transparent"
+                               oninput="moveToNext(this, 0)">
+                        <input type="text" maxlength="1" 
+                               class="w-12 h-12 text-center text-xl font-bold border border-gray-300 rounded-lg focus:ring-2 focus:ring-oh-blue focus:border-transparent"
+                               oninput="moveToNext(this, 1)">
+                        <input type="text" maxlength="1" 
+                               class="w-12 h-12 text-center text-xl font-bold border border-gray-300 rounded-lg focus:ring-2 focus:ring-oh-blue focus:border-transparent"
+                               oninput="moveToNext(this, 2)">
+                        <input type="text" maxlength="1" 
+                               class="w-12 h-12 text-center text-xl font-bold border border-gray-300 rounded-lg focus:ring-2 focus:ring-oh-blue focus:border-transparent"
+                               oninput="moveToNext(this, 3)">
+                        <input type="text" maxlength="1" 
+                               class="w-12 h-12 text-center text-xl font-bold border border-gray-300 rounded-lg focus:ring-2 focus:ring-oh-blue focus:border-transparent"
+                               oninput="moveToNext(this, 4)">
+                        <input type="text" maxlength="1" 
+                               class="w-12 h-12 text-center text-xl font-bold border border-gray-300 rounded-lg focus:ring-2 focus:ring-oh-blue focus:border-transparent"
+                               oninput="moveToNext(this, 5)">
+                    </div>
+                </div>
+                
+                <!-- 重发验证码 -->
+                <div class="text-center mb-6">
+                    <p class="text-sm text-oh-gray mb-2">没有收到验证码？</p>
+                    <button type="button" id="resendBtn" onclick="resendCode()" 
+                            class="text-oh-blue hover:text-blue-700 text-sm font-medium">
+                        重新发送 (<span id="countdown">60</span>s)
+                    </button>
+                </div>
+                
+                <!-- 提交按钮 -->
+                <button type="submit" 
+                        class="w-full bg-oh-blue text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 transition-colors mb-4">
+                    验证并完成报名
+                </button>
+                
+                <!-- 修改手机号 -->
+                <div class="text-center">
+                    <a href="registration.html" class="text-sm text-oh-gray hover:text-oh-blue transition-colors">
+                        手机号填写错误？返回修改
+                    </a>
+                </div>
+            </form>
+        </div>
+        
+        <!-- 安全提示 -->
+        <div class="mt-6 bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+            <div class="flex items-start">
+                <i class="fas fa-shield-alt text-yellow-600 mt-1 mr-3"></i>
+                <div class="text-sm text-yellow-800">
+                    <p class="font-medium mb-1">安全提示</p>
+                    <p>验证码有效期为5分钟，请勿向他人透露验证码信息</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let countdown = 60;
+        let countdownTimer;
+        
+        // 启动倒计时
+        function startCountdown() {
+            const resendBtn = document.getElementById('resendBtn');
+            const countdownSpan = document.getElementById('countdown');
+            
+            resendBtn.disabled = true;
+            resendBtn.classList.add('opacity-50', 'cursor-not-allowed');
+            
+            countdownTimer = setInterval(() => {
+                countdown--;
+                countdownSpan.textContent = countdown;
+                
+                if (countdown <= 0) {
+                    clearInterval(countdownTimer);
+                    resendBtn.disabled = false;
+                    resendBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                    resendBtn.innerHTML = '重新发送';
+                    countdown = 60;
+                }
+            }, 1000);
+        }
+        
+        // 重发验证码
+        function resendCode() {
+            if (countdown > 0) return;
+            
+            alert('验证码已重新发送');
+            document.getElementById('resendBtn').innerHTML = '重新发送 (<span id="countdown">60</span>s)';
+            startCountdown();
+        }
+        
+        // 自动跳转到下一个输入框
+        function moveToNext(current, index) {
+            if (current.value.length === 1 && index < 5) {
+                const inputs = document.querySelectorAll('input[type="text"]');
+                inputs[index + 1].focus();
+            }
+            
+            // 检查是否所有输入框都已填写
+            checkAllFilled();
+        }
+        
+        // 检查所有输入框是否都已填写
+        function checkAllFilled() {
+            const inputs = document.querySelectorAll('input[type="text"]');
+            let allFilled = true;
+            
+            inputs.forEach(input => {
+                if (input.value.length === 0) {
+                    allFilled = false;
+                }
+            });
+            
+            if (allFilled) {
+                // 自动验证
+                setTimeout(() => {
+                    document.getElementById('verificationForm').dispatchEvent(new Event('submit'));
+                }, 500);
+            }
+        }
+        
+        // 表单提交
+        document.getElementById('verificationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const inputs = document.querySelectorAll('input[type="text"]');
+            let code = '';
+            inputs.forEach(input => {
+                code += input.value;
+            });
+            
+            if (code.length !== 6) {
+                alert('请输入完整的6位验证码');
+                return;
+            }
+            
+            // 模拟验证
+            if (code === '123456') {
+                localStorage.setItem('isLoggedIn', 'true');
+                alert('验证成功！报名完成');
+                window.location.href = 'dashboard.html';
+            } else {
+                alert('验证码错误，请重新输入');
+                inputs.forEach(input => {
+                    input.value = '';
+                });
+                inputs[0].focus();
+            }
+        });
+        
+        // 支持键盘导航
+        document.addEventListener('keydown', function(e) {
+            const inputs = document.querySelectorAll('input[type="text"]');
+            const currentIndex = Array.from(inputs).indexOf(document.activeElement);
+            
+            if (e.key === 'Backspace' && currentIndex > 0 && document.activeElement.value === '') {
+                inputs[currentIndex - 1].focus();
+            }
+        });
+        
+        // 页面加载时启动倒计时
+        window.onload = function() {
+            startCountdown();
+            // 自动聚焦第一个输入框
+            document.querySelector('input[type="text"]').focus();
+        };
+    </script>
+</body>
+</html>

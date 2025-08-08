@@ -1,0 +1,167 @@
+/* 手绘风格全局样式 */
+@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap');
+
+/* 手绘风格样式 */
+* {
+    font-family: 'Kalam', cursive, sans-serif;
+}
+
+.sketch-border {
+    border: 3px solid #4A4A4A;
+    border-radius: 15px 5px 10px 8px;
+    position: relative;
+    transform: rotate(-0.5deg);
+}
+
+.sketch-border:hover {
+    transform: rotate(0.2deg);
+    transition: transform 0.2s ease-in-out;
+}
+
+.sketch-border-light {
+    border: 2px solid #7A7A7A;
+    border-radius: 8px 12px 6px 10px;
+    transform: rotate(0.3deg);
+}
+
+.sketch-text {
+    color: #4A4A4A;
+}
+
+.sketch-bg {
+    background: #FFFEF7;
+    background-image: 
+        radial-gradient(circle at 20% 50%, rgba(74, 144, 226, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(245, 166, 35, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 40% 80%, rgba(126, 211, 33, 0.03) 0%, transparent 50%);
+}
+
+.sketch-shadow {
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1), 
+                -2px -2px 8px rgba(255, 255, 255, 0.8);
+}
+
+.sketch-button {
+    background: linear-gradient(145deg, #4A90E2, #357ABD);
+    border: 2px solid #2E5C8A;
+    border-radius: 12px 8px 15px 6px;
+    color: white;
+    position: relative;
+    transform: rotate(-0.8deg);
+    transition: all 0.2s ease;
+}
+
+.sketch-button:hover {
+    transform: rotate(0.5deg) scale(1.02);
+    background: linear-gradient(145deg, #5BA0F2, #4A90E2);
+    box-shadow: 3px 3px 10px rgba(74, 144, 226, 0.3);
+}
+
+.sketch-card {
+    background: #FFFEF7;
+    border: 2px solid #4A4A4A;
+    border-radius: 20px 8px 15px 12px;
+    transform: rotate(-0.3deg);
+    box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.08);
+    position: relative;
+}
+
+.sketch-card:hover {
+    transform: rotate(0.2deg) translateY(-2px);
+    transition: all 0.3s ease;
+    box-shadow: 10px 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+.sketch-underline {
+    position: relative;
+}
+
+.sketch-underline::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: -5px;
+    right: -5px;
+    height: 4px;
+    background: #F5A623;
+    border-radius: 20px;
+    transform: rotate(-0.5deg);
+}
+
+/* 导航栏手绘风格 */
+.nav-item {
+    position: relative;
+    transform: rotate(-0.2deg);
+    transition: all 0.2s ease;
+}
+
+.nav-item.active::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: -5px;
+    right: -5px;
+    height: 3px;
+    background: #4A90E2;
+    border-radius: 10px;
+    transform: rotate(0.8deg);
+}
+
+.nav-item:hover {
+    transform: rotate(0.3deg) translateY(-1px);
+    color: #4A90E2;
+}
+
+/* 手绘风格图标 */
+.sketch-icon {
+    transform: rotate(-2deg);
+    transition: transform 0.2s ease;
+}
+
+.sketch-icon:hover {
+    transform: rotate(2deg) scale(1.1);
+}
+
+/* 手绘风格分割线 */
+.sketch-divider {
+    height: 2px;
+    background: #4A4A4A;
+    border-radius: 10px;
+    transform: rotate(-0.3deg);
+    margin: 20px 0;
+}
+
+/* 手绘风格输入框 */
+.sketch-input {
+    border: 2px solid #4A4A4A;
+    border-radius: 8px 15px 6px 12px;
+    background: #FFFEF7;
+    transform: rotate(-0.2deg);
+}
+
+.sketch-input:focus {
+    transform: rotate(0.1deg);
+    border-color: #4A90E2;
+    box-shadow: 0 0 10px rgba(74, 144, 226, 0.2);
+}
+
+/* 颜色变量 */
+.bg-sketch-blue { background-color: #4A90E2; }
+.bg-sketch-orange { background-color: #F5A623; }
+.bg-sketch-green { background-color: #7ED321; }
+.bg-sketch-red { background-color: #D0021B; }
+.bg-sketch-purple { background-color: #9013FE; }
+.bg-sketch-gray { background-color: #4A4A4A; }
+.bg-sketch-light { background-color: #F8F9FA; }
+
+.text-sketch-blue { color: #4A90E2; }
+.text-sketch-orange { color: #F5A623; }
+.text-sketch-green { color: #7ED321; }
+.text-sketch-red { color: #D0021B; }
+.text-sketch-purple { color: #9013FE; }
+.text-sketch-gray { color: #4A4A4A; }
+.text-sketch-light { color: #F8F9FA; }
+
+.hover\:text-sketch-blue:hover { color: #4A90E2; }
+.hover\:text-sketch-orange:hover { color: #F5A623; }
+.hover\:text-sketch-green:hover { color: #7ED321; }

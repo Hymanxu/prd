@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>赛事介绍 - OpenHarmony 社区创新奖励计划</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="sketch-styles.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'sketch-blue': '#4A90E2',
+                        'sketch-orange': '#F5A623',
+                        'sketch-green': '#7ED321',
+                        'sketch-red': '#D0021B',
+                        'sketch-purple': '#9013FE',
+                        'sketch-gray': '#4A4A4A',
+                        'sketch-light': '#F8F9FA'
+                    },
+                    fontFamily: {
+                        'sketch': ['Kalam', 'cursive', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="sketch-bg">
+    <!-- 顶部导航栏 -->
+    <nav class="sketch-bg sketch-border-light fixed w-full top-0 z-50 sketch-shadow">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center h-20">
+                <!-- Logo -->
+                <div class="flex items-center sketch-border-light px-4 py-2">
+                    <div class="w-32 h-8 sketch-border-light flex items-center justify-center">
+                        <span class="sketch-text text-sm font-bold">OpenHarmony</span>
+                    </div>
+                </div>
+
+                <!-- 主导航 - 紧靠Logo -->
+                <div class="hidden md:flex items-center ml-8">
+                    <div class="flex items-center space-x-8">
+                        <a href="index.html"
+                            class="nav-item sketch-text text-lg py-2 px-4">首页</a>
+                        <a href="contest-intro.html"
+                            class="nav-item active sketch-text font-medium text-lg py-2 px-4">赛事介绍</a>
+                        <a href="problems.html"
+                            class="nav-item sketch-text text-lg py-2 px-4">赛题</a>
+                        <a href="leaderboard.html"
+                            class="nav-item sketch-text text-lg py-2 px-4">排行榜</a>
+                        <a href="registration.html" id="registrationNavLink"
+                            class="nav-item sketch-text text-lg py-2 px-4">报名入口</a>
+                    </div>
+                </div>
+
+                <!-- 右侧空间填充 -->
+                <div class="flex-1"></div>
+
+                <!-- 用户信息/登录按钮 - 最右侧 -->
+                <div class="flex items-center">
+                    <!-- 未登录状态 -->
+                    <a href="login.html"
+                        class="sketch-button px-6 py-3 text-lg font-medium"
+                        id="loginBtn">
+                        <i class="fab fa-git-alt mr-2 sketch-icon"></i>登录
+                    </a>
+
+                    <!-- 已登录状态 -->
+                    <div class="relative hidden" id="userInfo">
+                        <div class="flex items-center space-x-3 cursor-pointer sketch-border-light px-4 py-2"
+                            onmouseenter="showUserMenu()" onmouseleave="hideUserMenu()">
+                            <div class="w-10 h-10 sketch-border rounded-full flex items-center justify-center">
+                                <i class="fas fa-user sketch-text sketch-icon"></i>
+                            </div>
+                            <span class="sketch-text font-medium">张三</span>
+                            <i class="fas fa-chevron-down sketch-text text-sm sketch-icon"></i>
+                        </div>
+
+                        <!-- 用户菜单 -->
+                        <div id="userMenu"
+                            class="absolute right-0 top-full mt-2 w-40 sketch-bg sketch-card py-2 hidden z-50 sketch-shadow">
+                            <button onclick="logout()"
+                                class="flex items-center w-full px-4 py-3 text-sm sketch-text">
+                                <i class="fas fa-sign-out-alt mr-3 sketch-icon"></i>退出登录
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 移动端菜单按钮 -->
+                <div class="md:hidden ml-4">
+                    <button class="sketch-text p-2 sketch-border-light">
+                        <i class="fas fa-bars text-xl sketch-icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主要内容区域 -->
+    <main class="pt-20">
+        <div class="max-w-4xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <!-- 页面标题 -->
+            <header class="mb-12 sketch-card p-8 sketch-shadow">
+                <h1 class="text-4xl font-bold sketch-text mb-4 sketch-underline">
+                    OpenHarmony Fuzz奖励计划
+                </h1>
+                <p class="text-xl sketch-text leading-relaxed">
+                    利用Fuzz技术提升OpenHarmony代码覆盖率，发现潜在漏洞，共建安全生态
+                </p>
+            </header>
+
+            <!-- 参赛方式 -->
+            <section class="mb-12 sketch-card p-8 sketch-shadow">
+                <h2 class="text-3xl font-bold sketch-text mb-6 sketch-underline">1、参赛方式</h2>
+
+                <div class="space-y-6 sketch-text leading-relaxed">
+                    <p class="text-lg">
+                        参与<strong>Fuzz奖励计划</strong>的团队或个人，以gitee/gitcode/华为云账号作为身份标识，在OpenHarmony社区提交Fuzz用例，参与积分奖励。
+                    </p>
+
+                    <div class="bg-sketch-light p-6 sketch-border-light">
+                        <h3 class="text-xl font-bold sketch-text mb-4">参赛流程</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-center">
+                                <div class="sketch-border w-8 h-8 flex items-center justify-center mr-4 bg-sketch-blue text-white text-sm font-bold">1</div>
+                                <span>注册gitee/gitcode/华为云账号</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="sketch-border w-8 h-8 flex items-center justify-center mr-4 bg-sketch-blue text-white text-sm font-bold">2</div>
+                                <span>完成平台报名和身份验证</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="sketch-border w-8 h-8 flex items-center justify-center mr-4 bg-sketch-blue text-white text-sm font-bold">3</div>
+                                <span>开发Fuzz测试用例</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="sketch-border w-8 h-8 flex items-center justify-center mr-4 bg-sketch-blue text-white text-sm font-bold">4</div>
+                                <span>在OpenHarmony社区提交用例</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="sketch-border w-8 h-8 flex items-center justify-center mr-4 bg-sketch-blue text-white text-sm font-bold">5</div>
+                                <span>系统自动评估效果并积分</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p>
+                        支持个人参赛或团队协作，鼓励开发者发挥集体智慧，通过Fuzz技术手段系统性地提升OpenHarmony社区代码质量和安全水平。
+                    </p>
+                </div>
+            </section>
+
+            <!-- 积分方案 -->
+            <section class="mb-12 sketch-card p-8 sketch-shadow">
+                <h2 class="text-3xl font-bold sketch-text mb-6 sketch-underline">2、积分方案</h2>
+
+                <div class="space-y-8 sketch-text leading-relaxed">
+                    <p class="text-lg">
+                        以gitee账号所提交用例最终取得的效果，按以下方式进行积分：
+                    </p>
+
+                    <div class="grid md:grid-cols-1 gap-6">
+                        <!-- 覆盖率提升 -->
+                        <div class="sketch-card p-6 bg-gradient-to-r from-blue-50 to-blue-100">
+                            <div class="flex items-center mb-4">
+                                <div class="sketch-border w-12 h-12 flex items-center justify-center mr-4 bg-sketch-blue text-white">
+                                    <i class="fas fa-chart-line sketch-icon"></i>
+                                </div>
+                                <h3 class="text-xl font-bold sketch-text">(1) 覆盖率提升</h3>
+                            </div>
+                            <div class="pl-16">
+                                <p class="text-lg font-bold text-sketch-blue mb-2">每新增覆盖OpenHarmony社区1千行代码(NBNC)，积1分</p>
+                                <p class="text-sm">通过编写高质量的Fuzz用例，系统性地提升代码覆盖率，发现潜在的代码路径和边界条件。</p>
+                            </div>
+                        </div>
+
+                        <!-- 已知漏洞检测 -->
+                        <div class="sketch-card p-6 bg-gradient-to-r from-green-50 to-green-100">
+                            <div class="flex items-center mb-4">
+                                <div class="sketch-border w-12 h-12 flex items-center justify-center mr-4 bg-sketch-green text-white">
+                                    <i class="fas fa-bug sketch-icon"></i>
+                                </div>
+                                <h3 class="text-xl font-bold sketch-text">(2) 已知漏洞检测</h3>
+                            </div>
+                            <div class="pl-16">
+                                <p class="text-lg font-bold text-sketch-green mb-2">每检测出一个已知漏洞，积1分</p>
+                                <p class="text-sm">Fuzz平台将自动进行漏洞注入，以检测用例的防护效果。通过有效检测验证用例的实用性。</p>
+                            </div>
+                        </div>
+
+                        <!-- 0Day漏洞挖掘 -->
+                        <div class="sketch-card p-6 bg-gradient-to-r from-purple-50 to-purple-100">
+                            <div class="flex items-center mb-4">
+                                <div class="sketch-border w-12 h-12 flex items-center justify-center mr-4 bg-sketch-purple text-white">
+                                    <i class="fas fa-search sketch-icon"></i>
+                                </div>
+                                <h3 class="text-xl font-bold sketch-text">(3) 0Day漏洞挖掘</h3>
+                            </div>
+                            <div class="pl-16">
+                                <p class="text-lg font-bold text-sketch-purple mb-3">所提交的Fuzz用例发现0Day漏洞将获得额外积分：</p>
+                                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                                    <div class="sketch-border p-3 bg-red-100">
+                                        <div class="font-bold text-red-600">致命漏洞</div>
+                                        <div class="text-2xl font-bold text-red-700">100分</div>
+                                    </div>
+                                    <div class="sketch-border p-3 bg-orange-100">
+                                        <div class="font-bold text-orange-600">严重漏洞</div>
+                                        <div class="text-2xl font-bold text-orange-700">30分</div>
+                                    </div>
+                                    <div class="sketch-border p-3 bg-yellow-100">
+                                        <div class="font-bold text-yellow-600">一般漏洞</div>
+                                        <div class="text-2xl font-bold text-yellow-700">10分</div>
+                                    </div>
+                                    <div class="sketch-border p-3 bg-blue-100">
+                                        <div class="font-bold text-blue-600">提示漏洞</div>
+                                        <div class="text-2xl font-bold text-blue-700">1分</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 积分奖励 -->
+            <section class="mb-12 sketch-card p-8 sketch-shadow">
+                <h2 class="text-3xl font-bold sketch-text mb-6 sketch-underline">3、积分奖励</h2>
+
+                <div class="space-y-8 sketch-text leading-relaxed">
+                    <div class="text-center mb-8">
+                        <div class="inline-block sketch-card p-8 bg-gradient-to-r from-yellow-100 to-orange-100">
+                            <h3 class="text-3xl font-bold text-sketch-orange mb-4">每1积分可兑换100元人民币的奖励</h3>
+                            <p class="text-lg">积分实时统计，按月结算，奖励及时发放</p>
+                        </div>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="sketch-card p-6 bg-gradient-to-r from-blue-50 to-blue-100">
+                            <h3 class="text-xl font-bold sketch-text mb-4 flex items-center">
+                                <i class="fas fa-calculator mr-3 text-sketch-blue sketch-icon"></i>积分示例
+                            </h3>
+                            <div class="space-y-3 text-sm">
+                                <div class="flex justify-between items-center">
+                                    <span>新增覆盖5千行代码</span>
+                                    <span class="font-bold text-sketch-blue">5分</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span>检测到3个已知漏洞</span>
+                                    <span class="font-bold text-sketch-green">3分</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span>发现1个严重0Day漏洞</span>
+                                    <span class="font-bold text-sketch-purple">30分</span>
+                                </div>
+                                <hr class="sketch-border-light">
+                                <div class="flex justify-between items-center font-bold text-lg">
+                                    <span>总计</span>
+                                    <span class="text-sketch-orange">38分 = ¥3,800</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sketch-card p-6 bg-gradient-to-r from-green-50 to-green-100">
+                            <h3 class="text-xl font-bold sketch-text mb-4 flex items-center">
+                                <i class="fas fa-trophy mr-3 text-sketch-green sketch-icon"></i>奖励发放
+                            </h3>
+                            <div class="space-y-4 text-sm">
+                                <div class="flex items-center">
+                                    <i class="fas fa-clock mr-2 text-sketch-blue sketch-icon"></i>
+                                    <span><strong>结算周期：</strong>每月26-30日统计积分</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-money-bill mr-2 text-sketch-green sketch-icon"></i>
+                                    <span><strong>发放时间：</strong>次月7个工作日内</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-university mr-2 text-sketch-purple sketch-icon"></i>
+                                    <span><strong>发放方式：</strong>支付宝/微信/银行卡</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-shield-alt mr-2 text-sketch-orange sketch-icon"></i>
+                                    <span><strong>税费处理：</strong>平台代扣代缴</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-sketch-light p-6 sketch-border-light">
+                        <h4 class="font-bold sketch-text mb-3 flex items-center">
+                            <i class="fas fa-info-circle mr-2 text-sketch-blue sketch-icon"></i>特殊奖励说明
+                        </h4>
+                        <div class="space-y-2 text-sm">
+                            <p>• <strong>额外奖励：</strong>月度积分前三名可获得额外奖励和荣誉证书</p>
+                            <p>• <strong>年度奖励：</strong>年度积分总排名前十名可获得OpenHarmony官方认证和特殊奖励</p>
+                            <p>• <strong>特殊贡献奖：</strong>发现重大安全漏洞或做出突出贡献者可获得特殊奖励</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Fuzz技术要求 -->
+            <section class="mb-12 sketch-card p-8 sketch-shadow">
+                <h2 class="text-3xl font-bold sketch-text mb-6 sketch-underline">Fuzz技术要求</h2>
+
+                <div class="space-y-8 sketch-text leading-relaxed">
+                    <div>
+                        <h3 class="text-xl font-bold sketch-text mb-4">技术规范</h3>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="sketch-card p-4">
+                                <h4 class="font-bold mb-3">用例质量要求</h4>
+                                <ul class="space-y-2 text-sm ml-4">
+                                    <li>• 代码规范性和可读性</li>
+                                    <li>• 测试用例的完整性</li>
+                                    <li>• 覆盖率统计的准确性</li>
+                                    <li>• 漏洞检测的有效性</li>
+                                </ul>
+                            </div>
+                            <div class="sketch-card p-4">
+                                <h4 class="font-bold mb-3">提交要求</h4>
+                                <ul class="space-y-2 text-sm ml-4">
+                                    <li>• 在OpenHarmony社区提交PR</li>
+                                    <li>• 提供详细的技术文档</li>
+                                    <li>• 包含测试结果和覆盖率报告</li>
+                                    <li>• 通过社区代码审查</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-bold sketch-text mb-4">评估机制</h3>
+                        <div class="bg-sketch-light p-6 sketch-border-light">
+                            <div class="grid md:grid-cols-3 gap-6 text-center">
+                                <div>
+                                    <div class="sketch-border w-16 h-16 mx-auto mb-3 flex items-center justify-center bg-sketch-blue text-white">
+                                        <i class="fas fa-robot text-2xl sketch-icon"></i>
+                                    </div>
+                                    <h4 class="font-bold mb-2">自动化评估</h4>
+                                    <p class="text-sm">系统自动统计代码覆盖率和漏洞检测效果</p>
+                                </div>
+                                <div>
+                                    <div class="sketch-border w-16 h-16 mx-auto mb-3 flex items-center justify-center bg-sketch-green text-white">
+                                        <i class="fas fa-users text-2xl sketch-icon"></i>
+                                    </div>
+                                    <h4 class="font-bold mb-2">专家审查</h4>
+                                    <p class="text-sm">社区技术专家对0Day漏洞进行验证评估</p>
+                                </div>
+                                <div>
+                                    <div class="sketch-border w-16 h-16 mx-auto mb-3 flex items-center justify-center bg-sketch-purple text-white">
+                                        <i class="fas fa-chart-bar text-2xl sketch-icon"></i>
+                                    </div>
+                                    <h4 class="font-bold mb-2">积分统计</h4>
+                                    <p class="text-sm">实时更新积分排名和奖励计算</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-bold sketch-text mb-4">参赛规则</h3>
+                        <ul class="space-y-2 ml-6">
+                            <li>• 禁止提交低质量或无效的测试用例</li>
+                            <li>• 禁止抄袭他人代码或恶意竞争</li>
+                            <li>• 禁止利用平台漏洞进行作弊</li>
+                            <li>• 违规者将被取消参赛资格并追回奖励</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 技术支持 -->
+            <section class="mb-12 sketch-card p-8 sketch-shadow">
+                <h2 class="text-3xl font-bold sketch-text mb-6 sketch-underline">技术支持与社区</h2>
+
+                <div class="space-y-8 sketch-text leading-relaxed">
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="sketch-card p-6 bg-gradient-to-r from-blue-50 to-blue-100">
+                            <h3 class="text-xl font-bold sketch-text mb-4 flex items-center">
+                                <i class="fas fa-book mr-3 text-sketch-blue sketch-icon"></i>学习资源
+                            </h3>
+                            <ul class="space-y-2 text-sm">
+                                <li>• OpenHarmony Fuzz技术文档</li>
+                                <li>• 代码覆盖率统计工具使用指南</li>
+                                <li>• 漏洞检测最佳实践案例</li>
+                                <li>• 在线技术培训课程</li>
+                            </ul>
+                        </div>
+
+                        <div class="sketch-card p-6 bg-gradient-to-r from-green-50 to-green-100">
+                            <h3 class="text-xl font-bold sketch-text mb-4 flex items-center">
+                                <i class="fas fa-comments mr-3 text-sketch-green sketch-icon"></i>社区支持
+                            </h3>
+                            <ul class="space-y-2 text-sm">
+                                <li>• 技术交流群实时答疑</li>
+                                <li>• 专家导师在线指导</li>
+                                <li>• 定期举办技术分享活动</li>
+                                <li>• 优秀案例展示和推广</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="bg-sketch-light p-6 sketch-border-light">
+                        <h4 class="font-bold sketch-text mb-4 text-center">加入我们的技术社区</h4>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center text-sm">
+                            <div class="flex flex-col items-center">
+                                <i class="fab fa-github text-3xl text-gray-700 mb-2 sketch-icon"></i>
+                                <span>GitHub社区</span>
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <i class="fab fa-git-alt text-3xl text-orange-600 mb-2 sketch-icon"></i>
+                                <span>Gitee社区</span>
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <i class="fab fa-wechat text-3xl text-green-600 mb-2 sketch-icon"></i>
+                                <span>微信群</span>
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <i class="fab fa-qq text-3xl text-blue-600 mb-2 sketch-icon"></i>
+                                <span>QQ群</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 联系我们 -->
+            <section class="mb-12 sketch-card p-8 sketch-shadow">
+                <h2 class="text-3xl font-bold sketch-text mb-6 sketch-underline">联系我们</h2>
+
+                <div class="space-y-4 sketch-text leading-relaxed">
+                    <p>
+                        <strong>邮箱联系：</strong>security@openharmony.io
+                    </p>
+                    <p>
+                        <strong>GitHub社区：</strong>github.com/openharmony
+                    </p>
+                    <p>
+                        <strong>技术交流：</strong>加入官方技术交流群
+                    </p>
+                </div>
+            </section>
+
+            <!-- 行动号召 -->
+            <section class="text-center mb-12 sketch-card p-8 sketch-shadow">
+                <h2 class="text-3xl font-bold sketch-text mb-4 sketch-underline">开始您的Fuzz之旅！</h2>
+                <p class="text-xl sketch-text mb-8">
+                    参与OpenHarmony Fuzz奖励计划，用技术创造价值，让每一行代码都有回报
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="registration.html"
+                        class="sketch-button px-8 py-4 font-bold text-lg">
+                        <i class="fas fa-rocket mr-2 sketch-icon"></i>立即报名参加
+                    </a>
+                    <a href="problems.html"
+                        class="sketch-border sketch-text px-8 py-4 font-bold text-lg hover:bg-sketch-blue hover:text-white transition-colors">
+                        <i class="fas fa-code mr-2 sketch-icon"></i>查看Fuzz题目
+                    </a>
+                </div>
+                <div class="mt-8 text-center">
+                    <div class="inline-block sketch-card p-4 bg-gradient-to-r from-yellow-100 to-orange-100">
+                        <p class="font-bold text-sketch-orange">🎯 技术改变世界，每1积分=100元现金奖励！</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="sketch-bg sketch-card py-12 sketch-shadow">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="h-8 mb-4 sketch-border flex items-center justify-center px-4 bg-sketch-blue text-white">
+                        <span class="font-bold">OpenHarmony</span>
+                    </div>
+                    <p class="sketch-text text-sm">构建全场景智慧生态</p>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-4 sketch-text sketch-underline">快速链接</h4>
+                    <ul class="space-y-2 text-sm sketch-text">
+                        <li><a href="index.html" class="sketch-text hover:text-sketch-blue">首页</a></li>
+                        <li><a href="problems.html" class="sketch-text hover:text-sketch-blue">赛题</a></li>
+                        <li><a href="leaderboard.html" class="sketch-text hover:text-sketch-blue">排行榜</a></li>
+                        <li><a href="registration.html" class="sketch-text hover:text-sketch-blue">报名参赛</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-4 sketch-text sketch-underline">帮助支持</h4>
+                    <ul class="space-y-2 text-sm sketch-text">
+                        <li><a href="#" class="sketch-text hover:text-sketch-blue">竞赛规则</a></li>
+                        <li><a href="#" class="sketch-text hover:text-sketch-blue">常见问题</a></li>
+                        <li><a href="#" class="sketch-text hover:text-sketch-blue">技术支持</a></li>
+                        <li><a href="#" class="sketch-text hover:text-sketch-blue">意见反馈</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-4 sketch-text sketch-underline">关注我们</h4>
+                    <div class="flex space-x-4 mb-4">
+                        <a href="#" class="sketch-text hover:text-sketch-blue">
+                            <i class="fab fa-github text-xl sketch-icon"></i>
+                        </a>
+                        <a href="#" class="sketch-text hover:text-sketch-orange">
+                            <i class="fab fa-weibo text-xl sketch-icon"></i>
+                        </a>
+                        <a href="#" class="sketch-text hover:text-sketch-green">
+                            <i class="fab fa-wechat text-xl sketch-icon"></i>
+                        </a>
+                    </div>
+                    <p class="text-sm sketch-text">
+                        security@openharmony.io
+                    </p>
+                </div>
+            </div>
+
+            <div class="sketch-divider mt-8"></div>
+            <div class="pt-8 text-center text-sm sketch-text">
+                <p>&copy; 2025 OpenHarmony 社区创新奖励计划. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let menuTimeout;
+
+        // 用户菜单显示/隐藏
+        function showUserMenu() {
+            clearTimeout(menuTimeout);
+            const menu = document.getElementById('userMenu');
+            if (menu) {
+                menu.classList.remove('hidden');
+            }
+        }
+
+        function hideUserMenu() {
+            menuTimeout = setTimeout(() => {
+                const menu = document.getElementById('userMenu');
+                if (menu) {
+                    menu.classList.add('hidden');
+                }
+            }, 300);
+        }
+
+        // 鼠标进入菜单时取消隐藏
+        document.addEventListener('DOMContentLoaded', function () {
+            const userMenu = document.getElementById('userMenu');
+            if (userMenu) {
+                userMenu.addEventListener('mouseenter', () => {
+                    clearTimeout(menuTimeout);
+                });
+                userMenu.addEventListener('mouseleave', hideUserMenu);
+            }
+        });
+
+        // 退出登录
+        function logout() {
+            if (confirm('确定要退出登录吗？')) {
+                localStorage.removeItem('isLoggedIn');
+                localStorage.removeItem('userInfo');
+                document.getElementById('userInfo').classList.add('hidden');
+                document.getElementById('loginBtn').classList.remove('hidden');
+            }
+        }
+
+        // 检查登录状态
+        window.onload = function () {
+            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+            const isRegistered = localStorage.getItem('isRegistered') === 'true';
+
+            if (isLoggedIn) {
+                document.getElementById('loginBtn').classList.add('hidden');
+                document.getElementById('userInfo').classList.remove('hidden');
+
+                const userInfo = JSON.parse(localStorage.getItem('userInfo') || '{}');
+                if (userInfo.name) {
+                    const nameElement = document.querySelector('#userInfo .font-medium');
+                    if (nameElement) {
+                        nameElement.textContent = userInfo.name;
+                    }
+                }
+            }
+            
+            // 根据报名状态更新导航链接
+            const registrationNavLink = document.getElementById('registrationNavLink');
+            if (registrationNavLink) {
+                if (isRegistered) {
+                    registrationNavLink.href = 'dashboard.html';
+                    registrationNavLink.textContent = '报名详情';
+                } else {
+                    registrationNavLink.href = 'registration.html';
+                    registrationNavLink.textContent = '报名入口';
+                }
+            }
+        };
+
+        // 点击页面其他地方关闭菜单
+        document.addEventListener('click', function (event) {
+            const userInfo = document.getElementById('userInfo');
+            const userMenu = document.getElementById('userMenu');
+
+            if (userInfo && userMenu && !userInfo.contains(event.target)) {
+                userMenu.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+
+</html>

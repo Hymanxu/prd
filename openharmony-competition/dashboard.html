@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>报名详情 - OpenHarmony 社区创新奖励计划</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="sketch-styles.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'sketch-blue': '#4A90E2',
+                        'sketch-orange': '#F5A623',
+                        'sketch-green': '#7ED321',
+                        'sketch-red': '#D0021B',
+                        'sketch-purple': '#9013FE',
+                        'sketch-gray': '#4A4A4A',
+                        'sketch-light': '#F8F9FA'
+                    },
+                    fontFamily: {
+                        'sketch': ['Kalam', 'cursive', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="sketch-bg">
+    <!-- 顶部导航栏 -->
+    <nav class="sketch-bg sketch-border-light fixed w-full top-0 z-50 sketch-shadow">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center h-20">
+                <!-- Logo -->
+                <div class="flex items-center sketch-border-light px-4 py-2">
+                    <div class="w-32 h-8 sketch-border-light flex items-center justify-center">
+                        <span class="sketch-text text-sm font-bold">OpenHarmony</span>
+                    </div>
+                </div>
+
+                <!-- 主导航 - 紧靠Logo -->
+                <div class="hidden md:flex items-center ml-8">
+                    <div class="flex items-center space-x-8">
+                        <a href="index.html"
+                            class="nav-item sketch-text text-lg py-2 px-4">首页</a>
+                        <a href="contest-intro.html"
+                            class="nav-item sketch-text text-lg py-2 px-4">赛事介绍</a>
+                        <a href="problems.html"
+                            class="nav-item sketch-text text-lg py-2 px-4">赛题</a>
+                        <a href="leaderboard.html"
+                            class="nav-item sketch-text text-lg py-2 px-4">排行榜</a>
+                        <a href="dashboard.html"
+                            class="nav-item active sketch-text font-medium text-lg py-2 px-4">报名详情</a>
+                    </div>
+                </div>
+
+                <!-- 右侧空间填充 -->
+                <div class="flex-1"></div>
+
+                <!-- 用户信息/登录按钮 - 最右侧 -->
+                <div class="flex items-center">
+                    <!-- 未登录状态 -->
+                    <a href="login.html"
+                        class="sketch-button sketch-text px-6 py-3 text-lg font-medium hidden"
+                        id="loginBtn">
+                        <i class="fab fa-git-alt mr-2 sketch-icon"></i>登录
+                    </a>
+
+                    <!-- 已登录状态 -->
+                    <div class="relative" id="userInfo">
+                        <div class="flex items-center space-x-3 cursor-pointer sketch-border-light px-4 py-2"
+                            onmouseenter="showUserMenu()" onmouseleave="hideUserMenu()">
+                            <div class="w-10 h-10 sketch-border rounded-full flex items-center justify-center">
+                                <i class="fas fa-user sketch-text sketch-icon"></i>
+                            </div>
+                            <span class="sketch-text font-medium">张三</span>
+                            <i class="fas fa-chevron-down sketch-text text-sm sketch-icon"></i>
+                        </div>
+
+                        <!-- 用户菜单 -->
+                        <div id="userMenu"
+                            class="absolute right-0 top-full mt-2 w-40 sketch-bg sketch-border py-2 hidden z-50 sketch-shadow">
+                            <button onclick="logout()"
+                                class="flex items-center w-full px-4 py-3 text-sm sketch-text">
+                                <i class="fas fa-sign-out-alt mr-3 sketch-icon"></i>退出登录
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 移动端菜单按钮 -->
+                <div class="md:hidden ml-4">
+                    <button class="sketch-text p-2 sketch-border-light">
+                        <i class="fas fa-bars text-xl sketch-icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="pt-20">
+        <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+
+
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- 左侧主要内容 -->
+                <div class="lg:col-span-2 space-y-8">
+
+                    <!-- 最近提交 -->
+                    <div id="submissions" class="sketch-card p-6 sketch-shadow">
+                        <h2 class="text-xl font-bold sketch-text mb-6 sketch-underline">最近提交</h2>
+
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between p-4 sketch-border-light">
+                                <div class="flex items-center">
+                                    <div
+                                        class="sketch-border w-10 h-10 flex items-center justify-center mr-4">
+                                        <i class="fas fa-check sketch-text sketch-icon"></i>
+                                    </div>
+                                    <div>
+                                        <div class="font-medium sketch-text">内核安全 - 缓冲区溢出检测</div>
+                                        <div class="text-sm sketch-text">2024-01-15 14:30</div>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="sketch-text font-medium">通过</div>
+                                    <div class="text-sm sketch-text">得分: 85</div>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center justify-between p-4 sketch-border-light">
+                                <div class="flex items-center">
+                                    <div
+                                        class="sketch-border w-10 h-10 flex items-center justify-center mr-4">
+                                        <i class="fas fa-clock sketch-text sketch-icon"></i>
+                                    </div>
+                                    <div>
+                                        <div class="font-medium sketch-text">应用安全 - SQL注入防护</div>
+                                        <div class="text-sm sketch-text">2024-01-14 16:45</div>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="sketch-text font-medium">评测中</div>
+                                    <div class="text-sm sketch-text">预计5分钟</div>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center justify-between p-4 sketch-border-light">
+                                <div class="flex items-center">
+                                    <div
+                                        class="sketch-border w-10 h-10 flex items-center justify-center mr-4">
+                                        <i class="fas fa-times sketch-text sketch-icon"></i>
+                                    </div>
+                                    <div>
+                                        <div class="font-medium sketch-text">网络安全 - 协议漏洞分析</div>
+                                        <div class="text-sm sketch-text">2024-01-13 10:20</div>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="sketch-text font-medium">未通过</div>
+                                    <div class="text-sm sketch-text">得分: 42</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-center mt-6">
+                            <a href="#" class="sketch-text hover:text-sketch-blue text-sm">查看全部提交记录</a>
+                        </div>
+                    </div>
+
+                    <!-- 团队信息 -->
+                    <div class="sketch-card p-6 sketch-shadow">
+                        <div class="flex items-center justify-between mb-6">
+                            <h2 class="text-xl font-bold sketch-text sketch-underline">团队信息</h2>
+                            <div class="flex items-center space-x-2">
+                                <button onclick="showEditTeamModal()" class="sketch-text hover:text-sketch-blue text-sm">
+                                    <i class="fas fa-edit mr-1 sketch-icon"></i>编辑队名
+                                </button>
+                                <button onclick="showInviteModal()" class="sketch-text hover:text-sketch-blue text-sm">
+                                    <i class="fas fa-plus mr-1 sketch-icon"></i>邀请成员
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- 队名显示 -->
+                        <div class="mb-6 p-4 sketch-border-light bg-sketch-light">
+                            <div class="flex items-center justify-center">
+                                <i class="fas fa-users sketch-text text-2xl mr-3 sketch-icon"></i>
+                                <h3 id="teamName" class="text-xl font-bold sketch-text">ByteHunters</h3>
+                            </div>
+                        </div>
+
+                        <div class="space-y-4">
+                            <!-- 队长 -->
+                            <div class="flex items-center justify-between p-4 sketch-border-light">
+                                <div class="flex items-center">
+                                    <div class="w-10 h-10 sketch-border rounded-full flex items-center justify-center mr-3">
+                                        <i class="fas fa-user sketch-text sketch-icon"></i>
+                                    </div>
+                                    <div>
+                                        <div class="font-medium sketch-text">张三</div>
+                                        <div class="text-sm sketch-text">清华大学 · 计算机科学与技术</div>
+                                    </div>
+                                </div>
+                                <span class="sketch-border sketch-text px-3 py-1 text-xs font-medium">队长</span>
+                            </div>
+
+                            <!-- 队员 -->
+                            <div class="flex items-center justify-between p-4 sketch-border-light">
+                                <div class="flex items-center">
+                                    <div class="w-10 h-10 sketch-border rounded-full flex items-center justify-center mr-3">
+                                        <i class="fas fa-user sketch-text sketch-icon"></i>
+                                    </div>
+                                    <div>
+                                        <div class="font-medium sketch-text">李四</div>
+                                        <div class="text-sm sketch-text">北京大学 · 网络安全</div>
+                                    </div>
+                                </div>
+                                <span class="sketch-border-light sketch-text px-3 py-1 text-xs">队员</span>
+                            </div>
+
+                            <!-- 空位 -->
+                            <div
+                                class="flex items-center justify-center p-4 sketch-border-light" style="border-style: dashed;">
+                                <button onclick="showInviteModal()"
+                                    class="sketch-text hover:text-sketch-blue transition-colors">
+                                    <i class="fas fa-plus mr-2 sketch-icon"></i>邀请第三位队员
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 我的证书 -->
+                    <div class="sketch-card p-6 sketch-shadow">
+                        <h3 class="text-lg font-bold sketch-text mb-4 sketch-underline">我的证书</h3>
+                        <div class="space-y-3">
+                            <div
+                                class="sketch-border sketch-text p-4 text-center">
+                                <i class="fas fa-certificate text-2xl mb-2 sketch-icon"></i>
+                                <div class="font-medium">12月月赛季军</div>
+                                <div class="text-xs">2023-12-30</div>
+                            </div>
+                            <div
+                                class="sketch-border sketch-text p-4 text-center">
+                                <i class="fas fa-medal text-2xl mb-2 sketch-icon"></i>
+                                <div class="font-medium">优秀参与者</div>
+                                <div class="text-xs">2023-11-15</div>
+                            </div>
+                        </div>
+                        <button
+                            class="w-full mt-4 sketch-text hover:text-sketch-blue text-sm sketch-border hover:bg-sketch-light py-2 transition-colors">
+                            查看全部证书
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 右侧边栏 -->
+                <div class="space-y-8">
+                    <!-- 个人统计 -->
+                    <div class="sketch-card p-6 sketch-shadow">
+                        <h3 class="text-lg font-bold sketch-text mb-4 sketch-underline">个人统计</h3>
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center">
+                                <span class="sketch-text">总提交数</span>
+                                <span class="font-bold sketch-text">12</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="sketch-text">通过数</span>
+                                <span class="font-bold sketch-text">8</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="sketch-text">通过率</span>
+                                <span class="font-bold sketch-text">66.7%</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="sketch-text">总得分</span>
+                                <span class="font-bold sketch-text">680</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 个人信息 -->
+                    <div class="sketch-card p-6 sketch-shadow">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-lg font-bold sketch-text sketch-underline">个人信息</h3>
+                            <button onclick="showEditModal()" class="sketch-text hover:text-sketch-blue text-sm">
+                                <i class="fas fa-edit mr-1 sketch-icon"></i>编辑
+                            </button>
+                        </div>
+                        <div class="space-y-3 text-sm">
+                            <div>
+                                <span class="sketch-text">姓名：</span>
+                                <span class="sketch-text">张三</span>
+                            </div>
+                            <div>
+                                <span class="sketch-text">学校：</span>
+                                <span class="sketch-text">清华大学</span>
+                            </div>
+                            <div>
+                                <span class="sketch-text">专业：</span>
+                                <span class="sketch-text">计算机科学与技术</span>
+                            </div>
+                            <div>
+                                <span class="sketch-text">年级：</span>
+                                <span class="sketch-text">大三</span>
+                            </div>
+                            <div>
+                                <span class="sketch-text">手机：</span>
+                                <span class="sketch-text">138****5678</span>
+                            </div>
+                        </div>
+
+                        <!-- 取消报名 -->
+                        <div class="mt-6 pt-4 sketch-border-light" style="border-top-width: 1px; border-top-style: solid;">
+                            <button onclick="showCancelModal()"
+                                class="w-full sketch-text hover:text-sketch-red text-sm py-2 transition-colors">
+                                <i class="fas fa-times mr-1 sketch-icon"></i>取消报名
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 收款信息 -->
+                    <div class="sketch-card p-6 sketch-shadow">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-lg font-bold sketch-text sketch-underline">收款信息</h3>
+                            <button onclick="showPaymentModal()" class="sketch-text hover:text-sketch-blue text-sm">
+                                <i class="fas fa-edit mr-1 sketch-icon"></i>编辑
+                            </button>
+                        </div>
+                        <div class="space-y-3 text-sm">
+                            <div>
+                                <span class="sketch-text">收款方式：</span>
+                                <span class="sketch-text">支付宝</span>
+                            </div>
+                            <div>
+                                <span class="sketch-text">收款账号：</span>
+                                <span class="sketch-text">138****5678</span>
+                            </div>
+                            <div>
+                                <span class="sketch-text">收款人：</span>
+                                <span class="sketch-text">张三</span>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-4 p-3 sketch-border-light bg-sketch-light">
+                            <div class="text-xs sketch-text">
+                                <i class="fas fa-info-circle mr-1 sketch-icon"></i>
+                                奖金将在比赛结束后7个工作日内发放到指定账户
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 取消报名确认弹窗 -->
+    <div id="cancelModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+        <div class="sketch-card p-8 max-w-md mx-4 w-full sketch-shadow">
+            <div class="text-center mb-6">
+                <i class="fas fa-exclamation-triangle sketch-text text-4xl mb-4 sketch-icon"></i>
+                <h2 class="text-xl font-bold sketch-text mb-2 sketch-underline">确认取消报名</h2>
+                <p class="sketch-text text-sm">取消报名后，您将无法参与本次竞赛，已获得的积分和排名将被清除。</p>
+            </div>
+
+            <div class="sketch-card p-4 mb-6">
+                <h3 class="font-bold sketch-text mb-2">注意事项：</h3>
+                <ul class="sketch-text text-sm space-y-1">
+                    <li>• 取消报名后无法恢复</li>
+                    <li>• 如需重新参赛，需要重新报名</li>
+                    <li>• 团队信息将被清除</li>
+                </ul>
+            </div>
+
+            <div class="flex space-x-4">
+                <button onclick="hideCancelModal()"
+                    class="flex-1 sketch-border sketch-text py-3 px-4 font-medium hover:bg-sketch-light transition-colors">
+                    取消
+                </button>
+                <button onclick="confirmCancel()"
+                    class="flex-1 sketch-border sketch-text py-3 px-4 font-medium hover:bg-sketch-light transition-colors">
+                    确认取消报名
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 邀请队友弹窗 -->
+        <div id="inviteModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+            <div class="sketch-card p-8 max-w-md mx-4 w-full sketch-shadow">
+                <div class="text-center mb-6">
+                    <i class="fas fa-user-plus sketch-text text-4xl mb-4 sketch-icon"></i>
+                    <h2 class="text-xl font-bold sketch-text mb-2 sketch-underline">邀请队友</h2>
+                    <p class="sketch-text text-sm">分享邀请链接给您的队友，让他们加入您的团队。</p>
+                </div>
+
+                <div class="sketch-card p-4 mb-6">
+                    <label class="block text-sm font-medium sketch-text mb-2">邀请链接</label>
+                    <div class="flex">
+                        <input type="text" id="inviteLink" readonly
+                            value="https://openharmony-competition.com/join?team=abc123"
+                            class="flex-1 sketch-input px-3 py-2 text-sm sketch-text focus:outline-none">
+                        <button onclick="copyInviteLink()"
+                            class="sketch-border sketch-text px-4 py-2 hover:bg-sketch-light transition-colors">
+                            <i class="fas fa-copy sketch-icon"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <label class="block text-sm font-medium sketch-text mb-2">或通过邮箱邀请</label>
+                    <div class="flex">
+                        <input type="email" placeholder="输入队友邮箱"
+                            class="flex-1 sketch-input px-3 py-2 text-sm sketch-text focus:outline-none">
+                        <button class="sketch-border sketch-text px-4 py-2 hover:bg-sketch-light transition-colors">
+                            发送
+                        </button>
+                    </div>
+                </div>
+
+                <div class="flex space-x-4">
+                    <button onclick="hideInviteModal()"
+                        class="flex-1 sketch-border sketch-text py-3 px-4 font-medium hover:bg-sketch-light transition-colors">
+                        关闭
+                    </button>
+                    <button onclick="shareInvite()"
+                        class="flex-1 sketch-button py-3 px-4 font-medium">
+                        分享邀请
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 编辑信息弹窗 -->
+        <div id="editModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+            <div class="sketch-card p-8 max-w-md mx-4 w-full sketch-shadow">
+                <div class="text-center mb-6">
+                    <i class="fas fa-edit sketch-text text-4xl mb-4 sketch-icon"></i>
+                    <h2 class="text-xl font-bold sketch-text mb-2 sketch-underline">编辑个人信息</h2>
+                    <p class="sketch-text text-sm">请填写您的最新信息</p>
+                </div>
+
+                <form class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium sketch-text mb-2">姓名</label>
+                        <input type="text" id="editName" value="张三"
+                            class="w-full sketch-input px-3 py-2 sketch-text focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium sketch-text mb-2">学校</label>
+                        <input type="text" id="editSchool" value="清华大学"
+                            class="w-full sketch-input px-3 py-2 sketch-text focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium sketch-text mb-2">专业</label>
+                        <input type="text" id="editMajor" value="计算机科学与技术"
+                            class="w-full sketch-input px-3 py-2 sketch-text focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium sketch-text mb-2">年级</label>
+                        <select id="editGrade"
+                            class="w-full sketch-input px-3 py-2 sketch-text focus:outline-none">
+                            <option value="大一">大一</option>
+                            <option value="大二">大二</option>
+                            <option value="大三" selected>大三</option>
+                            <option value="大四">大四</option>
+                            <option value="研一">研一</option>
+                            <option value="研二">研二</option>
+                            <option value="研三">研三</option>
+                            <option value="博士">博士</option>
+                        </select>
+                    </div>
+                </form>
+
+                <div class="flex space-x-4 mt-6">
+                    <button onclick="hideEditModal()"
+                        class="flex-1 sketch-border sketch-text py-3 px-4 font-medium hover:bg-sketch-light transition-colors">
+                        取消
+                    </button>
+                    <button onclick="saveEdit()"
+                        class="flex-1 sketch-button py-3 px-4 font-medium">
+                        保存
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 编辑队名弹窗 -->
+        <div id="editTeamModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+            <div class="sketch-card p-8 max-w-md mx-4 w-full sketch-shadow">
+                <div class="text-center mb-6">
+                    <i class="fas fa-users sketch-text text-4xl mb-4 sketch-icon"></i>
+                    <h2 class="text-xl font-bold sketch-text mb-2 sketch-underline">编辑队名</h2>
+                    <p class="sketch-text text-sm">修改您的团队名称</p>
+                </div>
+
+                <form class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium sketch-text mb-2">队名</label>
+                        <input type="text" id="editTeamName" value="ByteHunters"
+                            class="w-full sketch-input px-3 py-2 sketch-text focus:outline-none">
+                    </div>
+                </form>
+
+                <div class="flex space-x-4 mt-6">
+                    <button onclick="hideEditTeamModal()"
+                        class="flex-1 sketch-border sketch-text py-3 px-4 font-medium hover:bg-sketch-light transition-colors">
+                        取消
+                    </button>
+                    <button onclick="saveTeamName()"
+                        class="flex-1 sketch-button py-3 px-4 font-medium">
+                        保存
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 收款信息编辑弹窗 -->
+        <div id="paymentModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+            <div class="sketch-card p-8 max-w-md mx-4 w-full sketch-shadow">
+                <div class="text-center mb-6">
+                    <i class="fas fa-credit-card sketch-text text-4xl mb-4 sketch-icon"></i>
+                    <h2 class="text-xl font-bold sketch-text mb-2 sketch-underline">编辑收款信息</h2>
+                    <p class="sketch-text text-sm">设置您的奖金收款方式</p>
+                </div>
+
+                <form class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium sketch-text mb-2">收款方式</label>
+                        <select id="editPaymentMethod"
+                            class="w-full sketch-input px-3 py-2 sketch-text focus:outline-none">
+                            <option value="alipay">支付宝</option>
+                            <option value="wechat">微信</option>
+                            <option value="bank">银行卡</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium sketch-text mb-2">收款账号</label>
+                        <input type="text" id="editPaymentAccount" value="138****5678"
+                            class="w-full sketch-input px-3 py-2 sketch-text focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium sketch-text mb-2">收款人姓名</label>
+                        <input type="text" id="editPaymentName" value="张三"
+                            class="w-full sketch-input px-3 py-2 sketch-text focus:outline-none">
+                    </div>
+                </form>
+
+                <div class="flex space-x-4 mt-6">
+                    <button onclick="hidePaymentModal()"
+                        class="flex-1 sketch-border sketch-text py-3 px-4 font-medium hover:bg-sketch-light transition-colors">
+                        取消
+                    </button>
+                    <button onclick="savePaymentInfo()"
+                        class="flex-1 sketch-button py-3 px-4 font-medium">
+                        保存
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            // 显示邀请弹窗
+            function showInviteModal() {
+                document.getElementById('inviteModal').classList.remove('hidden');
+                document.getElementById('inviteModal').classList.add('flex');
+            }
+
+            // 隐藏邀请弹窗
+            function hideInviteModal() {
+                document.getElementById('inviteModal').classList.add('hidden');
+                document.getElementById('inviteModal').classList.remove('flex');
+            }
+
+            // 显示编辑弹窗
+            function showEditModal() {
+                document.getElementById('editModal').classList.remove('hidden');
+                document.getElementById('editModal').classList.add('flex');
+            }
+
+            // 隐藏编辑弹窗
+            function hideEditModal() {
+                document.getElementById('editModal').classList.add('hidden');
+                document.getElementById('editModal').classList.remove('flex');
+            }
+
+            // 复制邀请链接
+            function copyInviteLink() {
+                const input = document.querySelector('#inviteModal input[readonly]');
+                input.select();
+                document.execCommand('copy');
+                alert('邀请链接已复制到剪贴板');
+            }
+
+            // 分享邀请
+            function shareInvite() {
+                if (navigator.share) {
+                    navigator.share({
+                        title: 'OpenHarmony 竞赛邀请',
+                        text: '邀请您加入我的竞赛团队',
+                        url: 'https://contest.openharmony.cn/invite/abc123'
+                    });
+                } else {
+                    copyInviteLink();
+                }
+            }
+
+            // 保存编辑
+            function saveEdit() {
+                alert('信息已保存');
+                hideEditModal();
+            }
+
+            // 显示编辑队名弹窗
+            function showEditTeamModal() {
+                document.getElementById('editTeamModal').classList.remove('hidden');
+                document.getElementById('editTeamModal').classList.add('flex');
+            }
+
+            // 隐藏编辑队名弹窗
+            function hideEditTeamModal() {
+                document.getElementById('editTeamModal').classList.add('hidden');
+                document.getElementById('editTeamModal').classList.remove('flex');
+            }
+
+            // 保存队名
+            function saveTeamName() {
+                const newTeamName = document.getElementById('editTeamName').value;
+                if (newTeamName.trim()) {
+                    document.getElementById('teamName').textContent = newTeamName;
+                    alert('队名已保存');
+                    hideEditTeamModal();
+                } else {
+                    alert('请输入有效的队名');
+                }
+            }
+
+            // 显示收款信息编辑弹窗
+            function showPaymentModal() {
+                document.getElementById('paymentModal').classList.remove('hidden');
+                document.getElementById('paymentModal').classList.add('flex');
+            }
+
+            // 隐藏收款信息编辑弹窗
+            function hidePaymentModal() {
+                document.getElementById('paymentModal').classList.add('hidden');
+                document.getElementById('paymentModal').classList.remove('flex');
+            }
+
+            // 保存收款信息
+            function savePaymentInfo() {
+                const method = document.getElementById('editPaymentMethod').value;
+                const account = document.getElementById('editPaymentAccount').value;
+                const name = document.getElementById('editPaymentName').value;
+                
+                if (account.trim() && name.trim()) {
+                    // 更新显示的收款信息
+                    const methodMap = {
+                        'alipay': '支付宝',
+                        'wechat': '微信',
+                        'bank': '银行卡'
+                    };
+                    
+                    alert('收款信息已保存');
+                    hidePaymentModal();
+                } else {
+                    alert('请填写完整的收款信息');
+                }
+            }
+
+            // 显示取消报名弹窗
+            function showCancelModal() {
+                document.getElementById('cancelModal').classList.remove('hidden');
+                document.getElementById('cancelModal').classList.add('flex');
+            }
+
+            // 隐藏取消报名弹窗
+            function hideCancelModal() {
+                document.getElementById('cancelModal').classList.add('hidden');
+                document.getElementById('cancelModal').classList.remove('flex');
+            }
+
+            // 确认取消报名
+            function confirmCancel() {
+                // 清除报名相关数据
+                localStorage.removeItem('isRegistered');
+                localStorage.removeItem('registrationData');
+                localStorage.removeItem('participantId');
+
+                alert('报名已取消');
+
+                // 跳转到报名页面
+                window.location.href = 'registration.html';
+            }
+
+            // 点击模态框外部关闭
+            document.addEventListener('click', function (e) {
+                if (e.target.id === 'inviteModal') {
+                    hideInviteModal();
+                }
+                if (e.target.id === 'editModal') {
+                    hideEditModal();
+                }
+                if (e.target.id === 'cancelModal') {
+                    hideCancelModal();
+                }
+                if (e.target.id === 'editTeamModal') {
+                    hideEditTeamModal();
+                }
+                if (e.target.id === 'paymentModal') {
+                    hidePaymentModal();
+                }
+            });
+            let menuTimeout;
+
+            // 用户菜单显示/隐藏
+            function showUserMenu() {
+                clearTimeout(menuTimeout);
+                const menu = document.getElementById('userMenu');
+                if (menu) {
+                    menu.classList.remove('hidden');
+                }
+            }
+
+            function hideUserMenu() {
+                menuTimeout = setTimeout(() => {
+                    const menu = document.getElementById('userMenu');
+                    if (menu) {
+                        menu.classList.add('hidden');
+                    }
+                }, 300);
+            }
+
+            // 鼠标进入菜单时取消隐藏
+            document.addEventListener('DOMContentLoaded', function () {
+                const userMenu = document.getElementById('userMenu');
+                if (userMenu) {
+                    userMenu.addEventListener('mouseenter', () => {
+                        clearTimeout(menuTimeout);
+                    });
+                    userMenu.addEventListener('mouseleave', hideUserMenu);
+                }
+            });
+
+            // 退出登录
+            function logout() {
+                if (confirm('确定要退出登录吗？')) {
+                    localStorage.removeItem('isLoggedIn');
+                    localStorage.removeItem('userInfo');
+                    window.location.href = 'index.html';
+                }
+            }
+
+            // 检查登录状态
+            window.onload = function () {
+                const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+                const isRegistered = localStorage.getItem('isRegistered') === 'true';
+
+                if (!isLoggedIn) {
+                    window.location.href = 'login.html';
+                    return;
+                }
+
+                if (!isRegistered) {
+                    window.location.href = 'registration.html';
+                    return;
+                }
+
+                // 更新用户信息显示
+                const userInfo = JSON.parse(localStorage.getItem('userInfo') || '{}');
+                if (userInfo.name) {
+                    const nameElement = document.querySelector('#userInfo .font-medium');
+                    if (nameElement) {
+                        nameElement.textContent = userInfo.name;
+                    }
+
+                    // 更新欢迎信息
+                    const welcomeElement = document.querySelector('h1');
+                    if (welcomeElement) {
+                        welcomeElement.textContent = `欢迎回来，${userInfo.name}！`;
+                    }
+                }
+            };
+        </script>
+
+    <!-- 页脚 -->
+    <footer class="sketch-bg sketch-border py-12 sketch-shadow">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="h-8 mb-4 sketch-border flex items-center justify-center px-4 bg-sketch-blue text-white">
+                        <span class="font-bold">OpenHarmony</span>
+                    </div>
+                    <p class="sketch-text text-sm">构建全场景智慧生态</p>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-4 sketch-text sketch-underline">快速链接</h4>
+                    <ul class="space-y-2 text-sm sketch-text">
+                        <li><a href="index.html" class="sketch-text hover:text-sketch-blue">首页</a></li>
+                        <li><a href="contest-intro.html" class="sketch-text hover:text-sketch-blue">赛事介绍</a></li>
+                        <li><a href="problems.html" class="sketch-text hover:text-sketch-blue">赛题</a></li>
+                        <li><a href="leaderboard.html" class="sketch-text hover:text-sketch-blue">排行榜</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-4 sketch-text sketch-underline">帮助支持</h4>
+                    <ul class="space-y-2 text-sm sketch-text">
+                        <li><a href="#" class="sketch-text hover:text-sketch-blue">竞赛规则</a></li>
+                        <li><a href="#" class="sketch-text hover:text-sketch-blue">常见问题</a></li>
+                        <li><a href="#" class="sketch-text hover:text-sketch-blue">技术支持</a></li>
+                        <li><a href="#" class="sketch-text hover:text-sketch-blue">意见反馈</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-4 sketch-text sketch-underline">关注我们</h4>
+                    <div class="flex space-x-4 mb-4">
+                        <a href="#" class="sketch-text hover:text-sketch-blue">
+                            <i class="fab fa-github text-xl sketch-icon"></i>
+                        </a>
+                        <a href="#" class="sketch-text hover:text-sketch-orange">
+                            <i class="fab fa-weibo text-xl sketch-icon"></i>
+                        </a>
+                        <a href="#" class="sketch-text hover:text-sketch-green">
+                            <i class="fab fa-wechat text-xl sketch-icon"></i>
+                        </a>
+                    </div>
+                    <p class="text-sm sketch-text">
+                        security@openharmony.io
+                    </p>
+                </div>
+            </div>
+
+            <div class="sketch-divider mt-8"></div>
+            <div class="pt-8 text-center text-sm sketch-text">
+                <p>&copy; 2025 OpenHarmony 社区创新奖励计划. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

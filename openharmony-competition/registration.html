@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>报名 - OpenHarmony 社区创新奖励计划</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="sketch-styles.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'sketch-blue': '#4A90E2',
+                        'sketch-orange': '#F5A623',
+                        'sketch-green': '#7ED321',
+                        'sketch-red': '#D0021B',
+                        'sketch-purple': '#9013FE',
+                        'sketch-gray': '#4A4A4A',
+                        'sketch-light': '#F8F9FA'
+                    },
+                    fontFamily: {
+                        'sketch': ['Kalam', 'cursive', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* 导航栏悬停效果 */
+        .nav-item {
+            position: relative;
+            transition: all 0.3s ease;
+            transform: rotate(-0.2deg);
+        }
+
+        .nav-item.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: -5px;
+            right: -5px;
+            height: 3px;
+            background: #4A90E2;
+            border-radius: 10px;
+            transform: rotate(0.8deg);
+        }
+
+        .nav-item:hover {
+            transform: rotate(0.3deg) translateY(-1px);
+            color: #4A90E2;
+        }
+        
+        .step-content {
+            display: none;
+        }
+
+        .step-content.active {
+            display: block;
+        }
+        
+        .step-indicator {
+            transition: all 0.3s ease;
+        }
+
+        .step-indicator.active {
+            transform: scale(1.1);
+        }
+
+        .step-line {
+            transition: all 0.3s ease;
+        }
+
+        .step-line.active {
+            background: linear-gradient(90deg, #4A90E2, #7ED321);
+        }
+    </style>
+</head>
+<body class="sketch-bg">
+    <!-- 顶部导航栏 -->
+    <nav class="sketch-bg sketch-border-light fixed w-full top-0 z-50 sketch-shadow">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center h-20">
+                <!-- Logo -->
+                <div class="flex items-center sketch-border-light px-4 py-2">
+                    <div class="w-32 h-8 sketch-border-light flex items-center justify-center">
+                        <span class="sketch-text text-sm font-bold">OpenHarmony</span>
+                    </div>
+                </div>
+
+                <!-- 主导航 - 紧靠Logo -->
+                <div class="hidden md:flex items-center ml-8">
+                    <div class="flex items-center space-x-8">
+                        <a href="index.html" class="nav-item sketch-text text-lg py-2 px-4">首页</a>
+                        <a href="contest-intro.html" class="nav-item sketch-text text-lg py-2 px-4">赛事介绍</a>
+                        <a href="problems.html" class="nav-item sketch-text text-lg py-2 px-4">赛题</a>
+                        <a href="leaderboard.html" class="nav-item sketch-text text-lg py-2 px-4">排行榜</a>
+                        <a href="registration.html" class="nav-item active sketch-text font-medium text-lg py-2 px-4">报名入口</a>
+                    </div>
+                </div>
+
+                <!-- 右侧空间填充 -->
+                <div class="flex-1"></div>
+
+                <!-- 用户信息/登录按钮 - 最右侧 -->
+                <div class="flex items-center">
+                    <!-- 未登录状态 -->
+                    <a href="login.html"
+                        class="sketch-button sketch-text px-6 py-3 text-lg font-medium hidden"
+                        id="loginBtn">
+                        <i class="fab fa-git-alt mr-2 sketch-icon"></i>登录
+                    </a>
+
+                    <!-- 已登录状态 -->
+                    <div class="relative" id="userInfo">
+                        <div class="flex items-center space-x-3 cursor-pointer sketch-border-light px-4 py-2"
+                            onmouseenter="showUserMenu()" onmouseleave="hideUserMenu()">
+                            <div class="w-10 h-10 sketch-border rounded-full flex items-center justify-center">
+                                <i class="fas fa-user sketch-text sketch-icon"></i>
+                            </div>
+                            <span class="sketch-text font-medium">张三</span>
+                            <i class="fas fa-chevron-down sketch-text text-sm sketch-icon"></i>
+                        </div>
+
+                        <!-- 用户菜单 -->
+                        <div id="userMenu"
+                            class="absolute right-0 top-full mt-2 w-40 sketch-bg sketch-border py-2 hidden z-50 sketch-shadow">
+                            <button onclick="logout()"
+                                class="flex items-center w-full px-4 py-3 text-sm sketch-text">
+                                <i class="fas fa-sign-out-alt mr-3 sketch-icon"></i>退出登录
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 移动端菜单按钮 -->
+                <div class="md:hidden ml-4">
+                    <button class="sketch-text p-2 sketch-border-light">
+                        <i class="fas fa-bars text-xl sketch-icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-2xl mx-auto py-8 px-4 sm:px-6 lg:px-8 pt-28">
+        <!-- 页面标题 -->
+        <div class="text-center mb-8 sketch-card p-8 sketch-shadow">
+            <h1 class="text-3xl font-bold sketch-text mb-4 sketch-underline">竞赛报名</h1>
+            <p class="sketch-text">完善您的信息，开始您的安全挑战之旅</p>
+        </div>
+
+        <!-- 进度指示器 -->
+        <div class="mb-8">
+            <div class="flex items-center justify-center space-x-4">
+                <div class="flex items-center" id="step1-indicator">
+                    <div class="bg-sketch-blue text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-medium sketch-border-light">1</div>
+                    <span class="ml-2 text-sketch-blue font-medium">手机验证</span>
+                </div>
+                <div class="w-16 h-0.5 bg-gray-300" id="line1"></div>
+                <div class="flex items-center" id="step2-indicator">
+                    <div class="bg-gray-300 text-gray-500 rounded-full w-8 h-8 flex items-center justify-center text-sm font-medium sketch-border-light">2</div>
+                    <span class="ml-2 text-gray-500">基本信息</span>
+                </div>
+                <div class="w-16 h-0.5 bg-gray-300" id="line2"></div>
+                <div class="flex items-center" id="step3-indicator">
+                    <div class="bg-gray-300 text-gray-500 rounded-full w-8 h-8 flex items-center justify-center text-sm font-medium sketch-border-light">3</div>
+                    <span class="ml-2 text-gray-500">完成报名</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 报名表单 -->
+        <div class="sketch-card p-8 sketch-shadow">
+            <!-- 步骤1：手机验证 -->
+            <div id="step1" class="step-content active">
+                <h2 class="text-xl font-bold sketch-text mb-6 flex items-center">
+                    <i class="fas fa-mobile-alt mr-3 text-sketch-blue sketch-icon"></i>手机验证
+                </h2>
+                
+                <form id="phoneForm">
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium sketch-text mb-2">手机号码 *</label>
+                            <input type="tel" id="phoneNumber" required 
+                                   class="sketch-input w-full px-4 py-3 focus:outline-none"
+                                   placeholder="请输入手机号码">
+                        </div>
+                        
+                        <div class="flex space-x-4">
+                            <div class="flex-1">
+                                <label class="block text-sm font-medium sketch-text mb-2">验证码 *</label>
+                                <input type="text" id="verificationCode" required 
+                                       class="sketch-input w-full px-4 py-3 focus:outline-none"
+                                       placeholder="请输入验证码">
+                            </div>
+                            <div class="flex items-end">
+                                <button type="button" id="sendCodeBtn"
+                                        class="sketch-button px-6 py-3 font-medium">
+                                    发送验证码
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="text-sm sketch-text">
+                            <i class="fas fa-info-circle mr-2 sketch-icon"></i>
+                            验证码将发送到您的手机，请注意查收
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-center mt-8">
+                        <button type="submit" 
+                                class="sketch-button px-8 py-3 font-semibold">
+                            <i class="fas fa-arrow-right mr-2 sketch-icon"></i>下一步
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- 步骤2：基本信息 -->
+            <div id="step2" class="step-content">
+                <h2 class="text-xl font-bold sketch-text mb-6 flex items-center">
+                    <i class="fas fa-user mr-3 text-sketch-blue sketch-icon"></i>基本信息
+                </h2>
+                
+                <form id="basicInfoForm">
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium sketch-text mb-2">姓名 *</label>
+                            <input type="text" id="fullName" required 
+                                   class="sketch-input w-full px-4 py-3 focus:outline-none"
+                                   placeholder="请输入您的真实姓名">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium sketch-text mb-2">学校 *</label>
+                            <input type="text" id="school" required 
+                                   class="sketch-input w-full px-4 py-3 focus:outline-none"
+                                   placeholder="请输入学校全称">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium sketch-text mb-2">专业 *</label>
+                            <input type="text" id="major" required 
+                                   class="sketch-input w-full px-4 py-3 focus:outline-none"
+                                   placeholder="请输入专业名称">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium sketch-text mb-2">学号 *</label>
+                            <input type="text" id="studentId" required 
+                                   class="sketch-input w-full px-4 py-3 focus:outline-none"
+                                   placeholder="请输入学号">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium sketch-text mb-2">邮箱 *</label>
+                            <input type="email" id="email" required 
+                                   class="sketch-input w-full px-4 py-3 focus:outline-none"
+                                   placeholder="请输入邮箱地址">
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-between mt-8">
+                        <button type="button" id="backToStep1"
+                                class="sketch-border sketch-text px-8 py-3 font-semibold hover:bg-sketch-light transition-colors">
+                            <i class="fas fa-arrow-left mr-2 sketch-icon"></i>上一步
+                        </button>
+                        <button type="submit" 
+                                class="sketch-button px-8 py-3 font-semibold">
+                            <i class="fas fa-arrow-right mr-2 sketch-icon"></i>下一步
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- 步骤3：完成报名 -->
+            <div id="step3" class="step-content">
+                <div class="text-center">
+                    <div class="mb-8">
+                        <i class="fas fa-check-circle text-green-500 text-6xl mb-4 sketch-icon"></i>
+                        <h2 class="text-2xl font-bold sketch-text mb-4 sketch-underline">报名成功！</h2>
+                        <p class="sketch-text mb-6">恭喜您成功报名OpenHarmony社区创新奖励计划</p>
+                    </div>
+                    
+                    <div class="sketch-card p-6 mb-8 text-left">
+                        <h3 class="font-bold sketch-text mb-4 sketch-underline">报名信息确认</h3>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between">
+                                <span class="sketch-text">手机号码：</span>
+                                <span id="confirmPhone" class="font-medium sketch-text"></span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="sketch-text">姓名：</span>
+                                <span id="confirmName" class="font-medium sketch-text"></span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="sketch-text">学校：</span>
+                                <span id="confirmSchool" class="font-medium sketch-text"></span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="sketch-text">专业：</span>
+                                <span id="confirmMajor" class="font-medium sketch-text"></span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="sketch-text">学号：</span>
+                                <span id="confirmStudentId" class="font-medium sketch-text"></span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="sketch-text">邮箱：</span>
+                                <span id="confirmEmail" class="font-medium sketch-text"></span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-center">
+                        <button id="confirmRegistration"
+                                class="sketch-button px-8 py-3 font-semibold">
+                            <i class="fas fa-check mr-2 sketch-icon"></i>确认
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let menuTimeout;
+        let currentStep = 1;
+        let countdown = 0;
+
+        // 用户菜单显示/隐藏
+        function showUserMenu() {
+            clearTimeout(menuTimeout);
+            const menu = document.getElementById('userMenu');
+            if (menu) {
+                menu.classList.remove('hidden');
+            }
+        }
+
+        function hideUserMenu() {
+            menuTimeout = setTimeout(() => {
+                const menu = document.getElementById('userMenu');
+                if (menu) {
+                    menu.classList.add('hidden');
+                }
+            }, 300);
+        }
+
+        // 退出登录
+        function logout() {
+            if (confirm('确定要退出登录吗？')) {
+                localStorage.removeItem('isLoggedIn');
+                localStorage.removeItem('userInfo');
+                window.location.href = 'index.html';
+            }
+        }
+
+        // 更新进度指示器
+        function updateProgressIndicator(step) {
+            // 重置所有步骤样式
+            for (let i = 1; i <= 3; i++) {
+                const indicator = document.getElementById(`step${i}-indicator`);
+                const circle = indicator.querySelector('div');
+                const text = indicator.querySelector('span');
+                
+                if (i < step) {
+                    // 已完成的步骤
+                    circle.className = 'bg-green-500 text-white sketch-border-light rounded-full w-8 h-8 flex items-center justify-center text-sm font-medium';
+                    circle.innerHTML = '<i class="fas fa-check sketch-icon"></i>';
+                    text.className = 'ml-2 text-green-500 font-medium';
+                } else if (i === step) {
+                    // 当前步骤
+                    circle.className = 'bg-sketch-blue text-white sketch-border-light rounded-full w-8 h-8 flex items-center justify-center text-sm font-medium';
+                    circle.textContent = i;
+                    text.className = 'ml-2 text-sketch-blue font-medium';
+                } else {
+                    // 未完成的步骤
+                    circle.className = 'bg-gray-300 text-gray-500 sketch-border-light rounded-full w-8 h-8 flex items-center justify-center text-sm font-medium';
+                    circle.textContent = i;
+                    text.className = 'ml-2 text-gray-500';
+                }
+            }
+            
+            // 更新连接线
+            document.getElementById('line1').className = step > 1 ? 'w-16 h-0.5 bg-green-500' : 'w-16 h-0.5 bg-gray-300';
+            document.getElementById('line2').className = step > 2 ? 'w-16 h-0.5 bg-green-500' : 'w-16 h-0.5 bg-gray-300';
+        }
+
+        // 显示指定步骤
+        function showStep(step) {
+            // 隐藏所有步骤
+            document.querySelectorAll('.step-content').forEach(el => {
+                el.classList.remove('active');
+            });
+            
+            // 显示当前步骤
+            document.getElementById(`step${step}`).classList.add('active');
+            
+            // 更新进度指示器
+            updateProgressIndicator(step);
+            
+            currentStep = step;
+        }
+
+        // 发送验证码
+        function sendVerificationCode() {
+            const phoneNumber = document.getElementById('phoneNumber').value;
+            if (!phoneNumber) {
+                alert('请先输入手机号码');
+                return;
+            }
+            
+            if (!/^1[3-9]\d{9}$/.test(phoneNumber)) {
+                alert('请输入正确的手机号码');
+                return;
+            }
+            
+            // 模拟发送验证码
+            alert('验证码已发送到您的手机，请注意查收');
+            
+            // 开始倒计时
+            countdown = 60;
+            const sendBtn = document.getElementById('sendCodeBtn');
+            sendBtn.disabled = true;
+            
+            const timer = setInterval(() => {
+                sendBtn.textContent = `${countdown}秒后重发`;
+                countdown--;
+                
+                if (countdown < 0) {
+                    clearInterval(timer);
+                    sendBtn.textContent = '发送验证码';
+                    sendBtn.disabled = false;
+                }
+            }, 1000);
+        }
+
+        // 检查登录状态
+        window.onload = function() {
+            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+            if (!isLoggedIn) {
+                window.location.href = 'login.html';
+            }
+            
+            // 更新用户信息显示
+            const userInfo = JSON.parse(localStorage.getItem('userInfo') || '{}');
+            if (userInfo.name) {
+                const nameElement = document.querySelector('#userInfo .font-medium');
+                if (nameElement) {
+                    nameElement.textContent = userInfo.name;
+                }
+            }
+        };
+
+        // 事件监听器
+        document.addEventListener('DOMContentLoaded', function() {
+            // 发送验证码按钮
+            document.getElementById('sendCodeBtn').addEventListener('click', sendVerificationCode);
+            
+            // 手机验证表单
+            document.getElementById('phoneForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const phoneNumber = document.getElementById('phoneNumber').value;
+                const verificationCode = document.getElementById('verificationCode').value;
+                
+                if (!phoneNumber || !verificationCode) {
+                    alert('请填写完整信息');
+                    return;
+                }
+                
+                if (!/^1[3-9]\d{9}$/.test(phoneNumber)) {
+                    alert('请输入正确的手机号码');
+                    return;
+                }
+                
+                // 任意验证码都通过
+                if (verificationCode.length >= 4) {
+                    showStep(2);
+                } else {
+                    alert('请输入正确的验证码');
+                }
+            });
+            
+            // 基本信息表单
+            document.getElementById('basicInfoForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const fullName = document.getElementById('fullName').value;
+                const school = document.getElementById('school').value;
+                const major = document.getElementById('major').value;
+                const studentId = document.getElementById('studentId').value;
+                const email = document.getElementById('email').value;
+                
+                if (!fullName || !school || !major || !studentId || !email) {
+                    alert('请填写完整信息');
+                    return;
+                }
+                
+                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                    alert('请输入正确的邮箱地址');
+                    return;
+                }
+                
+                // 填充确认信息
+                document.getElementById('confirmPhone').textContent = document.getElementById('phoneNumber').value;
+                document.getElementById('confirmName').textContent = fullName;
+                document.getElementById('confirmSchool').textContent = school;
+                document.getElementById('confirmMajor').textContent = major;
+                document.getElementById('confirmStudentId').textContent = studentId;
+                document.getElementById('confirmEmail').textContent = email;
+                
+                showStep(3);
+            });
+            
+            // 返回上一步按钮
+            document.getElementById('backToStep1').addEventListener('click', function() {
+                showStep(1);
+            });
+            
+            // 确认报名按钮
+            document.getElementById('confirmRegistration').addEventListener('click', function() {
+                // 保存报名状态和信息到localStorage
+                const registrationData = {
+                    phone: document.getElementById('phoneNumber').value,
+                    name: document.getElementById('fullName').value,
+                    school: document.getElementById('school').value,
+                    major: document.getElementById('major').value,
+                    studentId: document.getElementById('studentId').value,
+                    email: document.getElementById('email').value,
+                    registrationDate: new Date().toISOString()
+                };
+                
+                localStorage.setItem('isRegistered', 'true');
+                localStorage.setItem('registrationData', JSON.stringify(registrationData));
+                
+                // 跳转到报名详情页
+                window.location.href = 'dashboard.html';
+            });
+        });
+    </script>
+
+    <!-- 页脚 -->
+    <footer class="sketch-bg sketch-border py-12 sketch-shadow">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="h-8 mb-4 sketch-border flex items-center justify-center px-4 bg-sketch-blue text-white">
+                        <span class="font-bold">OpenHarmony</span>
+                    </div>
+                    <p class="sketch-text text-sm">构建全场景智慧生态</p>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-4 sketch-text sketch-underline">快速链接</h4>
+                    <ul class="space-y-2 text-sm sketch-text">
+                        <li><a href="index.html" class="sketch-text hover:text-sketch-blue">首页</a></li>
+                        <li><a href="contest-intro.html" class="sketch-text hover:text-sketch-blue">赛事介绍</a></li>
+                        <li><a href="problems.html" class="sketch-text hover:text-sketch-blue">赛题</a></li>
+                        <li><a href="leaderboard.html" class="sketch-text hover:text-sketch-blue">排行榜</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-4 sketch-text sketch-underline">帮助支持</h4>
+                    <ul class="space-y-2 text-sm sketch-text">
+                        <li><a href="#" class="sketch-text hover:text-sketch-blue">竞赛规则</a></li>
+                        <li><a href="#" class="sketch-text hover:text-sketch-blue">常见问题</a></li>
+                        <li><a href="#" class="sketch-text hover:text-sketch-blue">技术支持</a></li>
+                        <li><a href="#" class="sketch-text hover:text-sketch-blue">意见反馈</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-4 sketch-text sketch-underline">关注我们</h4>
+                    <div class="flex space-x-4 mb-4">
+                        <a href="#" class="sketch-text hover:text-sketch-blue">
+                            <i class="fab fa-github text-xl sketch-icon"></i>
+                        </a>
+                        <a href="#" class="sketch-text hover:text-sketch-orange">
+                            <i class="fab fa-weibo text-xl sketch-icon"></i>
+                        </a>
+                        <a href="#" class="sketch-text hover:text-sketch-green">
+                            <i class="fab fa-wechat text-xl sketch-icon"></i>
+                        </a>
+                    </div>
+                    <p class="text-sm sketch-text">
+                        security@openharmony.io
+                    </p>
+                </div>
+            </div>
+
+            <div class="sketch-divider mt-8"></div>
+            <div class="pt-8 text-center text-sm sketch-text">
+                <p>&copy; 2025 OpenHarmony 社区创新奖励计划. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>排行榜 - OpenHarmony 社区创新奖励计划</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="sketch-styles.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'sketch-blue': '#4A90E2',
+                        'sketch-orange': '#F5A623',
+                        'sketch-green': '#7ED321',
+                        'sketch-red': '#D0021B',
+                        'sketch-purple': '#9013FE',
+                        'sketch-gray': '#4A4A4A',
+                        'sketch-light': '#F8F9FA'
+                    },
+                    fontFamily: {
+                        'sketch': ['Kalam', 'cursive', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+    </style>
+</head>
+<body class="sketch-bg">
+    <!-- 顶部导航栏 -->
+    <nav class="sketch-bg sketch-border-light fixed w-full top-0 z-50 sketch-shadow">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center h-20">
+                <!-- Logo -->
+                <div class="flex items-center sketch-border-light px-4 py-2">
+                    <div class="w-32 h-8 sketch-border-light flex items-center justify-center">
+                        <span class="sketch-text text-sm font-bold">OpenHarmony</span>
+                    </div>
+                </div>
+
+                <!-- 主导航 - 紧靠Logo -->
+                <div class="hidden md:flex items-center ml-8">
+                    <div class="flex items-center space-x-8">
+                        <a href="index.html" class="nav-item sketch-text text-lg py-2 px-4">首页</a>
+                        <a href="contest-intro.html" class="nav-item sketch-text text-lg py-2 px-4">赛事介绍</a>
+                        <a href="problems.html" class="nav-item sketch-text text-lg py-2 px-4">赛题</a>
+                        <a href="leaderboard.html" class="nav-item active sketch-text font-medium text-lg py-2 px-4">排行榜</a>
+                        <a href="registration.html" class="nav-item sketch-text text-lg py-2 px-4">报名入口</a>
+                    </div>
+                </div>
+
+                <!-- 右侧空间填充 -->
+                <div class="flex-1"></div>
+
+                <!-- 用户信息/登录按钮 - 最右侧 -->
+                <div class="flex items-center">
+                    <!-- 未登录状态 -->
+                    <a href="login.html"
+                        class="sketch-button sketch-text px-6 py-3 text-lg font-medium"
+                        id="loginBtn">
+                        <i class="fab fa-git-alt mr-2 sketch-icon"></i>登录
+                    </a>
+
+                    <!-- 已登录状态 -->
+                    <div class="relative hidden" id="userInfo">
+                        <div class="flex items-center space-x-3 cursor-pointer sketch-border-light px-4 py-2"
+                            onmouseenter="showUserMenu()" onmouseleave="hideUserMenu()">
+                            <div class="w-10 h-10 sketch-border rounded-full flex items-center justify-center">
+                                <i class="fas fa-user sketch-text sketch-icon"></i>
+                            </div>
+                            <span class="sketch-text font-medium">张三</span>
+                            <i class="fas fa-chevron-down sketch-text text-sm sketch-icon"></i>
+                        </div>
+
+                        <!-- 用户菜单 -->
+                        <div id="userMenu"
+                            class="absolute right-0 top-full mt-2 w-40 sketch-bg sketch-border py-2 hidden z-50 sketch-shadow">
+                            <button onclick="logout()"
+                                class="flex items-center w-full px-4 py-3 text-sm sketch-text">
+                                <i class="fas fa-sign-out-alt mr-3 sketch-icon"></i>退出登录
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 移动端菜单按钮 -->
+                <div class="md:hidden ml-4">
+                    <button class="sketch-text p-2 sketch-border-light">
+                        <i class="fas fa-bars text-xl sketch-icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="pt-20">
+        <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+
+
+            <!-- 前三名展示 -->
+            <div class="sketch-card p-8 mb-8 sketch-shadow">
+                <h2 class="text-xl font-bold sketch-text mb-6 text-center">本月团队前三名</h2>
+                <div class="flex justify-center items-end space-x-8">
+                    <!-- 第二名 -->
+                    <div class="text-center">
+                        <div class="sketch-border-light rounded-lg w-20 h-20 flex items-center justify-center mx-auto mb-4 bg-gray-100">
+                            <i class="fas fa-users sketch-text text-2xl sketch-icon"></i>
+                        </div>
+                        <div class="bg-gray-400 text-white rounded-full w-8 h-8 flex items-center justify-center mx-auto mb-2 sketch-border-light">
+                            <span class="text-sm font-bold">2</span>
+                        </div>
+                        <h3 class="font-bold sketch-text">CodeMasters</h3>
+                        <p class="text-sm sketch-text">北京大学</p>
+                        <p class="text-xs sketch-text mb-1">队长：李四</p>
+                        <p class="text-lg font-bold text-sketch-blue mt-2">850分</p>
+                    </div>
+                    
+                    <!-- 第一名 -->
+                    <div class="text-center transform scale-110">
+                        <div class="sketch-border-light rounded-lg w-24 h-24 flex items-center justify-center mx-auto mb-4 bg-yellow-100">
+                            <i class="fas fa-users sketch-text text-3xl sketch-icon"></i>
+                        </div>
+                        <div class="bg-yellow-500 text-white rounded-full w-10 h-10 flex items-center justify-center mx-auto mb-2 sketch-border-light">
+                            <i class="fas fa-crown text-lg sketch-icon"></i>
+                        </div>
+                        <h3 class="font-bold sketch-text text-lg">SecureTeam</h3>
+                        <p class="text-sm sketch-text">清华大学</p>
+                        <p class="text-xs sketch-text mb-1">队长：王五</p>
+                        <p class="text-xl font-bold text-yellow-600 mt-2">1200分</p>
+                    </div>
+                    
+                    <!-- 第三名 -->
+                    <div class="text-center">
+                        <div class="sketch-border-light rounded-lg w-20 h-20 flex items-center justify-center mx-auto mb-4 bg-orange-100">
+                            <i class="fas fa-users sketch-text text-2xl sketch-icon"></i>
+                        </div>
+                        <div class="bg-orange-500 text-white rounded-full w-8 h-8 flex items-center justify-center mx-auto mb-2 sketch-border-light">
+                            <span class="text-sm font-bold">3</span>
+                        </div>
+                        <h3 class="font-bold sketch-text">ByteHunters</h3>
+                        <p class="text-sm sketch-text">上海交通大学</p>
+                        <p class="text-xs sketch-text mb-1">队长：张三</p>
+                        <p class="text-lg font-bold text-sketch-blue mt-2">680分</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 排行榜切换 -->
+            <div class="sketch-card p-6 mb-8 sketch-shadow">
+                <div class="flex flex-wrap items-center justify-between gap-4">
+                    <div class="flex items-center space-x-4">
+                        <div class="flex sketch-border-light p-1">
+                            <button onclick="switchLeaderboard('monthly')" 
+                                    class="px-4 py-2 rounded-md text-sm font-medium transition-colors monthly-tab sketch-button">
+                                月度排行
+                            </button>
+                            <button onclick="switchLeaderboard('overall')" 
+                                    class="px-4 py-2 rounded-md text-sm font-medium transition-colors overall-tab sketch-text hover:text-sketch-blue">
+                                总排行
+                            </button>
+                        </div>
+                        
+                        <div id="monthSelector" class="flex items-center space-x-2">
+                            <label class="text-sm font-medium sketch-text">月份：</label>
+                            <select id="monthSelect" onchange="changeMonth()" 
+                                    class="sketch-input px-3 py-2">
+                                <option value="2025-12">2025年12月</option>
+                                <option value="2025-11">2025年11月</option>
+                                <option value="2025-10" selected>2025年10月</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 排行榜列表 -->
+            <div>
+
+                    <!-- 详细排行榜 -->
+                    <div class="sketch-card overflow-hidden sketch-shadow">
+                        <div class="p-6 sketch-border">
+                            <h2 class="text-xl font-bold sketch-text">详细排名</h2>
+                        </div>
+                        
+                        <div class="overflow-x-auto">
+                            <table class="w-full">
+                                <thead>
+                                    <tr class="sketch-bg sketch-border">
+                                        <th class="px-6 py-4 text-left text-sm font-medium sketch-text">排名</th>
+                                        <th class="px-6 py-4 text-left text-sm font-medium sketch-text">团队</th>
+                                        <th class="px-6 py-4 text-left text-sm font-medium sketch-text">学校</th>
+                                        <th class="px-6 py-4 text-left text-sm font-medium sketch-text">队长</th>
+                                        <th class="px-6 py-4 text-left text-sm font-medium sketch-text">总分</th>
+                                        <th class="px-6 py-4 text-left text-sm font-medium sketch-text">提交数</th>
+                                        <th class="px-6 py-4 text-left text-sm font-medium sketch-text">成功数</th>
+                                        <th class="px-6 py-4 text-left text-sm font-medium sketch-text">最后提交</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="hover:bg-sketch-light border-b sketch-border-light">
+                                        <td class="px-6 py-4">
+                                            <div class="flex items-center">
+                                                <div class="bg-yellow-500 text-white rounded-full w-8 h-8 flex items-center justify-center sketch-border-light">
+                                                    <i class="fas fa-crown sketch-icon"></i>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <div>
+                                                <div class="font-medium sketch-text">SecureTeam</div>
+                                                <div class="text-sm sketch-text">3人团队</div>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 sketch-text">清华大学</td>
+                                        <td class="px-6 py-4 sketch-text">王五</td>
+                                        <td class="px-6 py-4">
+                                            <span class="text-lg font-bold text-yellow-600">1200</span>
+                                        </td>
+                                        <td class="px-6 py-4 sketch-text">15</td>
+                                        <td class="px-6 py-4 sketch-text">8</td>
+                                        <td class="px-6 py-4 sketch-text text-sm">2小时前</td>
+                                    </tr>
+                                    
+                                    <tr class="hover:bg-sketch-light border-b sketch-border-light">
+                                        <td class="px-6 py-4">
+                                            <div class="bg-gray-400 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold sketch-border-light">
+                                                2
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <div>
+                                                <div class="font-medium sketch-text">CodeMasters</div>
+                                                <div class="text-sm sketch-text">2人团队</div>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 sketch-text">北京大学</td>
+                                        <td class="px-6 py-4 sketch-text">李四</td>
+                                        <td class="px-6 py-4">
+                                            <span class="text-lg font-bold text-sketch-blue">850</span>
+                                        </td>
+                                        <td class="px-6 py-4 sketch-text">12</td>
+                                        <td class="px-6 py-4 sketch-text">6</td>
+                                        <td class="px-6 py-4 sketch-text text-sm">5小时前</td>
+                                    </tr>
+                                    
+                                    <tr class="hover:bg-sketch-light border-b sketch-border-light bg-sketch-light">
+                                        <td class="px-6 py-4">
+                                            <div class="bg-orange-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold sketch-border-light">
+                                                3
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <div>
+                                                <div class="font-medium sketch-text">ByteHunters <span class="text-sketch-blue text-sm">(我的团队)</span></div>
+                                                <div class="text-sm sketch-text">3人团队</div>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 sketch-text">上海交通大学</td>
+                                        <td class="px-6 py-4 sketch-text">张三</td>
+                                        <td class="px-6 py-4">
+                                            <span class="text-lg font-bold text-sketch-blue">680</span>
+                                        </td>
+                                        <td class="px-6 py-4 sketch-text">10</td>
+                                        <td class="px-6 py-4 sketch-text">5</td>
+                                        <td class="px-6 py-4 sketch-text text-sm">1天前</td>
+                                    </tr>
+                                    
+                                    <tr class="hover:bg-sketch-light border-b sketch-border-light">
+                                        <td class="px-6 py-4">
+                                            <div class="bg-gray-300 sketch-text rounded-full w-8 h-8 flex items-center justify-center font-bold sketch-border-light">
+                                                4
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <div>
+                                                <div class="font-medium sketch-text">CyberGuards</div>
+                                                <div class="text-sm sketch-text">2人团队</div>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 sketch-text">复旦大学</td>
+                                        <td class="px-6 py-4 sketch-text">赵六</td>
+                                        <td class="px-6 py-4">
+                                            <span class="text-lg font-bold text-sketch-blue">620</span>
+                                        </td>
+                                        <td class="px-6 py-4 sketch-text">8</td>
+                                        <td class="px-6 py-4 sketch-text">4</td>
+                                        <td class="px-6 py-4 sketch-text text-sm">2天前</td>
+                                    </tr>
+                                    
+                                    <tr class="hover:bg-sketch-light border-b sketch-border-light">
+                                        <td class="px-6 py-4">
+                                            <div class="bg-gray-300 sketch-text rounded-full w-8 h-8 flex items-center justify-center font-bold sketch-border-light">
+                                                5
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <div>
+                                                <div class="font-medium sketch-text">SecurityFirst</div>
+                                                <div class="text-sm sketch-text">1人团队</div>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 sketch-text">浙江大学</td>
+                                        <td class="px-6 py-4 sketch-text">孙七</td>
+                                        <td class="px-6 py-4">
+                                            <span class="text-lg font-bold text-sketch-blue">580</span>
+                                        </td>
+                                        <td class="px-6 py-4 sketch-text">9</td>
+                                        <td class="px-6 py-4 sketch-text">4</td>
+                                        <td class="px-6 py-4 sketch-text text-sm">3天前</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <!-- 分页 -->
+                        <div class="px-6 py-4 sketch-border">
+                            <div class="flex items-center justify-between">
+                                <div class="text-sm sketch-text">
+                                    显示 1-10 条，共 156 条记录
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <button class="px-3 py-2 sketch-text hover:text-sketch-blue transition-colors">
+                                        <i class="fas fa-chevron-left sketch-icon"></i>
+                                    </button>
+                                    <button class="px-3 py-2 sketch-button text-white rounded font-medium">1</button>
+                                    <button class="px-3 py-2 sketch-text hover:text-sketch-blue transition-colors">2</button>
+                                    <button class="px-3 py-2 sketch-text hover:text-sketch-blue transition-colors">3</button>
+                                    <button class="px-3 py-2 sketch-text hover:text-sketch-blue transition-colors">
+                                        <i class="fas fa-chevron-right sketch-icon"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 切换排行榜类型
+        function switchLeaderboard(type) {
+            const monthlyTab = document.querySelector('.monthly-tab');
+            const overallTab = document.querySelector('.overall-tab');
+            const monthSelector = document.getElementById('monthSelector');
+            
+            if (type === 'monthly') {
+                monthlyTab.classList.add('sketch-button');
+                monthlyTab.classList.remove('sketch-text', 'hover:text-sketch-blue');
+                overallTab.classList.remove('sketch-button');
+                overallTab.classList.add('sketch-text', 'hover:text-sketch-blue');
+                monthSelector.style.display = 'flex';
+            } else {
+                overallTab.classList.add('sketch-button');
+                overallTab.classList.remove('sketch-text', 'hover:text-sketch-blue');
+                monthlyTab.classList.remove('sketch-button');
+                monthlyTab.classList.add('sketch-text', 'hover:text-sketch-blue');
+                monthSelector.style.display = 'none';
+            }
+        }
+
+        // 切换月份
+        function changeMonth() {
+            const selectedMonth = document.getElementById('monthSelect').value;
+            console.log('切换到月份:', selectedMonth);
+            // 这里可以添加加载对应月份数据的逻辑
+        }
+
+        // 按方向筛选
+        function filterByCategory() {
+            // 这里可以添加按方向筛选的逻辑
+            console.log('筛选方向');
+        }
+        
+        let menuTimeout;
+
+        // 用户菜单显示/隐藏
+        function showUserMenu() {
+            clearTimeout(menuTimeout);
+            const menu = document.getElementById('userMenu');
+            if (menu) {
+                menu.classList.remove('hidden');
+            }
+        }
+
+        function hideUserMenu() {
+            menuTimeout = setTimeout(() => {
+                const menu = document.getElementById('userMenu');
+                if (menu) {
+                    menu.classList.add('hidden');
+                }
+            }, 300);
+        }
+
+        // 退出登录
+        function logout() {
+            if (confirm('确定要退出登录吗？')) {
+                localStorage.removeItem('isLoggedIn');
+                localStorage.removeItem('userInfo');
+                document.getElementById('userInfo').classList.add('hidden');
+                document.getElementById('loginBtn').classList.remove('hidden');
+            }
+        }
+
+        // 检查登录状态
+        function checkLoginStatus() {
+            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+
+            if (isLoggedIn) {
+                const loginBtn = document.getElementById('loginBtn');
+                const userInfo = document.getElementById('userInfo');
+                
+                if (loginBtn) loginBtn.classList.add('hidden');
+                if (userInfo) userInfo.classList.remove('hidden');
+
+                const userInfoData = JSON.parse(localStorage.getItem('userInfo') || '{}');
+                if (userInfoData.name) {
+                    const nameElement = document.querySelector('#userInfo .font-medium');
+                    if (nameElement) {
+                        nameElement.textContent = userInfoData.name;
+                    }
+                }
+            }
+        }
+
+        // 页面加载时检查登录状态
+        window.onload = function() {
+            checkLoginStatus();
+        };
+    </script>
+
+    <!-- 页脚 -->
+    <footer class="sketch-bg sketch-border py-12 sketch-shadow">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="h-8 mb-4 sketch-border flex items-center justify-center px-4 bg-sketch-blue text-white">
+                        <span class="font-bold">OpenHarmony</span>
+                    </div>
+                    <p class="sketch-text text-sm">构建全场景智慧生态</p>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-4 sketch-text sketch-underline">快速链接</h4>
+                    <ul class="space-y-2 text-sm sketch-text">
+                        <li><a href="index.html" class="sketch-text hover:text-sketch-blue">首页</a></li>
+                        <li><a href="contest-intro.html" class="sketch-text hover:text-sketch-blue">赛事介绍</a></li>
+                        <li><a href="problems.html" class="sketch-text hover:text-sketch-blue">赛题</a></li>
+                        <li><a href="registration.html" class="sketch-text hover:text-sketch-blue">报名参赛</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-4 sketch-text sketch-underline">帮助支持</h4>
+                    <ul class="space-y-2 text-sm sketch-text">
+                        <li><a href="#" class="sketch-text hover:text-sketch-blue">竞赛规则</a></li>
+                        <li><a href="#" class="sketch-text hover:text-sketch-blue">常见问题</a></li>
+                        <li><a href="#" class="sketch-text hover:text-sketch-blue">技术支持</a></li>
+                        <li><a href="#" class="sketch-text hover:text-sketch-blue">意见反馈</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-4 sketch-text sketch-underline">关注我们</h4>
+                    <div class="flex space-x-4 mb-4">
+                        <a href="#" class="sketch-text hover:text-sketch-blue">
+                            <i class="fab fa-github text-xl sketch-icon"></i>
+                        </a>
+                        <a href="#" class="sketch-text hover:text-sketch-orange">
+                            <i class="fab fa-weibo text-xl sketch-icon"></i>
+                        </a>
+                        <a href="#" class="sketch-text hover:text-sketch-green">
+                            <i class="fab fa-wechat text-xl sketch-icon"></i>
+                        </a>
+                    </div>
+                    <p class="text-sm sketch-text">
+                        security@openharmony.io
+                    </p>
+                </div>
+            </div>
+
+            <div class="sketch-divider mt-8"></div>
+            <div class="pt-8 text-center text-sm sketch-text">
+                <p>&copy; 2025 OpenHarmony 社区创新奖励计划. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

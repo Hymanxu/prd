@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenHarmony 社区创新奖励计划</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'sketch-blue': '#4A90E2',
+                        'sketch-orange': '#F5A623',
+                        'sketch-green': '#7ED321',
+                        'sketch-red': '#D0021B',
+                        'sketch-purple': '#9013FE',
+                        'sketch-gray': '#4A4A4A',
+                        'sketch-light': '#F8F9FA'
+                    },
+                    fontFamily: {
+                        'sketch': ['Kalam', 'cursive', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* 手绘风格样式 */
+        * {
+            font-family: 'Kalam', cursive, sans-serif;
+        }
+        
+        .sketch-border {
+            border: 3px solid #4A4A4A;
+            border-radius: 15px 5px 10px 8px;
+            position: relative;
+            transform: rotate(-0.5deg);
+        }
+        
+        .sketch-border:hover {
+            transform: rotate(0.2deg);
+            transition: transform 0.2s ease-in-out;
+        }
+        
+        .sketch-border-light {
+            border: 2px solid #7A7A7A;
+            border-radius: 8px 12px 6px 10px;
+            transform: rotate(0.3deg);
+        }
+        
+        .sketch-text {
+            color: #4A4A4A;
+        }
+        
+        .sketch-bg {
+            background: #FFFEF7;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(74, 144, 226, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(245, 166, 35, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(126, 211, 33, 0.03) 0%, transparent 50%);
+        }
+        
+        .sketch-shadow {
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1), 
+                        -2px -2px 8px rgba(255, 255, 255, 0.8);
+        }
+        
+        .sketch-button {
+            background: linear-gradient(145deg, #4A90E2, #357ABD);
+            border: 2px solid #2E5C8A;
+            border-radius: 12px 8px 15px 6px;
+            color: white;
+            position: relative;
+            transform: rotate(-0.8deg);
+            transition: all 0.2s ease;
+        }
+        
+        .sketch-button:hover {
+            transform: rotate(0.5deg) scale(1.02);
+            background: linear-gradient(145deg, #5BA0F2, #4A90E2);
+            box-shadow: 3px 3px 10px rgba(74, 144, 226, 0.3);
+        }
+        
+        .sketch-card {
+            background: #FFFEF7;
+            border: 2px solid #4A4A4A;
+            border-radius: 20px 8px 15px 12px;
+            transform: rotate(-0.3deg);
+            box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.08);
+            position: relative;
+        }
+        
+        .sketch-card:hover {
+            transform: rotate(0.2deg) translateY(-2px);
+            transition: all 0.3s ease;
+            box-shadow: 10px 10px 25px rgba(0, 0, 0, 0.12);
+        }
+        
+        .sketch-underline {
+            position: relative;
+        }
+        
+        .sketch-underline::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: -5px;
+            right: -5px;
+            height: 4px;
+            background: #F5A623;
+            border-radius: 20px;
+            transform: rotate(-0.5deg);
+        }
+        
+        /* 导航栏手绘风格 */
+        .nav-item {
+            position: relative;
+            transform: rotate(-0.2deg);
+            transition: all 0.2s ease;
+        }
+        
+        .nav-item.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: -5px;
+            right: -5px;
+            height: 3px;
+            background: #4A90E2;
+            border-radius: 10px;
+            transform: rotate(0.8deg);
+        }
+        
+        .nav-item:hover {
+            transform: rotate(0.3deg) translateY(-1px);
+            color: #4A90E2;
+        }
+        
+        /* 手绘风格图标 */
+        .sketch-icon {
+            transform: rotate(-2deg);
+            transition: transform 0.2s ease;
+        }
+        
+        .sketch-icon:hover {
+            transform: rotate(2deg) scale(1.1);
+        }
+        
+        /* 手绘风格分割线 */
+        .sketch-divider {
+            height: 2px;
+            background: #4A4A4A;
+            border-radius: 10px;
+            transform: rotate(-0.3deg);
+            margin: 20px 0;
+        }
+        
+        /* 手绘风格输入框 */
+        .sketch-input {
+            border: 2px solid #4A4A4A;
+            border-radius: 8px 15px 6px 12px;
+            background: #FFFEF7;
+            transform: rotate(-0.2deg);
+        }
+        
+        .sketch-input:focus {
+            transform: rotate(0.1deg);
+            border-color: #4A90E2;
+            box-shadow: 0 0 10px rgba(74, 144, 226, 0.2);
+        }
+    </style>
+</head>
+
+<body class="sketch-bg">
+    <!-- 顶部导航栏 -->
+    <nav class="sketch-bg sketch-border-light fixed w-full top-0 z-50 sketch-shadow">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center h-20">
+                <!-- Logo -->
+                <div class="flex items-center sketch-border-light px-4 py-2">
+                    <div class="w-32 h-8 sketch-border-light flex items-center justify-center">
+                        <span class="sketch-text text-sm font-bold">OpenHarmony</span>
+                    </div>
+                </div>
+
+                <!-- 主导航 - 紧靠Logo -->
+                <div class="hidden md:flex items-center ml-8">
+                    <div class="flex items-center space-x-8">
+                        <a href="#"
+                            class="nav-item active sketch-text font-medium text-lg py-2 px-4">首页</a>
+                        <a href="contest-intro.html"
+                            class="nav-item sketch-text text-lg py-2 px-4">赛事介绍</a>
+                        <a href="problems.html"
+                            class="nav-item sketch-text text-lg py-2 px-4">赛题</a>
+                        <a href="leaderboard.html"
+                            class="nav-item sketch-text text-lg py-2 px-4">排行榜</a>
+                        <a href="registration.html" id="registrationNavLink"
+                            class="nav-item sketch-text text-lg py-2 px-4">报名入口</a>
+                    </div>
+                </div>
+
+                <!-- 右侧空间填充 -->
+                <div class="flex-1"></div>
+
+                <!-- 用户信息/登录按钮 - 最右侧 -->
+                <div class="flex items-center">
+                    <!-- 未登录状态 -->
+                    <a href="login.html"
+                        class="sketch-button sketch-text px-6 py-3 text-lg font-medium"
+                        id="loginBtn">
+                        <i class="fab fa-git-alt mr-2 sketch-icon"></i>登录
+                    </a>
+
+                    <!-- 已登录状态 -->
+                    <div class="relative hidden" id="userInfo">
+                        <div class="flex items-center space-x-3 cursor-pointer sketch-border-light px-4 py-2"
+                            onmouseenter="showUserMenu()" onmouseleave="hideUserMenu()">
+                            <div class="w-10 h-10 sketch-border rounded-full flex items-center justify-center">
+                                <i class="fas fa-user sketch-text sketch-icon"></i>
+                            </div>
+                            <span class="sketch-text font-medium">张三</span>
+                            <i class="fas fa-chevron-down sketch-text text-sm sketch-icon"></i>
+                        </div>
+
+                        <!-- 用户菜单 -->
+                        <div id="userMenu"
+                            class="absolute right-0 top-full mt-2 w-40 sketch-bg sketch-border py-2 hidden z-50 sketch-shadow">
+                            <button onclick="logout()"
+                                class="flex items-center w-full px-4 py-3 text-sm sketch-text">
+                                <i class="fas fa-sign-out-alt mr-3 sketch-icon"></i>退出登录
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 移动端菜单按钮 -->
+                <div class="md:hidden ml-4">
+                    <button class="sketch-text p-2 sketch-border-light">
+                        <i class="fas fa-bars text-xl sketch-icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主要内容 -->
+    <main class="pt-20">
+        <!-- Banner区域 -->
+        <section class="sketch-bg sketch-card relative m-4" style="height: 420px;">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 h-full">
+                <div class="grid lg:grid-cols-2 gap-12 items-center h-full">
+                    <!-- 左侧文字内容 -->
+                    <div class="sketch-card p-8">
+                        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight sketch-text">
+                            <span class="sketch-border-light px-3 py-2 bg-sketch-orange text-white">
+                                OpenHarmony
+                            </span><br>
+                            <span class="text-2xl md:text-3xl lg:text-4xl sketch-underline">社区创新奖励计划</span>
+                        </h1>
+                        <p class="text-xl md:text-2xl mb-8 sketch-text leading-relaxed">
+                            解决真实问题 共建开源生态
+                        </p>
+                        <div class="flex justify-start">
+                            <a href="registration.html"
+                                class="sketch-button px-8 py-4 font-semibold">
+                                <i class="fas fa-rocket mr-2 sketch-icon"></i>立即报名
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- 右侧手绘图形 -->
+                    <div class="hidden lg:block">
+                        <div class="relative">
+                            <!-- 主要的手绘图形 -->
+                            <div class="relative w-96 h-96 mx-auto">
+                                <!-- 背景框架 -->
+                                <div class="absolute inset-0 sketch-border bg-sketch-light"></div>
+                                <div class="absolute inset-4 sketch-border-light bg-sketch-blue opacity-20"></div>
+                                <div class="absolute inset-8 sketch-border-light bg-sketch-green opacity-15"></div>
+                            </div>
+
+                            <!-- 中心图形 -->
+                            <div class="absolute inset-16 sketch-border bg-sketch-orange opacity-30 transform rotate-12">
+                                <div class="absolute inset-4 sketch-border-light">
+                                </div>
+                                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                                    <i class="fas fa-shield-alt sketch-text text-6xl sketch-icon"></i>
+                                </div>
+                            </div>
+
+                            <!-- 装饰元素 -->
+                            <div class="absolute top-8 right-8 w-12 h-12 sketch-border bg-sketch-purple opacity-40 transform rotate-45">
+                            </div>
+                            <div class="absolute bottom-12 left-8 w-8 h-8 sketch-border bg-sketch-red opacity-50 rounded-full">
+                            </div>
+                            <div class="absolute top-1/3 left-4 w-6 h-6 sketch-border bg-sketch-green opacity-60 rounded-full">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 竞赛题目 -->
+        <section class="py-20 sketch-bg">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="mb-16">
+                    <h2 class="text-4xl font-bold sketch-text relative inline-block sketch-underline">
+                        竞赛题目
+                    </h2>
+                </div>
+
+                <div class="grid grid-cols-3 gap-8">
+                    <!-- 覆盖率提升 -->
+                    <div class="group relative">
+                        <div class="sketch-card p-8">
+                            <div class="absolute top-4 right-4 opacity-20">
+                                <i class="fas fa-chart-line text-4xl sketch-text sketch-icon"></i>
+                            </div>
+                            <div class="relative z-10">
+                                <div class="sketch-border-light rounded-full w-16 h-16 flex items-center justify-center mb-6 bg-sketch-blue text-white">
+                                    <i class="fas fa-chart-line text-2xl sketch-icon"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold mb-4 sketch-text">覆盖率提升</h3>
+                                <p class="sketch-text mb-6 leading-relaxed">每新增覆盖OpenHarmony社区1千行代码(NBNC)，积1分</p>
+                                <a href="problems.html?category=coverage"
+                                    class="inline-flex items-center sketch-button px-4 py-2 font-medium">
+                                    查看题目 <i class="fas fa-arrow-right ml-2 sketch-icon"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 已知漏洞检测 -->
+                    <div class="group relative">
+                        <div class="sketch-card p-8">
+                            <div class="absolute top-4 right-4 opacity-20">
+                                <i class="fas fa-bug text-4xl sketch-text sketch-icon"></i>
+                            </div>
+                            <div class="relative z-10">
+                                <div class="sketch-border-light rounded-full w-16 h-16 flex items-center justify-center mb-6 bg-sketch-green text-white">
+                                    <i class="fas fa-bug text-2xl sketch-icon"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold mb-4 sketch-text">已知漏洞检测</h3>
+                                <p class="sketch-text mb-6 leading-relaxed">每检测出一个已知漏洞，积1分(Fuzz平台将自动进行漏洞注入，以检测用例的防护效果)</p>
+                                <a href="problems.html?category=detection"
+                                    class="inline-flex items-center sketch-button px-4 py-2 font-medium">
+                                    查看题目 <i class="fas fa-arrow-right ml-2 sketch-icon"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 0Day漏洞挖掘 -->
+                    <div class="group relative">
+                        <div class="sketch-card p-8">
+                            <div class="absolute top-4 right-4 opacity-20">
+                                <i class="fas fa-search text-4xl sketch-text sketch-icon"></i>
+                            </div>
+                            <div class="relative z-10">
+                                <div class="sketch-border-light rounded-full w-16 h-16 flex items-center justify-center mb-6 bg-sketch-purple text-white">
+                                    <i class="fas fa-search text-2xl sketch-icon"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold mb-4 sketch-text">0Day漏洞挖掘</h3>
+                                <p class="sketch-text mb-6 leading-relaxed">所提交的Fuzz用例发现0Day漏洞将获得额外积分，致命漏洞100分，严重漏洞30分……</p>
+                                <a href="problems.html?category=zero-day"
+                                    class="inline-flex items-center sketch-button px-4 py-2 font-medium">
+                                    查看题目 <i class="fas fa-arrow-right ml-2 sketch-icon"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </section>
+
+        <!-- 通知公告 -->
+        <section class="py-20 sketch-bg">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- 通知公告 -->
+                <div class="mb-16">
+                    <div class="flex items-center justify-between mb-12">
+                        <div>
+                            <h2 class="text-4xl font-bold sketch-text relative inline-block sketch-underline">
+                                通知公告
+                            </h2>
+                        </div>
+                        <a href="#" class="inline-flex items-center sketch-text font-medium hover:text-sketch-blue">
+                            查看全部
+                            <i class="fas fa-arrow-right ml-2 sketch-icon"></i>
+                        </a>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="sketch-card p-8 sketch-bg">
+                            <div class="flex items-start">
+                                <div class="sketch-card p-3 mr-4">
+                                    <i class="fas fa-bullhorn sketch-text text-lg sketch-icon"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="font-bold sketch-text mb-3 text-lg">2025年度总决赛报名开始</h3>
+                                    <p class="sketch-text text-sm mb-4 leading-relaxed">
+                                        年度总决赛报名通道已开启，优秀选手可获得丰厚奖励，快来报名参与吧...</p>
+                                    <span class="text-xs sketch-text">2025-10-15</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sketch-card p-8 sketch-bg">
+                            <div class="flex items-start">
+                                <div class="sketch-card p-3 mr-4">
+                                    <i class="fas fa-trophy sketch-text text-lg sketch-icon"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="font-bold sketch-text mb-3 text-lg">9月月赛结果公布</h3>
+                                    <p class="sketch-text text-sm mb-4 leading-relaxed">
+                                        9月月赛已圆满结束，恭喜获奖选手，详细结果请查看排行榜...</p>
+                                    <span class="text-xs sketch-text">2025-10-10</span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <!-- 新闻动态 -->
+                <div>
+                    <div class="flex items-center justify-between mb-12">
+                        <div>
+                            <h2 class="text-4xl font-bold sketch-text relative inline-block">
+                                新闻动态
+                                <span class="absolute -bottom-2 left-0 w-full h-1 sketch-card"></span>
+                            </h2>
+                        </div>
+                        <a href="#" class="inline-flex items-center sketch-text font-medium">
+                            查看全部
+                            <i class="fas fa-arrow-right ml-2 sketch-icon"></i>
+                        </a>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <article class="sketch-bg sketch-card">
+                            <div class="flex items-center p-6">
+                                <div class="flex-1 pr-6">
+                                    <h3 class="font-bold sketch-text mb-2 text-lg leading-tight">OpenHarmony 4.0
+                                        安全特性深度解析</h3>
+                                    <p class="sketch-text text-sm mb-3 leading-relaxed">全面解读OpenHarmony
+                                        4.0版本中的安全增强特性，为开发者提供更安全的开发环境...</p>
+                                    <div class="flex items-center text-xs sketch-text">
+                                        <i class="fas fa-calendar mr-2"></i>
+                                        <span>2025-10-12</span>
+                                    </div>
+                                </div>
+                                <div class="w-32 h-24 flex-shrink-0">
+                                    <div class="w-full h-full sketch-card flex items-center justify-center">
+                                        <i class="fas fa-image sketch-text text-2xl"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="sketch-bg sketch-card">
+                            <div class="flex items-center p-6">
+                                <div class="flex-1 pr-6">
+                                    <h3 class="font-bold sketch-text mb-2 text-lg leading-tight">社区安全贡献者专访</h3>
+                                    <p class="sketch-text text-sm mb-3 leading-relaxed">
+                                        专访优秀安全贡献者，分享漏洞发现经验和安全研究心得，探讨开源安全生态建设...</p>
+                                    <div class="flex items-center text-xs sketch-text">
+                                        <i class="fas fa-calendar mr-2"></i>
+                                        <span>2025-10-09</span>
+                                    </div>
+                                </div>
+                                <div class="w-32 h-24 flex-shrink-0">
+                                    <div class="w-full h-full sketch-card flex items-center justify-center">
+                                        <i class="fas fa-image sketch-text text-2xl"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 大赛流程 -->
+        <section class="py-20 sketch-bg">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="mb-16">
+                    <h2 class="text-4xl font-bold sketch-text relative inline-block">
+                        大赛流程
+                        <span class="absolute -bottom-2 left-0 w-full h-1 sketch-card"></span>
+                    </h2>
+                </div>
+
+                <div class="relative">
+                    <!-- 流程连接线 -->
+                    <div class="hidden lg:block absolute top-1/2 left-0 right-0 h-1 sketch-card-light transform -translate-y-1/2 z-0">
+                    </div>
+
+                    <div class="grid md:grid-cols-3 gap-8 relative z-10">
+                        <!-- 报名阶段 -->
+                        <div class="group">
+                            <div class="sketch-bg sketch-card p-8 text-center">
+                                <div class="relative mb-6">
+                                    <div class="sketch-card rounded-full w-12 h-12 flex items-center justify-center mx-auto text-xl font-bold sketch-text">
+                                        1</div>
+                                </div>
+                                <h3 class="text-2xl font-bold sketch-text mb-4">报名阶段</h3>
+                                <p class="sketch-text mb-6 leading-relaxed">使用Gitcode账号登录，完成个人信息填写和团队组建，开启你的安全挑战之旅
+                                </p>
+                                <div class="sketch-card-light p-4">
+                                    <p class="sketch-text font-semibold">
+                                        <i class="fas fa-clock mr-2"></i>全年开放报名
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 月赛阶段 -->
+                        <div class="group">
+                            <div class="sketch-bg sketch-card p-8 text-center">
+                                <div class="relative mb-6">
+                                    <div class="sketch-card rounded-full w-12 h-12 flex items-center justify-center mx-auto text-xl font-bold sketch-text">
+                                        2</div>
+                                </div>
+                                <h3 class="text-2xl font-bold sketch-text mb-4">月赛阶段</h3>
+                                <p class="sketch-text mb-6 leading-relaxed">每月举办主题竞赛，积累经验，提升技能，获得奖励，为年度总决赛做准备</p>
+                                <div class="sketch-card-light p-4">
+                                    <p class="sketch-text font-semibold">
+                                        <i class="fas fa-calendar mr-2"></i>每月结算
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 年度邀请赛 -->
+                        <div class="group">
+                            <div class="sketch-bg sketch-card p-8 text-center">
+                                <div class="relative mb-6">
+                                    <div class="sketch-card rounded-full w-12 h-12 flex items-center justify-center mx-auto text-xl font-bold sketch-text">
+                                        3</div>
+                                </div>
+                                <h3 class="text-2xl font-bold sketch-text mb-4">年度邀请赛</h3>
+                                <p class="sketch-text mb-6 leading-relaxed">优秀选手受邀参加年度总决赛，争夺最高荣誉和丰厚奖品，成为安全领域精英</p>
+                                <div class="sketch-card-light p-4">
+                                    <p class="sketch-text font-semibold">
+                                        <i class="fas fa-star mr-2"></i>敬请期待
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 大赛奖项 -->
+        <section class="py-20 sketch-bg">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="mb-16">
+                    <h2 class="text-4xl font-bold sketch-text relative inline-block">
+                        大赛奖项
+                        <span class="absolute -bottom-2 left-0 w-full h-1 sketch-card"></span>
+                    </h2>
+                </div>
+
+                <div class="sketch-bg sketch-card">
+                    <!-- 表格头部 -->
+                    <div class="sketch-card-light sketch-text p-6">
+                        <div class="grid gap-8 font-bold" style="grid-template-columns: 1fr 1fr 2fr;">
+                            <div>奖项</div>
+                            <div class="text-center">获奖人数</div>
+                            <div class="text-center">奖励内容</div>
+                        </div>
+                    </div>
+
+                    <!-- 表格内容 -->
+                    <div class="sketch-card-light">
+                        <!-- 年度总冠军 -->
+                        <div class="p-6 sketch-card-light">
+                            <div class="grid gap-8 items-center" style="grid-template-columns: 1fr 1fr 2fr;">
+                                <div class="flex items-center">
+                                    <span class="font-bold sketch-text">年度总冠军</span>
+                                </div>
+                                <div class="text-center">
+                                    <span class="sketch-text">1名</span>
+                                </div>
+                                <div class="text-center">
+                                    <span class="text-xl font-bold sketch-text">¥50,000 + Offer直通 + 证书</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 年度亚军 -->
+                        <div class="p-6 sketch-card-light">
+                            <div class="grid gap-8 items-center" style="grid-template-columns: 1fr 1fr 2fr;">
+                                <div class="flex items-center">
+                                    <span class="font-bold sketch-text">年度亚军</span>
+                                </div>
+                                <div class="text-center">
+                                    <span class="sketch-text">1名</span>
+                                </div>
+                                <div class="text-center">
+                                    <span class="text-xl font-bold sketch-text">¥30,000 + 鸿蒙设备 + 证书</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 年度季军 -->
+                        <div class="p-6 sketch-card-light">
+                            <div class="grid gap-8 items-center" style="grid-template-columns: 1fr 1fr 2fr;">
+                                <div class="flex items-center">
+                                    <span class="font-bold sketch-text">年度季军</span>
+                                </div>
+                                <div class="text-center">
+                                    <span class="sketch-text">1名</span>
+                                </div>
+                                <div class="text-center">
+                                    <span class="text-xl font-bold sketch-text">¥20,000 + 鸿蒙设备 + 证书</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 月赛冠军 -->
+                        <div class="p-6 sketch-card-light">
+                            <div class="grid gap-8 items-center" style="grid-template-columns: 1fr 1fr 2fr;">
+                                <div class="flex items-center">
+                                    <span class="font-bold sketch-text">月赛冠军</span>
+                                </div>
+                                <div class="text-center">
+                                    <span class="sketch-text">每月1名</span>
+                                </div>
+                                <div class="text-center">
+                                    <span class="text-xl font-bold sketch-text">¥5,000 + 证书 + 年度直邀</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 月赛亚军 -->
+                        <div class="p-6 sketch-card-light">
+                            <div class="grid gap-8 items-center" style="grid-template-columns: 1fr 1fr 2fr;">
+                                <div class="flex items-center">
+                                    <span class="font-bold sketch-text">月赛亚军</span>
+                                </div>
+                                <div class="text-center">
+                                    <span class="sketch-text">每月1名</span>
+                                </div>
+                                <div class="text-center">
+                                    <span class="text-xl font-bold sketch-text">¥3,000 + 证书 + 年度直邀</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 月赛季军 -->
+                        <div class="p-6 sketch-card-light">
+                            <div class="grid gap-8 items-center" style="grid-template-columns: 1fr 1fr 2fr;">
+                                <div class="flex items-center">
+                                    <span class="font-bold sketch-text">月赛季军</span>
+                                </div>
+                                <div class="text-center">
+                                    <span class="sketch-text">每月1名</span>
+                                </div>
+                                <div class="text-center">
+                                    <span class="text-xl font-bold sketch-text">¥2,000 + 证书 + 年度直邀</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 优秀参与奖 -->
+                        <div class="p-6 sketch-card-light">
+                            <div class="grid gap-8 items-center" style="grid-template-columns: 1fr 1fr 2fr;">
+                                <div class="flex items-center">
+                                    <span class="font-bold sketch-text">优秀参与奖</span>
+                                </div>
+                                <div class="text-center">
+                                    <span class="sketch-text">每月若干名</span>
+                                </div>
+                                <div class="text-center">
+                                    <span class="text-xl font-bold sketch-text">¥500 + 证书</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 组织机构 -->
+        <section class="py-16 sketch-bg">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="mb-12">
+                    <h2 class="text-4xl font-bold sketch-text relative inline-block">
+                        组织机构
+                        <span class="absolute -bottom-2 left-0 w-full h-1 sketch-card"></span>
+                    </h2>
+                </div>
+
+                <div class="grid md:grid-cols-4 gap-8">
+                    <div class="text-center">
+                        <h3 class="font-bold sketch-text mb-4">主办单位</h3>
+                        <div class="sketch-card-light p-4 h-32 flex items-center justify-center">
+                            <p class="text-sm sketch-text">OpenHarmony项目群工作委员会</p>
+                        </div>
+                    </div>
+
+                    <div class="text-center">
+                        <h3 class="font-bold sketch-text mb-4">承办单位</h3>
+                        <div class="sketch-card-light p-4 h-32 flex items-center justify-center">
+                            <p class="text-sm sketch-text">华为技术有限公司</p>
+                        </div>
+                    </div>
+
+                    <div class="text-center">
+                        <h3 class="font-bold sketch-text mb-4">协办单位</h3>
+                        <div class="sketch-card-light p-4 h-32 flex items-center justify-center">
+                            <p class="text-sm sketch-text">开放原子开源基金会</p>
+                        </div>
+                    </div>
+
+                    <div class="text-center">
+                        <h3 class="font-bold sketch-text mb-4">支持单位</h3>
+                        <div class="sketch-card-light p-4 h-32 flex flex-col justify-center space-y-2">
+                            <p class="text-sm sketch-text">青软创新集团</p>
+                            <p class="text-sm sketch-text">中科院软件研究所</p>
+                            <p class="text-sm sketch-text">各大高校安全实验室</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="sketch-bg sketch-border py-12 sketch-shadow">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="h-8 mb-4 sketch-border flex items-center justify-center px-4 bg-sketch-blue text-white">
+                        <span class="font-bold">OpenHarmony</span>
+                    </div>
+                    <p class="sketch-text text-sm">构建全场景智慧生态</p>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-4 sketch-text sketch-underline">快速链接</h4>
+                    <ul class="space-y-2 text-sm sketch-text">
+                        <li><a href="#" class="sketch-text hover:text-sketch-blue">赛事介绍</a></li>
+                        <li><a href="#" class="sketch-text hover:text-sketch-blue">竞赛规则</a></li>
+                        <li><a href="#" class="sketch-text hover:text-sketch-blue">常见问题</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-4 sketch-text sketch-underline">联系我们</h4>
+                    <ul class="space-y-2 text-sm sketch-text">
+                        <li><i class="fas fa-envelope mr-2 sketch-icon"></i>security@openharmony.io</li>
+                        <li><i class="fas fa-phone mr-2 sketch-icon"></i>400-xxx-xxxx</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-4 sketch-text sketch-underline">关注我们</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="sketch-text hover:text-sketch-blue">
+                            <i class="fab fa-github text-xl sketch-icon"></i>
+                        </a>
+                        <a href="#" class="sketch-text hover:text-sketch-orange">
+                            <i class="fab fa-weibo text-xl sketch-icon"></i>
+                        </a>
+                        <a href="#" class="sketch-text hover:text-sketch-green">
+                            <i class="fab fa-wechat text-xl sketch-icon"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sketch-divider mt-8"></div>
+            <div class="pt-8 text-center text-sm sketch-text">
+                <p>&copy; 2025 OpenHarmony 社区创新奖励计划. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let menuTimeout;
+
+        // 用户菜单显示/隐藏
+        function showUserMenu() {
+            clearTimeout(menuTimeout);
+            const menu = document.getElementById('userMenu');
+            menu.classList.remove('hidden');
+            // 添加淡入动画
+            menu.style.opacity = '0';
+            menu.style.transform = 'translateY(-10px)';
+            setTimeout(() => {
+                menu.style.transition = 'all 0.2s ease-out';
+                menu.style.opacity = '1';
+                menu.style.transform = 'translateY(0)';
+            }, 10);
+        }
+
+        function hideUserMenu() {
+            menuTimeout = setTimeout(() => {
+                const menu = document.getElementById('userMenu');
+                menu.style.transition = 'all 0.2s ease-in';
+                menu.style.opacity = '0';
+                menu.style.transform = 'translateY(-10px)';
+                setTimeout(() => {
+                    menu.classList.add('hidden');
+                }, 200);
+            }, 300);
+        }
+
+        // 鼠标进入菜单时取消隐藏
+        document.addEventListener('DOMContentLoaded', function () {
+            const userMenu = document.getElementById('userMenu');
+            if (userMenu) {
+                userMenu.addEventListener('mouseenter', () => {
+                    clearTimeout(menuTimeout);
+                });
+                userMenu.addEventListener('mouseleave', hideUserMenu);
+            }
+        });
+
+        // 退出登录
+        function logout() {
+            if (confirm('确定要退出登录吗？')) {
+                // 清除登录状态
+                localStorage.removeItem('isLoggedIn');
+                localStorage.removeItem('userInfo');
+
+                // 隐藏用户信息，显示登录按钮
+                document.getElementById('userInfo').classList.add('hidden');
+                document.getElementById('loginBtn').classList.remove('hidden');
+            }
+        }
+
+        // 模拟登录状态检查
+        window.onload = function () {
+            // 检查是否有登录状态
+            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+            const isRegistered = localStorage.getItem('isRegistered') === 'true';
+
+            if (isLoggedIn) {
+                document.getElementById('loginBtn').classList.add('hidden');
+                document.getElementById('userInfo').classList.remove('hidden');
+
+                // 从localStorage获取用户信息并更新显示
+                const userInfo = JSON.parse(localStorage.getItem('userInfo') || '{}');
+                if (userInfo.name) {
+                    // 更新用户名显示
+                    const nameElement = document.querySelector('#userInfo .font-medium');
+                    if (nameElement) {
+                        nameElement.textContent = userInfo.name;
+                    }
+                }
+            }
+            
+            // 根据报名状态更新导航链接
+            const registrationNavLink = document.getElementById('registrationNavLink');
+            if (registrationNavLink) {
+                if (isRegistered) {
+                    registrationNavLink.href = 'dashboard.html';
+                    registrationNavLink.textContent = '报名详情';
+                } else {
+                    registrationNavLink.href = 'registration.html';
+                    registrationNavLink.textContent = '报名入口';
+                }
+            }
+        };
+
+        // 点击页面其他地方关闭菜单
+        document.addEventListener('click', function (event) {
+            const userInfo = document.getElementById('userInfo');
+            const userMenu = document.getElementById('userMenu');
+
+            if (userInfo && userMenu && !userInfo.contains(event.target)) {
+                userMenu.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+
+</html>
