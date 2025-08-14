@@ -5,301 +5,583 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OpenHarmony 社区创新奖励计划</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- TDesign CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/tdesign-web@latest/dist/tdesign.min.css">
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'sketch-blue': '#4A90E2',
-                        'sketch-orange': '#F5A623',
-                        'sketch-green': '#7ED321',
-                        'sketch-red': '#D0021B',
-                        'sketch-purple': '#9013FE',
-                        'sketch-gray': '#4A4A4A',
-                        'sketch-light': '#F8F9FA'
-                    },
-                    fontFamily: {
-                        'sketch': ['Kalam', 'cursive', 'sans-serif']
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        /* 手绘风格样式 */
-        * {
-            font-family: 'Kalam', cursive, sans-serif;
-        }
-        
-        .sketch-border {
-            border: 3px solid #4A4A4A;
-            border-radius: 15px 5px 10px 8px;
-            position: relative;
-            transform: rotate(-0.5deg);
-        }
-        
-        .sketch-border:hover {
-            transform: rotate(0.2deg);
-            transition: transform 0.2s ease-in-out;
-        }
-        
-        .sketch-border-light {
-            border: 2px solid #7A7A7A;
-            border-radius: 8px 12px 6px 10px;
-            transform: rotate(0.3deg);
-        }
-        
-        .sketch-text {
-            color: #4A4A4A;
-        }
-        
-        .sketch-bg {
-            background: #FFFEF7;
-            background-image: 
-                radial-gradient(circle at 20% 50%, rgba(74, 144, 226, 0.03) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(245, 166, 35, 0.03) 0%, transparent 50%),
-                radial-gradient(circle at 40% 80%, rgba(126, 211, 33, 0.03) 0%, transparent 50%);
-        }
-        
-        .sketch-shadow {
-            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1), 
-                        -2px -2px 8px rgba(255, 255, 255, 0.8);
-        }
-        
-        .sketch-button {
-            background: linear-gradient(145deg, #4A90E2, #357ABD);
-            border: 2px solid #2E5C8A;
-            border-radius: 12px 8px 15px 6px;
-            color: white;
-            position: relative;
-            transform: rotate(-0.8deg);
-            transition: all 0.2s ease;
-        }
-        
-        .sketch-button:hover {
-            transform: rotate(0.5deg) scale(1.02);
-            background: linear-gradient(145deg, #5BA0F2, #4A90E2);
-            box-shadow: 3px 3px 10px rgba(74, 144, 226, 0.3);
-        }
-        
-        .sketch-card {
-            background: #FFFEF7;
-            border: 2px solid #4A4A4A;
-            border-radius: 20px 8px 15px 12px;
-            transform: rotate(-0.3deg);
-            box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.08);
-            position: relative;
-        }
-        
-        .sketch-card:hover {
-            transform: rotate(0.2deg) translateY(-2px);
-            transition: all 0.3s ease;
-            box-shadow: 10px 10px 25px rgba(0, 0, 0, 0.12);
-        }
-        
-        .sketch-underline {
-            position: relative;
-        }
-        
-        .sketch-underline::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: -5px;
-            right: -5px;
-            height: 4px;
-            background: #F5A623;
-            border-radius: 20px;
-            transform: rotate(-0.5deg);
-        }
-        
-        /* 导航栏手绘风格 */
-        .nav-item {
-            position: relative;
-            transform: rotate(-0.2deg);
-            transition: all 0.2s ease;
-        }
-        
-        .nav-item.active::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: -5px;
-            right: -5px;
-            height: 3px;
-            background: #4A90E2;
-            border-radius: 10px;
-            transform: rotate(0.8deg);
-        }
-        
-        .nav-item:hover {
-            transform: rotate(0.3deg) translateY(-1px);
-            color: #4A90E2;
-        }
-        
-        /* 手绘风格图标 */
-        .sketch-icon {
-            transform: rotate(-2deg);
-            transition: transform 0.2s ease;
-        }
-        
-        .sketch-icon:hover {
-            transform: rotate(2deg) scale(1.1);
-        }
-        
-        /* 手绘风格分割线 */
-        .sketch-divider {
-            height: 2px;
-            background: #4A4A4A;
-            border-radius: 10px;
-            transform: rotate(-0.3deg);
-            margin: 20px 0;
-        }
-        
-        /* 手绘风格输入框 */
-        .sketch-input {
-            border: 2px solid #4A4A4A;
-            border-radius: 8px 15px 6px 12px;
-            background: #FFFEF7;
-            transform: rotate(-0.2deg);
-        }
-        
-        .sketch-input:focus {
-            transform: rotate(0.1deg);
-            border-color: #4A90E2;
-            box-shadow: 0 0 10px rgba(74, 144, 226, 0.2);
-        }
-    </style>
+    <!-- 主要样式文件 -->
+    <link rel="stylesheet" href="assets/css/main.css">
 </head>
 
-<body class="sketch-bg">
-    <!-- 顶部导航栏 -->
-    <nav class="sketch-bg sketch-border-light fixed w-full top-0 z-50 sketch-shadow">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center h-20">
-                <!-- Logo -->
-                <div class="flex items-center sketch-border-light px-4 py-2">
-                    <div class="w-32 h-8 sketch-border-light flex items-center justify-center">
-                        <span class="sketch-text text-sm font-bold">OpenHarmony</span>
-                    </div>
-                </div>
-
-                <!-- 主导航 - 紧靠Logo -->
-                <div class="hidden md:flex items-center ml-8">
-                    <div class="flex items-center space-x-8">
-                        <a href="#"
-                            class="nav-item active sketch-text font-medium text-lg py-2 px-4">首页</a>
-                        <a href="contest-intro.html"
-                            class="nav-item sketch-text text-lg py-2 px-4">赛事介绍</a>
-                        <a href="problems.html"
-                            class="nav-item sketch-text text-lg py-2 px-4">赛题</a>
-                        <a href="leaderboard.html"
-                            class="nav-item sketch-text text-lg py-2 px-4">排行榜</a>
-                        <a href="registration.html" id="registrationNavLink"
-                            class="nav-item sketch-text text-lg py-2 px-4">报名入口</a>
-                    </div>
-                </div>
-
-                <!-- 右侧空间填充 -->
-                <div class="flex-1"></div>
-
-                <!-- 用户信息/登录按钮 - 最右侧 -->
-                <div class="flex items-center">
-                    <!-- 未登录状态 -->
-                    <a href="login.html"
-                        class="sketch-button sketch-text px-6 py-3 text-lg font-medium"
-                        id="loginBtn">
-                        <i class="fab fa-git-alt mr-2 sketch-icon"></i>登录
+<body>
+    <!-- Banner区域 (420px高度) -->
+    <section class="banner">
+        <!-- 登录按钮/用户菜单 -->
+        <div id="authSection">
+            <!-- 未登录状态 -->
+            <button class="login-btn" id="loginBtn">
+                <i class="fab fa-git-alt" style="margin-right: 8px;"></i>登录
+            </button>
+            
+            <!-- 已登录状态 -->
+            <div class="user-menu" id="userMenu" style="display: none;">
+                <span id="userName">张三</span>
+                <i class="fas fa-chevron-down" style="margin-left: 8px; font-size: 12px;"></i>
+                
+                <div class="user-dropdown" id="userDropdown">
+                    <a href="dashboard.html">
+                        <i class="fas fa-user" style="margin-right: 8px;"></i>个人中心
                     </a>
-
-                    <!-- 已登录状态 -->
-                    <div class="relative hidden" id="userInfo">
-                        <div class="flex items-center space-x-3 cursor-pointer sketch-border-light px-4 py-2"
-                            onmouseenter="showUserMenu()" onmouseleave="hideUserMenu()">
-                            <div class="w-10 h-10 sketch-border rounded-full flex items-center justify-center">
-                                <i class="fas fa-user sketch-text sketch-icon"></i>
-                            </div>
-                            <span class="sketch-text font-medium">张三</span>
-                            <i class="fas fa-chevron-down sketch-text text-sm sketch-icon"></i>
-                        </div>
-
-                        <!-- 用户菜单 -->
-                        <div id="userMenu"
-                            class="absolute right-0 top-full mt-2 w-40 sketch-bg sketch-border py-2 hidden z-50 sketch-shadow">
-                            <button onclick="logout()"
-                                class="flex items-center w-full px-4 py-3 text-sm sketch-text">
-                                <i class="fas fa-sign-out-alt mr-3 sketch-icon"></i>退出登录
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 移动端菜单按钮 -->
-                <div class="md:hidden ml-4">
-                    <button class="sketch-text p-2 sketch-border-light">
-                        <i class="fas fa-bars text-xl sketch-icon"></i>
+                    <a href="admin.html" target="_blank">
+                        <i class="fas fa-cog" style="margin-right: 8px;"></i>赛事管理
+                    </a>
+                    <button class="logout" id="logoutBtn">
+                        <i class="fas fa-sign-out-alt" style="margin-right: 8px;"></i>退出登录
                     </button>
                 </div>
             </div>
         </div>
+
+        <!-- Banner内容 -->
+        <div class="banner-content">
+            <div class="banner-text">
+                <h1 class="banner-title">
+                    OpenHarmony<br>
+                    社区创新奖励计划
+                </h1>
+                <p class="banner-subtitle">聚焦真实需求·构建开源生态</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 赛事卡片区域 (1/4高度在banner上) -->
+    <section class="contest-cards">
+        <div class="contest-cards-container">
+            <!-- 当前赛事卡片 (3/4宽度) -->
+            <div class="card current-contest">
+                <div class="contest-decoration"></div>
+                <div class="contest-status">进行中</div>
+                
+                <div class="contest-content">
+                    <div>
+                        <h3 class="contest-title">OpenHarmony社区创新奖励计划 10月赛</h3>
+                        <p class="contest-subtitle">OpenHarmony Fuzzing 挑战赛</p>
+                        
+                        <div class="contest-stats">
+                            <div class="stat-item">
+                                <div class="stat-number">10.1 - 10.31</div>
+                                <div class="stat-label">比赛时间</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">8</div>
+                                <div class="stat-label">赛题数</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">156</div>
+                                <div class="stat-label">参赛人数</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">342</div>
+                                <div class="stat-label">提交次数</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contest-actions">
+                        <span class="agreement-text">报名即同意<a href="javascript:void(0)" id="agreementLink" style="color: #0052D9; text-decoration: underline;">《竞赛协议》</a></span>
+                        <button class="btn btn-primary" id="registerBtn">
+                            立即报名
+                        </button>
+                        <button class="btn btn-text" id="cancelBtn" style="display: none;">
+                            取消报名
+                        </button>
+                        <button class="btn btn-secondary" id="viewProblemsBtn" style="display: none;">
+                            查看赛题
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 往期赛事卡片 (1/4宽度) -->
+            <div class="card past-contest">
+                <div class="past-decoration"></div>
+                
+                <div class="past-header">
+                    <h3 class="past-title">往期</h3>
+                    <button class="btn-more" id="pastContestsBtn">更多</button>
+                </div>
+                
+                <div class="past-contest-list">
+                    <div class="past-contest-item">
+                        <div class="past-item-header">
+                            <span class="past-item-title">9月赛</span>
+                            <span class="past-item-status">已结束</span>
+                        </div>
+                        <div class="past-item-content">OpenHarmony社区创新奖励计划</div>
+                    </div>
+                    
+                    <div class="past-contest-item">
+                        <div class="past-item-header">
+                            <span class="past-item-title">8月赛</span>
+                            <span class="past-item-status">已结束</span>
+                        </div>
+                        <div class="past-item-content">OpenHarmony社区创新奖励计划</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tab导航 (吸顶效果) -->
+    <nav class="tab-nav">
+        <div class="tab-nav-container">
+            <button class="tab-item active" data-tab="intro">赛事介绍</button>
+            <button class="tab-item" data-tab="problems">赛题</button>
+            <button class="tab-item" data-tab="leaderboard">排行榜</button>
+            <button class="tab-item" data-tab="announcements">通知公告</button>
+            <button class="tab-item" data-tab="faq">常见问题</button>
+        </div>
     </nav>
 
-    <!-- 主要内容 -->
-    <main class="pt-20">
-        <!-- Banner区域 -->
-        <section class="sketch-bg sketch-card relative m-4" style="height: 420px;">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 h-full">
-                <div class="grid lg:grid-cols-2 gap-12 items-center h-full">
-                    <!-- 左侧文字内容 -->
-                    <div class="sketch-card p-8">
-                        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight sketch-text">
-                            <span class="sketch-border-light px-3 py-2 bg-sketch-orange text-white">
-                                OpenHarmony
-                            </span><br>
-                            <span class="text-2xl md:text-3xl lg:text-4xl sketch-underline">社区创新奖励计划</span>
-                        </h1>
-                        <p class="text-xl md:text-2xl mb-8 sketch-text leading-relaxed">
-                            解决真实问题 共建开源生态
-                        </p>
-                        <div class="flex justify-start">
-                            <a href="registration.html"
-                                class="sketch-button px-8 py-4 font-semibold">
-                                <i class="fas fa-rocket mr-2 sketch-icon"></i>立即报名
+    <!-- Tab内容区域 -->
+    <main>
+        <!-- 赛事介绍 -->
+        <section class="tab-content active" id="tab-intro">
+            <div class="tab-content-container">
+                <h2 class="section-title">赛事介绍</h2>
+                <div class="markdown-content">
+                    <h2>OpenHarmony社区创新奖励计划循环赛</h2>
+                    
+                    <p>OpenHarmony社区创新奖励计划采用<strong>每月一赛</strong>的循环形式，持续为开发者提供技术挑战和创新机会。每月定期举办专题竞赛，覆盖OpenHarmony生态的各个技术领域。</p>
+                    
+                    <h3>📅 赛事安排</h3>
+                    <p>每月月初启动新一轮竞赛，月末截止提交。参赛者可以根据自己的技术专长和兴趣选择参与不同月份的专题赛事。</p>
+                    
+                    <ul>
+                        <li><strong>10月赛</strong>：OpenHarmony Fuzzing 挑战赛 - 专注安全测试技术</li>
+                        <li><strong>11月赛</strong>：性能优化专题赛 - 关注系统性能提升</li>
+                        <li><strong>12月赛</strong>：年度创新大赛 - 综合技术创新竞赛</li>
+                    </ul>
+                    
+                    <h3>🎯 参赛方式</h3>
+                    <p>参与奖励计划的个人开发者，以GitCode账号作为身份标识，在竞赛平台提交相应的技术方案和代码实现，参与积分奖励。</p>
+                    
+                    <h3>参赛条件</h3>
+                    <ul>
+                        <li>拥有有效的GitCode账号</li>
+                        <li>熟悉OpenHarmony系统架构</li>
+                        <li>具备相关技术领域基础知识</li>
+                        <li>遵守开源社区行为准则</li>
+                    </ul>
+                    
+                    <h3>🏆 比赛流程</h3>
+                    <ol>
+                        <li><strong>报名阶段</strong> (每月1-7日): 完成平台注册和身份验证</li>
+                        <li><strong>开发阶段</strong> (每月8-25日): 设计并实现技术方案</li>
+                        <li><strong>提交阶段</strong> (每月26-31日): 提交完整的项目和文档</li>
+                        <li><strong>评审阶段</strong> (次月1-7日): 专家评审和自动化验证</li>
+                        <li><strong>颁奖阶段</strong> (次月8-15日): 公布结果和发放奖励</li>
+                    </ol>
+                    
+                    <h3>📋 评分规则</h3>
+                    <p>根据提交方案的技术创新性、实现质量和实际效果进行综合评分：</p>
+                    
+                    <h4>积分方案</h4>
+                    <ul>
+                        <li><strong>技术创新度:</strong> 方案的新颖性和创造性 (30%)</li>
+                        <li><strong>实现质量:</strong> 代码质量和架构设计 (25%)</li>
+                        <li><strong>功能完成度:</strong> 需求实现的完整程度 (25%)</li>
+                        <li><strong>性能表现:</strong> 系统性能和稳定性 (20%)</li>
+                    </ul>
+                    
+                    <h3>💰 奖励设置</h3>
+                    <p><strong>每月奖金池总额: 50,000元人民币</strong></p>
+                    
+                    <h4>月度奖项</h4>
+                    <ul>
+                        <li><strong>月度冠军:</strong> 15,000元 + 荣誉证书</li>
+                        <li><strong>月度亚军:</strong> 10,000元 + 荣誉证书</li>
+                        <li><strong>月度季军:</strong> 8,000元 + 荣誉证书</li>
+                        <li><strong>优秀奖 (5名):</strong> 每人3,000元</li>
+                        <li><strong>参与奖:</strong> 所有完成提交者获得社区积分</li>
+                    </ul>
+                    
+                    <h3>🏢 主办方信息</h3>
+                    <h4>主办单位</h4>
+                    <ul>
+                        <li>OpenHarmony项目群工作委员会</li>
+                        <li>开放原子开源基金会</li>
+                    </ul>
+                    
+                    <h4>协办单位</h4>
+                    <ul>
+                        <li>华为技术有限公司</li>
+                        <li>青软创新集团</li>
+                        <li>中科院软件研究所</li>
+                    </ul>
+                    
+                    <h4>技术支持</h4>
+                    <ul>
+                        <li>GitCode平台</li>
+                        <li>OpenHarmony测试工作组</li>
+                        <li>OpenHarmony安全工作组</li>
+                    </ul>
+                    
+                    <h3>📞 联系方式</h3>
+                    <ul>
+                        <li><strong>官方邮箱:</strong> competition@openharmony.cn</li>
+                        <li><strong>技术交流群:</strong> 微信群二维码见官网</li>
+                        <li><strong>官方网站:</strong> <a href="https://www.openharmony.cn">https://www.openharmony.cn</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 赛题 -->
+        <section class="tab-content" id="tab-problems">
+            <div class="tab-content-container">
+                <h2 class="section-title">赛题</h2>
+                
+                <!-- 信息/筛选区域 -->
+                <div class="problems-info-section">
+                    <div class="problems-info-left">
+                        <span class="problem-count" id="problemCount">共 20 题</span>
+                        <div class="sort-options">
+                            <button class="sort-btn" data-sort="submissions">
+                                提交人数
+                                <span class="sort-arrows">
+                                    <span class="up-arrow">↑</span>
+                                    <span class="down-arrow active">↓</span>
+                                </span>
+                            </button>
+                            <button class="sort-btn" data-sort="passed">
+                                通过人数
+                                <span class="sort-arrows">
+                                    <span class="up-arrow">↑</span>
+                                    <span class="down-arrow">↓</span>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="problems-info-right">
+                        <select class="filter-select" id="tagFilter">
+                            <option value="all">全部标签</option>
+                            <option value="kernel">内核安全</option>
+                            <option value="app">应用安全</option>
+                            <option value="network">网络安全</option>
+                            <option value="system">系统服务</option>
+                            <option value="driver">驱动安全</option>
+                        </select>
+                        <input type="text" class="filter-input" id="searchInput" placeholder="搜索题目...">
+                    </div>
+                </div>
+
+                <!-- 赛题列表 -->
+                <div class="problem-list" id="problemList">
+                    <div class="problem-item" data-problem-id="problem-001">
+                        <div class="problem-info">
+                            <div class="problem-details">
+                                <h4>内核缓冲区溢出检测</h4>
+                                <p>设计Fuzz测试用例，检测OpenHarmony内核中的缓冲区溢出漏洞，重点关注内存管理和系统调用边界...</p>
+                                <div class="problem-tags">
+                                    <span class="problem-tag">内核安全</span>
+                                    <span class="problem-tag difficulty-hard">困难</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="problem-stats-top">提交: 45人 | 通过: 12人</div>
+                    </div>
+
+                    <div class="problem-item" data-problem-id="problem-002">
+                        <div class="problem-info">
+                            <div class="problem-details">
+                                <h4>应用权限提升测试</h4>
+                                <p>构建测试用例，发现应用层权限管理漏洞，包括权限绕过和非法权限获取等安全问题...</p>
+                                <div class="problem-tags">
+                                    <span class="problem-tag">应用安全</span>
+                                    <span class="problem-tag difficulty-medium">中等</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="problem-stats-top">提交: 62人 | 通过: 28人</div>
+                    </div>
+
+                    <div class="problem-item" data-problem-id="problem-003">
+                        <div class="problem-info">
+                            <div class="problem-details">
+                                <h4>网络协议安全测试</h4>
+                                <p>针对OpenHarmony网络协议栈进行Fuzz测试，发现协议解析和网络通信中的安全漏洞...</p>
+                                <div class="problem-tags">
+                                    <span class="problem-tag">网络安全</span>
+                                    <span class="problem-tag difficulty-hard">困难</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="problem-stats-top">提交: 38人 | 通过: 8人</div>
+                    </div>
+
+                    <div class="problem-item" data-problem-id="problem-004">
+                        <div class="problem-info">
+                            <div class="problem-details">
+                                <h4>系统服务接口测试</h4>
+                                <p>对OpenHarmony系统服务接口进行Fuzz测试，发现服务间通信和权限控制的安全问题...</p>
+                                <div class="problem-tags">
+                                    <span class="problem-tag">系统服务</span>
+                                    <span class="problem-tag difficulty-medium">中等</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="problem-stats-top">提交: 56人 | 通过: 23人</div>
+                    </div>
+
+                    <div class="problem-item" data-problem-id="problem-005">
+                        <div class="problem-info">
+                            <div class="problem-details">
+                                <h4>文件系统安全测试</h4>
+                                <p>针对文件系统操作进行Fuzz测试，检测文件访问控制、路径遍历等安全漏洞...</p>
+                                <div class="problem-tags">
+                                    <span class="problem-tag">内核安全</span>
+                                    <span class="problem-tag difficulty-medium">中等</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="problem-stats-top">提交: 41人 | 通过: 19人</div>
+                    </div>
+
+                    <div class="problem-item" data-problem-id="problem-006">
+                        <div class="problem-info">
+                            <div class="problem-details">
+                                <h4>驱动程序安全测试</h4>
+                                <p>对硬件驱动程序进行Fuzz测试，发现驱动接口和硬件交互中的安全风险...</p>
+                                <div class="problem-tags">
+                                    <span class="problem-tag">驱动安全</span>
+                                    <span class="problem-tag difficulty-hard">困难</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="problem-stats-top">提交: 29人 | 通过: 6人</div>
+                    </div>
+
+                    <div class="problem-item" data-problem-id="problem-007">
+                        <div class="problem-info">
+                            <div class="problem-details">
+                                <h4>图形子系统安全测试</h4>
+                                <p>针对图形渲染和显示子系统进行Fuzz测试，发现图形处理中的内存安全问题...</p>
+                                <div class="problem-tags">
+                                    <span class="problem-tag">系统服务</span>
+                                    <span class="problem-tag difficulty-medium">中等</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="problem-stats-top">提交: 33人 | 通过: 15人</div>
+                    </div>
+
+                    <div class="problem-item" data-problem-id="problem-008">
+                        <div class="problem-info">
+                            <div class="problem-details">
+                                <h4>多媒体框架安全测试</h4>
+                                <p>对音视频编解码和多媒体处理框架进行Fuzz测试，发现媒体文件解析中的安全漏洞...</p>
+                                <div class="problem-tags">
+                                    <span class="problem-tag">应用安全</span>
+                                    <span class="problem-tag difficulty-medium">中等</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="problem-stats-top">提交: 48人 | 通过: 22人</div>
+                    </div>
+
+                    <div class="problem-item" data-problem-id="problem-009">
+                        <div class="problem-info">
+                            <div class="problem-details">
+                                <h4>进程间通信安全测试</h4>
+                                <p>针对IPC机制进行Fuzz测试，发现进程间通信中的权限绕过和数据泄露问题...</p>
+                                <div class="problem-tags">
+                                    <span class="problem-tag">内核安全</span>
+                                    <span class="problem-tag difficulty-hard">困难</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="problem-stats-top">提交: 35人 | 通过: 9人</div>
+                    </div>
+
+                    <div class="problem-item" data-problem-id="problem-010">
+                        <div class="problem-info">
+                            <div class="problem-details">
+                                <h4>输入法框架安全测试</h4>
+                                <p>对输入法框架进行Fuzz测试，检测输入处理和权限管理中的安全问题...</p>
+                                <div class="problem-tags">
+                                    <span class="problem-tag">应用安全</span>
+                                    <span class="problem-tag difficulty-easy">简单</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="problem-stats-top">提交: 71人 | 通过: 45人</div>
+                    </div>
+                </div>
+
+                <!-- 分页 -->
+                <div class="pagination">
+                    <button class="page-btn" id="prevBtn">上一页</button>
+                    <span class="page-info">
+                        <span id="currentPage">1</span> / <span id="totalPages">2</span>
+                    </span>
+                    <button class="page-btn" id="nextBtn">下一页</button>
+                </div>
+
+                <!-- 题目详情页面 -->
+                <div class="problem-detail" id="problemDetail" style="display: none;">
+                    <div class="problem-detail-header">
+                        <button class="back-btn" id="backToProblemListBtn">← 返回题目列表</button>
+                    </div>
+                    
+                    <div class="problem-detail-content">
+                        <div class="problem-detail-title">
+                            <h2 id="problemDetailTitle">题目标题</h2>
+                            <div class="problem-detail-meta">
+                                <div class="problem-detail-tags">
+                                    <span class="tag" id="problemDetailTag1">标签1</span>
+                                    <span class="tag" id="problemDetailTag2">标签2</span>
+                                </div>
+                                <div class="problem-detail-actions">
+                                    <button class="btn btn-secondary" id="viewCodeBtn">查看</button>
+                                    <button class="btn btn-primary" id="startProblemBtn">启动</button>
+                                    <button class="btn btn-success" id="submitProblemBtn">提交</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="problem-detail-body">
+                            <div class="rich-text-content" id="problemDetailContent">
+                                <!-- 题目详细内容将在这里动态加载 -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 排行榜 -->
+        <section class="tab-content" id="tab-leaderboard">
+            <div class="tab-content-container">
+                <div class="leaderboard-header">
+                    <h2 class="leaderboard-title">排行榜</h2>
+                    <div class="leaderboard-tabs">
+                        <button class="leaderboard-tab active" data-leaderboard="score">积分排行榜</button>
+                        <button class="leaderboard-tab" data-leaderboard="contribution">贡献排行榜</button>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <!-- 积分排行榜 -->
+                    <div class="leaderboard-table" id="scoreLeaderboard">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>排名</th>
+                                    <th>用户名</th>
+                                    <th>学校</th>
+                                    <th>积分</th>
+                                    <th>提交</th>
+                                    <th>最近提交时间</th>
+                                </tr>
+                            </thead>
+                            <tbody id="scoreLeaderboardBody">
+                                <!-- 数据将通过JS动态加载 -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- 贡献排行榜 -->
+                    <div class="leaderboard-table" id="contributionLeaderboard" style="display: none;">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>排名</th>
+                                    <th>用户名</th>
+                                    <th>学校</th>
+                                    <th>commit</th>
+                                    <th>贡献类型</th>
+                                    <th>积分</th>
+                                </tr>
+                            </thead>
+                            <tbody id="contributionLeaderboardBody">
+                                <!-- 数据将通过JS动态加载 -->
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- 分页 -->
+                    <div class="pagination">
+                        <button class="page-btn" id="leaderboardPrevBtn">上一页</button>
+                        <span class="page-info">
+                            <span id="leaderboardCurrentPage">1</span> / <span id="leaderboardTotalPages">3</span>
+                        </span>
+                        <button class="page-btn" id="leaderboardNextBtn">下一页</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 通知公告 -->
+        <section class="tab-content" id="tab-announcements">
+            <div class="tab-content-container">
+                <h2 class="section-title" id="announcementSectionTitle">通知公告</h2>
+                
+                <!-- 公告列表 -->
+                <div class="content-section" id="announcementList">
+                    <div class="announcement-item announcement-important" data-announcement-id="announcement-001">
+                        <div class="announcement-content">
+                            <div class="announcement-meta">
+                                <span class="announcement-tag announcement-tag-important">重要</span>
+                                <span class="announcement-date">2025-01-15</span>
+                            </div>
+                            <h3 class="announcement-title">2025年度总决赛报名开始</h3>
+                            <p class="announcement-text">
+                                年度总决赛报名通道已开启，优秀选手可获得丰厚奖励。总决赛将于2025年3月在深圳举办，参赛者需在各月赛中积累足够积分才能获得参赛资格。本次总决赛奖金池达100万元，冠军将获得50万元奖励及华为最新设备。
+                            </p>
+                            <a href="#" class="announcement-link" data-announcement-detail="announcement-001">
+                                查看详情 <i class="fas fa-arrow-right" style="margin-left: 4px;"></i>
                             </a>
                         </div>
                     </div>
 
-                    <!-- 右侧手绘图形 -->
-                    <div class="hidden lg:block">
-                        <div class="relative">
-                            <!-- 主要的手绘图形 -->
-                            <div class="relative w-96 h-96 mx-auto">
-                                <!-- 背景框架 -->
-                                <div class="absolute inset-0 sketch-border bg-sketch-light"></div>
-                                <div class="absolute inset-4 sketch-border-light bg-sketch-blue opacity-20"></div>
-                                <div class="absolute inset-8 sketch-border-light bg-sketch-green opacity-15"></div>
+                    <div class="announcement-item announcement-normal" data-announcement-id="announcement-002">
+                        <div class="announcement-content">
+                            <div class="announcement-meta">
+                                <span class="announcement-tag announcement-tag-normal">公告</span>
+                                <span class="announcement-date">2025-01-10</span>
                             </div>
+                            <h3 class="announcement-title">12月月赛结果公布</h3>
+                            <p class="announcement-text">
+                                12月月赛已圆满结束，恭喜获奖选手！本月共收到有效提交568个，发现漏洞23个，其中严重漏洞5个。奖金将在3个工作日内发放至您的收款账户。
+                            </p>
+                            <a href="#" class="announcement-link" data-announcement-detail="announcement-002">
+                                查看详情 <i class="fas fa-arrow-right" style="margin-left: 4px;"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
 
-                            <!-- 中心图形 -->
-                            <div class="absolute inset-16 sketch-border bg-sketch-orange opacity-30 transform rotate-12">
-                                <div class="absolute inset-4 sketch-border-light">
+                <!-- 公告详情页面 -->
+                <div class="announcement-detail" id="announcementDetail" style="display: none;">
+                    <div class="announcement-detail-header">
+                        <button class="back-btn" id="backToAnnouncementListBtn">← 返回公告列表</button>
+                    </div>
+                    
+                    <div class="announcement-detail-content">
+                        <div class="announcement-detail-title">
+                            <h2 id="announcementDetailTitle">公告标题</h2>
+                            <div class="announcement-detail-meta">
+                                <div class="announcement-detail-tags">
+                                    <span class="tag" id="announcementDetailTag">重要</span>
                                 </div>
-                                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                                    <i class="fas fa-shield-alt sketch-text text-6xl sketch-icon"></i>
-                                </div>
+                                <div class="announcement-detail-date" id="announcementDetailDate">2025-01-15</div>
                             </div>
-
-                            <!-- 装饰元素 -->
-                            <div class="absolute top-8 right-8 w-12 h-12 sketch-border bg-sketch-purple opacity-40 transform rotate-45">
-                            </div>
-                            <div class="absolute bottom-12 left-8 w-8 h-8 sketch-border bg-sketch-red opacity-50 rounded-full">
-                            </div>
-                            <div class="absolute top-1/3 left-4 w-6 h-6 sketch-border bg-sketch-green opacity-60 rounded-full">
+                        </div>
+                        
+                        <div class="announcement-detail-body">
+                            <div class="rich-text-content" id="announcementDetailContent">
+                                <!-- 公告详细内容将在这里动态加载 -->
                             </div>
                         </div>
                     </div>
@@ -307,584 +589,204 @@
             </div>
         </section>
 
-        <!-- 竞赛题目 -->
-        <section class="py-20 sketch-bg">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="mb-16">
-                    <h2 class="text-4xl font-bold sketch-text relative inline-block sketch-underline">
-                        竞赛题目
-                    </h2>
-                </div>
-
-                <div class="grid grid-cols-3 gap-8">
-                    <!-- 覆盖率提升 -->
-                    <div class="group relative">
-                        <div class="sketch-card p-8">
-                            <div class="absolute top-4 right-4 opacity-20">
-                                <i class="fas fa-chart-line text-4xl sketch-text sketch-icon"></i>
-                            </div>
-                            <div class="relative z-10">
-                                <div class="sketch-border-light rounded-full w-16 h-16 flex items-center justify-center mb-6 bg-sketch-blue text-white">
-                                    <i class="fas fa-chart-line text-2xl sketch-icon"></i>
-                                </div>
-                                <h3 class="text-2xl font-bold mb-4 sketch-text">覆盖率提升</h3>
-                                <p class="sketch-text mb-6 leading-relaxed">每新增覆盖OpenHarmony社区1千行代码(NBNC)，积1分</p>
-                                <a href="problems.html?category=coverage"
-                                    class="inline-flex items-center sketch-button px-4 py-2 font-medium">
-                                    查看题目 <i class="fas fa-arrow-right ml-2 sketch-icon"></i>
-                                </a>
-                            </div>
+        <!-- 常见问题 -->
+        <section class="tab-content" id="tab-faq">
+            <div class="tab-content-container">
+                <h2 class="section-title">常见问题</h2>
+                <div class="content-section">
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            如何参与OpenHarmony Fuzzing挑战赛？
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>参与步骤很简单：</p>
+                            <ol>
+                                <li>使用Gitcode账号登录竞赛平台</li>
+                                <li>完成个人信息填写和报名</li>
+                                <li>选择感兴趣的赛题进行提交</li>
+                                <li>等待系统评测并查看结果</li>
+                            </ol>
+                            <p>每月都有新的赛题开放，你可以随时参与。</p>
                         </div>
                     </div>
-
-                    <!-- 已知漏洞检测 -->
-                    <div class="group relative">
-                        <div class="sketch-card p-8">
-                            <div class="absolute top-4 right-4 opacity-20">
-                                <i class="fas fa-bug text-4xl sketch-text sketch-icon"></i>
-                            </div>
-                            <div class="relative z-10">
-                                <div class="sketch-border-light rounded-full w-16 h-16 flex items-center justify-center mb-6 bg-sketch-green text-white">
-                                    <i class="fas fa-bug text-2xl sketch-icon"></i>
-                                </div>
-                                <h3 class="text-2xl font-bold mb-4 sketch-text">已知漏洞检测</h3>
-                                <p class="sketch-text mb-6 leading-relaxed">每检测出一个已知漏洞，积1分(Fuzz平台将自动进行漏洞注入，以检测用例的防护效果)</p>
-                                <a href="problems.html?category=detection"
-                                    class="inline-flex items-center sketch-button px-4 py-2 font-medium">
-                                    查看题目 <i class="fas fa-arrow-right ml-2 sketch-icon"></i>
-                                </a>
-                            </div>
+                    
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            积分如何计算和兑换奖励？
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>积分根据你提交的Fuzz用例效果计算：</p>
+                            <ul>
+                                <li>覆盖率提升每1000行代码得1分</li>
+                                <li>检测已知漏洞每个得1分</li>
+                                <li>发现0Day漏洞根据严重程度得1-100分不等</li>
+                            </ul>
+                            <p>每1积分可兑换100元人民币，奖励将在月底结算后发放。</p>
                         </div>
                     </div>
-
-                    <!-- 0Day漏洞挖掘 -->
-                    <div class="group relative">
-                        <div class="sketch-card p-8">
-                            <div class="absolute top-4 right-4 opacity-20">
-                                <i class="fas fa-search text-4xl sketch-text sketch-icon"></i>
-                            </div>
-                            <div class="relative z-10">
-                                <div class="sketch-border-light rounded-full w-16 h-16 flex items-center justify-center mb-6 bg-sketch-purple text-white">
-                                    <i class="fas fa-search text-2xl sketch-icon"></i>
-                                </div>
-                                <h3 class="text-2xl font-bold mb-4 sketch-text">0Day漏洞挖掘</h3>
-                                <p class="sketch-text mb-6 leading-relaxed">所提交的Fuzz用例发现0Day漏洞将获得额外积分，致命漏洞100分，严重漏洞30分……</p>
-                                <a href="problems.html?category=zero-day"
-                                    class="inline-flex items-center sketch-button px-4 py-2 font-medium">
-                                    查看题目 <i class="fas fa-arrow-right ml-2 sketch-icon"></i>
-                                </a>
-                            </div>
+                    
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            可以组队参赛吗？
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>可以！每个团队最多3人，团队成员共享积分和奖励。你可以在个人中心邀请队友，也可以接受他人的邀请加入团队。团队合作能够发挥各自专长，提高发现漏洞的效率。</p>
                         </div>
                     </div>
                 </div>
-        </section>
-
-        <!-- 通知公告 -->
-        <section class="py-20 sketch-bg">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <!-- 通知公告 -->
-                <div class="mb-16">
-                    <div class="flex items-center justify-between mb-12">
-                        <div>
-                            <h2 class="text-4xl font-bold sketch-text relative inline-block sketch-underline">
-                                通知公告
-                            </h2>
-                        </div>
-                        <a href="#" class="inline-flex items-center sketch-text font-medium hover:text-sketch-blue">
-                            查看全部
-                            <i class="fas fa-arrow-right ml-2 sketch-icon"></i>
-                        </a>
-                    </div>
-
-                    <div class="grid md:grid-cols-2 gap-8">
-                        <div class="sketch-card p-8 sketch-bg">
-                            <div class="flex items-start">
-                                <div class="sketch-card p-3 mr-4">
-                                    <i class="fas fa-bullhorn sketch-text text-lg sketch-icon"></i>
-                                </div>
-                                <div class="flex-1">
-                                    <h3 class="font-bold sketch-text mb-3 text-lg">2025年度总决赛报名开始</h3>
-                                    <p class="sketch-text text-sm mb-4 leading-relaxed">
-                                        年度总决赛报名通道已开启，优秀选手可获得丰厚奖励，快来报名参与吧...</p>
-                                    <span class="text-xs sketch-text">2025-10-15</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="sketch-card p-8 sketch-bg">
-                            <div class="flex items-start">
-                                <div class="sketch-card p-3 mr-4">
-                                    <i class="fas fa-trophy sketch-text text-lg sketch-icon"></i>
-                                </div>
-                                <div class="flex-1">
-                                    <h3 class="font-bold sketch-text mb-3 text-lg">9月月赛结果公布</h3>
-                                    <p class="sketch-text text-sm mb-4 leading-relaxed">
-                                        9月月赛已圆满结束，恭喜获奖选手，详细结果请查看排行榜...</p>
-                                    <span class="text-xs sketch-text">2025-10-10</span>
-                                </div>
-                            </div>
-                        </div>
-
-
-                    </div>
-                </div>
-
-                <!-- 新闻动态 -->
-                <div>
-                    <div class="flex items-center justify-between mb-12">
-                        <div>
-                            <h2 class="text-4xl font-bold sketch-text relative inline-block">
-                                新闻动态
-                                <span class="absolute -bottom-2 left-0 w-full h-1 sketch-card"></span>
-                            </h2>
-                        </div>
-                        <a href="#" class="inline-flex items-center sketch-text font-medium">
-                            查看全部
-                            <i class="fas fa-arrow-right ml-2 sketch-icon"></i>
-                        </a>
-                    </div>
-
-                    <div class="grid md:grid-cols-2 gap-8">
-                        <article class="sketch-bg sketch-card">
-                            <div class="flex items-center p-6">
-                                <div class="flex-1 pr-6">
-                                    <h3 class="font-bold sketch-text mb-2 text-lg leading-tight">OpenHarmony 4.0
-                                        安全特性深度解析</h3>
-                                    <p class="sketch-text text-sm mb-3 leading-relaxed">全面解读OpenHarmony
-                                        4.0版本中的安全增强特性，为开发者提供更安全的开发环境...</p>
-                                    <div class="flex items-center text-xs sketch-text">
-                                        <i class="fas fa-calendar mr-2"></i>
-                                        <span>2025-10-12</span>
-                                    </div>
-                                </div>
-                                <div class="w-32 h-24 flex-shrink-0">
-                                    <div class="w-full h-full sketch-card flex items-center justify-center">
-                                        <i class="fas fa-image sketch-text text-2xl"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-
-                        <article class="sketch-bg sketch-card">
-                            <div class="flex items-center p-6">
-                                <div class="flex-1 pr-6">
-                                    <h3 class="font-bold sketch-text mb-2 text-lg leading-tight">社区安全贡献者专访</h3>
-                                    <p class="sketch-text text-sm mb-3 leading-relaxed">
-                                        专访优秀安全贡献者，分享漏洞发现经验和安全研究心得，探讨开源安全生态建设...</p>
-                                    <div class="flex items-center text-xs sketch-text">
-                                        <i class="fas fa-calendar mr-2"></i>
-                                        <span>2025-10-09</span>
-                                    </div>
-                                </div>
-                                <div class="w-32 h-24 flex-shrink-0">
-                                    <div class="w-full h-full sketch-card flex items-center justify-center">
-                                        <i class="fas fa-image sketch-text text-2xl"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 大赛流程 -->
-        <section class="py-20 sketch-bg">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="mb-16">
-                    <h2 class="text-4xl font-bold sketch-text relative inline-block">
-                        大赛流程
-                        <span class="absolute -bottom-2 left-0 w-full h-1 sketch-card"></span>
-                    </h2>
-                </div>
-
-                <div class="relative">
-                    <!-- 流程连接线 -->
-                    <div class="hidden lg:block absolute top-1/2 left-0 right-0 h-1 sketch-card-light transform -translate-y-1/2 z-0">
-                    </div>
-
-                    <div class="grid md:grid-cols-3 gap-8 relative z-10">
-                        <!-- 报名阶段 -->
-                        <div class="group">
-                            <div class="sketch-bg sketch-card p-8 text-center">
-                                <div class="relative mb-6">
-                                    <div class="sketch-card rounded-full w-12 h-12 flex items-center justify-center mx-auto text-xl font-bold sketch-text">
-                                        1</div>
-                                </div>
-                                <h3 class="text-2xl font-bold sketch-text mb-4">报名阶段</h3>
-                                <p class="sketch-text mb-6 leading-relaxed">使用Gitcode账号登录，完成个人信息填写和团队组建，开启你的安全挑战之旅
-                                </p>
-                                <div class="sketch-card-light p-4">
-                                    <p class="sketch-text font-semibold">
-                                        <i class="fas fa-clock mr-2"></i>全年开放报名
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- 月赛阶段 -->
-                        <div class="group">
-                            <div class="sketch-bg sketch-card p-8 text-center">
-                                <div class="relative mb-6">
-                                    <div class="sketch-card rounded-full w-12 h-12 flex items-center justify-center mx-auto text-xl font-bold sketch-text">
-                                        2</div>
-                                </div>
-                                <h3 class="text-2xl font-bold sketch-text mb-4">月赛阶段</h3>
-                                <p class="sketch-text mb-6 leading-relaxed">每月举办主题竞赛，积累经验，提升技能，获得奖励，为年度总决赛做准备</p>
-                                <div class="sketch-card-light p-4">
-                                    <p class="sketch-text font-semibold">
-                                        <i class="fas fa-calendar mr-2"></i>每月结算
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- 年度邀请赛 -->
-                        <div class="group">
-                            <div class="sketch-bg sketch-card p-8 text-center">
-                                <div class="relative mb-6">
-                                    <div class="sketch-card rounded-full w-12 h-12 flex items-center justify-center mx-auto text-xl font-bold sketch-text">
-                                        3</div>
-                                </div>
-                                <h3 class="text-2xl font-bold sketch-text mb-4">年度邀请赛</h3>
-                                <p class="sketch-text mb-6 leading-relaxed">优秀选手受邀参加年度总决赛，争夺最高荣誉和丰厚奖品，成为安全领域精英</p>
-                                <div class="sketch-card-light p-4">
-                                    <p class="sketch-text font-semibold">
-                                        <i class="fas fa-star mr-2"></i>敬请期待
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 大赛奖项 -->
-        <section class="py-20 sketch-bg">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="mb-16">
-                    <h2 class="text-4xl font-bold sketch-text relative inline-block">
-                        大赛奖项
-                        <span class="absolute -bottom-2 left-0 w-full h-1 sketch-card"></span>
-                    </h2>
-                </div>
-
-                <div class="sketch-bg sketch-card">
-                    <!-- 表格头部 -->
-                    <div class="sketch-card-light sketch-text p-6">
-                        <div class="grid gap-8 font-bold" style="grid-template-columns: 1fr 1fr 2fr;">
-                            <div>奖项</div>
-                            <div class="text-center">获奖人数</div>
-                            <div class="text-center">奖励内容</div>
-                        </div>
-                    </div>
-
-                    <!-- 表格内容 -->
-                    <div class="sketch-card-light">
-                        <!-- 年度总冠军 -->
-                        <div class="p-6 sketch-card-light">
-                            <div class="grid gap-8 items-center" style="grid-template-columns: 1fr 1fr 2fr;">
-                                <div class="flex items-center">
-                                    <span class="font-bold sketch-text">年度总冠军</span>
-                                </div>
-                                <div class="text-center">
-                                    <span class="sketch-text">1名</span>
-                                </div>
-                                <div class="text-center">
-                                    <span class="text-xl font-bold sketch-text">¥50,000 + Offer直通 + 证书</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- 年度亚军 -->
-                        <div class="p-6 sketch-card-light">
-                            <div class="grid gap-8 items-center" style="grid-template-columns: 1fr 1fr 2fr;">
-                                <div class="flex items-center">
-                                    <span class="font-bold sketch-text">年度亚军</span>
-                                </div>
-                                <div class="text-center">
-                                    <span class="sketch-text">1名</span>
-                                </div>
-                                <div class="text-center">
-                                    <span class="text-xl font-bold sketch-text">¥30,000 + 鸿蒙设备 + 证书</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- 年度季军 -->
-                        <div class="p-6 sketch-card-light">
-                            <div class="grid gap-8 items-center" style="grid-template-columns: 1fr 1fr 2fr;">
-                                <div class="flex items-center">
-                                    <span class="font-bold sketch-text">年度季军</span>
-                                </div>
-                                <div class="text-center">
-                                    <span class="sketch-text">1名</span>
-                                </div>
-                                <div class="text-center">
-                                    <span class="text-xl font-bold sketch-text">¥20,000 + 鸿蒙设备 + 证书</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- 月赛冠军 -->
-                        <div class="p-6 sketch-card-light">
-                            <div class="grid gap-8 items-center" style="grid-template-columns: 1fr 1fr 2fr;">
-                                <div class="flex items-center">
-                                    <span class="font-bold sketch-text">月赛冠军</span>
-                                </div>
-                                <div class="text-center">
-                                    <span class="sketch-text">每月1名</span>
-                                </div>
-                                <div class="text-center">
-                                    <span class="text-xl font-bold sketch-text">¥5,000 + 证书 + 年度直邀</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- 月赛亚军 -->
-                        <div class="p-6 sketch-card-light">
-                            <div class="grid gap-8 items-center" style="grid-template-columns: 1fr 1fr 2fr;">
-                                <div class="flex items-center">
-                                    <span class="font-bold sketch-text">月赛亚军</span>
-                                </div>
-                                <div class="text-center">
-                                    <span class="sketch-text">每月1名</span>
-                                </div>
-                                <div class="text-center">
-                                    <span class="text-xl font-bold sketch-text">¥3,000 + 证书 + 年度直邀</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- 月赛季军 -->
-                        <div class="p-6 sketch-card-light">
-                            <div class="grid gap-8 items-center" style="grid-template-columns: 1fr 1fr 2fr;">
-                                <div class="flex items-center">
-                                    <span class="font-bold sketch-text">月赛季军</span>
-                                </div>
-                                <div class="text-center">
-                                    <span class="sketch-text">每月1名</span>
-                                </div>
-                                <div class="text-center">
-                                    <span class="text-xl font-bold sketch-text">¥2,000 + 证书 + 年度直邀</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- 优秀参与奖 -->
-                        <div class="p-6 sketch-card-light">
-                            <div class="grid gap-8 items-center" style="grid-template-columns: 1fr 1fr 2fr;">
-                                <div class="flex items-center">
-                                    <span class="font-bold sketch-text">优秀参与奖</span>
-                                </div>
-                                <div class="text-center">
-                                    <span class="sketch-text">每月若干名</span>
-                                </div>
-                                <div class="text-center">
-                                    <span class="text-xl font-bold sketch-text">¥500 + 证书</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 组织机构 -->
-        <section class="py-16 sketch-bg">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="mb-12">
-                    <h2 class="text-4xl font-bold sketch-text relative inline-block">
-                        组织机构
-                        <span class="absolute -bottom-2 left-0 w-full h-1 sketch-card"></span>
-                    </h2>
-                </div>
-
-                <div class="grid md:grid-cols-4 gap-8">
-                    <div class="text-center">
-                        <h3 class="font-bold sketch-text mb-4">主办单位</h3>
-                        <div class="sketch-card-light p-4 h-32 flex items-center justify-center">
-                            <p class="text-sm sketch-text">OpenHarmony项目群工作委员会</p>
-                        </div>
-                    </div>
-
-                    <div class="text-center">
-                        <h3 class="font-bold sketch-text mb-4">承办单位</h3>
-                        <div class="sketch-card-light p-4 h-32 flex items-center justify-center">
-                            <p class="text-sm sketch-text">华为技术有限公司</p>
-                        </div>
-                    </div>
-
-                    <div class="text-center">
-                        <h3 class="font-bold sketch-text mb-4">协办单位</h3>
-                        <div class="sketch-card-light p-4 h-32 flex items-center justify-center">
-                            <p class="text-sm sketch-text">开放原子开源基金会</p>
-                        </div>
-                    </div>
-
-                    <div class="text-center">
-                        <h3 class="font-bold sketch-text mb-4">支持单位</h3>
-                        <div class="sketch-card-light p-4 h-32 flex flex-col justify-center space-y-2">
-                            <p class="text-sm sketch-text">青软创新集团</p>
-                            <p class="text-sm sketch-text">中科院软件研究所</p>
-                            <p class="text-sm sketch-text">各大高校安全实验室</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </section>
     </main>
 
-    <!-- 页脚 -->
-    <footer class="sketch-bg sketch-border py-12 sketch-shadow">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-4 gap-8">
-                <div>
-                    <div class="h-8 mb-4 sketch-border flex items-center justify-center px-4 bg-sketch-blue text-white">
-                        <span class="font-bold">OpenHarmony</span>
-                    </div>
-                    <p class="sketch-text text-sm">构建全场景智慧生态</p>
+    <!-- 模态框 -->
+    <!-- 竞赛协议模态框 -->
+    <div id="agreementModal" class="modal hidden">
+        <div class="modal-backdrop"></div>
+        <div class="modal-container">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">竞赛协议</h3>
+                    <button class="modal-close" data-modal-close><i class="fas fa-times"></i></button>
                 </div>
-
-                <div>
-                    <h4 class="font-bold mb-4 sketch-text sketch-underline">快速链接</h4>
-                    <ul class="space-y-2 text-sm sketch-text">
-                        <li><a href="#" class="sketch-text hover:text-sketch-blue">赛事介绍</a></li>
-                        <li><a href="#" class="sketch-text hover:text-sketch-blue">竞赛规则</a></li>
-                        <li><a href="#" class="sketch-text hover:text-sketch-blue">常见问题</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 class="font-bold mb-4 sketch-text sketch-underline">联系我们</h4>
-                    <ul class="space-y-2 text-sm sketch-text">
-                        <li><i class="fas fa-envelope mr-2 sketch-icon"></i>security@openharmony.io</li>
-                        <li><i class="fas fa-phone mr-2 sketch-icon"></i>400-xxx-xxxx</li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 class="font-bold mb-4 sketch-text sketch-underline">关注我们</h4>
-                    <div class="flex space-x-4">
-                        <a href="#" class="sketch-text hover:text-sketch-blue">
-                            <i class="fab fa-github text-xl sketch-icon"></i>
-                        </a>
-                        <a href="#" class="sketch-text hover:text-sketch-orange">
-                            <i class="fab fa-weibo text-xl sketch-icon"></i>
-                        </a>
-                        <a href="#" class="sketch-text hover:text-sketch-green">
-                            <i class="fab fa-wechat text-xl sketch-icon"></i>
-                        </a>
+                <div class="modal-body">
+                    <div class="agreement-content">
+                        <h4>OpenHarmony社区创新奖励计划参赛协议</h4>
+                        <p>欢迎参加OpenHarmony社区创新奖励计划！在参赛前，请仔细阅读以下协议条款：</p>
+                        
+                        <h5>1. 参赛资格</h5>
+                        <p>参赛者必须年满18周岁，拥有有效的GitCode账号，并遵守开源社区行为准则。</p>
+                        
+                        <h5>2. 知识产权</h5>
+                        <p>参赛者提交的所有代码和文档将采用开源许可证（Apache 2.0）发布，并贡献给OpenHarmony社区。参赛者保证提交的作品不侵犯任何第三方的知识产权。</p>
+                        
+                        <h5>3. 奖励发放</h5>
+                        <p>奖金将在比赛结束后30个工作日内发放至获奖者提供的账户。获奖者需提供真实有效的身份信息和收款账户。</p>
+                        
+                        <h5>4. 行为规范</h5>
+                        <p>参赛者应遵守诚信原则，不得抄袭、剽窃他人作品，不得使用自动化工具或AI生成内容替代个人工作，不得进行任何形式的作弊行为。</p>
+                        
+                        <h5>5. 数据隐私</h5>
+                        <p>主办方将收集参赛者的基本信息用于比赛管理和奖励发放，并承诺按照隐私政策保护参赛者信息安全。</p>
+                        
+                        <h5>6. 免责声明</h5>
+                        <p>主办方对比赛过程中可能发生的技术故障、网络问题或其他不可抗力因素导致的问题不承担责任。</p>
+                        
+                        <h5>7. 协议修改</h5>
+                        <p>主办方保留在必要时修改本协议的权利，修改后的协议将在官网公布并即时生效。</p>
                     </div>
                 </div>
-            </div>
-
-            <div class="sketch-divider mt-8"></div>
-            <div class="pt-8 text-center text-sm sketch-text">
-                <p>&copy; 2025 OpenHarmony 社区创新奖励计划. All rights reserved.</p>
+                </div>
             </div>
         </div>
-    </footer>
+    </div>
+    
+    <!-- 往期赛事模态框 -->
+    <div id="pastContestModal" class="modal hidden">
+        <div class="modal-backdrop"></div>
+        <div class="modal-container">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">往期赛事</h3>
+                    <button class="modal-close" data-modal-close><i class="fas fa-times"></i></button>
+                </div>
+                <div class="modal-body">
+                    <div class="past-contests-list">
+                        <div class="past-contest-card">
+                            <div class="past-contest-status">已结束</div>
+                            <div class="past-contest-content">
+                                <h4 class="past-contest-title">OpenHarmony社区创新奖励计划 9月赛</h4>
+                                <p class="past-contest-subtitle">OpenHarmony性能优化挑战赛</p>
+                                <div class="past-contest-time">2024.09.01 - 2024.09.30</div>
+                                <div class="past-contest-participants">参赛人数: 189人</div>
+                            </div>
+                            <div class="past-contest-action">
+                                <a href="#" class="btn btn-text">查看</a>
+                            </div>
+                        </div>
+                        
+                        <div class="past-contest-card">
+                            <div class="past-contest-status">已结束</div>
+                            <div class="past-contest-content">
+                                <h4 class="past-contest-title">OpenHarmony社区创新奖励计划 8月赛</h4>
+                                <p class="past-contest-subtitle">OpenHarmony应用开发挑战赛</p>
+                                <div class="past-contest-time">2024.08.01 - 2024.08.31</div>
+                                <div class="past-contest-participants">参赛人数: 215人</div>
+                            </div>
+                            <div class="past-contest-action">
+                                <a href="#" class="btn btn-text">查看</a>
+                            </div>
+                        </div>
+                        
+                        <div class="past-contest-card">
+                            <div class="past-contest-status">已结束</div>
+                            <div class="past-contest-content">
+                                <h4 class="past-contest-title">OpenHarmony社区创新奖励计划 7月赛</h4>
+                                <p class="past-contest-subtitle">OpenHarmony驱动开发挑战赛</p>
+                                <div class="past-contest-time">2024.07.01 - 2024.07.31</div>
+                                <div class="past-contest-participants">参赛人数: 167人</div>
+                            </div>
+                            <div class="past-contest-action">
+                                <a href="#" class="btn btn-text">查看</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 提交模态框 -->
+    <div id="submitModal" class="modal hidden">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">提交</h3>
+                    <button class="modal-close" data-modal-close><i class="fas fa-times"></i></button>
+                </div>
+                <div class="modal-body">
+                    <h4 id="submitProblemTitle" class="submit-problem-title">题目标题</h4>
+                    <form id="submitForm" class="submit-form">
+                        <div class="form-group">
+                            <label for="repoUrl">Commit</label>
+                            <input type="text" id="repoUrl" name="repoUrl" class="form-control" placeholder="例如: https://gitcode.com/username/repo/commit/abc123" required>
+                            <div class="form-hint">请提供包含解答代码的GitCode提交链接</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="description">说明</label>
+                            <textarea id="description" name="description" class="form-control" rows="5" placeholder="请简要描述你的解题思路和实现方法..." required></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-text" id="submitCancelBtn" data-modal-close>取消</button>
+                    <button type="submit" form="submitForm" class="btn btn-primary">提交</button>
+                </div>
+            </div>
+    </div>
 
-    <script>
-        let menuTimeout;
-
-        // 用户菜单显示/隐藏
-        function showUserMenu() {
-            clearTimeout(menuTimeout);
-            const menu = document.getElementById('userMenu');
-            menu.classList.remove('hidden');
-            // 添加淡入动画
-            menu.style.opacity = '0';
-            menu.style.transform = 'translateY(-10px)';
-            setTimeout(() => {
-                menu.style.transition = 'all 0.2s ease-out';
-                menu.style.opacity = '1';
-                menu.style.transform = 'translateY(0)';
-            }, 10);
-        }
-
-        function hideUserMenu() {
-            menuTimeout = setTimeout(() => {
-                const menu = document.getElementById('userMenu');
-                menu.style.transition = 'all 0.2s ease-in';
-                menu.style.opacity = '0';
-                menu.style.transform = 'translateY(-10px)';
-                setTimeout(() => {
-                    menu.classList.add('hidden');
-                }, 200);
-            }, 300);
-        }
-
-        // 鼠标进入菜单时取消隐藏
-        document.addEventListener('DOMContentLoaded', function () {
-            const userMenu = document.getElementById('userMenu');
-            if (userMenu) {
-                userMenu.addEventListener('mouseenter', () => {
-                    clearTimeout(menuTimeout);
-                });
-                userMenu.addEventListener('mouseleave', hideUserMenu);
-            }
-        });
-
-        // 退出登录
-        function logout() {
-            if (confirm('确定要退出登录吗？')) {
-                // 清除登录状态
-                localStorage.removeItem('isLoggedIn');
-                localStorage.removeItem('userInfo');
-
-                // 隐藏用户信息，显示登录按钮
-                document.getElementById('userInfo').classList.add('hidden');
-                document.getElementById('loginBtn').classList.remove('hidden');
-            }
-        }
-
-        // 模拟登录状态检查
-        window.onload = function () {
-            // 检查是否有登录状态
-            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-            const isRegistered = localStorage.getItem('isRegistered') === 'true';
-
-            if (isLoggedIn) {
-                document.getElementById('loginBtn').classList.add('hidden');
-                document.getElementById('userInfo').classList.remove('hidden');
-
-                // 从localStorage获取用户信息并更新显示
-                const userInfo = JSON.parse(localStorage.getItem('userInfo') || '{}');
-                if (userInfo.name) {
-                    // 更新用户名显示
-                    const nameElement = document.querySelector('#userInfo .font-medium');
-                    if (nameElement) {
-                        nameElement.textContent = userInfo.name;
-                    }
-                }
-            }
-            
-            // 根据报名状态更新导航链接
-            const registrationNavLink = document.getElementById('registrationNavLink');
-            if (registrationNavLink) {
-                if (isRegistered) {
-                    registrationNavLink.href = 'dashboard.html';
-                    registrationNavLink.textContent = '报名详情';
-                } else {
-                    registrationNavLink.href = 'registration.html';
-                    registrationNavLink.textContent = '报名入口';
-                }
-            }
-        };
-
-        // 点击页面其他地方关闭菜单
-        document.addEventListener('click', function (event) {
-            const userInfo = document.getElementById('userInfo');
-            const userMenu = document.getElementById('userMenu');
-
-            if (userInfo && userMenu && !userInfo.contains(event.target)) {
-                userMenu.classList.add('hidden');
-            }
-        });
-    </script>
+    <!-- TDesign JS -->
+    <script src="https://unpkg.com/tdesign-web@latest/dist/tdesign.min.js"></script>
+    
+    <!-- 应用核心库 -->
+    <script src="assets/js/utils.js"></script>
+    <script src="assets/js/app-state.js"></script>
+    <script src="assets/js/components.js"></script>
+    
+    <!-- 功能模块 -->
+    <script src="assets/js/modules/auth.js"></script>
+    <script src="assets/js/modules/modal.js"></script>
+    <script src="assets/js/modules/navigation.js"></script>
+    <script src="assets/js/modules/contest.js"></script>
+    <script src="assets/js/modules/problems.js"></script>
+    <script src="assets/js/modules/leaderboard.js"></script>
+    <script src="assets/js/modules/registration.js"></script>
+    <script src="assets/js/modules/message.js"></script>
+    
+    <!-- 主应用入口 -->
+    <script src="assets/js/main.js"></script>
 </body>
 
 </html>

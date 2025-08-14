@@ -1,0 +1,388 @@
+/* TDesign主题样式定制 */
+
+/* 色彩系统 */
+:root {
+  /* TDesign品牌色 */
+  --td-brand-color: #0052D9;
+  --td-brand-color-1: #F2F3FF;
+  --td-brand-color-2: #D9E1FF;
+  --td-brand-color-3: #B5C7FF;
+  --td-brand-color-4: #8EABFF;
+  --td-brand-color-5: #618DFF;
+  --td-brand-color-6: #366EF4;
+  --td-brand-color-7: #0052D9;
+  --td-brand-color-8: #003CAB;
+  --td-brand-color-9: #002A7C;
+  --td-brand-color-10: #001A57;
+
+  /* 功能色 */
+  --td-success-color: #00A870;
+  --td-warning-color: #ED7B2F;
+  --td-error-color: #E34D59;
+  --td-info-color: #0052D9;
+
+  /* 中性色 */
+  --td-text-color-primary: #000000;
+  --td-text-color-secondary: #666666;
+  --td-text-color-placeholder: #999999;
+  --td-text-color-disabled: #C6C6C6;
+
+  /* 背景色 */
+  --td-bg-color-page: #FFFFFF;
+  --td-bg-color-container: #FFFFFF;
+  --td-bg-color-secondary: #F5F5F5;
+
+  /* 边框色 */
+  --td-border-color: #E7E7E7;
+  --td-border-color-separator: #F0F0F0;
+
+  /* 阴影 */
+  --td-shadow-1: 0 1px 10px rgba(0, 0, 0, 0.05), 0 4px 5px rgba(0, 0, 0, 0.08), 0 2px 4px -1px rgba(0, 0, 0, 0.12);
+  --td-shadow-2: 0 3px 14px 2px rgba(0, 0, 0, 0.05), 0 8px 10px 1px rgba(0, 0, 0, 0.06), 0 5px 5px -3px rgba(0, 0, 0, 0.1);
+  --td-shadow-3: 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+
+  /* 圆角 */
+  --td-radius-small: 3px;
+  --td-radius-default: 6px;
+  --td-radius-medium: 9px;
+  --td-radius-large: 12px;
+  --td-radius-extra-large: 24px;
+
+  /* 间距 */
+  --td-spacer: 8px;
+  --td-spacer-1: 8px;
+  --td-spacer-2: 16px;
+  --td-spacer-3: 24px;
+  --td-spacer-4: 32px;
+  --td-spacer-5: 40px;
+  --td-spacer-6: 48px;
+  --td-spacer-8: 64px;
+
+  /* 字体 */
+  --td-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --td-font-size-s: 12px;
+  --td-font-size-base: 14px;
+  --td-font-size-m: 16px;
+  --td-font-size-l: 18px;
+  --td-font-size-xl: 20px;
+  --td-font-size-xxl: 24px;
+  --td-font-size-xxxl: 28px;
+
+  /* 行高 */
+  --td-line-height-s: 20px;
+  --td-line-height-base: 22px;
+  --td-line-height-m: 24px;
+  --td-line-height-l: 26px;
+  --td-line-height-xl: 28px;
+  --td-line-height-xxl: 32px;
+}
+
+/* 全局字体设置 */
+body {
+  font-family: var(--td-font-family);
+  font-size: var(--td-font-size-base);
+  line-height: var(--td-line-height-base);
+  color: var(--td-text-color-primary);
+  background-color: var(--td-bg-color-page);
+}
+
+/* 标题样式 */
+.t-typography-title1 {
+  font-size: var(--td-font-size-xxxl);
+  line-height: var(--td-line-height-xxl);
+  font-weight: 600;
+  color: var(--td-text-color-primary);
+}
+
+.t-typography-title2 {
+  font-size: var(--td-font-size-xxl);
+  line-height: var(--td-line-height-xl);
+  font-weight: 500;
+  color: var(--td-text-color-primary);
+}
+
+.t-typography-title3 {
+  font-size: var(--td-font-size-m);
+  line-height: var(--td-line-height-m);
+  font-weight: 500;
+  color: var(--td-text-color-primary);
+}
+
+/* 正文样式 */
+.t-typography-body1 {
+  font-size: var(--td-font-size-m);
+  line-height: var(--td-line-height-m);
+  font-weight: 400;
+  color: var(--td-text-color-primary);
+}
+
+.t-typography-body2 {
+  font-size: var(--td-font-size-base);
+  line-height: var(--td-line-height-base);
+  font-weight: 400;
+  color: var(--td-text-color-primary);
+}
+
+.t-typography-caption {
+  font-size: var(--td-font-size-s);
+  line-height: var(--td-line-height-s);
+  font-weight: 400;
+  color: var(--td-text-color-secondary);
+}
+
+/* 按钮组件 */
+.t-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-radius: var(--td-radius-default);
+  font-size: var(--td-font-size-base);
+  font-weight: 400;
+  line-height: 1;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.38, 0, 0.24, 1);
+  user-select: none;
+  white-space: nowrap;
+}
+
+.t-button--primary {
+  background-color: var(--td-brand-color);
+  color: #ffffff;
+  border-color: var(--td-brand-color);
+}
+
+.t-button--primary:hover {
+  background-color: var(--td-brand-color-6);
+  border-color: var(--td-brand-color-6);
+}
+
+.t-button--primary:active {
+  background-color: var(--td-brand-color-8);
+  border-color: var(--td-brand-color-8);
+}
+
+.t-button--secondary {
+  background-color: transparent;
+  color: var(--td-brand-color);
+  border-color: var(--td-brand-color);
+}
+
+.t-button--secondary:hover {
+  background-color: var(--td-brand-color-1);
+  color: var(--td-brand-color-6);
+  border-color: var(--td-brand-color-6);
+}
+
+.t-button--ghost {
+  background-color: transparent;
+  color: var(--td-text-color-primary);
+  border-color: var(--td-border-color);
+}
+
+.t-button--ghost:hover {
+  background-color: var(--td-bg-color-secondary);
+  border-color: var(--td-brand-color);
+}
+
+/* 卡片组件 */
+.t-card {
+  background-color: var(--td-bg-color-container);
+  border: 1px solid var(--td-border-color);
+  border-radius: var(--td-radius-medium);
+  box-shadow: var(--td-shadow-1);
+  overflow: hidden;
+}
+
+.t-card__header {
+  padding: var(--td-spacer-3) var(--td-spacer-3) 0;
+  border-bottom: 1px solid var(--td-border-color-separator);
+}
+
+.t-card__body {
+  padding: var(--td-spacer-3);
+}
+
+.t-card__footer {
+  padding: 0 var(--td-spacer-3) var(--td-spacer-3);
+}
+
+/* 输入框组件 */
+.t-input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid var(--td-border-color);
+  border-radius: var(--td-radius-default);
+  font-size: var(--td-font-size-base);
+  color: var(--td-text-color-primary);
+  background-color: var(--td-bg-color-container);
+  transition: border-color 0.2s cubic-bezier(0.38, 0, 0.24, 1);
+}
+
+.t-input:focus {
+  outline: none;
+  border-color: var(--td-brand-color);
+  box-shadow: 0 0 0 2px var(--td-brand-color-1);
+}
+
+.t-input::placeholder {
+  color: var(--td-text-color-placeholder);
+}
+
+/* 标签组件 */
+.t-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: var(--td-radius-small);
+  font-size: var(--td-font-size-s);
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
+.t-tag--default {
+  background-color: var(--td-bg-color-secondary);
+  color: var(--td-text-color-primary);
+}
+
+.t-tag--primary {
+  background-color: var(--td-brand-color-1);
+  color: var(--td-brand-color);
+}
+
+.t-tag--success {
+  background-color: #E8F5F1;
+  color: var(--td-success-color);
+}
+
+.t-tag--warning {
+  background-color: #FEF3E6;
+  color: var(--td-warning-color);
+}
+
+.t-tag--error {
+  background-color: #FDF0F0;
+  color: var(--td-error-color);
+}
+
+/* 头像组件 */
+.t-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  background-color: var(--td-bg-color-secondary);
+  color: var(--td-text-color-secondary);
+}
+
+.t-avatar--small {
+  width: 24px;
+  height: 24px;
+  font-size: 12px;
+}
+
+.t-avatar--medium {
+  width: 32px;
+  height: 32px;
+  font-size: 14px;
+}
+
+.t-avatar--large {
+  width: 40px;
+  height: 40px;
+  font-size: 16px;
+}
+
+/* 面包屑组件 */
+.t-breadcrumb {
+  display: flex;
+  align-items: center;
+  font-size: var(--td-font-size-base);
+  color: var(--td-text-color-secondary);
+}
+
+.t-breadcrumb__item {
+  display: flex;
+  align-items: center;
+}
+
+.t-breadcrumb__item + .t-breadcrumb__item::before {
+  content: '/';
+  margin: 0 8px;
+  color: var(--td-text-color-placeholder);
+}
+
+.t-breadcrumb__link {
+  color: var(--td-text-color-secondary);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.t-breadcrumb__link:hover {
+  color: var(--td-brand-color);
+}
+
+.t-breadcrumb__item:last-child .t-breadcrumb__link {
+  color: var(--td-text-color-primary);
+  pointer-events: none;
+}
+
+/* 分割线组件 */
+.t-divider {
+  border: none;
+  border-top: 1px solid var(--td-border-color-separator);
+  margin: var(--td-spacer-2) 0;
+}
+
+/* 加载组件 */
+.t-loading {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--td-border-color);
+  border-top-color: var(--td-brand-color);
+  border-radius: 50%;
+  animation: t-loading-spin 1s linear infinite;
+}
+
+@keyframes t-loading-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* 吸顶效果 */
+.t-sticky {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: var(--td-bg-color-container);
+  box-shadow: var(--td-shadow-1);
+}
+
+/* 工具类 */
+.t-text-primary { color: var(--td-text-color-primary); }
+.t-text-secondary { color: var(--td-text-color-secondary); }
+.t-text-placeholder { color: var(--td-text-color-placeholder); }
+.t-text-brand { color: var(--td-brand-color); }
+.t-text-success { color: var(--td-success-color); }
+.t-text-warning { color: var(--td-warning-color); }
+.t-text-error { color: var(--td-error-color); }
+
+.t-bg-brand { background-color: var(--td-brand-color); }
+.t-bg-brand-light { background-color: var(--td-brand-color-1); }
+.t-bg-container { background-color: var(--td-bg-color-container); }
+.t-bg-secondary { background-color: var(--td-bg-color-secondary); }
+
+/* 响应式断点 */
+@media (max-width: 767px) {
+  .t-mobile-hidden { display: none !important; }
+}
+
+@media (min-width: 768px) {
+  .t-desktop-hidden { display: none !important; }
+}
