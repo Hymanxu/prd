@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenHarmony - 赛题展示</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-left">
+                <div class="logo">
+                    <img src="./img/logo.png" alt="OpenHarmony">
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="https://tev-competition.qstcloud.net/index" class="nav-link">首页</a></li>
+                    <li><a href="https://tev-competition.qstcloud.net/introduce" class="nav-link">大赛介绍</a></li>
+                    <li><a href="introduction.html" class="nav-link">当前赛事</a></li>
+                    <li><a href="contests.html" class="nav-link active">赛题展示</a></li>
+                    <li><a href="faq.html" class="nav-link">FAQ</a></li>
+                    <li><a href="profile.html" class="nav-link">我的</a></li>
+                </ul>
+            </div>
+            <div class="nav-right">
+                <button class="login-btn">登录/注册</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主要内容 -->
+    <main class="main-content">
+        <!-- 页面标题区域 -->
+        <section class="page-header">
+            <div class="container">
+                <h1>赛题展示</h1>
+                <p>探索OpenHarmony安全测试挑战</p>
+            </div>
+        </section>
+
+        <!-- 赛题内容区域 -->
+        <section class="contests-section">
+            <div class="container">
+                <!-- 筛选和统计区域 -->
+                <div class="contests-header">
+                    <div class="contests-stats">
+                        <span class="total-count">共 20 题</span>
+                        <span class="filter-tag active">提交人数 ↓</span>
+                        <span class="filter-tag">通过人数</span>
+                    </div>
+                    <div class="contests-filters">
+                        <select class="filter-select">
+                            <option>全部标签</option>
+                            <option>内核安全</option>
+                            <option>应用安全</option>
+                            <option>网络安全</option>
+                            <option>系统服务</option>
+                        </select>
+                        <input type="text" class="search-input" placeholder="搜索题目...">
+                    </div>
+                </div>
+
+                <!-- 赛题详情区域 -->
+                <div class="contest-detail" id="contestDetail" style="display: none;">
+                    <button class="back-btn" id="backBtn">← 返回题目列表</button>
+                    <div class="detail-content">
+                        <h2 class="detail-title">内核缓冲区溢出检测</h2>
+                        <div class="detail-tags">
+                            <span class="tag tag-difficulty">困难</span>
+                            <span class="tag tag-category">内核安全</span>
+                        </div>
+                        <div class="detail-stats">
+                            <div class="detail-stat-item">
+                                <span class="stat-label">提交人数：</span>
+                                <span class="stat-value">45人</span>
+                            </div>
+                            <div class="detail-stat-item">
+                                <span class="stat-label">通过人数：</span>
+                                <span class="stat-value">12人</span>
+                            </div>
+                            <div class="detail-stat-item">
+                                <span class="stat-label">通过率：</span>
+                                <span class="stat-value">26.7%</span>
+                            </div>
+                        </div>
+                        <div class="detail-link">
+                            <a href="https://gitcode.com/openharmony/applications_app_samples/issues/6193" target="_blank" class="gitcode-link">
+                                查看 Issue
+                            </a>
+                        </div>
+                        <div class="detail-description">
+                            <h3>题目详细介绍</h3>
+                            <p>本题目要求参赛者设计并实现针对OpenHarmony内核的Fuzz测试用例，重点检测内核中可能存在的缓冲区溢出漏洞。</p>
+                            
+                            <h4>任务要求：</h4>
+                            <ul>
+                                <li>分析OpenHarmony内核源码，识别潜在的缓冲区溢出风险点</li>
+                                <li>设计有效的Fuzz测试策略，覆盖内存管理、系统调用等关键模块</li>
+                                <li>实现自动化的漏洞检测工具，能够准确识别缓冲区溢出问题</li>
+                                <li>提供详细的漏洞报告和修复建议</li>
+                            </ul>
+                            
+                            <h4>技术要点：</h4>
+                            <ul>
+                                <li>熟悉OpenHarmony内核架构和内存管理机制</li>
+                                <li>掌握Fuzz测试理论和实践技巧</li>
+                                <li>了解常见的缓冲区溢出攻击方式和防护措施</li>
+                                <li>具备C/C++编程能力和调试技能</li>
+                            </ul>
+                            
+                            <h4>评分标准：</h4>
+                            <ul>
+                                <li>测试用例的覆盖率和有效性（40%）</li>
+                                <li>发现漏洞的数量和严重程度（30%）</li>
+                                <li>工具的自动化程度和易用性（20%）</li>
+                                <li>报告的完整性和专业性（10%）</li>
+                            </ul>
+                            
+                            <h4>提交要求：</h4>
+                            <p>请提交完整的测试工具源码、测试报告、以及发现的漏洞详情。所有代码需要包含详细注释，报告需要包含测试方法、结果分析和改进建议。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 赛题列表 -->
+                <div class="contests-list" id="contestsList">
+                    <div class="contest-item">
+                        <div class="contest-main">
+                            <h3 class="contest-title">内核缓冲区溢出检测</h3>
+                            <p class="contest-description">设计Fuzz测试用例，检测OpenHarmony内核中的缓冲区溢出漏洞，重点关注内存管理和系统调用功...</p>
+                            <div class="contest-tags">
+                                <span class="tag tag-difficulty">困难</span>
+                            </div>
+                        </div>
+                        <div class="contest-stats">
+                            <div class="stat-item">
+                                <span class="stat-label">提交:</span>
+                                <span class="stat-value">45人</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">通过:</span>
+                                <span class="stat-value">12人</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contest-item">
+                        <div class="contest-main">
+                            <h3 class="contest-title">应用权限提升测试</h3>
+                            <p class="contest-description">构建测试用例，发现应用层权限管理漏洞，包括权限绕过和非法权限获取等安全问题...</p>
+                            <div class="contest-tags">
+                                <span class="tag tag-medium">中等</span>
+                            </div>
+                        </div>
+                        <div class="contest-stats">
+                            <div class="stat-item">
+                                <span class="stat-label">提交:</span>
+                                <span class="stat-value">62人</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">通过:</span>
+                                <span class="stat-value">28人</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contest-item">
+                        <div class="contest-main">
+                            <h3 class="contest-title">网络协议安全测试</h3>
+                            <p class="contest-description">针对OpenHarmony网络协议栈进行Fuzz测试，发现协议解析和网络通信中的安全漏洞...</p>
+                            <div class="contest-tags">
+                                <span class="tag tag-difficulty">困难</span>
+                            </div>
+                        </div>
+                        <div class="contest-stats">
+                            <div class="stat-item">
+                                <span class="stat-label">提交:</span>
+                                <span class="stat-value">38人</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">通过:</span>
+                                <span class="stat-value">8人</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contest-item">
+                        <div class="contest-main">
+                            <h3 class="contest-title">系统服务接口测试</h3>
+                            <p class="contest-description">对OpenHarmony系统服务接口进行Fuzz测试，发现服务间通信和权限验证的安全问题...</p>
+                            <div class="contest-tags">
+                                <span class="tag tag-medium">中等</span>
+                            </div>
+                        </div>
+                        <div class="contest-stats">
+                            <div class="stat-item">
+                                <span class="stat-label">提交:</span>
+                                <span class="stat-value">56人</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">通过:</span>
+                                <span class="stat-value">23人</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contest-item">
+                        <div class="contest-main">
+                            <h3 class="contest-title">文件系统安全测试</h3>
+                            <p class="contest-description">针对文件系统操作进行Fuzz测试，检测文件访问控制、路径遍历等安全漏洞...</p>
+                            <div class="contest-tags">
+                                <span class="tag tag-medium">中等</span>
+                            </div>
+                        </div>
+                        <div class="contest-stats">
+                            <div class="stat-item">
+                                <span class="stat-label">提交:</span>
+                                <span class="stat-value">41人</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">通过:</span>
+                                <span class="stat-value">19人</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contest-item">
+                        <div class="contest-main">
+                            <h3 class="contest-title">驱动程序安全测试</h3>
+                            <p class="contest-description">对驱动程序进行Fuzz测试，发现驱动层接口和硬件交互中的安全风险...</p>
+                            <div class="contest-tags">
+                                <span class="tag tag-difficulty">困难</span>
+                            </div>
+                        </div>
+                        <div class="contest-stats">
+                            <div class="stat-item">
+                                <span class="stat-label">提交:</span>
+                                <span class="stat-value">29人</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">通过:</span>
+                                <span class="stat-value">6人</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contest-item">
+                        <div class="contest-main">
+                            <h3 class="contest-title">图形子系统安全测试</h3>
+                            <p class="contest-description">针对图形渲染和显示子系统进行Fuzz测试，发现图形处理中的内存安全问题...</p>
+                            <div class="contest-tags">
+                                <span class="tag tag-medium">中等</span>
+                            </div>
+                        </div>
+                        <div class="contest-stats">
+                            <div class="stat-item">
+                                <span class="stat-label">提交:</span>
+                                <span class="stat-value">33人</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">通过:</span>
+                                <span class="stat-value">15人</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contest-item">
+                        <div class="contest-main">
+                            <h3 class="contest-title">多媒体框架安全测试</h3>
+                            <p class="contest-description">对音视频编解码和多媒体处理框架进行Fuzz测试，发现媒体文件解析中的安全漏洞...</p>
+                            <div class="contest-tags">
+                                <span class="tag tag-medium">中等</span>
+                            </div>
+                        </div>
+                        <div class="contest-stats">
+                            <div class="stat-item">
+                                <span class="stat-label">提交:</span>
+                                <span class="stat-value">48人</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">通过:</span>
+                                <span class="stat-value">22人</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contest-item">
+                        <div class="contest-main">
+                            <h3 class="contest-title">进程间通信安全测试</h3>
+                            <p class="contest-description">针对IPC机制进行Fuzz测试，发现进程间通信中的权限验证和数据泄露问题...</p>
+                            <div class="contest-tags">
+                                <span class="tag tag-difficulty">困难</span>
+                            </div>
+                        </div>
+                        <div class="contest-stats">
+                            <div class="stat-item">
+                                <span class="stat-label">提交:</span>
+                                <span class="stat-value">36人</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">通过:</span>
+                                <span class="stat-value">9人</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contest-item">
+                        <div class="contest-main">
+                            <h3 class="contest-title">输入法框架安全测试</h3>
+                            <p class="contest-description">对输入法框架进行Fuzz测试，检测输入处理和权限管理中的安全问题...</p>
+                            <div class="contest-tags">
+                                <span class="tag tag-easy">简单</span>
+                            </div>
+                        </div>
+                        <div class="contest-stats">
+                            <div class="stat-item">
+                                <span class="stat-label">提交:</span>
+                                <span class="stat-value">71人</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">通过:</span>
+                                <span class="stat-value">45人</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 分页 -->
+                <div class="pagination">
+                    <button class="page-btn prev" disabled>上一页</button>
+                    <span class="page-info">1 / 2</span>
+                    <button class="page-btn next">下一页</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <p>粤ICP备2023053305号 🔒 粤公网安备44030020027248号</p>
+        </div>
+    </footer>
+
+    <script src="contests.js"></script>
+</body>
+</html>

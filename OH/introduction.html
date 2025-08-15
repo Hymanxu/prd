@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenHarmony - 当前赛事</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="introduction.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-left">
+                <div class="logo">
+                    <img src="./img/logo.png" alt="OpenHarmony">
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="https://tev-competition.qstcloud.net/index" class="nav-link">首页</a></li>
+                    <li><a href="https://tev-competition.qstcloud.net/introduce" class="nav-link">大赛介绍</a></li>
+                    <li><a href="introduction.html" class="nav-link active">当前赛事</a></li>
+                    <li><a href="contests.html" class="nav-link">赛题展示</a></li>
+                    <li><a href="faq.html" class="nav-link">FAQ</a></li>
+                    <li><a href="profile.html" class="nav-link">我的</a></li>
+                </ul>
+            </div>
+            <div class="nav-right">
+                <button class="login-btn">登录/注册</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主要内容 -->
+    <main class="main-content">
+        <!-- 赛事卡片 -->
+        <section class="contest-card-section">
+            <div class="contest-card-wrapper">
+                <div class="contest-card-new">
+                    <div class="contest-image">
+                        <div class="contest-image-placeholder">
+                            <div class="tech-circles">
+                                <div class="circle circle-1"></div>
+                                <div class="circle circle-2"></div>
+                                <div class="circle circle-3"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contest-info-new">
+                        <h1>OpenHarmony社区创新奖励计划 8月赛</h1>
+                        <div class="contest-meta-new">
+                            <div class="meta-item">
+                                <span class="meta-label">比赛时间：</span>
+                                <span class="meta-value">2025-08-01 ~ 2025-08-31</span>
+                            </div>
+                            <div class="meta-item">
+                                <span class="meta-label">报名截止：</span>
+                                <span class="meta-value">2025-08-31 23:30</span>
+                            </div>
+                        </div>
+                        <div class="contest-actions">
+                            <button class="register-btn-new">立即报名</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 内容区域 -->
+        <section class="content-section">
+            <div class="content-wrapper">
+                <!-- 左侧导航 -->
+                <div class="content-nav">
+                    <div class="nav-item active" data-tab="topics">赛事题目</div>
+                    <div class="nav-item" data-tab="ranking">排行榜</div>
+                </div>
+
+                <!-- 右侧内容 -->
+                <div class="content-area">
+                    <!-- 赛事题目内容 -->
+                    <div class="tab-content active" id="topics-content">
+                        <h2 class="content-title">赛事题目</h2>
+                        
+                        <!-- 筛选和统计区域 -->
+                        <div class="topics-header">
+                            <div class="topics-stats">
+                                <span class="total-count">共 20 题</span>
+                                <span class="filter-tag active">提交人数 ↓</span>
+                                <span class="filter-tag">通过人数</span>
+                            </div>
+                            <div class="topics-filters">
+                                <select class="filter-select">
+                                    <option>全部标签</option>
+                                    <option>内核安全</option>
+                                    <option>应用安全</option>
+                                    <option>网络安全</option>
+                                    <option>系统服务</option>
+                                </select>
+                                <input type="text" class="search-input" placeholder="搜索题目...">
+                            </div>
+                        </div>
+
+                        <!-- 题目详情区域 -->
+                        <div class="topic-detail" id="topicDetail" style="display: none;">
+                            <button class="back-btn" id="topicBackBtn">← 返回题目列表</button>
+                            <div class="detail-content">
+                                <h2 class="detail-title">内核缓冲区溢出检测</h2>
+                                <div class="detail-tags">
+                                    <span class="tag tag-difficulty">困难</span>
+                                    <span class="tag tag-category">内核安全</span>
+                                </div>
+                                <div class="detail-stats">
+                                    <div class="detail-stat-item">
+                                        <span class="stat-label">提交人数：</span>
+                                        <span class="stat-value">45人</span>
+                                    </div>
+                                    <div class="detail-stat-item">
+                                        <span class="stat-label">通过人数：</span>
+                                        <span class="stat-value">12人</span>
+                                    </div>
+                                    <div class="detail-stat-item">
+                                        <span class="stat-label">通过率：</span>
+                                        <span class="stat-value">26.7%</span>
+                                    </div>
+                                </div>
+                                <div class="detail-link">
+                                    <a href="https://gitcode.com/openharmony/applications_app_samples/issues/6193" target="_blank" class="gitcode-link">
+                                        查看 Issue
+                                    </a>
+                                </div>
+                                <div class="detail-description">
+                                    <h3>题目详细介绍</h3>
+                                    <p>本题目要求参赛者设计并实现针对OpenHarmony内核的Fuzz测试用例，重点检测内核中可能存在的缓冲区溢出漏洞。</p>
+                                    
+                                    <h4>任务要求：</h4>
+                                    <ul>
+                                        <li>分析OpenHarmony内核源码，识别潜在的缓冲区溢出风险点</li>
+                                        <li>设计有效的Fuzz测试策略，覆盖内存管理、系统调用等关键模块</li>
+                                        <li>实现自动化的漏洞检测工具，能够准确识别缓冲区溢出问题</li>
+                                        <li>提供详细的漏洞报告和修复建议</li>
+                                    </ul>
+                                    
+                                    <h4>技术要点：</h4>
+                                    <ul>
+                                        <li>熟悉OpenHarmony内核架构和内存管理机制</li>
+                                        <li>掌握Fuzz测试理论和实践技巧</li>
+                                        <li>了解常见的缓冲区溢出攻击方式和防护措施</li>
+                                        <li>具备C/C++编程能力和调试技能</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 题目列表 -->
+                        <div class="topics-list" id="topicsList">
+                            <div class="topic-item">
+                                <div class="topic-main">
+                                    <h3 class="topic-title">内核缓冲区溢出检测</h3>
+                                    <p class="topic-description">设计Fuzz测试用例，检测OpenHarmony内核中的缓冲区溢出漏洞，重点关注内存管理和系统调用功...</p>
+                                    <div class="topic-tags">
+                                        <span class="tag tag-difficulty">困难</span>
+                                    </div>
+                                </div>
+                                <div class="topic-stats">
+                                    <div class="stat-item">
+                                        <span class="stat-label">提交:</span>
+                                        <span class="stat-value">45人</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-label">通过:</span>
+                                        <span class="stat-value">12人</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="topic-item">
+                                <div class="topic-main">
+                                    <h3 class="topic-title">应用权限提升测试</h3>
+                                    <p class="topic-description">构建测试用例，发现应用层权限管理漏洞，包括权限绕过和非法权限获取等安全问题...</p>
+                                    <div class="topic-tags">
+                                        <span class="tag tag-medium">中等</span>
+                                    </div>
+                                </div>
+                                <div class="topic-stats">
+                                    <div class="stat-item">
+                                        <span class="stat-label">提交:</span>
+                                        <span class="stat-value">62人</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-label">通过:</span>
+                                        <span class="stat-value">28人</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="topic-item">
+                                <div class="topic-main">
+                                    <h3 class="topic-title">网络协议安全测试</h3>
+                                    <p class="topic-description">针对OpenHarmony网络协议栈进行Fuzz测试，发现协议解析和网络通信中的安全漏洞...</p>
+                                    <div class="topic-tags">
+                                        <span class="tag tag-difficulty">困难</span>
+                                    </div>
+                                </div>
+                                <div class="topic-stats">
+                                    <div class="stat-item">
+                                        <span class="stat-label">提交:</span>
+                                        <span class="stat-value">38人</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-label">通过:</span>
+                                        <span class="stat-value">8人</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="topic-item">
+                                <div class="topic-main">
+                                    <h3 class="topic-title">系统服务接口测试</h3>
+                                    <p class="topic-description">对OpenHarmony系统服务接口进行Fuzz测试，发现服务间通信和权限验证的安全问题...</p>
+                                    <div class="topic-tags">
+                                        <span class="tag tag-medium">中等</span>
+                                    </div>
+                                </div>
+                                <div class="topic-stats">
+                                    <div class="stat-item">
+                                        <span class="stat-label">提交:</span>
+                                        <span class="stat-value">56人</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-label">通过:</span>
+                                        <span class="stat-value">23人</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="topic-item">
+                                <div class="topic-main">
+                                    <h3 class="topic-title">文件系统安全测试</h3>
+                                    <p class="topic-description">针对文件系统操作进行Fuzz测试，检测文件访问控制、路径遍历等安全漏洞...</p>
+                                    <div class="topic-tags">
+                                        <span class="tag tag-medium">中等</span>
+                                    </div>
+                                </div>
+                                <div class="topic-stats">
+                                    <div class="stat-item">
+                                        <span class="stat-label">提交:</span>
+                                        <span class="stat-value">41人</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-label">通过:</span>
+                                        <span class="stat-value">19人</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 分页 -->
+                        <div class="pagination">
+                            <button class="page-btn prev" disabled>上一页</button>
+                            <span class="page-info">1 / 3</span>
+                            <button class="page-btn next">下一页</button>
+                        </div>
+                    </div>
+
+                    <!-- 排行榜内容 -->
+                    <div class="tab-content" id="ranking-content">
+                        <h2 class="content-title">排行榜</h2>
+                        <div class="ranking-table">
+                            <div class="table-header">
+                                <div class="col-rank">排名</div>
+                                <div class="col-user">用户名</div>
+                                <div class="col-school">学校</div>
+                                <div class="col-score">积分</div>
+                                <div class="col-submit">提交</div>
+                                <div class="col-time">最近提交时间</div>
+                            </div>
+                            <div class="table-body">
+                                <div class="table-row">
+                                    <div class="col-rank">
+                                        <span class="rank-number rank-1">1</span>
+                                    </div>
+                                    <div class="col-user">张三</div>
+                                    <div class="col-school">清华大学</div>
+                                    <div class="col-score">1,250</div>
+                                    <div class="col-submit">28</div>
+                                    <div class="col-time">2025-02-23 14:02</div>
+                                </div>
+                                <div class="table-row">
+                                    <div class="col-rank">
+                                        <span class="rank-number rank-2">2</span>
+                                    </div>
+                                    <div class="col-user">李四</div>
+                                    <div class="col-school">北京大学</div>
+                                    <div class="col-score">1,180</div>
+                                    <div class="col-submit">25</div>
+                                    <div class="col-time">2025-04-24 01:10</div>
+                                </div>
+                                <div class="table-row">
+                                    <div class="col-rank">
+                                        <span class="rank-number rank-3">3</span>
+                                    </div>
+                                    <div class="col-user">王五</div>
+                                    <div class="col-school">上海交通大学</div>
+                                    <div class="col-score">950</div>
+                                    <div class="col-submit">22</div>
+                                    <div class="col-time">2025-12-11 02:41</div>
+                                </div>
+                                <div class="table-row">
+                                    <div class="col-rank">
+                                        <span class="rank-number">4</span>
+                                    </div>
+                                    <div class="col-user">赵六</div>
+                                    <div class="col-school">浙江大学</div>
+                                    <div class="col-score">890</div>
+                                    <div class="col-submit">20</div>
+                                    <div class="col-time">2025-03-24 08:07</div>
+                                </div>
+                                <div class="table-row">
+                                    <div class="col-rank">
+                                        <span class="rank-number">5</span>
+                                    </div>
+                                    <div class="col-user">钱七</div>
+                                    <div class="col-school">复旦大学</div>
+                                    <div class="col-score">820</div>
+                                    <div class="col-submit">18</div>
+                                    <div class="col-time">2025-03-06 19:29</div>
+                                </div>
+                                <div class="table-row">
+                                    <div class="col-rank">
+                                        <span class="rank-number">6</span>
+                                    </div>
+                                    <div class="col-user">孙八</div>
+                                    <div class="col-school">中山大学</div>
+                                    <div class="col-score">750</div>
+                                    <div class="col-submit">16</div>
+                                    <div class="col-time">2025-03-24 01:10</div>
+                                </div>
+                                <div class="table-row">
+                                    <div class="col-rank">
+                                        <span class="rank-number">7</span>
+                                    </div>
+                                    <div class="col-user">周九</div>
+                                    <div class="col-school">华中科技大学</div>
+                                    <div class="col-score">680</div>
+                                    <div class="col-submit">15</div>
+                                    <div class="col-time">2025-12-06 15:59</div>
+                                </div>
+                                <div class="table-row">
+                                    <div class="col-rank">
+                                        <span class="rank-number">8</span>
+                                    </div>
+                                    <div class="col-user">吴十</div>
+                                    <div class="col-school">西安交通大学</div>
+                                    <div class="col-score">620</div>
+                                    <div class="col-submit">14</div>
+                                    <div class="col-time">2025-12-25 04:48</div>
+                                </div>
+                                <div class="table-row">
+                                    <div class="col-rank">
+                                        <span class="rank-number">9</span>
+                                    </div>
+                                    <div class="col-user">郑十一</div>
+                                    <div class="col-school">南京大学</div>
+                                    <div class="col-score">580</div>
+                                    <div class="col-submit">12</div>
+                                    <div class="col-time">2025-04-20 13:20</div>
+                                </div>
+                                <div class="table-row">
+                                    <div class="col-rank">
+                                        <span class="rank-number">10</span>
+                                    </div>
+                                    <div class="col-user">王十二</div>
+                                    <div class="col-school">武汉大学</div>
+                                    <div class="col-score">540</div>
+                                    <div class="col-submit">10</div>
+                                    <div class="col-time">2025-08-08 08:09</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 排行榜分页 -->
+                        <div class="pagination">
+                            <button class="page-btn prev" disabled>上一页</button>
+                            <span class="page-info">1 / 3</span>
+                            <button class="page-btn next">下一页</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <p>粤ICP备2023053305号 🔒 粤公网安备44030020027248号</p>
+        </div>
+    </footer>
+
+    <script src="introduction.js"></script>
+</body>
+</html>

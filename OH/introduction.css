@@ -1,0 +1,491 @@
+/* 大赛介绍页面样式 */
+.contest-card-section {
+    padding: 40px 0 20px 0;
+    background: #f8f9fa;
+    display: flex;
+    justify-content: center;
+}
+
+.contest-card-wrapper {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.contest-card-new {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    height: 291px;
+}
+
+.contest-image {
+    width: 432px;
+    height: 243px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    position: relative;
+    overflow: hidden;
+    margin-right: 24px;
+}
+
+.contest-image-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.tech-circles {
+    position: relative;
+    width: 200px;
+    height: 200px;
+}
+
+.circle {
+    position: absolute;
+    border: 3px solid rgba(0, 255, 255, 0.6);
+    border-radius: 50%;
+    animation: rotate 10s linear infinite;
+}
+
+.circle-1 {
+    width: 80px;
+    height: 80px;
+    top: 60px;
+    left: 60px;
+    border-color: rgba(0, 255, 255, 0.8);
+}
+
+.circle-2 {
+    width: 120px;
+    height: 120px;
+    top: 40px;
+    left: 40px;
+    border-color: rgba(0, 255, 255, 0.6);
+    animation-duration: 15s;
+    animation-direction: reverse;
+}
+
+.circle-3 {
+    width: 160px;
+    height: 160px;
+    top: 20px;
+    left: 20px;
+    border-color: rgba(0, 255, 255, 0.4);
+    animation-duration: 20s;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.contest-info-new {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.contest-info-new h1 {
+    font-size: 28px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 24px;
+    line-height: 1.3;
+}
+
+.contest-meta-new {
+    margin-bottom: 32px;
+}
+
+.meta-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.meta-label {
+    font-size: 14px;
+    color: #666;
+    min-width: 80px;
+}
+
+.meta-value {
+    font-size: 14px;
+    color: #333;
+    font-weight: 500;
+}
+
+.contest-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.register-btn-new {
+    background: rgb(33, 122, 255);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.register-btn-new:hover {
+    background: rgb(28, 104, 217);
+}
+
+.register-btn-new.registered {
+    background: #28a745;
+    cursor: default;
+}
+
+.register-btn-new.registered:hover {
+    background: #28a745;
+}
+
+/* 内容区域样式 */
+.content-section {
+    padding: 0 0 60px 0;
+    background: #f8f9fa;
+    display: flex;
+    justify-content: center;
+}
+
+.content-wrapper {
+    width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.content-nav {
+    width: 180px;
+    background: white;
+    border-radius: 8px;
+    padding: 8px;
+    margin-top: 0;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 14px;
+    font-weight: 500;
+    color: #666;
+    border-radius: 6px;
+    margin-bottom: 4px;
+}
+
+.nav-item:hover {
+    background: #f8f9fa;
+}
+
+.nav-item.active {
+    background: #e3f2fd;
+    color: rgb(33, 122, 255);
+}
+
+.content-area {
+    width: 1000px;
+    background: white;
+    border-radius: 8px;
+    padding: 32px;
+}
+
+.content-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid rgb(33, 122, 255);
+    display: inline-block;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* 赛事题目样式 */
+.topics-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+    padding: 24px;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.topics-stats {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.topics-filters {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.topics-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.topic-item {
+    background: #f8f9fa;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+}
+
+.topic-item:hover {
+    border-color: rgb(33, 122, 255);
+    box-shadow: 0 2px 8px rgba(33, 122, 255, 0.1);
+}
+
+.topic-main {
+    flex: 1;
+    margin-right: 24px;
+}
+
+.topic-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.topic-title:hover {
+    color: rgb(33, 122, 255);
+}
+
+.topic-description {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.5;
+    margin-bottom: 12px;
+}
+
+.topic-tags {
+    display: flex;
+    gap: 8px;
+}
+
+.topic-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 120px;
+    text-align: right;
+}
+
+.topic-detail {
+    background: #f8f9fa;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 32px;
+    margin-bottom: 32px;
+}
+
+/* 排行榜样式 */
+.ranking-table {
+    background: #f8f9fa;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.table-header {
+    display: grid;
+    grid-template-columns: 80px 1fr 1fr 100px 80px 150px;
+    background: #e9ecef;
+    padding: 16px 20px;
+    font-weight: 600;
+    color: #333;
+    font-size: 14px;
+}
+
+.table-body {
+    background: white;
+}
+
+.table-row {
+    display: grid;
+    grid-template-columns: 80px 1fr 1fr 100px 80px 150px;
+    padding: 16px 20px;
+    border-bottom: 1px solid #f0f0f0;
+    align-items: center;
+    transition: background-color 0.2s;
+}
+
+.table-row:hover {
+    background: #f8f9fa;
+}
+
+.table-row:last-child {
+    border-bottom: none;
+}
+
+.col-rank {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.rank-number {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.rank-1 {
+    background: #ffd700;
+    color: white;
+}
+
+.rank-2 {
+    background: #c0c0c0;
+    color: white;
+}
+
+.rank-3 {
+    background: #cd7f32;
+    color: white;
+}
+
+.rank-number:not(.rank-1):not(.rank-2):not(.rank-3) {
+    background: #f8f9fa;
+    color: #666;
+}
+
+.col-user {
+    font-weight: 500;
+    color: #333;
+}
+
+.col-school {
+    color: #666;
+}
+
+.col-score {
+    font-weight: 600;
+    color: rgb(33, 122, 255);
+}
+
+.col-submit {
+    font-weight: 500;
+    color: #333;
+}
+
+.col-time {
+    color: #666;
+    font-size: 13px;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .contest-card-wrapper {
+        width: 100%;
+        padding: 0 16px;
+    }
+    
+    .contest-card-new {
+        flex-direction: column;
+        height: auto;
+    }
+    
+    .contest-image {
+        width: 100%;
+        height: 200px;
+        margin-right: 0;
+        margin-bottom: 16px;
+    }
+    
+    .content-wrapper {
+        flex-direction: column;
+        width: 100%;
+        padding: 0 16px;
+    }
+    
+    .content-nav {
+        width: 100%;
+        order: 2;
+    }
+    
+    .content-area {
+        width: 100%;
+        order: 1;
+    }
+    
+    .topics-header {
+        flex-direction: column;
+        gap: 16px;
+        align-items: stretch;
+    }
+    
+    .topics-filters {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .topic-item {
+        flex-direction: column;
+        gap: 16px;
+    }
+    
+    .topic-main {
+        margin-right: 0;
+    }
+    
+    .topic-stats {
+        flex-direction: row;
+        justify-content: space-around;
+        min-width: auto;
+        text-align: center;
+    }
+    
+    .table-header,
+    .table-row {
+        grid-template-columns: 60px 1fr 1fr 80px 60px 120px;
+        font-size: 12px;
+    }
+    
+    .col-time {
+        font-size: 11px;
+    }
+}

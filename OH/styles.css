@@ -1,0 +1,1298 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f8f9fa;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* 导航栏样式 */
+.navbar {
+    background: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-container {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 40px;
+    width: auto;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 40px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #000;
+    font-size: 16px;
+    font-weight: 400;
+    padding: 8px 0;
+    transition: color 0.2s;
+    position: relative;
+}
+
+.nav-link:hover {
+    color: rgb(33, 122, 255);
+}
+
+.nav-link.active {
+    color: rgb(33, 122, 255);
+    font-weight: 500;
+}
+
+.dropdown-arrow {
+    font-size: 10px;
+    margin-left: 4px;
+}
+
+.login-btn {
+    background: rgb(33, 122, 255);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    height: 32px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.login-btn:hover {
+    background: rgb(28, 104, 217);
+}
+
+/* 主要内容样式 */
+.main-content {
+    min-height: calc(100vh - 64px - 60px);
+}
+
+/* 页面标题区域 */
+.page-header {
+    background: url('./img/top_bg.png') center/cover;
+    height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.page-header h1 {
+    font-size: 40px;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 12px;
+}
+
+.page-header p {
+    font-size: 25px;
+    color: #000;
+}
+
+/* 赛事内容区域 */
+.contest-section {
+    padding: 60px 0;
+}
+
+.contest-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin-bottom: 32px;
+    overflow: hidden;
+    display: flex;
+}
+
+.contest-card:last-child {
+    margin-bottom: 0;
+}
+
+.contest-content {
+    flex: 1;
+    padding: 32px;
+}
+
+.contest-header h2 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 16px;
+}
+
+.contest-meta {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 24px;
+    font-size: 14px;
+    color: #666;
+}
+
+.contest-categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+.category {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 24px;
+    border: 1px solid #e9ecef;
+}
+
+.category h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.category p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 16px;
+}
+
+.detail-btn {
+    background: #4285f4;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.detail-btn:hover {
+    background: #3367d6;
+}
+
+.contest-sidebar {
+    width: 300px;
+    background: #f8f9fa;
+    border-left: 1px solid #e9ecef;
+    padding: 32px 24px;
+}
+
+.sidebar-item {
+    padding: 16px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.sidebar-item:hover {
+    background: #e9ecef;
+}
+
+.sidebar-item.active {
+    background: #4285f4;
+    color: white;
+}
+
+.sidebar-item h4 {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+/* FAQ样式 */
+.faq-section {
+    padding: 60px 0;
+}
+
+.faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    overflow: hidden;
+}
+
+.faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.faq-question:hover {
+    background: #f8f9fa;
+}
+
+.faq-question h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+}
+
+.faq-toggle {
+    font-size: 24px;
+    color: rgb(33, 122, 255);
+    font-weight: 300;
+    transition: transform 0.2s;
+}
+
+.faq-item.active .faq-toggle {
+    transform: rotate(45deg);
+}
+
+.faq-answer {
+    padding: 0 24px 24px;
+    display: none;
+    color: #666;
+    line-height: 1.6;
+}
+
+.faq-item.active .faq-answer {
+    display: block;
+}
+
+.faq-answer p {
+    margin-bottom: 16px;
+}
+
+.faq-answer ol, .faq-answer ul {
+    margin-left: 20px;
+}
+
+.faq-answer li {
+    margin-bottom: 8px;
+}
+
+/* 个人中心样式 */
+.profile-section {
+    padding: 60px 0;
+}
+
+.profile-container {
+    display: flex;
+    gap: 32px;
+}
+
+.profile-sidebar {
+    width: 220px;
+    padding: 24px 0;
+    height: fit-content;
+}
+
+.profile-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 14px;
+    font-weight: 500;
+    color: #666;
+    border-left: 3px solid transparent;
+    text-decoration: none;
+}
+
+.menu-item:hover {
+    background: #f8f9fa;
+}
+
+.menu-item.active {
+    background: #f0f7ff;
+    color: rgb(33, 122, 255);
+    border-left-color: rgb(33, 122, 255);
+}
+
+.profile-content {
+    flex: 1;
+}
+
+.profile-card {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 32px;
+    margin-bottom: 32px;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 32px;
+}
+
+.profile-info h2 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 4px;
+}
+
+.user-title {
+    font-size: 16px;
+    color: rgb(33, 122, 255);
+    margin-bottom: 4px;
+}
+
+.user-school {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 4px;
+}
+
+.user-email {
+    font-size: 14px;
+    color: #666;
+}
+
+.edit-btn {
+    background: #f8f9fa;
+    color: #333;
+    border: 1px solid #e9ecef;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-left: auto;
+}
+
+.edit-btn:hover {
+    background: #e9ecef;
+}
+
+.profile-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    text-align: center;
+}
+
+.stat-item {
+    padding: 16px;
+    border-radius: 8px;
+    background: #f8f9fa;
+}
+
+.stat-number {
+    font-size: 24px;
+    font-weight: 700;
+    color: rgb(33, 122, 255);
+    margin-bottom: 4px;
+}
+
+.stat-label {
+    font-size: 14px;
+    color: #666;
+}
+
+.section-card {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 32px;
+    margin-bottom: 32px;
+}
+
+.section-card h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 24px;
+}
+
+.contest-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.contest-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    transition: border-color 0.2s;
+}
+
+.contest-item:hover {
+    border-color: rgb(33, 122, 255);
+}
+
+.contest-info h4 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 4px;
+}
+
+.contest-info p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 4px;
+}
+
+.contest-date {
+    font-size: 12px;
+    color: #999;
+}
+
+.status-badge {
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.status-badge.submitted {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.status-badge.awarded {
+    background: #ffebee;
+    color: #c62828;
+}
+
+.works-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+}
+
+.work-item {
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+}
+
+.work-item:hover {
+    border-color: rgb(33, 122, 255);
+}
+
+.work-image {
+    height: 160px;
+    background: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.work-placeholder {
+    font-size: 48px;
+    opacity: 0.5;
+}
+
+.work-info {
+    padding: 20px;
+}
+
+.work-info h4 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.work-info p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 12px;
+}
+
+.work-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+}
+
+.work-date {
+    color: #999;
+}
+
+.work-status {
+    color: rgb(33, 122, 255);
+    font-weight: 500;
+}
+
+/* 收款信息样式 */
+.payment-info {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.payment-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.payment-item:last-child {
+    border-bottom: none;
+}
+
+.payment-item label {
+    font-weight: 500;
+    color: #333;
+    width: 120px;
+    flex-shrink: 0;
+}
+
+.payment-item span {
+    color: #666;
+}
+
+/* 证书样式 */
+.certificate-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+}
+
+.certificate-item {
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+}
+
+.certificate-item:hover {
+    border-color: rgb(33, 122, 255);
+}
+
+.certificate-image {
+    height: 120px;
+    background: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.certificate-placeholder {
+    font-size: 36px;
+    opacity: 0.6;
+}
+
+.certificate-info {
+    padding: 20px;
+}
+
+.certificate-info h4 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.certificate-info p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.certificate-date {
+    font-size: 12px;
+    color: #999;
+}
+
+/* 页脚样式 */
+.footer {
+    background: #1a1a1a;
+    color: #999;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: auto;
+}
+
+.footer p {
+    font-size: 14px;
+}
+
+/* 赛题展示页面样式 */
+.contests-section {
+    padding: 60px 0;
+}
+
+.contests-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+    padding: 24px;
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+}
+
+.contests-stats {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.total-count {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+}
+
+.filter-tag {
+    padding: 6px 12px;
+    border-radius: 16px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: #f8f9fa;
+    color: #666;
+}
+
+.filter-tag.active {
+    background: rgb(33, 122, 255);
+    color: white;
+}
+
+.filter-tag:hover:not(.active) {
+    background: #e9ecef;
+}
+
+.contests-filters {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.filter-select {
+    padding: 8px 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 14px;
+    background: white;
+    cursor: pointer;
+    min-width: 120px;
+}
+
+.filter-select:focus {
+    outline: none;
+    border-color: rgb(33, 122, 255);
+}
+
+.search-input {
+    padding: 8px 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 14px;
+    min-width: 200px;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: rgb(33, 122, 255);
+}
+
+.contests-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.contest-item {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.contest-item:hover {
+    border-color: rgb(33, 122, 255);
+    box-shadow: 0 2px 8px rgba(33, 122, 255, 0.1);
+}
+
+.contest-main {
+    flex: 1;
+    margin-right: 24px;
+}
+
+.contest-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.contest-title:hover {
+    color: rgb(33, 122, 255);
+}
+
+.contest-description {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.5;
+    margin-bottom: 12px;
+}
+
+.contest-tags {
+    display: flex;
+    gap: 8px;
+}
+
+.tag {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.tag-easy {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.tag-medium {
+    background: #fff3e0;
+    color: #f57c00;
+}
+
+.tag-difficulty {
+    background: #ffebee;
+    color: #c62828;
+}
+
+.contest-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 120px;
+    text-align: right;
+}
+
+.stat-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+}
+
+.stat-label {
+    color: #666;
+}
+
+.stat-value {
+    color: #333;
+    font-weight: 500;
+}
+
+/* 赛题详情样式 */
+.contest-detail {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 32px;
+    margin-bottom: 32px;
+}
+
+.back-btn {
+    background: #f8f9fa;
+    color: #333;
+    border: 1px solid #e9ecef;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-bottom: 24px;
+}
+
+.back-btn:hover {
+    background: #e9ecef;
+}
+
+.detail-title {
+    font-size: 28px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 16px;
+}
+
+.detail-tags {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.detail-stats {
+    display: flex;
+    gap: 32px;
+    margin-bottom: 24px;
+    padding: 16px;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.detail-stat-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.detail-stat-item .stat-label {
+    color: #666;
+    font-size: 14px;
+}
+
+.detail-stat-item .stat-value {
+    color: #333;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.detail-link {
+    margin-bottom: 32px;
+}
+
+.gitcode-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: rgb(33, 122, 255);
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
+.gitcode-link:hover {
+    background: rgb(28, 104, 217);
+}
+
+.detail-description h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 16px;
+}
+
+.detail-description h4 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin: 24px 0 12px 0;
+}
+
+.detail-description p {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 16px;
+}
+
+.detail-description ul {
+    margin: 12px 0 16px 20px;
+}
+
+.detail-description li {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 8px;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    margin-top: 40px;
+    padding: 24px;
+}
+
+.page-btn {
+    padding: 8px 16px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    background: white;
+    color: #333;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.page-btn:hover:not(:disabled) {
+    border-color: rgb(33, 122, 255);
+    color: rgb(33, 122, 255);
+}
+
+.page-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.page-info {
+    font-size: 14px;
+    color: #666;
+    margin: 0 16px;
+}
+
+
+/* 排行榜样式 */
+.ranking-content {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.ranking-header p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 32px;
+}
+
+.ranking-placeholder {
+    padding: 40px;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.placeholder-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+}
+
+.ranking-placeholder p {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.placeholder-desc {
+    font-size: 14px;
+    color: #666 !important;
+}
+
+/* 报名详情样式 */
+.registration-content {
+    padding: 20px 0;
+}
+
+.registration-info h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin: 24px 0 16px 0;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.registration-info ul,
+.registration-info ol {
+    margin: 16px 0 24px 20px;
+}
+
+.registration-info li {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 8px;
+}
+
+.timeline {
+    margin-top: 16px;
+}
+
+.timeline-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.timeline-item:last-child {
+    border-bottom: none;
+}
+
+.timeline-date {
+    font-size: 14px;
+    font-weight: 600;
+    color: rgb(33, 122, 255);
+    min-width: 120px;
+}
+
+.timeline-event {
+    font-size: 14px;
+    color: #333;
+}
+
+/* 作品提交样式 */
+.submission-content {
+    padding: 20px 0;
+}
+
+.submission-info h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin: 24px 0 16px 0;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.submission-info ul {
+    margin: 16px 0 24px 20px;
+}
+
+.submission-info li {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 8px;
+}
+
+.scoring-criteria {
+    margin-top: 16px;
+}
+
+.criteria-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    background: #f8f9fa;
+    border-radius: 6px;
+    margin-bottom: 8px;
+}
+
+.criteria-name {
+    font-size: 14px;
+    color: #333;
+    font-weight: 500;
+}
+
+.criteria-weight {
+    font-size: 14px;
+    color: rgb(33, 122, 255);
+    font-weight: 600;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .nav-container {
+        padding: 0 16px;
+    }
+    
+    .nav-menu {
+        display: none;
+    }
+    
+    .container {
+        padding: 0 16px;
+    }
+    
+    .page-header {
+        padding: 40px 0;
+    }
+    
+    .page-header h1 {
+        font-size: 28px;
+    }
+    
+    .contest-card {
+        flex-direction: column;
+    }
+    
+    .contest-sidebar {
+        width: 100%;
+    }
+    
+    .profile-container {
+        flex-direction: column;
+    }
+    
+    .profile-sidebar {
+        width: 100%;
+    }
+    
+    .profile-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .works-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    /* 赛题展示页面响应式 */
+    .contests-header {
+        flex-direction: column;
+        gap: 16px;
+        align-items: stretch;
+    }
+    
+    .contests-stats {
+        justify-content: center;
+    }
+    
+    .contests-filters {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .filter-select,
+    .search-input {
+        width: 100%;
+    }
+    
+    .contest-item {
+        flex-direction: column;
+        gap: 16px;
+    }
+    
+    .contest-main {
+        margin-right: 0;
+    }
+    
+    .contest-stats {
+        flex-direction: row;
+        justify-content: space-around;
+        min-width: auto;
+        text-align: center;
+    }
+    
+    .pagination {
+        padding: 16px;
+    }
+    
+    /* 赛题详情响应式 */
+    .detail-stats {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .detail-stat-item {
+        justify-content: space-between;
+    }
+    
+    .detail-title {
+        font-size: 24px;
+    }
+    
+    .gitcode-link {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+    }
+    
+    /* 大赛介绍页面响应式 */
+    .introduction-container {
+        flex-direction: column;
+    }
+    
+    .introduction-sidebar {
+        width: 100%;
+        order: 2;
+    }
+    
+    .introduction-main {
+        order: 1;
+    }
+    
+    .contest-banner {
+        flex-direction: column;
+    }
+    
+    .banner-image {
+        width: 100%;
+        height: 200px;
+    }
+    
+    .banner-content h1 {
+        font-size: 24px;
+    }
+    
+    .banner-actions {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .register-btn,
+    .contest-link {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .topic-info {
+        flex-direction: column;
+        gap: 12px;
+        align-items: flex-start;
+    }
+    
+    .sidebar-menu {
+        position: static;
+    }
+}
