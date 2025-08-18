@@ -1,4 +1,65 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // 生成100个赛题数据
+    const allContests = generateContestData();
+    let currentPage = 1;
+    const itemsPerPage = 20;
+    const totalPages = Math.ceil(allContests.length / itemsPerPage);
+    
+    // 更新题目总数显示
+    const totalCountElement = document.querySelector('.total-count');
+    if (totalCountElement) {
+        totalCountElement.textContent = `共 ${allContests.length} 题`;
+    }
+    
+    // 渲染当前页面的赛题
+    function renderContests(page = 1) {
+        const startIndex = (page - 1) * itemsPerPage;
+        const topicsList = document.getElementById('topicsList');
+        if (topicsList) {
+            topicsList.innerHTML = generateContestHTML(allContests, startIndex, itemsPerPage);
+            
+            // 重新绑定点击事件
+            bindTopicClickEvents();
+        }
+        
+        // 更新分页信息
+        const pageInfo = document.querySelector('.page-info');
+        if (pageInfo) {
+            pageInfo.textContent = `${page} / ${totalPages}`;
+        }
+        
+        // 更新分页按钮状态
+        const prevBtn = document.querySelector('.page-btn.prev');
+        const nextBtn = document.querySelector('.page-btn.next');
+        if (prevBtn) prevBtn.disabled = page === 1;
+        if (nextBtn) nextBtn.disabled = page === totalPages;
+    }
+    
+    // 绑定题目点击事件
+    function bindTopicClickEvents() {
+        const topicTitles = document.querySelectorAll('.topic-title');
+        topicTitles.forEach(title => {
+            title.addEventListener('click', function(e) {
+                e.stopPropagation();
+                showTopicDetail();
+            });
+        });
+    }
+    
+    // 显示题目详情
+    function showTopicDetail() {
+        const topicsList = document.getElementById('topicsList');
+        const topicsHeader = document.querySelector('.topics-header');
+        const topicDetail = document.getElementById('topicDetail');
+        
+        if (topicsList) topicsList.style.display = 'none';
+        if (topicsHeader) topicsHeader.style.display = 'none';
+        if (topicDetail) topicDetail.style.display = 'block';
+    }
+    
+    // 初始化渲染
+    renderContests(1);
+
     // 导航切换功能
     const navItems = document.querySelectorAll('.nav-item');
     const tabContents = document.querySelectorAll('.tab-content');
@@ -18,26 +79,21 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // 题目详情显示/隐藏功能
-    const topicTitles = document.querySelectorAll('.topic-title');
     const topicDetail = document.getElementById('topicDetail');
     const topicsList = document.getElementById('topicsList');
     const topicsHeader = document.querySelector('.topics-header');
     const backBtn = document.getElementById('topicBackBtn');
-
-    topicTitles.forEach(title => {
-        title.addEventListener('click', function(e) {
-            e.stopPropagation();
-            topicsList.style.display = 'none';
-            topicsHeader.style.display = 'none';
-            topicDetail.style.display = 'block';
-        });
-    });
 
     if (backBtn) {
         backBtn.addEventListener('click', function() {
             topicDetail.style.display = 'none';
             topicsHeader.style.display = 'flex';
             topicsList.style.display = 'block';
+            // 修复返回列表后卡片间距消失的问题
+            const topicItems = document.querySelectorAll('.topic-item');
+            topicItems.forEach(item => {
+                item.style.marginBottom = '20px';
+            });
         });
     }
 
@@ -75,8 +131,13 @@ document.addEventListener('DOMContentLoaded', function() {
     pageButtons.forEach(btn => {
         btn.addEventListener('click', function() {
             if (!this.disabled) {
-                // 这里可以添加分页逻辑
-                console.log('分页按钮点击:', this.classList.contains('prev') ? '上一页' : '下一页');
+                if (this.classList.contains('prev') && currentPage > 1) {
+                    currentPage--;
+                    renderContests(currentPage);
+                } else if (this.classList.contains('next') && currentPage < totalPages) {
+                    currentPage++;
+                    renderContests(currentPage);
+                }
             }
         });
     });
