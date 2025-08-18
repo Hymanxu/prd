@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // 导航常驻效果
+    // 顶部导航吸顶
     const navbar = document.querySelector('.navbar');
     if (navbar) {
         navbar.style.position = 'sticky';
@@ -7,36 +7,83 @@ document.addEventListener('DOMContentLoaded', function() {
         navbar.style.zIndex = '1000';
     }
 
-    // 菜单定位功能
+    // 计算导航高度
+    const getNavHeight = () => (document.querySelector('.nav-container')?.offsetHeight) || 70;
+
+    // 左侧菜单吸顶（考虑顶部导航高度）
+    const sidebar = document.querySelector('.profile-sidebar');
+    if (sidebar) {
+        sidebar.style.position = 'sticky';
+        sidebar.style.top = getNavHeight() + 'px';
+    }
+
     const menuItems = document.querySelectorAll('.menu-item');
-    const sectionCards = document.querySelectorAll('.section-card, .profile-card');
+    const sectionCards = Array.from(document.querySelectorAll('.section-card, .profile-card'));
 
     // 显示所有内容区域
     sectionCards.forEach(card => {
         card.style.display = 'block';
     });
 
+    // id -> 菜单项映射
+    const idToMenu = {};
+    menuItems.forEach(item => {
+        const hash = item.getAttribute('href') || '';
+        const id = hash.startsWith('#') ? hash.slice(1) : hash;
+        if (id) idToMenu[id] = item;
+    });
+
+    function setActiveById(id) {
+        menuItems.forEach(menu => menu.classList.remove('active'));
+        const el = idToMenu[id];
+        if (el) el.classList.add('active');
+    }
+
+    // 点击菜单：选中 + 偏移滚动（考虑顶部导航高度）
     menuItems.forEach(item => {
         item.addEventListener('click', function(e) {
             e.preventDefault();
-            const targetId = this.getAttribute('href').substring(1);
-            
-            // 移除所有活动状态
-            menuItems.forEach(menu => menu.classList.remove('active'));
-            
-            // 添加当前活动状态
-            this.classList.add('active');
-            
-            // 滚动到目标区域
+            const hash = this.getAttribute('href') || '';
+            const targetId = hash.startsWith('#') ? hash.slice(1) : hash;
+
+            setActiveById(targetId);
+
             const targetCard = document.getElementById(targetId);
             if (targetCard) {
-                targetCard.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
+                const navH = getNavHeight();
+                const rect = targetCard.getBoundingClientRect();
+                const top = window.pageYOffset + rect.top - navH - 12; // 额外留出 12px 间距
+                window.scrollTo({
+                    top,
+                    behavior: 'smooth'
                 });
             }
         });
     });
+
+    // 滚动联动高亮
+    function onScroll() {
+        const navH = getNavHeight();
+        const line = window.pageYOffset + navH + 16; // 参考线：导航下方 16px
+        let currentId = sectionCards[0]?.id;
+
+        for (const card of sectionCards) {
+            if (card.offsetTop <= line) {
+                currentId = card.id;
+            } else {
+                break;
+            }
+        }
+        if (currentId) setActiveById(currentId);
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', function() {
+        if (sidebar) sidebar.style.top = getNavHeight() + 'px';
+    });
+
+    // 初始化一次
+    onScroll();
 });
 
 // 打开个人信息编辑弹窗
@@ -135,7 +182,7 @@ function savePayment() {
     closeModal('editPaymentModal');
 }
 
-// 绑定事件监听器
+// 绑定事件监听器（保留原有功能）
 document.addEventListener('DOMContentLoaded', function() {
     // 关闭按钮事件
     document.querySelectorAll('.close').forEach(closeBtn => {
