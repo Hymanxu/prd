@@ -5,25 +5,14 @@ class ProblemManager {
         this.problems = [
             {
                 id: 1,
-                name: 'OpenHarmony内核漏洞挖掘',
+                name: 'OpenHarmony内核缓冲区溢出检测',
                 eventId: 1,
-                eventName: 'OpenHarmony 安全挑战赛',
-                difficulty: '困难',
-                issueLink: 'https://github.com/example/issue/1',
-                tags: ['内核安全', '漏洞挖掘'],
-                description: '在OpenHarmony内核中发现并利用安全漏洞...',
-                status: '已发布'
-            },
-            {
-                id: 2,
-                name: 'HarmonyOS应用安全测试',
-                eventId: 1,
-                eventName: 'OpenHarmony 安全挑战赛',
+                eventName: '2025年1月安全挑战赛',
                 difficulty: '中等',
-                issueLink: 'https://github.com/example/issue/2',
-                tags: ['应用安全', '测试'],
-                description: '对HarmonyOS应用进行全面的安全测试...',
-                status: '草稿'
+                issueLink: 'https://github.com/example/issue/123',
+                tags: ['内核', '缓冲区溢出'],
+                description: '在OpenHarmony内核中检测缓冲区溢出漏洞...',
+                status: '已发布'
             }
         ];
         this.selectedEventId = null;
@@ -32,7 +21,7 @@ class ProblemManager {
 
     // 渲染赛题列表
     renderProblemsList() {
-        const tbody = document.querySelector('#problemsTable tbody');
+        const tbody = document.querySelector('#problems .table tbody');
         if (!tbody) return;
 
         let filteredProblems = this.problems;
@@ -45,23 +34,13 @@ class ProblemManager {
                 <td>${index + 1}</td>
                 <td>${problem.name}</td>
                 <td>${problem.eventName}</td>
+                <td><span class="status-badge status-pending">${problem.difficulty}</span></td>
+                <td><a href="${problem.issueLink}" target="_blank">#123</a></td>
                 <td>
-                    <span class="difficulty-badge difficulty-${problem.difficulty === '简单' ? 'easy' : problem.difficulty === '中等' ? 'medium' : 'hard'}">
-                        ${problem.difficulty}
-                    </span>
+                    ${problem.tags.map(tag => `<span class="status-badge">${tag}</span>`).join('')}
                 </td>
                 <td>
-                    <a href="${problem.issueLink}" target="_blank" class="link">查看Issue</a>
-                </td>
-                <td>
-                    <div class="tags">
-                        ${problem.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
-                    </div>
-                </td>
-                <td>
-                    <div class="action-buttons">
-                        <button class="btn btn-outline btn-sm" onclick="editProblem(${problem.id})">编辑</button>
-                    </div>
+                    <button class="btn btn-outline btn-sm" onclick="editProblem(${problem.id})">编辑</button>
                 </td>
             </tr>
         `).join('');
@@ -77,53 +56,54 @@ class ProblemManager {
     openProblemModal(editId = null) {
         this.currentEditId = editId;
         const modal = document.getElementById('problemModal');
-        const form = document.getElementById('problemForm');
         
         if (editId) {
             const problem = this.problems.find(p => p.id === editId);
             if (problem) {
-                form.problemName.value = problem.name;
-                form.eventId.value = problem.eventId;
-                form.difficulty.value = problem.difficulty;
-                form.issueLink.value = problem.issueLink;
-                form.tags.value = problem.tags.join(', ');
-                form.description.value = problem.description;
-                document.getElementById('problemModalTitle').textContent = '编辑赛题';
+                modal.querySelector('input[placeholder="请输入赛题名称"]').value = problem.name;
+                modal.querySelector('select').value = problem.difficulty;
+                modal.querySelector('input[type="url"]').value = problem.issueLink;
+                modal.querySelector('input[placeholder="输入标签，用逗号分隔"]').value = problem.tags.join(', ');
+                modal.querySelector('.modal-title').textContent = '编辑赛题';
             }
         } else {
-            form.reset();
-            document.getElementById('problemModalTitle').textContent = '创建赛题';
+            modal.querySelector('input[placeholder="请输入赛题名称"]').value = '';
+            modal.querySelector('select').value = '';
+            modal.querySelector('input[type="url"]').value = '';
+            modal.querySelector('input[placeholder="输入标签，用逗号分隔"]').value = '';
+            modal.querySelector('.modal-title').textContent = '创建赛题';
         }
         
-        modal.style.display = 'block';
+        modal.classList.add('show');
     }
 
     closeProblemModal() {
-        document.getElementById('problemModal').style.display = 'none';
+        document.getElementById('problemModal').classList.remove('show');
         this.currentEditId = null;
     }
 
     // 保存赛题
     saveProblem() {
-        const form = document.getElementById('problemForm');
-        if (!form.checkValidity()) {
-            form.reportValidity();
+        const modal = document.getElementById('problemModal');
+        const name = modal.querySelector('input[placeholder="请输入赛题名称"]').value;
+        const difficulty = modal.querySelector('select').value;
+        const issueLink = modal.querySelector('input[type="url"]').value;
+        const tags = modal.querySelector('input[placeholder="输入标签，用逗号分隔"]').value;
+        
+        if (!name.trim()) {
+            alert('请输入赛题名称');
             return;
         }
 
         const formData = {
-            name: form.problemName.value,
-            eventId: parseInt(form.eventId.value),
-            difficulty: form.difficulty.value,
-            issueLink: form.issueLink.value,
-            tags: form.tags.value.split(',').map(tag => tag.trim()).filter(tag => tag),
-            description: form.description.value
+            name: name.trim(),
+            difficulty: difficulty,
+            issueLink: issueLink,
+            tags: tags.split(',').map(tag => tag.trim()).filter(tag => tag),
+            eventId: 1,
+            eventName: '2025年1月安全挑战赛',
+            description: '赛题详细介绍...'
         };
-
-        // 获取竞赛名称
-        const eventManager = window.EventManager;
-        const event = eventManager.events.find(e => e.id === formData.eventId);
-        formData.eventName = event ? event.name : '未知竞赛';
 
         if (this.currentEditId) {
             // 编辑模式
@@ -157,11 +137,13 @@ class ProblemManager {
     // 批量导入赛题
     batchImportProblems() {
         const modal = document.getElementById('batchImportModal');
-        modal.style.display = 'block';
+        if (modal) {
+            modal.classList.add('show');
+        }
     }
 
     closeBatchImportModal() {
-        document.getElementById('batchImportModal').style.display = 'none';
+        document.getElementById('batchImportModal').classList.remove('show');
     }
 
     // 处理文件上传

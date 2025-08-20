@@ -5,23 +5,23 @@ class EventManager {
         this.events = [
             {
                 id: 1,
-                name: 'OpenHarmony 安全挑战赛',
-                startTime: '2024-01-15',
-                endTime: '2024-03-15',
+                name: 'OpenHarmony 2025年1月安全挑战赛',
+                startTime: '2025-01-01',
+                endTime: '2025-01-31',
                 status: '已发布',
                 participants: 156,
-                problemCount: 12,
+                problemCount: 8,
                 theme: '系统安全与漏洞挖掘',
                 cover: null
             },
             {
                 id: 2,
-                name: 'HarmonyOS 创新开发大赛',
-                startTime: '2024-02-01',
-                endTime: '2024-04-01',
+                name: 'OpenHarmony 2025年2月安全挑战赛',
+                startTime: '2025-02-01',
+                endTime: '2025-02-28',
                 status: '新建',
                 participants: 0,
-                problemCount: 8,
+                problemCount: 0,
                 theme: '应用创新与用户体验',
                 cover: null
             }
@@ -31,7 +31,7 @@ class EventManager {
 
     // 渲染竞赛列表
     renderEventsList() {
-        const tbody = document.querySelector('#eventsTable tbody');
+        const tbody = document.querySelector('#events .table tbody');
         if (!tbody) return;
 
         tbody.innerHTML = this.events.map((event, index) => `
@@ -45,20 +45,18 @@ class EventManager {
                 <td>${event.name}</td>
                 <td>${event.startTime} ~ ${event.endTime}</td>
                 <td>
-                    <span class="status-badge status-${event.status === '已发布' ? 'published' : event.status === '已结束' ? 'ended' : 'draft'}">
+                    <span class="status-badge ${event.status === '已发布' ? 'status-active' : event.status === '已结束' ? 'status-inactive' : 'status-draft'}">
                         ${event.status}
                     </span>
                 </td>
-                <td>${event.participants}</td>
-                <td>${event.problemCount}</td>
+                <td><a href="#" onclick="goToRegistrations(${event.id})" style="color: #3B82F6; text-decoration: none;">${event.participants}</a></td>
+                <td><a href="#" onclick="goToProblems(${event.id})" style="color: #3B82F6; text-decoration: none;">${event.problemCount}</a></td>
                 <td>
-                    <div class="action-buttons">
-                        ${event.status === '新建' ? 
-                            `<button class="btn btn-primary btn-sm" onclick="publishEvent(${event.id})">发布</button>` :
-                            `<button class="btn btn-outline btn-sm" onclick="unpublishEvent(${event.id})">取消发布</button>`
-                        }
-                        <button class="btn btn-outline btn-sm" onclick="editEvent(${event.id})">编辑</button>
-                    </div>
+                    ${event.status === '新建' ?
+                `<button class="btn btn-success btn-sm" onclick="publishEvent(${event.id})">发布</button>` :
+                `<button class="btn btn-secondary btn-sm" onclick="unpublishEvent(${event.id})">取消发布</button>`
+            }
+                    <button class="btn btn-outline btn-sm" onclick="editEvent(${event.id})">编辑</button>
                 </td>
             </tr>
         `).join('');
@@ -68,44 +66,44 @@ class EventManager {
     openEventModal(editId = null) {
         this.currentEditId = editId;
         const modal = document.getElementById('eventModal');
-        const form = document.getElementById('eventForm');
-        
+
         if (editId) {
             const event = this.events.find(e => e.id === editId);
             if (event) {
-                form.eventName.value = event.name;
-                form.startTime.value = event.startTime;
-                form.endTime.value = event.endTime;
-                form.theme.value = event.theme;
-                document.getElementById('modalTitle').textContent = '编辑竞赛';
+                modal.querySelector('input[placeholder="请输入竞赛名称"]').value = event.name;
+                modal.querySelector('textarea[placeholder="请输入竞赛主题"]').value = event.theme;
+                modal.querySelector('.modal-title').textContent = '编辑竞赛';
             }
         } else {
-            form.reset();
-            document.getElementById('modalTitle').textContent = '新建竞赛';
+            modal.querySelector('input[placeholder="请输入竞赛名称"]').value = '';
+            modal.querySelector('textarea[placeholder="请输入竞赛主题"]').value = '';
+            modal.querySelector('.modal-title').textContent = '新建竞赛';
         }
-        
-        modal.style.display = 'block';
+
+        modal.classList.add('show');
     }
 
     closeEventModal() {
-        document.getElementById('eventModal').style.display = 'none';
+        document.getElementById('eventModal').classList.remove('show');
         this.currentEditId = null;
     }
 
     // 保存竞赛
     saveEvent() {
-        const form = document.getElementById('eventForm');
-        if (!form.checkValidity()) {
-            form.reportValidity();
+        const modal = document.getElementById('eventModal');
+        const name = modal.querySelector('input[placeholder="请输入竞赛名称"]').value;
+        const theme = modal.querySelector('textarea[placeholder="请输入竞赛主题"]').value;
+
+        if (!name.trim()) {
+            alert('请输入竞赛名称');
             return;
         }
 
         const formData = {
-            name: form.eventName.value,
-            startTime: form.startTime.value,
-            endTime: form.endTime.value,
-            theme: form.theme.value,
-            cover: form.cover.files[0] || null
+            name: name.trim(),
+            theme: theme.trim(),
+            startTime: '2025-01-01',
+            endTime: '2025-01-31'
         };
 
         if (this.currentEditId) {
@@ -167,10 +165,10 @@ class EventManager {
     previewCover(input) {
         const file = input.files[0];
         const preview = document.getElementById('coverPreview');
-        
+
         if (file) {
             const reader = new FileReader();
-            reader.onload = function(e) {
+            reader.onload = function (e) {
                 preview.innerHTML = `<img src="${e.target.result}" style="max-width: 100%; max-height: 200px; border-radius: 4px;">`;
             };
             reader.readAsDataURL(file);
@@ -178,7 +176,40 @@ class EventManager {
             preview.innerHTML = '<div class="upload-placeholder">点击上传封面图片<br><small>建议尺寸：640×360，PNG格式</small></div>';
         }
     }
+
+    // 跳转到报名管理
+    goToRegistrations(eventId) {
+        const navigationManager = window.NavigationManager;
+        if (navigationManager) {
+            navigationManager.switchSection('registrations');
+            // 设置筛选条件
+            setTimeout(() => {
+                const userManager = window.UserManager;
+                if (userManager) {
+                    userManager.filterRegistrationsByEvent(eventId);
+                }
+            }, 100);
+        }
+    }
+
+    // 跳转到赛题管理
+    goToProblems(eventId) {
+        const navigationManager = window.NavigationManager;
+        if (navigationManager) {
+            navigationManager.switchSection('problems');
+            // 设置筛选条件
+            setTimeout(() => {
+                const problemManager = window.ProblemManager;
+                if (problemManager) {
+                    problemManager.filterProblemsByEvent(eventId);
+                }
+            }, 100);
+        }
+    }
 }
+
+// 导出实例
+window.EventManager = new EventManager();
 
 // 导出实例
 window.EventManager = new EventManager();

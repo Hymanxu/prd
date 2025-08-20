@@ -1,239 +1,118 @@
-// 提交审核模块
+// 提交审核管理模块
 class SubmissionManager {
     constructor() {
-        this.modalManager = window.ModalManager;
         this.submissions = [
             {
                 id: 1,
-                commitId: 'abc123def456',
+                commitId: 'a7b3c9',
                 username: '张三',
-                problemId: 1,
-                problemName: 'OpenHarmony内核漏洞挖掘',
-                eventId: 1,
-                eventName: 'OpenHarmony 安全挑战赛',
-                submitTime: '2024-01-22 15:30:00',
-                type: '0day漏洞挖掘',
-                score: 100,
-                status: '待审核',
-                description: '发现了一个严重的内核漏洞...',
-                files: ['exploit.c', 'poc.py']
-            },
-            {
-                id: 2,
-                commitId: 'def456ghi789',
-                username: '李四',
-                problemId: 2,
-                problemName: 'HarmonyOS应用安全测试',
-                eventId: 1,
-                eventName: 'OpenHarmony 安全挑战赛',
-                submitTime: '2024-01-23 09:15:00',
+                problemName: '内核缓冲区溢出检测',
+                submitTime: '2025-01-15 14:30',
                 type: '覆盖率提升',
-                score: 80,
-                status: '已通过',
-                description: '提升了应用测试覆盖率...',
-                files: ['test_cases.js', 'coverage_report.html']
-            },
-            {
-                id: 3,
-                commitId: 'ghi789jkl012',
-                username: '王五',
-                problemId: 1,
-                problemName: 'OpenHarmony内核漏洞挖掘',
-                eventId: 1,
-                eventName: 'OpenHarmony 安全挑战赛',
-                submitTime: '2024-01-23 14:20:00',
-                type: '已知漏洞检测',
-                score: 60,
-                status: '已拒绝',
-                description: '检测到已知漏洞CVE-2023-1234...',
-                files: ['detection_script.py'],
-                rejectReason: '提交的漏洞已经被修复'
+                score: 85,
+                status: '待审核'
             }
         ];
-        this.selectedEventId = null;
-        this.selectedProblemId = null;
-        this.selectedStatus = null;
         this.selectedSubmissions = new Set();
-        this.currentReviewId = null;
     }
 
     // 渲染提交列表
     renderSubmissionsList() {
-        const tbody = document.querySelector('#submissionsTable tbody');
+        const tbody = document.querySelector('#submissions .table tbody');
         if (!tbody) return;
 
-        let filteredSubmissions = this.submissions;
-        
-        // 按竞赛筛选
-        if (this.selectedEventId) {
-            filteredSubmissions = filteredSubmissions.filter(s => s.eventId == this.selectedEventId);
-        }
-        
-        // 按赛题筛选
-        if (this.selectedProblemId) {
-            filteredSubmissions = filteredSubmissions.filter(s => s.problemId == this.selectedProblemId);
-        }
-        
-        // 按状态筛选
-        if (this.selectedStatus) {
-            filteredSubmissions = filteredSubmissions.filter(s => s.status === this.selectedStatus);
-        }
-
-        tbody.innerHTML = filteredSubmissions.map((submission, index) => `
+        tbody.innerHTML = this.submissions.map(submission => `
             <tr>
-                <td>
-                    <input type="checkbox" class="submission-checkbox" value="${submission.id}" 
-                           onchange="toggleSubmissionSelection(${submission.id}, this.checked)">
-                </td>
-                <td>${index + 1}</td>
-                <td>
-                    <code class="commit-id">${submission.commitId}</code>
-                </td>
+                <td><input type="checkbox" onchange="toggleSubmissionSelection(${submission.id}, this.checked)"></td>
+                <td><code>${submission.commitId}</code></td>
                 <td>${submission.username}</td>
                 <td>${submission.problemName}</td>
                 <td>${submission.submitTime}</td>
-                <td>
-                    <span class="type-badge type-${submission.type.replace(/\s+/g, '-')}">
-                        ${submission.type}
-                    </span>
-                </td>
+                <td><span class="status-badge">${submission.type}</span></td>
                 <td>${submission.score}</td>
+                <td><span class="status-badge ${submission.status === '待审核' ? 'status-pending' : 'status-active'}">${submission.status}</span></td>
                 <td>
-                    <span class="status-badge ${submission.status === '已通过' ? 'status-published' : submission.status === '已拒绝' ? 'status-rejected' : 'status-draft'}">
-                        ${submission.status}
-                    </span>
-                </td>
-                <td>
-                    <div class="action-buttons">
-                        <button class="btn btn-outline btn-sm" onclick="viewSubmissionDetail(${submission.id})">查看</button>
-                        ${submission.status === '待审核' ? 
-                            `<button class="btn btn-primary btn-sm" onclick="reviewSubmission(${submission.id})">审核</button>` :
-                            ''
-                        }
-                    </div>
+                    <button class="btn btn-outline btn-sm" onclick="viewSubmissionDetail(${submission.id})">查看</button>
+                    <button class="btn btn-outline btn-sm" onclick="reviewSubmission(${submission.id})">审核</button>
                 </td>
             </tr>
         `).join('');
-
-        // 更新批量操作按钮状态
-        this.updateBatchButtons();
     }
 
-    // 筛选功能
+    // 按竞赛筛选
     filterSubmissionsByEvent(eventId) {
-        this.selectedEventId = eventId;
-        this.selectedProblemId = null; // 重置赛题筛选
-        this.updateProblemOptions();
+        console.log('按竞赛筛选:', eventId);
         this.renderSubmissionsList();
     }
 
+    // 按赛题筛选
     filterSubmissionsByProblem(problemId) {
-        this.selectedProblemId = problemId;
+        console.log('按赛题筛选:', problemId);
         this.renderSubmissionsList();
     }
 
+    // 按状态筛选
     filterSubmissionsByStatus(status) {
-        this.selectedStatus = status;
+        console.log('按状态筛选:', status);
         this.renderSubmissionsList();
     }
 
-    // 更新赛题选项
-    updateProblemOptions() {
-        const problemSelect = document.getElementById('problemFilter');
-        if (!problemSelect) return;
-
-        const problemManager = window.ProblemManager;
-        if (!problemManager) return;
-
-        let problems = problemManager.problems;
-        if (this.selectedEventId) {
-            problems = problems.filter(p => p.eventId == this.selectedEventId);
-        }
-
-        problemSelect.innerHTML = '<option value="">全部赛题</option>' + 
-            problems.map(p => `<option value="${p.id}">${p.name}</option>`).join('');
-    }
-
-    // 选择提交记录
+    // 切换提交选择
     toggleSubmissionSelection(id, checked) {
         if (checked) {
             this.selectedSubmissions.add(id);
         } else {
             this.selectedSubmissions.delete(id);
         }
-        this.updateBatchButtons();
     }
 
     // 全选/取消全选
     toggleAllSubmissions(checked) {
-        const checkboxes = document.querySelectorAll('.submission-checkbox');
-        checkboxes.forEach(cb => {
-            cb.checked = checked;
-            const id = parseInt(cb.value);
-            if (checked) {
-                this.selectedSubmissions.add(id);
-            } else {
-                this.selectedSubmissions.delete(id);
-            }
+        const checkboxes = document.querySelectorAll('#submissions .table tbody input[type="checkbox"]');
+        checkboxes.forEach(checkbox => {
+            checkbox.checked = checked;
+            const id = parseInt(checkbox.getAttribute('onchange').match(/\d+/)[0]);
+            this.toggleSubmissionSelection(id, checked);
         });
-        this.updateBatchButtons();
-    }
-
-    // 更新批量操作按钮状态
-    updateBatchButtons() {
-        const batchApproveBtn = document.getElementById('batchApproveBtn');
-        const batchRejectBtn = document.getElementById('batchRejectBtn');
-        
-        if (batchApproveBtn && batchRejectBtn) {
-            const hasSelection = this.selectedSubmissions.size > 0;
-            batchApproveBtn.disabled = !hasSelection;
-            batchRejectBtn.disabled = !hasSelection;
-        }
     }
 
     // 批量通过
     batchApproveSubmissions() {
         if (this.selectedSubmissions.size === 0) {
-            alert('请先选择要操作的提交记录');
+            alert('请选择要操作的提交');
             return;
         }
-
-        if (confirm(`确定要批量通过 ${this.selectedSubmissions.size} 个提交吗？`)) {
+        
+        if (confirm(`确定要批量通过选中的 ${this.selectedSubmissions.size} 个提交吗？`)) {
             this.selectedSubmissions.forEach(id => {
                 const submission = this.submissions.find(s => s.id === id);
-                if (submission && submission.status === '待审核') {
+                if (submission) {
                     submission.status = '已通过';
                 }
             });
-            
             this.selectedSubmissions.clear();
             this.renderSubmissionsList();
-            alert('批量审核通过成功！');
+            alert('批量通过成功！');
         }
     }
 
     // 批量拒绝
     batchRejectSubmissions() {
         if (this.selectedSubmissions.size === 0) {
-            alert('请先选择要操作的提交记录');
+            alert('请选择要操作的提交');
             return;
         }
-
-        const reason = prompt('请输入拒绝原因：');
-        if (!reason) return;
-
-        if (confirm(`确定要批量拒绝 ${this.selectedSubmissions.size} 个提交吗？`)) {
+        
+        if (confirm(`确定要批量拒绝选中的 ${this.selectedSubmissions.size} 个提交吗？`)) {
             this.selectedSubmissions.forEach(id => {
                 const submission = this.submissions.find(s => s.id === id);
-                if (submission && submission.status === '待审核') {
+                if (submission) {
                     submission.status = '已拒绝';
-                    submission.rejectReason = reason;
                 }
             });
-            
             this.selectedSubmissions.clear();
             this.renderSubmissionsList();
-            alert('批量审核拒绝成功！');
+            alert('批量拒绝成功！');
         }
     }
 
@@ -242,159 +121,111 @@ class SubmissionManager {
         const submission = this.submissions.find(s => s.id === id);
         if (submission) {
             const modal = document.getElementById('submissionDetailModal');
-            
+            // 填充详情信息
             document.getElementById('detailCommitId').textContent = submission.commitId;
             document.getElementById('detailUsername').textContent = submission.username;
-            document.getElementById('detailProblemName').textContent = submission.problemName;
+            document.getElementById('detailProblem').textContent = submission.problemName;
             document.getElementById('detailSubmitTime').textContent = submission.submitTime;
             document.getElementById('detailType').textContent = submission.type;
             document.getElementById('detailScore').textContent = submission.score;
-            document.getElementById('detailStatus').textContent = submission.status;
-            document.getElementById('detailDescription').textContent = submission.description;
             
-            // 显示文件列表
-            const filesList = document.getElementById('detailFiles');
-            filesList.innerHTML = submission.files.map(file => 
-                `<li><a href="#" class="file-link">${file}</a></li>`
-            ).join('');
-            
-            // 显示拒绝原因（如果有）
-            const rejectReasonDiv = document.getElementById('detailRejectReason');
-            if (submission.status === '已拒绝' && submission.rejectReason) {
-                rejectReasonDiv.style.display = 'block';
-                document.getElementById('rejectReasonText').textContent = submission.rejectReason;
-            } else {
-                rejectReasonDiv.style.display = 'none';
-            }
-            
-            modal.style.display = 'block';
+            modal.classList.add('show');
         }
     }
 
+    // 关闭提交详情弹窗
     closeSubmissionDetailModal() {
-        document.getElementById('submissionDetailModal').style.display = 'none';
+        document.getElementById('submissionDetailModal').classList.remove('show');
+    }
+
+    // 从详情页面进入审核
+    reviewSubmissionFromDetail() {
+        this.closeSubmissionDetailModal();
+        // 延迟一下再打开审核弹窗
+        setTimeout(() => {
+            const modal = document.getElementById('reviewModal');
+            if (modal) {
+                modal.classList.add('show');
+            }
+        }, 200);
     }
 
     // 审核提交
     reviewSubmission(id) {
-        this.currentReviewId = id;
-        const submission = this.submissions.find(s => s.id === id);
-        if (submission) {
-            const modal = document.getElementById('reviewModal');
-            
-            document.getElementById('reviewCommitId').textContent = submission.commitId;
-            document.getElementById('reviewUsername').textContent = submission.username;
-            document.getElementById('reviewProblemName').textContent = submission.problemName;
-            document.getElementById('reviewType').textContent = submission.type;
-            document.getElementById('reviewDescription').textContent = submission.description;
-            
-            // 重置表单
-            document.getElementById('reviewForm').reset();
-            document.getElementById('reviewScore').value = submission.score;
-            
-            modal.style.display = 'block';
+        const modal = document.getElementById('reviewModal');
+        if (modal) {
+            const submission = this.submissions.find(s => s.id === id);
+            if (submission) {
+                // 填充审核信息
+                const infoItems = modal.querySelectorAll('.info-item span');
+                if (infoItems.length >= 3) {
+                    infoItems[0].textContent = submission.commitId;
+                    infoItems[1].textContent = submission.username;
+                    infoItems[2].textContent = submission.problemName;
+                }
+                modal.classList.add('show');
+            }
         }
     }
 
+    // 关闭审核弹窗
     closeReviewModal() {
-        document.getElementById('reviewModal').style.display = 'none';
-        this.currentReviewId = null;
+        document.getElementById('reviewModal').classList.remove('show');
     }
 
-    // 提交审核结果
+    // 切换审核结果
+    toggleReviewResult(result) {
+        console.log('审核结果:', result);
+    }
+
+    // 提交审核
     submitReview() {
-        const form = document.getElementById('reviewForm');
-        if (!form.checkValidity()) {
-            form.reportValidity();
+        const modal = document.getElementById('reviewModal');
+        const scoreInput = modal.querySelector('input[type="number"]');
+        const commentTextarea = modal.querySelector('textarea');
+        const approvedRadio = modal.querySelector('input[value="approved"]');
+        
+        if (!scoreInput.value) {
+            alert('请输入积分');
             return;
         }
 
-        const result = form.reviewResult.value;
-        const score = parseInt(form.reviewScore.value);
-        const comment = form.reviewComment.value;
+        const result = approvedRadio.checked ? '已通过' : '已拒绝';
+        alert(`审核${result}，积分：${scoreInput.value}`);
+        this.closeReviewModal();
+    }
 
-        const submission = this.submissions.find(s => s.id === this.currentReviewId);
-        if (submission) {
-            submission.status = result === 'approve' ? '已通过' : '已拒绝';
-            submission.score = score;
-            submission.reviewComment = comment;
+    // 更新赛题选项
+    updateProblemOptions() {
+        const problemSelect = document.querySelector('#submissions select[onchange*="filterSubmissionsByProblem"]');
+        if (problemSelect && window.ProblemManager) {
+            // 清空现有选项
+            problemSelect.innerHTML = '<option value="">全部赛题</option>';
             
-            if (result === 'reject') {
-                submission.rejectReason = comment;
+            // 添加赛题选项
+            if (window.ProblemManager.problems) {
+                window.ProblemManager.problems.forEach(problem => {
+                    const option = document.createElement('option');
+                    option.value = problem.id;
+                    option.textContent = problem.title;
+                    problemSelect.appendChild(option);
+                });
             }
-            
-            this.renderSubmissionsList();
-            this.closeReviewModal();
-            alert(`审核${result === 'approve' ? '通过' : '拒绝'}成功！`);
         }
     }
 
-    // 切换审核结果输入
-    toggleReviewResult(result) {
-        const scoreGroup = document.getElementById('scoreGroup');
-        const commentLabel = document.getElementById('commentLabel');
-        const commentTextarea = document.getElementById('reviewComment');
-        
-        if (result === 'approve') {
-            scoreGroup.style.display = 'block';
-            commentLabel.textContent = '审核意见：';
-            commentTextarea.placeholder = '请输入审核意见（可选）';
-            commentTextarea.required = false;
-        } else {
-            scoreGroup.style.display = 'none';
-            commentLabel.textContent = '拒绝原因：';
-            commentTextarea.placeholder = '请输入拒绝原因';
-            commentTextarea.required = true;
-        }
-    }
-
-    // 导出提交数据
+    // 导出提交记录
     exportSubmissions() {
-        let filteredSubmissions = this.submissions;
-        
-        if (this.selectedEventId) {
-            filteredSubmissions = filteredSubmissions.filter(s => s.eventId == this.selectedEventId);
-        }
-        
-        if (this.selectedProblemId) {
-            filteredSubmissions = filteredSubmissions.filter(s => s.problemId == this.selectedProblemId);
-        }
-        
-        if (this.selectedStatus) {
-            filteredSubmissions = filteredSubmissions.filter(s => s.status === this.selectedStatus);
-        }
-
-        const data = filteredSubmissions.map(s => ({
-            'Commit ID': s.commitId,
-            '用户名': s.username,
-            '赛题': s.problemName,
-            '提交时间': s.submitTime,
-            '类型': s.type,
-            '积分': s.score,
-            '状态': s.status,
-            '描述': s.description
-        }));
-        
-        console.log('导出提交数据:', data);
-        alert('提交数据导出成功！已下载到本地。');
+        console.log('导出提交记录');
+        alert('导出功能开发中...');
     }
 
     // 重置筛选条件
     resetFilters() {
-        this.selectedEventId = null;
-        this.selectedProblemId = null;
-        this.selectedStatus = null;
-        
-        // 重置表单
-        const eventSelect = document.getElementById('eventFilter');
-        const problemSelect = document.getElementById('problemFilter');
-        const statusSelect = document.getElementById('statusFilter');
-        
-        if (eventSelect) eventSelect.value = '';
-        if (problemSelect) problemSelect.value = '';
-        if (statusSelect) statusSelect.value = '';
-        
-        this.updateProblemOptions();
+        const selects = document.querySelectorAll('#submissions select');
+        selects.forEach(select => {
+            select.selectedIndex = 0;
+        });
         this.renderSubmissionsList();
     }
 }

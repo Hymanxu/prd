@@ -119,6 +119,82 @@ class ModalManager {
         this.closeModal('templateModal');
         const form = document.getElementById('templateForm');
         if (form) form.reset();
+        // 清空画布
+        const canvas = document.getElementById('createCanvas');
+        if (canvas) {
+            const fields = canvas.querySelectorAll('.draggable-field');
+            fields.forEach(field => field.remove());
+        }
+    }
+
+    // 证书模板编辑模态框
+    openTemplateEditModal() {
+        this.openModal('templateEditModal');
+    }
+
+    closeTemplateEditModal() {
+        this.closeModal('templateEditModal');
+    }
+
+    // 证书模板预览模态框
+    openTemplatePreviewModal() {
+        this.openModal('templatePreviewModal');
+    }
+
+    closeTemplatePreviewModal() {
+        this.closeModal('templatePreviewModal');
+    }
+
+    // 编辑证书发放规则模态框
+    openEditCertificateRuleModal() {
+        this.openModal('editCertificateRuleModal');
+    }
+
+    closeEditCertificateRuleModal() {
+        this.closeModal('editCertificateRuleModal');
+    }
+
+    // 通知公告模态框
+    openNoticeModal() {
+        this.openModal('noticeModal');
+    }
+
+    closeNoticeModal() {
+        this.closeModal('noticeModal');
+        // 清空富文本编辑器
+        const editor = document.getElementById('noticeContentEditor');
+        if (editor) {
+            editor.innerHTML = '';
+        }
+    }
+
+    // FAQ模态框
+    openFAQModal() {
+        this.openModal('faqModal');
+    }
+
+    closeFAQModal() {
+        this.closeModal('faqModal');
+        // 清空富文本编辑器
+        const editor = document.getElementById('faqAnswerEditor');
+        if (editor) {
+            editor.innerHTML = '';
+        }
+    }
+
+    // Banner模态框
+    openBannerModal() {
+        this.openModal('bannerModal');
+    }
+
+    closeBannerModal() {
+        this.closeModal('bannerModal');
+        const form = document.getElementById('bannerForm');
+        if (form) form.reset();
+        const preview = document.getElementById('bannerPreview');
+        if (preview) {
+            preview.innerHTML = '<div class="upload-placeholder">点击上传Banner图片<br><small>建议尺寸：1920×630，PNG格式</small></div>';
+        }
     }
 
     // 上传证书图片模态框

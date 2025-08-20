@@ -540,4 +540,980 @@ body {
     .search-box input {
         width: 100%;
     }
+}/* 新增样式 */
+
+
+/* 封面占位符 */
+.cover-placeholder {
+    width: 60px;
+    height: 34px;
+    background: #E5E7EB;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: #6B7280;
+}
+
+.cover-preview {
+    margin-top: 10px;
+}
+
+.cover-preview img {
+    max-width: 200px;
+    max-height: 112px;
+    border-radius: 4px;
+}
+
+/* 日期范围选择器 */
+.date-range {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.date-range span {
+    color: #6B7280;
+    font-size: 14px;
+}
+
+/* 详情网格 */
+.detail-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.detail-item {
+    display: flex;
+    align-items: center;
+}
+
+.detail-item label {
+    font-weight: 500;
+    color: #6B7280;
+    margin-right: 8px;
+    min-width: 80px;
+}
+
+/* 富文本编辑器 */
+.rich-editor {
+    border: 1px solid #D1D5DB;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.editor-toolbar {
+    background: #F9FAFB;
+    border-bottom: 1px solid #E5E7EB;
+    padding: 8px 12px;
+    display: flex;
+    gap: 8px;
+}
+
+.editor-toolbar button {
+    background: none;
+    border: none;
+    padding: 6px 8px;
+    border-radius: 4px;
+    color: #6B7280;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.editor-toolbar button:hover {
+    background: #E5E7EB;
+    color: #374151;
+}
+
+.editor-content {
+    padding: 12px;
+    min-height: 120px;
+    outline: none;
+}
+
+.editor-content:empty:before {
+    content: attr(placeholder);
+    color: #9CA3AF;
+}
+
+/* 审核信息 */
+.review-info {
+    background: #F9FAFB;
+    padding: 16px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.info-item:last-child {
+    margin-bottom: 0;
+}
+
+.info-item label {
+    font-weight: 500;
+    color: #6B7280;
+    margin-right: 8px;
+    min-width: 80px;
+}
+
+/* 单选按钮组 */
+.radio-group {
+    display: flex;
+    gap: 20px;
+}
+
+.radio-item {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.radio-item input[type="radio"] {
+    margin-right: 8px;
+}
+
+/* 条件选择 */
+.condition-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.condition-tab {
+    padding: 8px 16px;
+    border: 1px solid #D1D5DB;
+    background: white;
+    color: #6B7280;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.condition-tab:hover {
+    background: #F9FAFB;
+}
+
+.condition-tab.active {
+    background: #3B82F6;
+    color: white;
+    border-color: #3B82F6;
+}
+
+.condition-input {
+    display: none;
+}
+
+.condition-input.active {
+    display: block;
+}
+
+/* 证书预览 */
+.certificate-preview {
+    margin-top: 10px;
+    border: 2px dashed #D1D5DB;
+    border-radius: 6px;
+    padding: 40px;
+    text-align: center;
+}
+
+.certificate-placeholder {
+    color: #9CA3AF;
+    font-size: 14px;
+}
+
+/* 字段配置 */
+.field-config {
+    background: #F9FAFB;
+    padding: 16px;
+    border-radius: 6px;
+}
+
+.field-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    gap: 8px;
+}
+
+.field-item:last-child {
+    margin-bottom: 0;
+}
+
+.field-item label {
+    min-width: 100px;
+    font-size: 14px;
+    color: #6B7280;
+}
+
+.coordinate-input {
+    width: 80px;
+    padding: 6px 8px;
+    border: 1px solid #D1D5DB;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+/* 手机号输入 */
+.phone-input {
+    display: flex;
+    gap: 8px;
+}
+
+.phone-input input {
+    flex: 1;
+}
+
+/* 权限组 */
+.permission-group {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.checkbox-item input[type="checkbox"] {
+    margin-right: 8px;
+}
+
+/* 配置标签页 */
+.config-tabs {
+    display: flex;
+    border-bottom: 1px solid #E5E7EB;
+    margin-bottom: 24px;
+}
+
+/* Banner占位符 */
+.banner-placeholder {
+    background: #F3F4F6;
+    border: 2px dashed #D1D5DB;
+    border-radius: 8px;
+    padding: 60px 20px;
+    text-align: center;
+    color: #6B7280;
+}
+
+.banner-preview {
+    margin-top: 10px;
+}
+
+.banner-preview img {
+    max-width: 100%;
+    max-height: 200px;
+    border-radius: 4px;
+}
+
+/* 模板网格 */
+.template-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.template-card {
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+}
+
+.template-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.template-preview {
+    height: 160px;
+    background: #F9FAFB;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.template-placeholder {
+    color: #9CA3AF;
+    font-size: 14px;
+}
+
+.template-info {
+    padding: 16px;
+}
+
+.template-info h4 {
+    margin: 0 0 12px 0;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.template-actions {
+    display: flex;
+    gap: 8px;
+}
+
+/* 响应式优化 */
+@media (max-width: 768px) {
+    .detail-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .date-range {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .permission-group {
+        grid-template-columns: 1fr;
+    }
+    
+    .phone-input {
+        flex-direction: column;
+    }
+    
+    .template-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .condition-tabs {
+        flex-wrap: wrap;
+    }
+    
+    .field-item {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .field-item label {
+        min-width: auto;
+        margin-bottom: 4px;
+    }
+}/* Banner管理样式 */
+.banner-management {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.banner-card {
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+}
+
+.banner-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.banner-preview {
+    position: relative;
+    height: 120px;
+    background: #F9FAFB;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.banner-preview .banner-placeholder {
+    color: #9CA3AF;
+    font-size: 14px;
+    text-align: center;
+}
+
+.banner-actions {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    gap: 8px;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 8px;
+    border-radius: 4px;
+}
+
+.banner-info {
+    padding: 12px;
+}
+
+.banner-controls {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.upload-banner-card {
+    border: 2px dashed #D1D5DB;
+    border-radius: 8px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.upload-banner-card:hover {
+    border-color: #3B82F6;
+    background: #F8FAFC;
+}
+
+.upload-placeholder {
+    text-align: center;
+    color: #6B7280;
+}
+
+.upload-placeholder i {
+    font-size: 24px;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.upload-placeholder p {
+    margin: 8px 0 4px 0;
+    font-weight: 500;
+}
+
+.upload-placeholder small {
+    font-size: 12px;
+    color: #9CA3AF;
+}
+
+/* 积分明细样式 */
+.score-breakdown {
+    background: #F9FAFB;
+    border-radius: 6px;
+    padding: 12px;
+}
+
+.score-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #E5E7EB;
+}
+
+.score-item:last-child {
+    border-bottom: none;
+}
+
+.score-item span:last-child {
+    font-weight: 500;
+    color: #059669;
+}
+
+/* 详情内容样式 */
+.detail-content {
+    background: #F9FAFB;
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid #E5E7EB;
+    min-height: 60px;
+}
+
+.detail-content a {
+    color: #3B82F6;
+    text-decoration: none;
+}
+
+.detail-content a:hover {
+    text-decoration: underline;
+}
+
+/* 证书模板拖拽样式 */
+.template-designer {
+    position: relative;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.template-canvas {
+    position: relative;
+    background: #F9FAFB;
+    min-height: 200px;
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><rect width="20" height="20" fill="none" stroke="%23E5E7EB" stroke-width="1"/></svg>');
+}
+
+.draggable-field {
+    position: absolute;
+    background: rgba(59, 130, 246, 0.1);
+    border: 2px solid #3B82F6;
+    border-radius: 4px;
+    padding: 8px;
+    cursor: move;
+    min-width: 100px;
+    min-height: 30px;
+    user-select: none;
+}
+
+.draggable-field:hover {
+    background: rgba(59, 130, 246, 0.2);
+}
+
+.draggable-field.selected {
+    border-color: #EF4444;
+    background: rgba(239, 68, 68, 0.1);
+}
+
+.field-controls {
+    position: absolute;
+    top: -30px;
+    right: 0;
+    display: none;
+    gap: 4px;
+}
+
+.draggable-field:hover .field-controls {
+    display: flex;
+}
+
+.field-control-btn {
+    background: #3B82F6;
+    color: white;
+    border: none;
+    border-radius: 2px;
+    padding: 2px 6px;
+    font-size: 10px;
+    cursor: pointer;
+}
+
+/* 富文本编辑器增强样式 */
+.editor-toolbar button {
+    margin-right: 4px;
+}
+
+.editor-toolbar button:last-child {
+    margin-left: 8px;
+    color: #EF4444;
+}
+
+.editor-toolbar button:last-child:hover {
+    background: #FEE2E2;
+    color: #DC2626;
+}
+
+/* 响应式优化 */
+@media (max-width: 768px) {
+    .banner-management {
+        grid-template-columns: 1fr;
+    }
+    
+    .banner-actions {
+        position: static;
+        transform: none;
+        background: none;
+        padding: 0;
+        margin-top: 8px;
+    }
+    
+    .upload-banner-card {
+        height: 150px;
+    }
+}/* Banner上传项样式 */
+.banner-upload-item {
+    border: 2px dashed #D1D5DB;
+    border-radius: 8px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+}
+
+.banner-upload-item:hover {
+    border-color: #3B82F6;
+    background: #F8FAFC;
+}
+
+.banner-upload-item .banner-preview {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.banner-upload-item .banner-placeholder {
+    color: #6B7280;
+    font-size: 14px;
+    text-align: center;
+}
+
+/* 表单操作按钮组 */
+.form-actions {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+/* 大尺寸模态框 */
+.modal-large .modal-content {
+    max-width: 1200px;
+    width: 95%;
+}
+
+/* 证书模板设计器 */
+.template-editor {
+    display: flex;
+    flex-direction: column;
+    height: 600px;
+}
+
+.editor-toolbar {
+    padding: 12px;
+    border-bottom: 1px solid #E5E7EB;
+    display: flex;
+    gap: 8px;
+}
+
+.template-designer {
+    display: flex;
+    flex: 1;
+    gap: 20px;
+    padding: 20px;
+    height:300px;
+}
+
+.template-canvas {
+    flex: 1;
+    border: 2px dashed #D1D5DB;
+    border-radius: 8px;
+    position: relative;
+    background: #F9FAFB;
+    min-height: 200px;
+    overflow: hidden;
+}
+
+.field-palette {
+    width: 200px;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+    padding: 16px;
+    background: white;
+}
+
+.field-palette h4 {
+    margin: 0 0 12px 0;
+    font-size: 14px;
+    font-weight: 500;
+    color: #374151;
+}
+
+.field-item {
+    padding: 8px 12px;
+    border: 1px solid #E5E7EB;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    cursor: grab;
+    background: white;
+    transition: all 0.2s;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.field-item:hover {
+    border-color: #3B82F6;
+    background: #F0F9FF;
+}
+
+.field-item:active {
+    cursor: grabbing;
+}
+
+.field-item i {
+    color: #6B7280;
+}
+
+/* 可拖拽字段 */
+.draggable-field {
+    position: absolute;
+    background: rgba(59, 130, 246, 0.1);
+    border: 2px solid #3B82F6;
+    border-radius: 4px;
+    padding: 8px 12px;
+    cursor: move;
+    min-width: 100px;
+    min-height: 30px;
+    user-select: none;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.draggable-field:hover {
+    background: rgba(59, 130, 246, 0.2);
+}
+
+.draggable-field.selected {
+    border-color: #EF4444;
+    background: rgba(239, 68, 68, 0.1);
+}
+
+.draggable-field .resize-handle {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 10px;
+    height: 10px;
+    background: #3B82F6;
+    cursor: se-resize;
+}
+
+/* 证书预览容器 */
+.template-preview-container {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.certificate-canvas {
+    width: 460px;
+    height: 300px;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+    background: white;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.certificate-placeholder {
+    color: #9CA3AF;
+    font-size: 16px;
+    text-align: center;
+}
+
+/* 条件输入切换 */
+.condition-input {
+    display: none;
+    margin-top: 12px;
+}
+
+.condition-input.active {
+    display: block;
+}
+
+/* 证书背景样式 */
+.certificate-background {
+    width: 100%;
+    height: 200px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 拖拽时的视觉反馈 */
+.template-canvas.drag-over {
+    border-color: #3B82F6;
+    background-color: rgba(59, 130, 246, 0.05);
+}
+
+/* 字段删除提示 */
+.draggable-field::after {
+    content: "双击删除";
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 10px;
+    opacity: 0;
+    transition: opacity 0.2s;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+.draggable-field:hover::after {
+    opacity: 1;
+}
+
+/* 富文本编辑器内容样式 */
+.editor-content {
+    line-height: 1.6;
+}
+
+.editor-content h1, .editor-content h2, .editor-content h3 {
+    margin: 16px 0 8px 0;
+    font-weight: 600;
+}
+
+.editor-content p {
+    margin: 8px 0;
+}
+
+.editor-content ul, .editor-content ol {
+    margin: 8px 0;
+    padding-left: 24px;
+}
+
+.editor-content a {
+    color: #3B82F6;
+    text-decoration: underline;
+}
+
+.editor-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin: 8px 0;
+}
+
+/* 模态框关闭按钮增强 */
+.modal-close {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.modal-close:hover {
+    background: #F3F4F6;
+    color: #374151;
+}
+
+/* 表格操作按钮组 */
+.action-buttons {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.action-buttons .btn {
+    white-space: nowrap;
+}
+
+/* 状态标签增强 */
+.status-published {
+    background: #D1FAE5;
+    color: #065F46;
+}
+
+.status-draft {
+    background: #F3F4F6;
+    color: #374151;
+}
+
+/* 响应式优化 */
+@media (max-width: 768px) {
+    .modal-large .modal-content {
+        width: 95%;
+        max-width: none;
+    }
+    
+    .template-designer {
+        flex-direction: column;
+        height: 300px;
+    }
+    
+    .field-palette {
+        width: 100%;
+        order: -1;
+    }
+    
+    .template-canvas {
+        min-height: 200px;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .action-buttons {
+        justify-content: flex-start;
+    }
+    
+    .draggable-field {
+        min-width: 80px;
+        font-size: 12px;
+        padding: 6px 8px;
+    }
+    
+    .editor-toolbar {
+        flex-wrap: wrap;
+    }
+    
+    .certificate-canvas {
+        width: 100%;
+        height: 400px;
+    }
+}
+
+/* 加载状态 */
+.loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.loading::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid #3B82F6;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* 工具提示 */
+.tooltip {
+    position: relative;
+}
+
+.tooltip::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+    z-index: 1000;
+}
+
+.tooltip:hover::before {
+    opacity: 1;
 }

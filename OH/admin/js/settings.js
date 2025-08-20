@@ -11,11 +11,11 @@ class SettingsManager {
                 createTime: '2024-01-15 10:00:00'
             }
         ];
-        
+
         this.introduction = {
             content: '<h2>OpenHarmony 社区创新奖励计划</h2><p>这是一个面向开发者的创新竞赛平台...</p>'
         };
-        
+
         this.notices = [
             {
                 id: 1,
@@ -25,7 +25,7 @@ class SettingsManager {
                 status: '已发布'
             }
         ];
-        
+
         this.faqs = [
             {
                 id: 1,
@@ -39,17 +39,24 @@ class SettingsManager {
     // 切换配置标签
     switchConfigTab(tab) {
         this.currentTab = tab;
-        
+
         // 更新标签状态
         document.querySelectorAll('.config-tab').forEach(t => t.classList.remove('active'));
-        document.querySelector(`[data-tab="${tab}"]`).classList.add('active');
-        
+        document.querySelectorAll('.config-tab').forEach(t => {
+            if (t.textContent.includes(this.getTabName(tab))) {
+                t.classList.add('active');
+            }
+        });
+
         // 显示对应内容
-        document.querySelectorAll('.config-content').forEach(c => c.style.display = 'none');
-        document.getElementById(`${tab}Config`).style.display = 'block';
-        
+        document.querySelectorAll('.config-content').forEach(c => c.classList.remove('active'));
+        const targetContent = document.getElementById(`${tab}-config`);
+        if (targetContent) {
+            targetContent.classList.add('active');
+        }
+
         // 渲染对应内容
-        switch(tab) {
+        switch (tab) {
             case 'banner':
                 this.renderBannerList();
                 break;
@@ -65,27 +72,32 @@ class SettingsManager {
         }
     }
 
+    getTabName(tab) {
+        const names = {
+            'banner': '首页banner',
+            'introduction': '大赛介绍',
+            'notices': '通知公告',
+            'faq': '常见问题'
+        };
+        return names[tab] || tab;
+    }
+
     // 渲染Banner列表
     renderBannerList() {
         const container = document.getElementById('bannerList');
         if (!container) return;
 
         container.innerHTML = this.banners.map(banner => `
-            <div class="banner-item">
-                <div class="banner-preview">
-                    <div class="banner-placeholder" style="width: 200px; height: 66px; background: #f0f0f0; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: #999; font-size: 12px;">
-                        ${banner.image ? 'Banner图片' : '1920×630 PNG'}
+            <div class="banner-upload-item">
+                <div class="banner-preview" onmouseover="showBannerActions(${banner.id})" onmouseout="hideBannerActions(${banner.id})">
+                    <div class="banner-actions" id="bannerActions${banner.id}" style="display: none;">
+                        <button class="btn btn-outline btn-sm" onclick="setBannerLink(${banner.id})">
+                            <i class="fas fa-link"></i> 链接
+                        </button>
+                        <button class="btn btn-danger btn-sm" onclick="deleteBannerImage(${banner.id})">
+                            <i class="fas fa-trash"></i> 删除
+                        </button>
                     </div>
-                </div>
-                <div class="banner-info">
-                    <h4>${banner.title}</h4>
-                    <p>创建时间：${banner.createTime}</p>
-                    <p>状态：<span class="status-badge ${banner.status === '启用' ? 'status-published' : 'status-draft'}">${banner.status}</span></p>
-                </div>
-                <div class="banner-actions">
-                    <button class="btn btn-outline btn-sm" onclick="editBannerImage(${banner.id})">编辑</button>
-                    <button class="btn btn-outline btn-sm" onclick="toggleBannerStatus(${banner.id})">${banner.status === '启用' ? '禁用' : '启用'}</button>
-                    <button class="btn btn-danger btn-sm" onclick="deleteBannerImage(${banner.id})">删除</button>
                 </div>
             </div>
         `).join('');
@@ -117,10 +129,10 @@ class SettingsManager {
                 <td>
                     <div class="action-buttons">
                         <button class="btn btn-outline btn-sm" onclick="editNotice(${notice.id})">编辑</button>
-                        ${notice.status === '已发布' ? 
-                            `<button class="btn btn-outline btn-sm" onclick="unpublishNotice(${notice.id})">取消发布</button>` :
-                            `<button class="btn btn-primary btn-sm" onclick="publishNotice(${notice.id})">发布</button>`
-                        }
+                        ${notice.status === '已发布' ?
+                `<button class="btn btn-outline btn-sm" onclick="unpublishNotice(${notice.id})">取消发布</button>` :
+                `<button class="btn btn-primary btn-sm" onclick="publishNotice(${notice.id})">发布</button>`
+            }
                     </div>
                 </td>
             </tr>
@@ -145,10 +157,10 @@ class SettingsManager {
                 <td>
                     <div class="action-buttons">
                         <button class="btn btn-outline btn-sm" onclick="editFAQ(${faq.id})">编辑</button>
-                        ${faq.status === '显示' ? 
-                            `<button class="btn btn-outline btn-sm" onclick="hideFAQ(${faq.id})">隐藏</button>` :
-                            `<button class="btn btn-primary btn-sm" onclick="showFAQ(${faq.id})">显示</button>`
-                        }
+                        ${faq.status === '显示' ?
+                `<button class="btn btn-outline btn-sm" onclick="hideFAQ(${faq.id})">隐藏</button>` :
+                `<button class="btn btn-primary btn-sm" onclick="showFAQ(${faq.id})">显示</button>`
+            }
                     </div>
                 </td>
             </tr>
@@ -200,10 +212,10 @@ class SettingsManager {
     previewBannerImage(input) {
         const file = input.files[0];
         const preview = document.getElementById('bannerPreview');
-        
+
         if (file) {
             const reader = new FileReader();
-            reader.onload = function(e) {
+            reader.onload = function (e) {
                 preview.innerHTML = `<img src="${e.target.result}" style="max-width: 100%; max-height: 200px; border-radius: 4px;">`;
             };
             reader.readAsDataURL(file);
@@ -458,7 +470,236 @@ class SettingsManager {
             window.location.href = '../index.html';
         }
     }
+
+    // 显示banner操作按钮
+    showBannerActions(id) {
+        const actions = document.getElementById(`bannerActions${id}`);
+        if (actions) {
+            actions.style.display = 'flex';
+        }
+    }
+
+    // 隐藏banner操作按钮
+    hideBannerActions(id) {
+        const actions = document.getElementById(`bannerActions${id}`);
+        if (actions) {
+            actions.style.display = 'none';
+        }
+    }
+
+    // 设置banner链接
+    setBannerLink(id) {
+        const banner = this.banners.find(b => b.id === id);
+        if (banner) {
+            const link = prompt('请输入Banner链接地址：', banner.link || '');
+            if (link !== null) {
+                banner.link = link;
+                alert('Banner链接设置成功！');
+            }
+        }
+    }
+
+    // 清空大赛介绍
+    clearIntroduction() {
+        if (confirm('确定要清空大赛介绍内容吗？')) {
+            const editor = document.getElementById('introductionEditor');
+            if (editor) {
+                editor.innerHTML = '';
+                this.introduction.content = '';
+                alert('大赛介绍已清空！');
+            }
+        }
+    }
+
+    // 保存大赛介绍（重写以避免重复）
+    saveIntroduction() {
+        const editor = document.getElementById('introductionEditor');
+        if (editor) {
+            this.introduction.content = editor.innerHTML;
+            alert('大赛介绍保存成功！');
+        }
+    }
+
+    // 通知公告管理 - 更新版本
+    addNotice() {
+        const modal = document.getElementById('noticeModal');
+        if (modal) {
+            modal.querySelector('.modal-title').textContent = '新建公告';
+            document.getElementById('noticeTitle').value = '';
+            document.getElementById('noticeContentEditor').innerHTML = '';
+            this.currentEditNoticeId = null;
+            modal.classList.add('show');
+        }
+    }
+
+    editNotice(id) {
+        const notice = this.notices.find(n => n.id === id);
+        if (notice) {
+            const modal = document.getElementById('noticeModal');
+            modal.querySelector('.modal-title').textContent = '编辑公告';
+            document.getElementById('noticeTitle').value = notice.title;
+            document.getElementById('noticeContentEditor').innerHTML = notice.content;
+            this.currentEditNoticeId = id;
+            modal.classList.add('show');
+        }
+    }
+
+    closeNoticeModal() {
+        document.getElementById('noticeModal').classList.remove('show');
+        this.currentEditNoticeId = null;
+    }
+
+    publishNotice() {
+        const title = document.getElementById('noticeTitle').value;
+        const content = document.getElementById('noticeContentEditor').innerHTML;
+
+        if (!title.trim()) {
+            alert('请输入公告标题');
+            return;
+        }
+
+        const noticeData = {
+            title: title.trim(),
+            content: content.trim(),
+            status: '已发布',
+            publishTime: new Date().toLocaleString()
+        };
+
+        if (this.currentEditNoticeId) {
+            // 编辑模式
+            const noticeIndex = this.notices.findIndex(n => n.id === this.currentEditNoticeId);
+            if (noticeIndex !== -1) {
+                this.notices[noticeIndex] = {
+                    ...this.notices[noticeIndex],
+                    ...noticeData
+                };
+            }
+        } else {
+            // 新建模式
+            const newNotice = {
+                id: Date.now(),
+                ...noticeData
+            };
+            this.notices.push(newNotice);
+        }
+
+        this.renderNoticesList();
+        this.closeNoticeModal();
+        alert('公告发布成功！');
+    }
+
+    // FAQ管理 - 更新版本
+    addFAQ() {
+        const modal = document.getElementById('faqModal');
+        if (modal) {
+            modal.querySelector('.modal-title').textContent = '新建问题';
+            document.getElementById('faqQuestion').value = '';
+            document.getElementById('faqAnswerEditor').innerHTML = '';
+            this.currentEditFAQId = null;
+            modal.classList.add('show');
+        }
+    }
+
+    editFAQ(id) {
+        const faq = this.faqs.find(f => f.id === id);
+        if (faq) {
+            const modal = document.getElementById('faqModal');
+            modal.querySelector('.modal-title').textContent = '编辑问题';
+            document.getElementById('faqQuestion').value = faq.question;
+            document.getElementById('faqAnswerEditor').innerHTML = faq.answer;
+            this.currentEditFAQId = id;
+            modal.classList.add('show');
+        }
+    }
+
+    closeFAQModal() {
+        document.getElementById('faqModal').classList.remove('show');
+        this.currentEditFAQId = null;
+    }
+
+    publishFAQ() {
+        const question = document.getElementById('faqQuestion').value;
+        const answer = document.getElementById('faqAnswerEditor').innerHTML;
+
+        if (!question.trim()) {
+            alert('请输入问题');
+            return;
+        }
+
+        const faqData = {
+            question: question.trim(),
+            answer: answer.trim(),
+            status: '显示'
+        };
+
+        if (this.currentEditFAQId) {
+            // 编辑模式
+            const faqIndex = this.faqs.findIndex(f => f.id === this.currentEditFAQId);
+            if (faqIndex !== -1) {
+                this.faqs[faqIndex] = {
+                    ...this.faqs[faqIndex],
+                    ...faqData
+                };
+            }
+        } else {
+            // 新建模式
+            const newFAQ = {
+                id: Date.now(),
+                ...faqData
+            };
+            this.faqs.push(newFAQ);
+        }
+
+        this.renderFAQList();
+        this.closeFAQModal();
+        alert('问题发布成功！');
+    }
+
+    // 富文本编辑器功能 - 通知公告
+    formatNoticeText(cmd) {
+        document.execCommand(cmd, false, null);
+        document.getElementById('noticeContentEditor').focus();
+    }
+
+    insertNoticeLink() {
+        const url = prompt('请输入链接地址:');
+        if (url) {
+            document.execCommand('createLink', false, url);
+            document.getElementById('noticeContentEditor').focus();
+        }
+    }
+
+    insertNoticeImage() {
+        const url = prompt('请输入图片地址:');
+        if (url) {
+            document.execCommand('insertImage', false, url);
+            document.getElementById('noticeContentEditor').focus();
+        }
+    }
+
+    // 富文本编辑器功能 - FAQ
+    formatFAQText(cmd) {
+        document.execCommand(cmd, false, null);
+        document.getElementById('faqAnswerEditor').focus();
+    }
+
+    insertFAQLink() {
+        const url = prompt('请输入链接地址:');
+        if (url) {
+            document.execCommand('createLink', false, url);
+            document.getElementById('faqAnswerEditor').focus();
+        }
+    }
+
+    insertFAQImage() {
+        const url = prompt('请输入图片地址:');
+        if (url) {
+            document.execCommand('insertImage', false, url);
+            document.getElementById('faqAnswerEditor').focus();
+        }
+    }
 }
+
 
 // 导出实例
 window.SettingsManager = new SettingsManager();

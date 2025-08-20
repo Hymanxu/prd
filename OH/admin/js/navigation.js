@@ -2,20 +2,28 @@
 class NavigationManager {
     constructor() {
         this.currentSection = 'events';
-        this.init();
+        // 延迟初始化，等待DOM加载完成
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => this.init());
+        } else {
+            this.init();
+        }
     }
 
     init() {
         // 绑定导航点击事件
-        document.querySelectorAll('.nav-item').forEach(item => {
-            item.addEventListener('click', (e) => {
-                const section = e.currentTarget.dataset.section;
-                this.switchSection(section);
+        const navItems = document.querySelectorAll('.nav-item');
+        if (navItems.length > 0) {
+            navItems.forEach(item => {
+                item.addEventListener('click', (e) => {
+                    const section = e.currentTarget.dataset.section;
+                    this.switchSection(section);
+                });
             });
-        });
 
-        // 初始化显示第一个section
-        this.switchSection('events');
+            // 初始化显示第一个section
+            this.switchSection('events');
+        }
     }
 
     switchSection(section) {
@@ -41,14 +49,14 @@ class NavigationManager {
         document.getElementById('pageTitle').textContent = titles[section] || section;
 
         // 隐藏所有内容区域
-        document.querySelectorAll('.content-section').forEach(section => {
-            section.style.display = 'none';
+        document.querySelectorAll('.content-section').forEach(contentSection => {
+            contentSection.classList.remove('active');
         });
 
         // 显示对应的内容区域
-        const targetSection = document.getElementById(`${section}Section`);
+        const targetSection = document.getElementById(section);
         if (targetSection) {
-            targetSection.style.display = 'block';
+            targetSection.classList.add('active');
         }
 
         // 调用对应的渲染函数

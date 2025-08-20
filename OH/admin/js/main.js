@@ -131,6 +131,8 @@ function bindGlobalFunctions() {
 
     // 新增的全局函数
     window.previewCover = (input) => eventManager.previewCover(input);
+    window.goToRegistrations = (id) => eventManager.goToRegistrations(id);
+    window.goToProblems = (id) => eventManager.goToProblems(id);
     window.filterRegistrationsByEvent = (eventId) => userManager.filterRegistrationsByEvent(eventId);
     window.filterScoringByEvent = (eventId) => userManager.filterScoringByEvent(eventId);
     window.filterProblemsByEvent = (eventId) => problemManager.filterProblemsByEvent(eventId);
@@ -155,6 +157,48 @@ function bindGlobalFunctions() {
     window.saveTemplateDesign = () => certificateManager.saveTemplateDesign();
     window.closeTemplatePreview = () => certificateManager.closeTemplatePreview();
     window.deleteCertificateTemplate = (id) => certificateManager.deleteCertificateTemplate(id);
+    
+    // 网站管理新增函数
+    window.showBannerActions = (id) => settingsManager.showBannerActions(id);
+    window.hideBannerActions = (id) => settingsManager.hideBannerActions(id);
+    window.setBannerLink = (id) => settingsManager.setBannerLink(id);
+    window.clearIntroduction = () => settingsManager.clearIntroduction();
+    
+    // 提交审核新增函数
+    window.closeSubmissionDetailModal = () => submissionManager.closeSubmissionDetailModal();
+    window.reviewSubmissionFromDetail = () => submissionManager.reviewSubmissionFromDetail();
+    
+    // 积分管理新增函数
+    window.closeScoreDetailModal = () => userManager.closeScoreDetailModal();
+    window.openScoreAdjustModal = () => userManager.openScoreAdjustModal();
+    window.closeScoreAdjustModal = () => userManager.closeScoreAdjustModal();
+    window.submitScoreAdjust = () => userManager.submitScoreAdjust();
+
+    // 新增的证书管理函数
+    window.editCertificateRule = (id) => certificateManager.editCertificateRule(id);
+    window.closeEditCertificateRuleModal = () => certificateManager.closeEditCertificateRuleModal();
+    window.saveEditCertificateRule = () => certificateManager.saveEditCertificateRule();
+    window.toggleEditConditionInput = (type) => certificateManager.toggleEditConditionInput(type);
+    
+    // 证书模板相关函数
+    window.closeTemplatePreviewModal = () => certificateManager.closeTemplatePreviewModal();
+    window.editTemplateFromPreview = () => certificateManager.editTemplateFromPreview();
+    window.closeTemplateEditModal = () => certificateManager.closeTemplateEditModal();
+    window.previewTemplateDesign = () => certificateManager.previewTemplateDesign();
+    window.resetTemplateFields = () => certificateManager.resetTemplateFields();
+    window.dragField = (event) => certificateManager.dragField(event);
+    window.allowDrop = (event) => certificateManager.allowDrop(event);
+    window.dropField = (event) => certificateManager.dropField(event);
+    
+    // 富文本编辑器函数
+    window.formatNoticeText = (cmd) => settingsManager.formatNoticeText(cmd);
+    window.insertNoticeLink = () => settingsManager.insertNoticeLink();
+    window.insertNoticeImage = () => settingsManager.insertNoticeImage();
+    window.formatFAQText = (cmd) => settingsManager.formatFAQText(cmd);
+    window.insertFAQLink = () => settingsManager.insertFAQLink();
+    window.insertFAQImage = () => settingsManager.insertFAQImage();
+    window.publishNotice = () => settingsManager.publishNotice();
+    window.publishFAQ = () => settingsManager.publishFAQ();
 
     console.log('Admin管理系统已初始化完成');
 }
