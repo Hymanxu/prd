@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>技能兴鲁大赛 - 职业技能等级认定平台</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #007bff;
+            --text-color: #333;
+            --light-gray: #f8f9fa;
+            --border-color: #e9ecef;
+            --white-color: #fff;
+            --dark-blue: #2c3e50;
+            --text-secondary: #6c757d;
+            --success-color: #28a745;
+            --warning-color: #ffc107;
+            --danger-color: #dc3545;
+        }
+
+        body, h1, h2, h3, p, ul, li {
+            margin: 0;
+            padding: 0;
+            font-family: "Helvetica Neue", "Hiragino Sans GB", "WenQuanYi Micro Hei", "Microsoft Yahei", sans-serif;
+            color: var(--text-color);
+        }
+
+        body {
+            background-color: var(--white-color);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+
+        /* 导航栏样式 */
+        .main-header {
+            background-color: var(--white-color);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .navbar .logo {
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+        .navbar .logo img {
+            height: 64px;
+        }
+
+        .navbar .nav-links {
+            display: flex;
+            gap: 50px;
+        }
+
+        .navbar .nav-links a {
+            font-size: 16px;
+            font-weight: 500;
+            padding: 10px 0;
+            position: relative;
+            transition: color 0.3s;
+        }
+        .navbar .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: width 0.3s;
+        }    
+    .navbar .nav-links a:hover,
+        .navbar .nav-links a.active {
+            color: var(--primary-color);
+        }
+        .navbar .nav-links a:hover::after,
+        .navbar .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .navbar .user-area .login-btn {
+            background-color: var(--primary-color);
+            color: var(--white-color);
+            padding: 10px 24px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .navbar .user-area .login-btn:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        /* --- Responsive Styles --- */
+        @media (max-width: 1280px) {
+            .container {
+                max-width: 1200px;
+            }
+            .navbar {
+                height: 64px;
+            }
+            .navbar .logo img {
+                height: 64px;
+            }
+        }
+
+        /* 页面标题 - 与exam页保持一致 */
+        .page-header {
+            background: linear-gradient(135deg, #ff6b35, #f7931e);
+            color: var(--white-color);
+            padding: 60px 0; /* 与exam页保持一致 */
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 36px; /* 与exam页保持一致 */
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--white-color);
+        }
+
+        .page-header p {
+            font-size: 18px; /* 与exam页保持一致 */
+            opacity: 0.9;
+            color: var(--white-color);
+        }
+
+        /* 赛事列表 - 修改为与training页课程卡片基本一致的样式 */
+        .competitions-section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 50px;
+            color: var(--dark-blue);
+        }
+
+        .competition-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* 与training页保持一致 */
+            gap: 30px;
+        }
+
+        .competition-card {
+            background-color: var(--white-color);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .competition-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .competition-card .card-img {
+            width: 100%;
+            height: 120px; /* 图片高度120px */
+            object-fit: cover;
+        }
+
+        .competition-card .card-title-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 120px; /* 与图片高度一致 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: none; /* 去除遮罩 */
+            color: var(--dark-blue); /* 标题颜色 */
+            font-size: 18px;
+            font-weight: 600;
+            text-align: center;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .competition-card .card-body {
+            padding: 20px;
+        }
+
+        .competition-card .card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        .competition-card .card-level {
+            background-color: var(--light-gray);
+            padding: 4px 12px;
+            border-radius: 20px;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .competition-card .card-duration {
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .status-badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            position: absolute;
+            top: 15px;
+            right: 15px;
+        }
+
+        .status-registration {
+            background-color: var(--success-color);
+            color: var(--white-color);
+        }
+
+        .status-ongoing {
+            background-color: var(--warning-color);
+            color: var(--white-color);
+        }
+
+        .status-ended {
+            background-color: var(--text-secondary);
+            color: var(--white-color);
+        }
+
+        /* 底部 */
+        .main-footer {
+            background-color: #1c1c1c;
+            color: #f0f0f0;
+            padding: 50px 0;
+            font-size: 14px;
+        }
+        .footer-container {
+            text-align: center;
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 25px;
+        }
+        .footer-links a {
+            color: #f0f0f0;
+            transition: color 0.3s;
+        }
+        .footer-links a:hover {
+            color: var(--white-color);
+        }
+        .footer-container .footer-copyright p {
+            color: #f0f0f0;
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header class="main-header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">
+                    <img src="https://qst-lss.eduplus.net/static/svg/logo-qstlss.fc395ba21759154045541.svg" alt="Logo">
+                </a>
+                <div class="nav-links">
+                    <a href="index.html">首页</a>
+                    <a href="training.html">技能培训</a>
+                    <a href="exam.html">认证考试</a>
+                    <a href="competition.html" class="active">技能兴鲁大赛</a>
+                    <a href="notice.html">通知</a>
+                </div>
+                <div class="user-area">
+                    <button class="login-btn">登录</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 页面标题 - 与exam页保持一致 -->
+    <section class="page-header">
+        <div class="container">
+            <h1>技能兴鲁大赛</h1>
+            <p>展示技能风采，成就职业梦想</p>
+        </div>
+    </section>
+
+    <!-- 去除大赛介绍模块 -->
+
+    <!-- 赛事列表 - 修改为与training页课程卡片基本一致的样式 -->
+    <section class="competitions-section">
+        <div class="container">
+            <h2 class="section-title">赛事安排</h2>
+            <div class="competition-grid">
+                <div class="competition-card" onclick="location.href='competition-detail.html?id=1'">
+                    <img src="https://qst-lss.eduplus.net/static/png/school_course_bg1.8009605a1759154045541.png" alt="竞赛封面" class="card-img">
+                    <div class="card-title-overlay">计算机程序设计员技能竞赛</div>
+                    <div class="status-badge status-registration">报名中</div>
+                    <div class="card-body">
+                        <div class="card-meta">
+                            <span class="card-level status-registration">报名中</span>
+                            <span class="card-duration">11月15日-17日</span> <!-- 去除年份 -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="competition-card" onclick="location.href='competition-detail.html?id=2'">
+                    <img src="https://qst-lss.eduplus.net/static/png/school_course_bg2.6879c9d11759154045541.png" alt="竞赛封面" class="card-img">
+                    <div class="card-title-overlay">人工智能训练师技能竞赛</div>
+                    <div class="status-badge status-registration">报名中</div>
+                    <div class="card-body">
+                        <div class="card-meta">
+                            <span class="card-level status-registration">报名中</span>
+                            <span class="card-duration">11月20日-22日</span> <!-- 去除年份 -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="competition-card" onclick="location.href='competition-detail.html?id=3'">
+                    <img src="https://qst-lss.eduplus.net/static/png/school_course_bg3.b8eb67181759154045541.png" alt="竞赛封面" class="card-img">
+                    <div class="card-title-overlay">无人机驾驶员技能竞赛</div>
+                    <div class="status-badge status-ongoing">进行中</div>
+                    <div class="card-body">
+                        <div class="card-meta">
+                            <span class="card-level status-ongoing">进行中</span>
+                            <span class="card-duration">10月25日-27日</span> <!-- 去除年份 -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="competition-card" onclick="location.href='competition-detail.html?id=4'">
+                    <img src="https://qst-lss.eduplus.net/static/png/school_course_bg4.0ef68bb41759154045541.png" alt="竞赛封面" class="card-img">
+                    <div class="card-title-overlay">网络安全管理员技能竞赛</div>
+                    <div class="status-badge status-ended">已结束</div>
+                    <div class="card-body">
+                        <div class="card-meta">
+                            <span class="card-level status-ended">已结束</span>
+                            <span class="card-duration">09月15日-17日</span> <!-- 去除年份 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 底部 -->
+    <footer class="main-footer">
+        <div class="container footer-container">
+            <div class="footer-links">
+                <a href="#">关于我们</a>
+                <a href="#">联系我们</a>
+                <a href="#">合作机构</a>
+                <a href="#">隐私政策</a>
+                <a href="#">服务条款</a>
+            </div>
+            <div class="footer-copyright">
+                <p>Copyright © 2025 青软创新. All rights reserved.</p>
+                <p>鲁ICP备XXXXXXXX号-X</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

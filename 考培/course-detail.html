@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>课程详情 - 职业技能等级认定平台</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #007bff;
+            --text-color: #333;
+            --light-gray: #f8f9fa;
+            --border-color: #e9ecef;
+            --white-color: #fff;
+            --dark-blue: #2c3e50;
+            --text-secondary: #6c757d;
+            --success-color: #28a745;
+        }
+
+        body, h1, h2, h3, p, ul, li {
+            margin: 0;
+            padding: 0;
+            font-family: "Helvetica Neue", "Hiragino Sans GB", "WenQuanYi Micro Hei", "Microsoft Yahei", sans-serif;
+            color: var(--text-color);
+        }
+
+        body {
+            background-color: var(--light-gray);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+
+        /* 导航栏样式 */
+        .main-header {
+            background-color: var(--white-color);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .navbar .logo {
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+        .navbar .logo img {
+            height: 64px;
+        }
+
+        .navbar .nav-links {
+            display: flex;
+            gap: 50px;
+        }
+
+        .navbar .nav-links a {
+            font-size: 16px;
+            font-weight: 500;
+            padding: 10px 0;
+            position: relative;
+            transition: color 0.3s;
+        }
+        .navbar .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: width 0.3s;
+        }
+
+        .navbar .nav-links a:hover,
+        .navbar .nav-links a.active {
+            color: var(--primary-color);
+        }
+        .navbar .nav-links a:hover::after,
+        .navbar .nav-links a.active::after {
+            width: 100%;
+        } 
+        .navbar .user-area .login-btn {
+            background-color: var(--primary-color);
+            color: var(--white-color);
+            padding: 10px 24px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .navbar .user-area .login-btn:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        /* --- Responsive Styles --- */
+        @media (max-width: 1280px) {
+            .container {
+                max-width: 1200px;
+            }
+            .navbar {
+                height: 64px;
+            }
+            .navbar .logo img {
+                height: 64px;
+            }
+        }
+
+        /* 面包屑导航 */
+        .breadcrumb {
+            background-color: var(--white-color);
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .breadcrumb-nav {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .breadcrumb-nav a {
+            color: var(--primary-color);
+            transition: color 0.3s;
+        }
+
+        .breadcrumb-nav a:hover {
+            color: #0056b3;
+        }
+
+        /* 课程详情主体 */
+        .course-detail {
+            padding: 40px 0;
+        }
+
+        .course-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+        }
+
+        .course-main {
+            background-color: var(--white-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .course-hero {
+            position: relative;
+            height: 300px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://qst-lss.eduplus.net/static/png/school_course_bg1.8009605a1759154045541.png');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white; /* 改为白色字体 */
+            text-align: center;
+        }
+
+        .course-hero h1 {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .course-hero p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .course-content {
+            padding: 40px;
+        }
+
+        .course-tabs {
+            display: flex;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 30px;
+        }
+
+        .course-tab {
+            padding: 15px 25px;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .course-tab:hover,
+        .course-tab.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .course-description {
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .course-objectives {
+            margin-bottom: 30px;
+        }
+
+        .course-objectives h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--dark-blue);
+        }
+
+        .course-objectives ul {
+            list-style: disc;
+            padding-left: 20px;
+        }
+
+        .course-objectives li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .curriculum-list {
+            display: grid;
+            gap: 15px;
+        }
+
+        .curriculum-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background-color: var(--light-gray);
+            border-radius: 6px;
+        }
+
+        .curriculum-item .icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-color);
+            color: var(--white-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        .curriculum-item .content h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: var(--dark-blue);
+        }
+
+        .curriculum-item .content p {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* 侧边栏 */
+        .course-sidebar {
+            display: grid;
+            gap: 30px;
+        }
+
+        .sidebar-card {
+            background-color: var(--white-color);
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .sidebar-card h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--dark-blue);
+        }
+
+        .course-info-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .course-info-item:last-child {
+            border-bottom: none;
+        }
+
+        .course-info-item .label {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .course-info-item .value {
+            font-weight: 500;
+            color: var(--dark-blue);
+        }
+
+        .enroll-btn {
+            width: 100%;
+            background-color: var(--primary-color);
+            color: var(--white-color);
+            padding: 15px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-bottom: 15px;
+        }
+
+        .enroll-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .price-info {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .price-current {
+            font-size: 28px;
+            font-weight: 700;
+            color: #e74c3c;
+        }
+
+        .price-original {
+            font-size: 16px;
+            color: var(--text-secondary);
+            text-decoration: line-through;
+            margin-left: 10px;
+        }
+
+        .instructor-card .instructor-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .instructor-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: var(--primary-color);
+        }
+
+        .instructor-details h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: var(--dark-blue);
+        }
+
+        .instructor-details p {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .instructor-bio {
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+        }
+
+        /* 底部 */
+        .main-footer {
+            background-color: #1c1c1c;
+            color: #f0f0f0;
+            padding: 50px 0;
+            font-size: 14px;
+        }
+        .footer-container {
+            text-align: center;
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 25px;
+        }
+        .footer-links a {
+            color: #f0f0f0;
+            transition: color 0.3s;
+        }
+        .footer-links a:hover {
+            color: var(--white-color);
+        }
+        .footer-container .footer-copyright p {
+            color: #f0f0f0;
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header class="main-header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">
+                    <img src="https://qst-lss.eduplus.net/static/svg/logo-qstlss.fc395ba21759154045541.svg" alt="Logo">
+                </a>
+                <div class="nav-links">
+                    <a href="index.html">首页</a>
+                    <a href="training.html" class="active">技能培训</a>
+                    <a href="exam.html">认证考试</a>
+                    <a href="competition.html">技能兴鲁大赛</a>
+                    <a href="notice.html">通知</a>
+                </div>
+                <div class="user-area">
+                    <button class="login-btn">登录</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 面包屑导航 -->
+    <section class="breadcrumb">
+        <div class="container">
+            <nav class="breadcrumb-nav">
+                <a href="index.html">首页</a>
+                <span>/</span>
+                <a href="training.html">技能培训</a>
+                <span>/</span>
+                <span>课程详情</span>
+            </nav>
+        </div>
+    </section>
+
+    <!-- 课程详情 -->
+    <section class="course-detail">
+        <div class="container">
+            <div class="course-layout">
+                <div class="course-main">
+                    <div class="course-hero">
+                        <div>
+                            <h1>高级Web前端开发工程师</h1>
+                            <p>掌握现代前端开发技术栈，成为全栈开发专家</p>
+                        </div>
+                    </div>
+                    
+                    <div class="course-content">
+                        <div class="course-tabs">
+                            <div class="course-tab active" data-tab="overview">课程概述</div>
+                            <div class="course-tab" data-tab="curriculum">课程大纲</div>
+                            <div class="course-tab" data-tab="requirements">报名要求</div>
+                        </div>
+
+                        <div id="overview" class="tab-content active">
+                            <div class="course-description">
+                                <p>本课程是专为想要成为高级Web前端开发工程师的学员设计的综合性培训课程。课程涵盖了现代前端开发的核心技术栈，包括HTML5、CSS3、JavaScript ES6+、React、Vue.js、TypeScript等主流技术。</p>
+                                
+                                <p>通过系统的理论学习和大量的实战项目练习，学员将掌握前端开发的完整流程，具备独立开发复杂Web应用的能力。课程采用项目驱动的教学方式，每个知识点都配有相应的实战案例。</p>
+                            </div>
+
+                            <div class="course-objectives">
+                                <h3>学习目标</h3>
+                                <ul>
+                                    <li>掌握HTML5语义化标签和CSS3高级特性</li>
+                                    <li>熟练使用JavaScript ES6+新特性进行开发</li>
+                                    <li>掌握React和Vue.js框架的核心概念和实战应用</li>
+                                    <li>学会使用TypeScript提升代码质量和开发效率</li>
+                                    <li>掌握前端工程化工具和最佳实践</li>
+                                    <li>具备响应式设计和移动端开发能力</li>
+                                    <li>了解前端性能优化和安全防护</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div id="curriculum" class="tab-content">
+                            <div class="curriculum-list">
+                                <div class="curriculum-item">
+                                    <div class="icon">1</div>
+                                    <div class="content">
+                                        <h4>HTML5与CSS3基础</h4>
+                                        <p>语义化标签、Flexbox、Grid布局、CSS3动画与过渡效果</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="curriculum-item">
+                                    <div class="icon">2</div>
+                                    <div class="content">
+                                        <h4>JavaScript核心技术</h4>
+                                        <p>ES6+新特性、异步编程、模块化开发、函数式编程</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="curriculum-item">
+                                    <div class="icon">3</div>
+                                    <div class="content">
+                                        <h4>React框架开发</h4>
+                                        <p>组件化开发、状态管理、路由配置、Hooks使用</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="curriculum-item">
+                                    <div class="icon">4</div>
+                                    <div class="content">
+                                        <h4>Vue.js生态系统</h4>
+                                        <p>Vue3新特性、Vuex状态管理、Vue Router、组合式API</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="curriculum-item">
+                                    <div class="icon">5</div>
+                                    <div class="content">
+                                        <h4>TypeScript开发</h4>
+                                        <p>类型系统、接口定义、泛型使用、装饰器模式</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="curriculum-item">
+                                    <div class="icon">6</div>
+                                    <div class="content">
+                                        <h4>前端工程化</h4>
+                                        <p>Webpack配置、Vite构建工具、代码规范、自动化测试</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="requirements" class="tab-content">
+                            <div class="course-objectives">
+                                <h3>报名条件</h3>
+                                <ul>
+                                    <li>具备基本的计算机操作能力</li>
+                                    <li>有一定的编程基础，了解HTML、CSS、JavaScript基础语法</li>
+                                    <li>具备高中及以上学历</li>
+                                    <li>有志于从事前端开发工作的人员</li>
+                                </ul>
+                                
+                                <h3>适合人群</h3>
+                                <ul>
+                                    <li>计算机相关专业的在校学生</li>
+                                    <li>想要转行进入IT行业的人员</li>
+                                    <li>初级前端开发者希望提升技能</li>
+                                    <li>后端开发者想要学习前端技术</li>
+                                </ul>
+                                
+                                <h3>学习设备要求</h3>
+                                <ul>
+                                    <li>配置良好的电脑（Windows/Mac/Linux均可）</li>
+                                    <li>稳定的网络连接</li>
+                                    <li>安装必要的开发工具（课程中会指导安装）</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="course-sidebar">
+                    <div class="sidebar-card">
+                        <div class="price-info">
+                            <span class="price-current">¥2,999</span>
+                            <span class="price-original">¥3,999</span>
+                        </div>
+                        <button class="enroll-btn">立即报名</button>
+                        <!-- 去除30天无理由退款字样 -->
+                    </div>
+
+                    <div class="sidebar-card">
+                        <h3>课程信息</h3>
+                        <div class="course-info-item">
+                            <span class="label">课程时长</span>
+                            <span class="value">120课时</span>
+                        </div>
+                        <div class="course-info-item">
+                            <span class="label">学习方式</span>
+                            <span class="value">在线学习</span>
+                        </div>
+                        <div class="course-info-item">
+                            <span class="label">技能等级</span>
+                            <span class="value">高级</span>
+                        </div>
+                        <div class="course-info-item">
+                            <span class="label">证书类型</span>
+                            <span class="value">职业技能等级证书</span>
+                        </div>
+                        <div class="course-info-item">
+                            <span class="label">学习期限</span>
+                            <span class="value">12个月</span>
+                        </div>
+                        <div class="course-info-item">
+                            <span class="label">已报名人数</span>
+                            <span class="value">1,256人</span>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-card instructor-card">
+                        <h3>讲师介绍</h3>
+                        <div class="instructor-info">
+                            <div class="instructor-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="instructor-details">
+                                <h4>张老师</h4>
+                                <p>高级前端架构师</p>
+                            </div>
+                        </div>
+                        <div class="instructor-bio">
+                            10年前端开发经验，曾任职于知名互联网公司，负责多个大型项目的前端架构设计。精通React、Vue等主流框架，在前端工程化和性能优化方面有丰富经验。
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 底部 -->
+    <footer class="main-footer">
+        <div class="container footer-container">
+            <div class="footer-links">
+                <a href="#">关于我们</a>
+                <a href="#">联系我们</a>
+                <a href="#">合作机构</a>
+                <a href="#">隐私政策</a>
+                <a href="#">服务条款</a>
+            </div>
+            <div class="footer-copyright">
+                <p>Copyright © 2025 青软创新. All rights reserved.</p>
+                <p>鲁ICP备XXXXXXXX号-X</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 标签页切换功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabs = document.querySelectorAll('.course-tab');
+            const contents = document.querySelectorAll('.tab-content');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const targetTab = this.getAttribute('data-tab');
+                    
+                    // 移除所有active类
+                    tabs.forEach(t => t.classList.remove('active'));
+                    contents.forEach(c => c.classList.remove('active'));
+                    
+                    // 添加active类
+                    this.classList.add('active');
+                    document.getElementById(targetTab).classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>技能培训 - 职业技能等级认定平台</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #007bff;
+            --text-color: #333;
+            --light-gray: #f8f9fa;
+            --border-color: #e9ecef;
+            --white-color: #fff;
+            --dark-blue: #2c3e50;
+            --text-secondary: #6c757d;
+        }
+
+        body,
+        h1,
+        h2,
+        h3,
+        p,
+        ul,
+        li {
+            margin: 0;
+            padding: 0;
+            font-family: "Helvetica Neue", "Hiragino Sans GB", "WenQuanYi Micro Hei", "Microsoft Yahei", sans-serif;
+            color: var(--text-color);
+        }
+
+        body {
+            background-color: var(--white-color);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+
+        /* 导航栏样式 */
+        .main-header {
+            background-color: var(--white-color);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .navbar .logo {
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar .logo img {
+            height: 64px;
+        }
+
+        .navbar .nav-links {
+            display: flex;
+            gap: 50px;
+        }
+
+        .navbar .nav-links a {
+            font-size: 16px;
+            font-weight: 500;
+            padding: 10px 0;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .navbar .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: width 0.3s;
+        }
+
+        .navbar .nav-links a:hover,
+        .navbar .nav-links a.active {
+            color: var(--primary-color);
+        }
+
+        .navbar .nav-links a:hover::after,
+        .navbar .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .navbar .user-area .login-btn {
+            background-color: var(--primary-color);
+            color: var(--white-color);
+            padding: 10px 24px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .navbar .user-area .login-btn:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        /* --- Responsive Styles --- */
+        @media (max-width: 1280px) {
+            .container {
+                max-width: 1200px;
+            }
+
+            .navbar {
+                height: 64px;
+            }
+
+            .navbar .logo img {
+                height: 64px;
+            }
+        }
+
+        /* 页面标题 */
+        .page-header {
+            background: linear-gradient(135deg, var(--primary-color), #0056b3);
+            color: var(--white-color);
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 36px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--white-color);
+        }
+
+        .page-header p {
+            font-size: 18px;
+            opacity: 0.9;
+            color: var(--white-color);
+        }
+
+        /* 筛选区域 */
+        .filter-section {
+            background-color: var(--white-color);
+            padding: 40px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .filter-container {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .filter-group {
+            display: flex;
+            align-items: flex-start; /* 改为靠上对齐 */
+            gap: 20px;
+        }
+
+        .filter-group label {
+            font-weight: 600;
+            color: var(--dark-blue);
+            font-size: 16px;
+            min-width: 100px;
+            padding-top: 8px; /* 垂直居中对齐 */
+        }
+
+        .filter-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .filter-option {
+            padding: 8px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            background-color: var(--white-color);
+            color: var(--text-color);
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+
+        /* 选中的有气泡样式，未选中的没有气泡样式 */
+        .filter-option.active {
+            background-color: var(--primary-color);
+            color: var(--white-color);
+            border-color: var(--primary-color);
+            box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3); /* 气泡样式 */
+            transform: translateY(-2px); /* 轻微上移效果 */
+        }
+
+        .filter-option:not(.active) {
+            background-color: var(--white-color);
+            color: var(--text-color);
+            border-color: var(--border-color);
+            box-shadow: none; /* 无气泡样式 */
+            transform: none;
+        }
+
+        .filter-option:hover:not(.active) {
+            background-color: #f0f0f0;
+        }
+
+        .search-group {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 20px;
+        }
+
+        .search-box {
+            display: flex;
+            gap: 10px;
+            max-width: 500px;
+        }
+
+        .search-box input {
+            width: 350px;
+            padding: 12px 20px;
+            border: 2px solid var(--border-color);
+            border-radius: 30px;
+            font-size: 15px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .search-box input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+        }
+
+        .search-box button {
+            padding: 12px 30px;
+            background-color: var(--primary-color);
+            color: var(--white-color);
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 500;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .search-box button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        /* 课程网格 */
+        .courses-section {
+            padding: 60px 0;
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        .course-card {
+            background-color: var(--white-color);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .course-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .course-card .card-img {
+            width: 100%;
+            height: 120px; /* 改为120px */
+            object-fit: cover;
+        }
+
+        .course-card .card-title-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 120px; /* 与图片高度一致 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: none; /* 去除遮罩 */
+            color: var(--dark-blue); /* 改为深色字体 */
+            font-size: 18px;
+            font-weight: 600;
+            text-align: center;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .course-card .card-content {
+            padding: 20px;
+        }
+
+        .course-card .card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        .course-card .card-level {
+            background-color: var(--light-gray);
+            padding: 4px 12px;
+            border-radius: 20px;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .course-card .card-duration {
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        /* 分页 */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 50px;
+        }
+
+        .pagination a {
+            padding: 8px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            color: var(--text-color);
+            transition: all 0.3s;
+        }
+
+        .pagination a:hover,
+        .pagination a.active {
+            background-color: var(--primary-color);
+            color: var(--white-color);
+            border-color: var(--primary-color);
+        }
+
+        /* 底部 */
+        .main-footer {
+            background-color: #1c1c1c;
+            color: #f0f0f0;
+            padding: 50px 0;
+            font-size: 14px;
+        }
+
+        .footer-container {
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 25px;
+        }
+
+        .footer-links a {
+            color: #f0f0f0;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--white-color);
+        }
+
+        .footer-container .footer-copyright p {
+            color: #f0f0f0;
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 导航栏 -->
+    <header class="main-header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">
+                    <img src="https://qst-lss.eduplus.net/static/svg/logo-qstlss.fc395ba21759154045541.svg" alt="Logo">
+                </a>
+                <div class="nav-links">
+                    <a href="index.html">首页</a>
+                    <a href="training.html" class="active">技能培训</a>
+                    <a href="exam.html">认证考试</a>
+                    <a href="competition.html">技能兴鲁大赛</a>
+                    <a href="notice.html">通知</a>
+                </div>
+                <div class="user-area">
+                    <button class="login-btn">登录</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 页面标题 -->
+    <section class="page-header">
+        <div class="container">
+            <h1>技能培训</h1>
+            <p>提升职业技能，成就美好未来</p>
+        </div>
+    </section>
+
+    <!-- 筛选区域 -->
+    <section class="filter-section">
+        <div class="container">
+            <div class="filter-container">
+                <div class="filter-group">
+                    <label>职业类别</label>
+                    <div class="filter-options">
+                        <div class="filter-option active" data-category="all">全部</div>
+                        <div class="filter-option" data-category="computer">计算机程序设计员</div>
+                        <div class="filter-option" data-category="ai">人工智能训练师</div>
+                        <div class="filter-option" data-category="drone">无人机驾驶员</div>
+                        <div class="filter-option" data-category="semiconductor">半导体芯片制造工</div>
+                        <div class="filter-option" data-category="digital">数字化解决方案设计师</div>
+                        <div class="filter-option" data-category="security">网络与信息安全管理员</div>
+                        <div class="filter-option" data-category="chip">半导体分立器件和集成电路装调工</div>
+                    </div>
+                </div>
+                <div class="filter-group">
+                    <label>技能等级</label>
+                    <div class="filter-options">
+                        <div class="filter-option active" data-level="all">全部</div>
+                        <div class="filter-option" data-level="junior">初级</div>
+                        <div class="filter-option" data-level="intermediate">中级</div>
+                        <div class="filter-option" data-level="senior">高级</div>
+                    </div>
+                </div>
+                <!-- 去除课程状态筛选条件 -->
+                <div class="search-group">
+                    <div class="search-box">
+                        <input type="text" placeholder="搜索课程名称...">
+                        <button type="button">搜索</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 课程列表 -->
+    <section class="courses-section">
+        <div class="container">
+            <div class="courses-grid">
+                <a href="course-detail.html?id=1" class="course-card">
+                    <img src="https://qst-lss.eduplus.net/static/png/school_course_bg1.8009605a1759154045541.png"
+                        alt="课程封面" class="card-img">
+                    <div class="card-title-overlay">高级Web前端开发工程师</div>
+                    <div class="card-content">
+                        <div class="card-meta">
+                            <span class="card-level">高级</span>
+                            <span class="card-duration">120课时</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="course-detail.html?id=2" class="course-card">
+                    <img src="https://qst-lss.eduplus.net/static/png/school_course_bg2.6879c9d11759154045541.png"
+                        alt="课程封面" class="card-img">
+                    <div class="card-title-overlay">Python数据分析与机器学习</div>
+                    <div class="card-content">
+                        <div class="card-meta">
+                            <span class="card-level">中级</span>
+                            <span class="card-duration">80课时</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="course-detail.html?id=3" class="course-card">
+                    <img src="https://qst-lss.eduplus.net/static/png/school_course_bg3.b8eb67181759154045541.png"
+                        alt="课程封面" class="card-img">
+                    <div class="card-title-overlay">网络安全基础入门</div>
+                    <div class="card-content">
+                        <div class="card-meta">
+                            <span class="card-level">初级</span>
+                            <span class="card-duration">60课时</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="course-detail.html?id=4" class="course-card">
+                    <img src="https://qst-lss.eduplus.net/static/png/school_course_bg4.0ef68bb41759154045541.png"
+                        alt="课程封面" class="card-img">
+                    <div class="card-title-overlay">无人机航拍与后期制作</div>
+                    <div class="card-content">
+                        <div class="card-meta">
+                            <span class="card-level">中级</span>
+                            <span class="card-duration">100课时</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="course-detail.html?id=5" class="course-card">
+                    <img src="https://qst-lss.eduplus.net/static/png/school_course_bg1.8009605a1759154045541.png"
+                        alt="课程封面" class="card-img">
+                    <div class="card-title-overlay">人工智能训练师认证</div>
+                    <div class="card-content">
+                        <div class="card-meta">
+                            <span class="card-level">高级</span>
+                            <span class="card-duration">150课时</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="course-detail.html?id=6" class="course-card">
+                    <img src="https://qst-lss.eduplus.net/static/png/school_course_bg2.6879c9d11759154045541.png"
+                        alt="课程封面" class="card-img">
+                    <div class="card-title-overlay">半导体芯片制造工艺</div>
+                    <div class="card-content">
+                        <div class="card-meta">
+                            <span class="card-level">高级</span>
+                            <span class="card-duration">200课时</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- 分页 -->
+            <div class="pagination">
+                <a href="#">&laquo;</a>
+                <a href="#" class="active">1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <a href="#">4</a>
+                <a href="#">5</a>
+                <a href="#">&raquo;</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 底部 -->
+    <footer class="main-footer">
+        <div class="container footer-container">
+            <div class="footer-links">
+                <a href="#">关于我们</a>
+                <a href="#">联系我们</a>
+                <a href="#">合作机构</a>
+                <a href="#">隐私政策</a>
+                <a href="#">服务条款</a>
+            </div>
+            <div class="footer-copyright">
+                <p>Copyright © 2025 青软创新. All rights reserved.</p>
+                <p>鲁ICP备XXXXXXXX号-X</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 筛选功能
+        document.addEventListener('DOMContentLoaded', function () {
+            const filterOptions = document.querySelectorAll('.filter-option');
+
+            filterOptions.forEach(option => {
+                option.addEventListener('click', function () {
+                    // 获取同组的其他选项
+                    const group = this.parentElement;
+                    const siblings = group.querySelectorAll('.filter-option');
+
+                    // 移除同组其他选项的active类
+                    siblings.forEach(sibling => sibling.classList.remove('active'));
+
+                    // 为当前选项添加active类
+                    this.classList.add('active');
+
+                    // 这里可以添加实际的筛选逻辑
+                    console.log('筛选条件：', this.textContent, this.dataset);
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

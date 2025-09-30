@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>认证考试 - 职业技能等级认定平台</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #007bff;
+            --text-color: #333;
+            --light-gray: #f8f9fa;
+            --border-color: #e9ecef;
+            --white-color: #fff;
+            --dark-blue: #2c3e50;
+            --text-secondary: #6c757d;
+            --success-color: #28a745;
+            --warning-color: #ffc107;
+            --danger-color: #dc3545;
+        }
+
+        body, h1, h2, h3, p, ul, li {
+            margin: 0;
+            padding: 0;
+            font-family: "Helvetica Neue", "Hiragino Sans GB", "WenQuanYi Micro Hei", "Microsoft Yahei", sans-serif;
+            color: var(--text-color);
+        }
+
+        body {
+            background-color: var(--white-color);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+
+        /* 导航栏样式 */
+        .main-header {
+            background-color: var(--white-color);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .navbar .logo {
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+        .navbar .logo img {
+            height: 64px;
+        }
+        .navbar .nav-links {
+            display: flex;
+            gap: 50px;
+        }
+
+        .navbar .nav-links a {
+            font-size: 16px;
+            font-weight: 500;
+            padding: 10px 0;
+            position: relative;
+            transition: color 0.3s;
+        }
+        .navbar .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: width 0.3s;
+        }
+
+        .navbar .nav-links a:hover,
+        .navbar .nav-links a.active {
+            color: var(--primary-color);
+        }
+        .navbar .nav-links a:hover::after,
+        .navbar .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .navbar .user-area .login-btn {
+            background-color: var(--primary-color);
+            color: var(--white-color);
+            padding: 10px 24px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .navbar .user-area .login-btn:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        /* --- Responsive Styles --- */
+        @media (max-width: 1280px) {
+            .container {
+                max-width: 1200px;
+            }
+            .navbar {
+                height: 64px;
+            }
+            .navbar .logo img {
+                height: 64px;
+            }
+        }
+
+        /* 页面标题 */
+        .page-header {
+            background: linear-gradient(135deg, var(--primary-color), #0056b3);
+            color: var(--white-color);
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 36px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--white-color);
+        }
+
+        .page-header p {
+            font-size: 18px;
+            opacity: 0.9;
+            color: var(--white-color);
+        }
+
+        /* 快速入口 */
+        .quick-access {
+            padding: 60px 0;
+            background-color: var(--light-gray);
+        }
+
+        .quick-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        .quick-card {
+            background-color: var(--white-color);
+            padding: 40px 20px; /* 调整内边距 */
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .quick-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.1);
+        }
+
+        .quick-card .icon {
+            font-size: 48px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .quick-card h3 {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--dark-blue);
+        }
+
+        /* 去除副标题样式 */
+
+        .quick-card .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: var(--white-color);
+            padding: 12px 24px;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+
+        .quick-card .btn:hover {
+            background-color: #0056b3;
+        }
+
+        /* 考试列表 */
+        .exam-section {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 50px;
+            color: var(--dark-blue);
+        }
+
+        .exam-list {
+            display: grid;
+            gap: 20px;
+        }
+
+        .exam-item {
+            background-color: var(--white-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: box-shadow 0.3s;
+        }
+
+        .exam-item:hover {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .exam-info h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--dark-blue);
+        }
+
+        .exam-meta {
+            display: flex;
+            gap: 30px;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .exam-meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .exam-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        .exam-actions .btn {
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--white-color);
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-outline {
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+            background-color: transparent;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: var(--white-color);
+        }
+
+        .status-badge {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .status-ongoing {
+            background-color: var(--success-color);
+            color: var(--white-color);
+        }
+
+        .status-upcoming {
+            background-color: var(--warning-color);
+            color: var(--white-color);
+        }
+
+        .status-ended {
+            background-color: var(--text-secondary);
+            color: var(--white-color);
+        }
+
+        /* 底部 */
+        .main-footer {
+            background-color: #1c1c1c;
+            color: #f0f0f0;
+            padding: 50px 0;
+            font-size: 14px;
+        }
+        .footer-container {
+            text-align: center;
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 25px;
+        }
+        .footer-links a {
+            color: #f0f0f0;
+            transition: color 0.3s;
+        }
+        .footer-links a:hover {
+            color: var(--white-color);
+        }
+        .footer-container .footer-copyright p {
+            color: #f0f0f0;
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header class="main-header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">
+                    <img src="https://qst-lss.eduplus.net/static/svg/logo-qstlss.fc395ba21759154045541.svg" alt="Logo">
+                </a>
+                <div class="nav-links">
+                    <a href="index.html">首页</a>
+                    <a href="training.html">技能培训</a>
+                    <a href="exam.html" class="active">认证考试</a>
+                    <a href="competition.html">技能兴鲁大赛</a>
+                    <a href="notice.html">通知</a>
+                </div>
+                <div class="user-area">
+                    <button class="login-btn">登录</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 页面标题 -->
+    <section class="page-header">
+        <div class="container">
+            <h1>认证考试</h1>
+            <p>权威认证，提升职业竞争力</p>
+        </div>
+    </section>
+
+    <!-- 快速入口 -->
+    <section class="quick-access">
+        <div class="container">
+            <div class="quick-grid">
+                <div class="quick-card">
+                    <div class="icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h3>考试安排</h3>
+                    <!-- 去除副标题 -->
+                    <a href="#exam-schedule" class="btn">查看安排</a>
+                </div>
+
+                <div class="quick-card">
+                    <div class="icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>模拟考试</h3>
+                    <!-- 去除副标题 -->
+                    <a href="#" class="btn">开始模拟</a>
+                </div>
+
+                <div class="quick-card" onclick="location.href='score-query.html'">
+                    <div class="icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>成绩查询</h3>
+                    <!-- 去除副标题 -->
+                    <a href="score-query.html" class="btn">立即查询</a>
+                </div>
+
+                <div class="quick-card" onclick="location.href='score-query.html'">
+                    <div class="icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3>证书查询</h3>
+                    <!-- 去除副标题 -->
+                    <a href="score-query.html" class="btn">证书验证</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 考试列表 -->
+    <section class="exam-section" id="exam-schedule">
+        <div class="container">
+            <h2 class="section-title">考试安排</h2>
+            <div class="exam-list">
+                <div class="exam-item">
+                    <div class="exam-info">
+                        <h3>计算机程序设计员（高级）认证考试</h3>
+                        <div class="exam-meta">
+                            <span><i class="fas fa-calendar"></i> 考试时间：2025年10月15日</span>
+                            <span><i class="fas fa-clock"></i> 报名截止：2025年10月10日</span>
+                            <span><i class="fas fa-map-marker-alt"></i> 济南市考试中心</span>
+                            <span class="status-badge status-upcoming">报名中</span>
+                        </div>
+                    </div>
+                    <div class="exam-actions">
+                        <a href="exam-detail.html?id=1" class="btn btn-outline">查看详情</a>
+                        <a href="#" class="btn btn-primary">立即报名</a>
+                    </div>
+                </div>
+
+                <div class="exam-item">
+                    <div class="exam-info">
+                        <h3>人工智能训练师（中级）认证考试</h3>
+                        <div class="exam-meta">
+                            <span><i class="fas fa-calendar"></i> 考试时间：2025年10月20日</span>
+                            <span><i class="fas fa-clock"></i> 报名截止：2025年10月15日</span>
+                            <span><i class="fas fa-map-marker-alt"></i> 青岛市技能鉴定中心</span>
+                            <span class="status-badge status-upcoming">报名中</span>
+                        </div>
+                    </div>
+                    <div class="exam-actions">
+                        <a href="exam-detail.html?id=2" class="btn btn-outline">查看详情</a>
+                        <a href="#" class="btn btn-primary">立即报名</a>
+                    </div>
+                </div>
+
+                <div class="exam-item">
+                    <div class="exam-info">
+                        <h3>无人机驾驶员（初级）认证考试</h3>
+                        <div class="exam-meta">
+                            <span><i class="fas fa-calendar"></i> 考试时间：2025年10月25日</span>
+                            <span><i class="fas fa-clock"></i> 报名截止：2025年10月20日</span>
+                            <span><i class="fas fa-map-marker-alt"></i> 烟台市职业技能培训基地</span>
+                            <span class="status-badge status-upcoming">报名中</span>
+                        </div>
+                    </div>
+                    <div class="exam-actions">
+                        <a href="exam-detail.html?id=3" class="btn btn-outline">查看详情</a>
+                        <a href="#" class="btn btn-primary">立即报名</a>
+                    </div>
+                </div>
+
+                <div class="exam-item">
+                    <div class="exam-info">
+                        <h3>网络与信息安全管理员（高级）认证考试</h3>
+                        <div class="exam-meta">
+                            <span><i class="fas fa-calendar"></i> 考试时间：2025年09月28日</span>
+                            <span><i class="fas fa-clock"></i> 报名截止：2025年09月25日</span>
+                            <span><i class="fas fa-map-marker-alt"></i> 济南市考试中心</span>
+                            <span class="status-badge status-ongoing">考试中</span>
+                        </div>
+                    </div>
+                    <div class="exam-actions">
+                        <a href="exam-detail.html?id=4" class="btn btn-outline">查看详情</a>
+                        <a href="score-query.html" class="btn btn-primary">查看成绩</a>
+                    </div>
+                </div>
+
+                <div class="exam-item">
+                    <div class="exam-info">
+                        <h3>半导体芯片制造工（中级）认证考试</h3>
+                        <div class="exam-meta">
+                            <span><i class="fas fa-calendar"></i> 考试时间：2025年09月20日</span>
+                            <span><i class="fas fa-clock"></i> 报名截止：2025年09月15日</span>
+                            <span><i class="fas fa-map-marker-alt"></i> 济南市考试中心</span>
+                            <span class="status-badge status-ended">已结束</span>
+                        </div>
+                    </div>
+                    <div class="exam-actions">
+                        <a href="exam-detail.html?id=5" class="btn btn-outline">查看详情</a>
+                        <a href="score-query.html" class="btn btn-primary">查看成绩</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 底部 -->
+    <footer class="main-footer">
+        <div class="container footer-container">
+            <div class="footer-links">
+                <a href="#">关于我们</a>
+                <a href="#">联系我们</a>
+                <a href="#">合作机构</a>
+                <a href="#">隐私政策</a>
+                <a href="#">服务条款</a>
+            </div>
+            <div class="footer-copyright">
+                <p>Copyright © 2025 青软创新. All rights reserved.</p>
+                <p>鲁ICP备XXXXXXXX号-X</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
