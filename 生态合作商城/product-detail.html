@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>产品详情 - U+平台</title>
+    <!-- 引入Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- 配置Tailwind自定义颜色和字体 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#165DFF',
+                        secondary: '#36CFC9',
+                        dark: '#333333',
+                        'gray-medium': '#666666',
+                        'gray-light': '#EEEEEE',
+                        'gray-bg': '#F5F7FA'
+                    },
+                    fontFamily: {
+                        sans: ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif']
+                    },
+                    boxShadow: {
+                        'card': '0 4px 12px rgba(0,0,0,0.05)',
+                        'card-hover': '0 8px 24px rgba(0,0,0,0.08)'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- 自定义样式 -->
+    <style>
+        .transition-navbar {
+            transition: all 0.3s ease;
+        }
+
+        .transition-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .transition-button {
+            transition: all 0.2s ease;
+        }
+
+        .scale-button {
+            transform: scale(0.98);
+        }
+
+        .nav-tab {
+            position: sticky;
+            top: 80px;
+            z-index: 40;
+            background: white;
+            border-bottom: 1px solid #EEEEEE;
+        }
+
+        .nav-tab-btn {
+            position: relative;
+            padding: 16px 24px;
+            font-weight: 500;
+            color: #666666;
+            transition: all 0.3s ease;
+            border-bottom: 2px solid transparent;
+        }
+
+        .nav-tab-btn:hover {
+            color: #165DFF;
+        }
+
+        .nav-tab-btn.active {
+            color: #165DFF;
+            border-bottom-color: #165DFF;
+        }
+
+        .section-content {
+            scroll-margin-top: 120px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+
+<body class="bg-white font-sans text-dark antialiased">
+    <!-- 导航栏 -->
+    <header class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm z-50 shadow-sm transition-navbar">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16 md:h-20">
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center space-x-2">
+                    <img src="img/logo1.svg" alt="U+平台logo" class="w-21 h-9 object-contain">
+                    <span class="text-lg font-semibold text-dark hidden sm:inline-block">· 生态合作</span>
+                </a>
+
+                <!-- 桌面端导航 -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="index.html#overview"
+                        class="nav-link text-gray-medium hover:text-primary font-medium py-2 border-b-2 border-transparent">概述</a>
+                    <a href="index.html#market"
+                        class="nav-link text-primary hover:text-primary font-medium py-2 border-b-2 border-primary">生态市场</a>
+                    <a href="index.html#university"
+                        class="nav-link text-gray-medium hover:text-primary font-medium py-2 border-b-2 border-transparent">院校合作</a>
+                </nav>
+
+                <!-- 移动端汉堡菜单 -->
+                <button id="menu-toggle" class="md:hidden text-dark hover:text-primary focus:outline-none">
+                    <i class="fa fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- 移动端导航菜单 -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-light">
+            <div class="container mx-auto px-4 py-3 space-y-3">
+                <a href="index.html#overview" class="block text-gray-medium hover:text-primary font-medium py-2">概述</a>
+                <a href="index.html#market" class="block text-primary hover:text-primary font-medium py-2">生态市场</a>
+                <a href="index.html#university"
+                    class="block text-gray-medium hover:text-primary font-medium py-2">院校合作</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主内容区 -->
+    <main class="pt-16 md:pt-20">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- 面包屑导航 -->
+            <div class="py-4">
+                <nav class="flex items-center space-x-2 text-sm text-gray-medium">
+                    <a href="index.html" class="hover:text-primary transition-colors">首页</a>
+                    <i class="fa fa-angle-right"></i>
+                    <a href="index.html#market" class="hover:text-primary transition-colors">生态市场</a>
+                    <i class="fa fa-angle-right"></i>
+                    <span id="breadcrumb-title" class="text-dark">产品详情</span>
+                </nav>
+            </div>
+
+            <!-- 产品基本信息 -->
+            <div class="bg-white rounded-xl shadow-card p-8 mb-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- 产品图片 -->
+                    <div>
+                        <div class="bg-gray-light rounded-xl overflow-hidden mb-4">
+                            <img id="product-image" src="" alt="" class="w-full h-96 object-cover">
+                        </div>
+                        <!-- 产品标签 -->
+                        <div id="product-tags" class="flex flex-wrap gap-2">
+                            <!-- 标签将通过JavaScript动态填充 -->
+                        </div>
+                    </div>
+
+                    <!-- 产品信息 -->
+                    <div>
+                        <div class="mb-4">
+                            <span id="product-type"
+                                class="inline-block bg-primary text-white text-sm px-3 py-1 rounded-full mb-4"></span>
+                            <h1 id="product-title" class="text-3xl font-bold mb-4"></h1>
+                            <p id="product-description" class="text-gray-medium text-lg leading-relaxed"></p>
+                        </div>
+
+                        <!-- 合作伙伴 -->
+                        <div class="mb-6">
+                            <h3 class="text-lg font-semibold mb-2">合作伙伴</h3>
+                            <p id="product-partner" class="text-primary font-medium"></p>
+                        </div>
+
+                        <!-- 操作按钮 -->
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <button id="purchase-btn"
+                                class="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-lg font-medium transition-button hover:shadow-lg active:scale-button flex-1">
+                                <i class="fa fa-shopping-cart mr-2"></i>
+                                购买咨询
+                            </button>
+                            <button id="demo-btn"
+                                class="border border-primary text-primary hover:bg-primary hover:text-white px-8 py-3 rounded-lg font-medium transition-button flex-1">
+                                <i class="fa fa-play mr-2"></i>
+                                申请试用
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 导航Tab -->
+            <div class="nav-tab">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex overflow-x-auto">
+                        <a href="#overview" class="nav-tab-btn active" data-section="overview">产品概述</a>
+                        <a href="#features" class="nav-tab-btn" data-section="features">功能特性</a>
+                        <a href="#parameters" class="nav-tab-btn" data-section="parameters">技术参数</a>
+                        <a href="#cases" class="nav-tab-btn" data-section="cases">应用案例</a>
+                        <a href="#support" class="nav-tab-btn" data-section="support">服务支持</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 内容区域 -->
+            <div class="py-8 space-y-16">
+                <!-- 产品概述 -->
+                <section id="overview" class="section-content">
+                    <div class="bg-white rounded-xl shadow-card p-8">
+                        <h2 class="text-2xl font-semibold mb-6">产品概述</h2>
+                        <div id="overview-content" class="prose prose-lg max-w-none text-gray-medium">
+                            <!-- 内容将通过JavaScript动态填充 -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 功能特性 -->
+                <section id="features" class="section-content">
+                    <div class="bg-white rounded-xl shadow-card p-8">
+                        <h2 class="text-2xl font-semibold mb-6">功能特性</h2>
+                        <div id="features-content" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- 内容将通过JavaScript动态填充 -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 技术参数 -->
+                <section id="parameters" class="section-content">
+                    <div class="bg-white rounded-xl shadow-card p-8">
+                        <h2 class="text-2xl font-semibold mb-6">技术参数</h2>
+                        <div id="parameters-content" class="bg-gray-bg rounded-lg p-6">
+                            <!-- 内容将通过JavaScript动态填充 -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 应用案例 -->
+                <section id="cases" class="section-content">
+                    <div class="bg-white rounded-xl shadow-card p-8">
+                        <h2 class="text-2xl font-semibold mb-6">应用案例</h2>
+                        <div id="cases-content" class="space-y-6">
+                            <!-- 内容将通过JavaScript动态填充 -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 服务支持 -->
+                <section id="support" class="section-content">
+                    <div class="bg-white rounded-xl shadow-card p-8">
+                        <h2 class="text-2xl font-semibold mb-6">服务支持</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <div class="bg-gray-bg rounded-lg p-6 text-center">
+                                <div
+                                    class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
+                                    <i class="fa fa-headphones text-primary text-xl"></i>
+                                </div>
+                                <h3 class="text-lg font-semibold mb-2">技术支持</h3>
+                                <p class="text-gray-medium text-sm">7×24小时技术支持服务，快速响应解决问题</p>
+                            </div>
+                            <div class="bg-gray-bg rounded-lg p-6 text-center">
+                                <div
+                                    class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
+                                    <i class="fa fa-graduation-cap text-primary text-xl"></i>
+                                </div>
+                                <h3 class="text-lg font-semibold mb-2">培训服务</h3>
+                                <p class="text-gray-medium text-sm">提供专业的产品培训和教学指导服务</p>
+                            </div>
+                            <div class="bg-gray-bg rounded-lg p-6 text-center">
+                                <div
+                                    class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
+                                    <i class="fa fa-wrench text-primary text-xl"></i>
+                                </div>
+                                <h3 class="text-lg font-semibold mb-2">定制开发</h3>
+                                <p class="text-gray-medium text-sm">根据客户需求提供个性化定制开发服务</p>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            </section>
+        </div>
+        </div>
+    </main>
+
+    <!-- 购买咨询模态框 -->
+    <div id="purchase-modal"
+        class="fixed inset-0 bg-black/30 z-50 flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
+        <div
+            class="bg-white rounded-xl max-w-md w-full mx-4 max-h-[90vh] overflow-y-auto transform transition-transform duration-300 scale-95">
+            <div class="p-6 border-b border-gray-light flex justify-between items-center">
+                <h3 class="text-xl font-semibold">购买咨询</h3>
+                <button class="modal-close text-gray-medium hover:text-dark">
+                    <i class="fa fa-times text-xl"></i>
+                </button>
+            </div>
+            <div class="p-6">
+                <form id="purchase-form">
+                    <div class="mb-4">
+                        <label for="contact-name" class="block text-gray-medium mb-2">姓名 *</label>
+                        <input type="text" id="contact-name" required
+                            class="w-full px-4 py-2 border border-gray-light rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary">
+                    </div>
+                    <div class="mb-4">
+                        <label for="contact-organization" class="block text-gray-medium mb-2">单位/机构 *</label>
+                        <input type="text" id="contact-organization" required
+                            class="w-full px-4 py-2 border border-gray-light rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary">
+                    </div>
+                    <div class="mb-4">
+                        <label for="contact-phone" class="block text-gray-medium mb-2">联系电话 *</label>
+                        <input type="tel" id="contact-phone" required
+                            class="w-full px-4 py-2 border border-gray-light rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary">
+                    </div>
+                    <div class="mb-4">
+                        <label for="contact-email" class="block text-gray-medium mb-2">邮箱 *</label>
+                        <input type="email" id="contact-email" required
+                            class="w-full px-4 py-2 border border-gray-light rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary">
+                    </div>
+                    <div class="mb-4">
+                        <label for="purchase-type" class="block text-gray-medium mb-2">采购类型</label>
+                        <select id="purchase-type"
+                            class="w-full px-4 py-2 border border-gray-light rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary">
+                            <option value="">请选择采购类型</option>
+                            <option value="trial">试用申请</option>
+                            <option value="purchase">正式采购</option>
+                            <option value="customization">定制开发</option>
+                            <option value="consultation">咨询了解</option>
+                        </select>
+                    </div>
+                    <div class="mb-6">
+                        <label for="purchase-message" class="block text-gray-medium mb-2">需求描述</label>
+                        <textarea id="purchase-message" rows="4"
+                            class="w-full px-4 py-2 border border-gray-light rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary"
+                            placeholder="请描述您的具体需求..."></textarea>
+                    </div>
+                    <button type="submit"
+                        class="w-full bg-primary hover:bg-primary/90 text-white py-3 rounded-lg font-medium transition-button hover:shadow-lg active:scale-button">
+                        提交咨询
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // 产品数据
+        const products = {
+            1: {
+                title: "光学场景实验平台",
+                type: "本科",
+                partner: "星科瑞升",
+                image: "https://picsum.photos/id/1/800/600",
+                tags: ["光学实验", "智能分析", "虚拟仿真", "教学评估"],
+                description: "提供多种光学场景模拟与实验环境，支持学生进行沉浸式光学实验操作与数据分析，是光学教学的理想选择。",
+                overview: `
+                    <p class="mb-4">光学场景实验平台是一套集成了先进光学技术和智能分析系统的综合性教学平台。该平台通过虚拟仿真技术，为学生提供了丰富的光学实验环境，涵盖几何光学、物理光学、激光技术等多个领域。</p>
+                    <p class="mb-4">平台采用模块化设计，支持多种实验场景的快速切换，同时集成了高精度的测量设备和智能分析软件，能够实时监测实验过程，自动生成实验报告，大大提升了教学效率和学习效果。</p>
+                    <p class="mb-4">通过该平台，学生不仅可以掌握光学理论知识，更能通过实际操作加深对光学现象的理解，培养实验技能和创新思维。</p>
+                `,
+                features: [
+                    {
+                        icon: "fa-eye",
+                        title: "多场景模拟",
+                        description: "提供10+种典型光学场景模拟环境，涵盖几何光学、物理光学等多个领域"
+                    },
+                    {
+                        icon: "fa-chart-line",
+                        title: "智能分析",
+                        description: "集成高精度光学参数测量与分析系统，支持实时数据采集与处理"
+                    },
+                    {
+                        icon: "fa-desktop",
+                        title: "虚实结合",
+                        description: "具备虚拟仿真与实物操作双重模式，满足不同教学场景需求"
+                    },
+                    {
+                        icon: "fa-file-text-o",
+                        title: "自动评估",
+                        description: "内置教学评估系统，自动记录学生实验过程与结果，生成评估报告"
+                    }
+                ],
+                parameters: [
+                    { name: "光谱范围", value: "380nm-1100nm" },
+                    { name: "空间分辨率", value: "≤1μm" },
+                    { name: "数据采集速率", value: "≥100fps" },
+                    { name: "仿真精度", value: "≥98%" },
+                    { name: "同时在线用户", value: "≥50人" },
+                    { name: "支持实验类型", value: "几何光学、物理光学、激光技术" },
+                    { name: "操作系统", value: "Windows 10/11, Linux" },
+                    { name: "网络要求", value: "千兆以太网" }
+                ],
+                cases: [
+                    {
+                        university: "北京大学",
+                        scenario: "大学物理实验课程",
+                        description: "年均覆盖学生2000+，显著提升了光学实验教学效果，学生满意度达95%以上。"
+                    },
+                    {
+                        university: "浙江大学",
+                        scenario: "光学工程专业实验教学",
+                        description: "用于光学工程专业的核心实验课程，支持本科生和研究生的实验教学与科研项目。"
+                    },
+                    {
+                        university: "华中科技大学",
+                        scenario: "国家级物理实验教学示范中心",
+                        description: "作为示范中心的核心设备，为全国高校物理实验教学改革提供了重要参考。"
+                    }
+                ]
+            },
+            2: {
+                title: "2D/3D视觉场景验证平台",
+                type: "本科",
+                partner: "星科瑞升",
+                image: "https://picsum.photos/id/20/800/600",
+                tags: ["机器视觉", "3D建模", "算法验证", "深度学习"],
+                description: "集成2D与3D视觉技术，支持多场景下的视觉算法开发、测试与验证，适用于计算机视觉教学与科研。",
+                overview: `
+                    <p class="mb-4">2D/3D视觉场景验证平台是一套专为计算机视觉教学和科研设计的综合性平台。该平台集成了先进的2D图像处理和3D点云处理技术，为学生和研究人员提供了完整的视觉算法开发、测试和验证环境。</p>
+                    <p class="mb-4">平台支持多种主流的深度学习框架，内置丰富的算法库和数据集，能够满足从基础教学到前沿科研的不同需求。通过可视化的操作界面，用户可以轻松进行算法开发、参数调优和性能评估。</p>
+                    <p class="mb-4">该平台特别适用于机器视觉、人工智能、自动化等专业的教学实践，能够帮助学生深入理解视觉算法原理，提升实际应用能力。</p>
+                `,
+                features: [
+                    {
+                        icon: "fa-camera",
+                        title: "多模态数据处理",
+                        description: "支持2D图像与3D点云数据的同步采集与处理，提供完整的视觉感知解决方案"
+                    },
+                    {
+                        icon: "fa-code",
+                        title: "算法库集成",
+                        description: "集成多种主流视觉算法库，支持自定义算法开发与验证"
+                    },
+                    {
+                        icon: "fa-cubes",
+                        title: "丰富场景库",
+                        description: "提供工业检测、自动驾驶、机器人导航等多种应用场景"
+                    },
+                    {
+                        icon: "fa-tachometer",
+                        title: "性能评估",
+                        description: "具备算法性能评估系统，自动生成精度、速度等关键指标分析"
+                    }
+                ],
+                parameters: [
+                    { name: "2D分辨率", value: "最高8K" },
+                    { name: "3D点云密度", value: "≥500点/㎡" },
+                    { name: "深度测量范围", value: "0.5m-50m" },
+                    { name: "算法处理延迟", value: "≤10ms" },
+                    { name: "支持框架", value: "TensorFlow, PyTorch, Caffe" },
+                    { name: "GPU要求", value: "NVIDIA GTX 1060及以上" },
+                    { name: "内存要求", value: "≥16GB" },
+                    { name: "存储空间", value: "≥500GB SSD" }
+                ],
+                cases: [
+                    {
+                        university: "清华大学",
+                        scenario: "计算机视觉课程教学",
+                        description: "用于计算机科学与技术专业的核心课程，支持理论教学与实践相结合。"
+                    },
+                    {
+                        university: "上海交通大学",
+                        scenario: "机器人研究所算法验证",
+                        description: "作为机器人视觉算法的验证平台，支持多项国家级科研项目。"
+                    },
+                    {
+                        university: "哈尔滨工业大学",
+                        scenario: "智能装备研究院",
+                        description: "用于智能装备的视觉系统开发，产出多项重要科研成果。"
+                    }
+                ]
+            },
+            3: {
+                title: "智能质检一体化实训平台",
+                type: "高职",
+                partner: "星科瑞升",
+                image: "https://picsum.photos/id/42/800/600",
+                tags: ["智能制造", "质量检测", "自动化", "工业4.0"],
+                description: "模拟工业生产中的智能质检流程，集成机器视觉与自动化技术，培养智能制造领域专业人才。",
+                overview: `
+                    <p class="mb-4">智能质检一体化实训平台是专为高职院校智能制造专业设计的综合性实训设备。该平台完整模拟了现代工业生产中的智能质检流程，集成了机器视觉、传感器检测、自动化控制等多种先进技术。</p>
+                    <p class="mb-4">平台采用模块化设计，包含产品输送、视觉检测、尺寸测量、缺陷识别、自动分拣等完整的质检工艺流程。学生通过实际操作，能够深入了解智能制造的核心技术和工艺流程。</p>
+                    <p class="mb-4">该平台特别注重实用性和前瞻性，所采用的技术和设备都与当前工业界的主流应用保持一致，确保学生所学技能能够直接应用于实际工作中。</p>
+                `,
+                features: [
+                    {
+                        icon: "fa-industry",
+                        title: "工业级仿真",
+                        description: "模拟真实工业生产线的质检流程，集成视觉检测与传感器检测"
+                    },
+                    {
+                        icon: "fa-search",
+                        title: "多类型检测",
+                        description: "支持表面缺陷、尺寸偏差、装配错误等多种缺陷类型的检测与分类"
+                    },
+                    {
+                        icon: "fa-refresh",
+                        title: "闭环控制",
+                        description: "具备自动化决策与反馈系统，实现检测-判断-调整的闭环控制"
+                    },
+                    {
+                        icon: "fa-clone",
+                        title: "数字孪生",
+                        description: "提供数字孪生功能，支持虚拟调试与工艺优化"
+                    }
+                ],
+                parameters: [
+                    { name: "检测精度", value: "≤0.01mm" },
+                    { name: "检测速度", value: "≥100件/分钟" },
+                    { name: "缺陷识别率", value: "≥99.5%" },
+                    { name: "支持产品类型", value: "电子元件、机械零件、包装产品" },
+                    { name: "通信接口", value: "EtherCAT, PROFINET, OPC UA" },
+                    { name: "工作环境", value: "温度0-40℃，湿度≤85%" },
+                    { name: "电源要求", value: "AC 380V±10%, 50Hz" },
+                    { name: "气源要求", value: "0.4-0.8MPa, 洁净干燥" }
+                ],
+                cases: [
+                    {
+                        university: "北京工业职业技术学院",
+                        scenario: "智能制造专业实训",
+                        description: "作为智能制造专业的核心实训设备，年均培训学生500+人次。"
+                    },
+                    {
+                        university: "深圳职业技术学院",
+                        scenario: "工业机器人应用技术实训基地",
+                        description: "用于工业机器人专业的综合实训，获得学生和企业的高度认可。"
+                    },
+                    {
+                        university: "江苏经贸职业技术学院",
+                        scenario: "现代制造技术实训中心",
+                        description: "作为实训中心的重点设备，支持多个专业的实训教学。"
+                    }
+                ]
+            },
+            4: {
+                title: "AI算法训练与部署平台",
+                type: "本科",
+                partner: "星科瑞升",
+                image: "https://picsum.photos/id/96/800/600",
+                tags: ["人工智能", "算法开发", "模型训练", "边缘计算"],
+                description: "提供完整的AI模型开发、训练、部署一站式解决方案，支持多种主流框架，适合人工智能教学与科研。",
+                overview: `
+                    <p class="mb-4">AI算法训练与部署平台是一套面向人工智能教学和科研的综合性平台。该平台提供了从数据预处理、模型设计、训练优化到部署应用的完整工作流程，支持深度学习、机器学习等多种AI技术。</p>
+                    <p class="mb-4">平台集成了高性能计算集群，配备了最新的GPU加速卡，能够支持大规模模型的并行训练。同时，平台还提供了丰富的预训练模型库和数据集，大大降低了AI应用开发的门槛。</p>
+                    <p class="mb-4">该平台特别适用于计算机科学、人工智能、数据科学等专业的教学实践，能够帮助学生掌握AI技术的核心原理和实际应用方法。</p>
+                `,
+                features: [
+                    {
+                        icon: "fa-rocket",
+                        title: "一站式解决方案",
+                        description: "提供完整的AI模型开发、训练、部署一站式解决方案"
+                    },
+                    {
+                        icon: "fa-server",
+                        title: "高性能计算",
+                        description: "集成高性能计算集群，支持大规模并行训练"
+                    },
+                    {
+                        icon: "fa-cloud",
+                        title: "云边协同",
+                        description: "支持云端训练与边缘部署相结合的混合模式"
+                    },
+                    {
+                        icon: "fa-git",
+                        title: "版本管理",
+                        description: "内置模型管理与版本控制，方便教学与科研使用"
+                    }
+                ],
+                parameters: [
+                    { name: "计算节点", value: "≥32个GPU节点" },
+                    { name: "单节点GPU", value: "NVIDIA A100 80GB" },
+                    { name: "存储容量", value: "≥100TB" },
+                    { name: "网络带宽", value: "100Gbps InfiniBand" },
+                    { name: "支持框架", value: "TensorFlow, PyTorch, MXNet, MindSpore" },
+                    { name: "部署方式", value: "云端、边缘端、嵌入式" },
+                    { name: "并发用户", value: "≥200人" },
+                    { name: "API接口", value: "RESTful API, gRPC" }
+                ],
+                cases: [
+                    {
+                        university: "南京大学",
+                        scenario: "人工智能学院教学平台",
+                        description: "作为人工智能学院的核心教学平台，支持本科生和研究生的AI课程教学。"
+                    },
+                    {
+                        university: "中国科学技术大学",
+                        scenario: "计算机科学与技术专业",
+                        description: "用于机器学习、深度学习等核心课程的实践教学。"
+                    },
+                    {
+                        university: "武汉大学",
+                        scenario: "国家人工智能开放创新平台",
+                        description: "作为开放创新平台的重要组成部分，支持多项国家级AI项目。"
+                    }
+                ]
+            },
+            5: {
+                title: "物联网教学实验箱",
+                type: "高职",
+                partner: "星科瑞升",
+                image: "https://picsum.photos/id/119/800/600",
+                tags: ["物联网", "嵌入式", "传感器", "无线通信"],
+                description: "集成传感器、通信模块与控制器，提供完整的物联网系统开发与实验环境，适合物联网课程教学。",
+                overview: `
+                    <p class="mb-4">物联网教学实验箱是专为高职院校物联网应用技术专业设计的综合性实验设备。该实验箱集成了多种传感器、无线通信模块、嵌入式控制器等核心组件，为学生提供了完整的物联网系统开发与实验环境。</p>
+                    <p class="mb-4">实验箱采用模块化设计，支持多种物联网应用场景的搭建，包括智能家居、环境监测、工业控制等。通过丰富的实验项目，学生可以深入理解物联网的核心技术和应用原理。</p>
+                    <p class="mb-4">该设备特别注重实践性和创新性，鼓励学生进行自主设计和开发，培养解决实际问题的能力和创新思维。</p>
+                `,
+                features: [
+                    {
+                        icon: "fa-microchip",
+                        title: "多传感器集成",
+                        description: "集成温湿度、光照、气体、压力等多种传感器，支持环境数据采集"
+                    },
+                    {
+                        icon: "fa-wifi",
+                        title: "多种通信方式",
+                        description: "支持WiFi、蓝牙、ZigBee、LoRa等多种无线通信协议"
+                    },
+                    {
+                        icon: "fa-mobile",
+                        title: "移动端控制",
+                        description: "提供手机APP和微信小程序，支持远程监控和控制"
+                    },
+                    {
+                        icon: "fa-cloud-upload",
+                        title: "云平台对接",
+                        description: "支持主流物联网云平台对接，实现数据上云和远程管理"
+                    }
+                ],
+                parameters: [
+                    { name: "主控芯片", value: "ESP32-S3" },
+                    { name: "传感器数量", value: "≥8种" },
+                    { name: "通信协议", value: "WiFi, 蓝牙, ZigBee, LoRa" },
+                    { name: "工作电压", value: "DC 5V/12V" },
+                    { name: "工作温度", value: "-10℃~+60℃" },
+                    { name: "存储容量", value: "8MB Flash + 8MB PSRAM" },
+                    { name: "扩展接口", value: "GPIO, I2C, SPI, UART" },
+                    { name: "显示屏", value: "2.8寸彩色触摸屏" }
+                ],
+                cases: [
+                    {
+                        university: "北京电子科技职业学院",
+                        scenario: "物联网应用技术专业实训",
+                        description: "用于物联网专业的核心实训课程，年均培训学生400+人次，实训效果显著。"
+                    },
+                    {
+                        university: "深圳信息职业技术学院",
+                        scenario: "智能硬件开发实训基地",
+                        description: "作为智能硬件开发实训基地的核心设备，支持学生创新创业项目。"
+                    },
+                    {
+                        university: "重庆电子工程职业学院",
+                        scenario: "物联网技术应用实训中心",
+                        description: "用于物联网技术应用专业的综合实训，获得师生一致好评。"
+                    }
+                ]
+            },
+            6: {
+                title: "数字孪生虚拟仿真平台",
+                type: "本科",
+                partner: "星科瑞升",
+                image: "https://picsum.photos/id/180/800/600",
+                tags: ["数字孪生", "虚拟仿真", "工业4.0", "建模仿真"],
+                description: "基于数字孪生技术的虚拟仿真平台，支持复杂系统建模与仿真分析，适用于工程类专业教学。",
+                overview: `
+                    <p class="mb-4">数字孪生虚拟仿真平台是一套基于先进数字孪生技术的综合性仿真平台。该平台能够构建物理系统的数字化镜像，实现虚拟与现实的深度融合，为工程类专业提供了前沿的教学和科研环境。</p>
+                    <p class="mb-4">平台集成了三维建模、物理仿真、数据分析等多种技术，支持机械、电气、控制等多学科的协同仿真。通过高保真的虚拟环境，学生可以进行复杂系统的设计、测试和优化。</p>
+                    <p class="mb-4">该平台特别适用于机械工程、自动化、工业工程等专业的教学实践，能够帮助学生理解复杂工程系统的运行机理，提升系统设计和分析能力。</p>
+                `,
+                features: [
+                    {
+                        icon: "fa-cube",
+                        title: "高精度建模",
+                        description: "支持CAD模型导入和高精度几何建模，构建逼真的数字孪生体"
+                    },
+                    {
+                        icon: "fa-cogs",
+                        title: "多物理场仿真",
+                        description: "集成结构、流体、热传导、电磁等多物理场仿真求解器"
+                    },
+                    {
+                        icon: "fa-line-chart",
+                        title: "实时数据同步",
+                        description: "支持与物理系统的实时数据交互，实现虚实同步"
+                    },
+                    {
+                        icon: "fa-eye",
+                        title: "沉浸式体验",
+                        description: "支持VR/AR技术，提供沉浸式的仿真体验和交互"
+                    }
+                ],
+                parameters: [
+                    { name: "建模精度", value: "≤0.1mm" },
+                    { name: "仿真求解器", value: "有限元、有限差分、离散元" },
+                    { name: "支持格式", value: "STEP, IGES, STL, OBJ" },
+                    { name: "渲染引擎", value: "实时光线追踪" },
+                    { name: "并行计算", value: "支持GPU加速" },
+                    { name: "VR设备", value: "HTC Vive, Oculus Rift" },
+                    { name: "网络延迟", value: "≤50ms" },
+                    { name: "同时用户", value: "≥100人" }
+                ],
+                cases: [
+                    {
+                        university: "西安交通大学",
+                        scenario: "机械工程专业教学",
+                        description: "用于机械设计与制造专业的虚拟仿真教学，显著提升了学生的工程实践能力。"
+                    },
+                    {
+                        university: "大连理工大学",
+                        scenario: "船舶与海洋工程仿真",
+                        description: "用于船舶设计的虚拟仿真验证，支持多项重大工程项目。"
+                    },
+                    {
+                        university: "华南理工大学",
+                        scenario: "工业4.0智能制造实验室",
+                        description: "作为智能制造实验室的核心平台，支持产学研一体化发展。"
+                    }
+                ]
+            },
+            7: {
+                title: "区块链技术教学平台",
+                type: "本科",
+                partner: "星科瑞升",
+                image: "https://picsum.photos/id/200/800/600",
+                tags: ["区块链", "智能合约", "分布式", "加密技术"],
+                description: "专业的区块链技术教学平台，提供完整的区块链开发环境和实验工具，适合计算机相关专业教学。",
+                overview: `
+                    <p class="mb-4">区块链技术教学平台是专为高校计算机相关专业设计的综合性区块链教学环境。该平台集成了区块链底层技术、智能合约开发、分布式应用构建等完整的技术栈，为学生提供了从理论学习到实践开发的全方位支持。</p>
+                    <p class="mb-4">平台支持多种主流区块链框架，内置丰富的开发工具和示例代码，能够满足从基础概念学习到高级应用开发的不同需求。通过可视化的操作界面和详细的教学文档，降低了区块链技术的学习门槛。</p>
+                    <p class="mb-4">该平台特别适用于计算机科学、软件工程、信息安全等专业的教学实践，能够帮助学生深入理解区块链的核心原理和应用场景。</p>
+                `,
+                features: [
+                    {
+                        icon: "fa-link",
+                        title: "多链支持",
+                        description: "支持以太坊、Hyperledger Fabric、FISCO BCOS等主流区块链平台"
+                    },
+                    {
+                        icon: "fa-file-code-o",
+                        title: "智能合约开发",
+                        description: "提供Solidity、Go、Java等多语言智能合约开发环境"
+                    },
+                    {
+                        icon: "fa-shield",
+                        title: "安全审计工具",
+                        description: "集成智能合约安全审计和漏洞检测工具"
+                    },
+                    {
+                        icon: "fa-bar-chart",
+                        title: "可视化监控",
+                        description: "提供区块链网络状态和交易数据的可视化监控"
+                    }
+                ],
+                parameters: [
+                    { name: "支持区块链", value: "Ethereum, Fabric, FISCO BCOS" },
+                    { name: "开发语言", value: "Solidity, Go, Java, JavaScript" },
+                    { name: "共识算法", value: "PoW, PoS, PBFT, Raft" },
+                    { name: "TPS性能", value: "≥10000 TPS" },
+                    { name: "节点数量", value: "≥1000个节点" },
+                    { name: "存储方式", value: "LevelDB, MySQL, MongoDB" },
+                    { name: "API接口", value: "RESTful API, JSON-RPC" },
+                    { name: "安全等级", value: "国密SM2/SM3/SM4" }
+                ],
+                cases: [
+                    {
+                        university: "北京邮电大学",
+                        scenario: "区块链技术与应用课程",
+                        description: "用于计算机学院的区块链专业课程，培养了大批区块链技术人才。"
+                    },
+                    {
+                        university: "电子科技大学",
+                        scenario: "信息安全实验室",
+                        description: "作为信息安全实验室的重要平台，支持区块链安全研究。"
+                    },
+                    {
+                        university: "西安电子科技大学",
+                        scenario: "密码学与区块链研究中心",
+                        description: "用于密码学和区块链的前沿研究，产出多项重要成果。"
+                    }
+                ]
+            },
+            8: {
+                title: "5G通信技术实验平台",
+                type: "本科",
+                partner: "星科瑞升",
+                image: "https://picsum.photos/id/250/800/600",
+                tags: ["5G通信", "无线网络", "信号处理", "网络协议"],
+                description: "专业的5G通信技术实验平台，提供完整的5G网络搭建和测试环境，适合通信工程专业教学。",
+                overview: `
+                    <p class="mb-4">5G通信技术实验平台是专为通信工程专业设计的先进实验设备。该平台完整实现了5G网络的核心功能，包括基站、核心网、终端设备等关键组件，为学生提供了真实的5G网络环境。</p>
+                    <p class="mb-4">平台支持5G关键技术的实验验证，包括大规模MIMO、毫米波通信、网络切片、边缘计算等前沿技术。通过丰富的实验项目，学生可以深入理解5G网络的架构和工作原理。</p>
+                    <p class="mb-4">该平台特别适用于通信工程、电子信息工程、网络工程等专业的教学实践，能够帮助学生掌握5G技术的核心原理和实际应用。</p>
+                `,
+                features: [
+                    {
+                        icon: "fa-signal",
+                        title: "完整5G网络",
+                        description: "提供完整的5G SA/NSA网络环境，支持端到端通信实验"
+                    },
+                    {
+                        icon: "fa-microchip",
+                        title: "关键技术验证",
+                        description: "支持大规模MIMO、毫米波、网络切片等5G关键技术实验"
+                    },
+                    {
+                        icon: "fa-dashboard",
+                        title: "性能测试",
+                        description: "提供专业的网络性能测试工具和分析软件"
+                    },
+                    {
+                        icon: "fa-mobile",
+                        title: "多终端支持",
+                        description: "支持手机、模组、CPE等多种5G终端设备"
+                    }
+                ],
+                parameters: [
+                    { name: "频段支持", value: "Sub-6GHz, 毫米波(28GHz)" },
+                    { name: "带宽", value: "≥100MHz" },
+                    { name: "峰值速率", value: "下行≥10Gbps, 上行≥3Gbps" },
+                    { name: "时延", value: "≤1ms" },
+                    { name: "连接密度", value: "≥100万设备/km²" },
+                    { name: "网络架构", value: "SA/NSA双模" },
+                    { name: "核心网", value: "基于云原生架构" },
+                    { name: "测试终端", value: "≥10个并发" }
+                ],
+                cases: [
+                    {
+                        university: "北京理工大学",
+                        scenario: "通信工程专业实验教学",
+                        description: "用于通信工程专业的5G技术课程，显著提升了学生对前沿通信技术的理解。"
+                    },
+                    {
+                        university: "东南大学",
+                        scenario: "移动通信国家重点实验室",
+                        description: "作为国家重点实验室的重要设备，支持5G技术的前沿研究。"
+                    },
+                    {
+                        university: "西北工业大学",
+                        scenario: "无线通信研究所",
+                        description: "用于无线通信技术的教学和科研，培养了大批通信技术人才。"
+                    }
+                ]
+            }
+        };
+
+        // 获取URL参数
+        function getUrlParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        // 加载产品数据
+        function loadProductData() {
+            const productId = getUrlParameter('id') || '1';
+            const product = products[productId];
+
+            if (!product) {
+                // 如果产品不存在，重定向到首页
+                window.location.href = 'index.html';
+                return;
+            }
+
+            // 更新页面标题和面包屑
+            document.title = `${product.title} - U+平台`;
+            document.getElementById('breadcrumb-title').textContent = product.title;
+
+            // 填充基本信息
+            document.getElementById('product-image').src = product.image;
+            document.getElementById('product-image').alt = product.title;
+            document.getElementById('product-type').textContent = product.type;
+            document.getElementById('product-title').textContent = product.title;
+            document.getElementById('product-description').textContent = product.description;
+            document.getElementById('product-partner').textContent = product.partner;
+
+            // 填充标签
+            const tagsContainer = document.getElementById('product-tags');
+            tagsContainer.innerHTML = product.tags.map(tag =>
+                `<span class="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">${tag}</span>`
+            ).join('');
+
+            // 填充概述内容
+            document.getElementById('overview-content').innerHTML = product.overview;
+
+            // 填充功能特性
+            const featuresContainer = document.getElementById('features-content');
+            featuresContainer.innerHTML = product.features.map(feature => `
+                <div class="bg-gray-bg rounded-lg p-6">
+                    <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fa ${feature.icon} text-primary text-xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">${feature.title}</h3>
+                    <p class="text-gray-medium text-sm">${feature.description}</p>
+                </div>
+            `).join('');
+
+            // 填充技术参数
+            const parametersContainer = document.getElementById('parameters-content');
+            parametersContainer.innerHTML = `
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    ${product.parameters.map(param => `
+                        <div class="flex justify-between items-center py-2 border-b border-gray-light">
+                            <span class="font-medium">${param.name}</span>
+                            <span class="text-gray-medium">${param.value}</span>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+
+            // 填充应用案例
+            const casesContainer = document.getElementById('cases-content');
+            casesContainer.innerHTML = product.cases.map(case_ => `
+                <div class="bg-gray-bg rounded-lg p-6">
+                    <div class="flex items-start space-x-4">
+                        <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <i class="fa fa-university text-primary text-xl"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-lg font-semibold mb-1">${case_.university}</h3>
+                            <p class="text-primary font-medium mb-2">${case_.scenario}</p>
+                            <p class="text-gray-medium text-sm">${case_.description}</p>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // 滑动定位和导航高亮
+        function initScrollNavigation() {
+            const navBtns = document.querySelectorAll('.nav-tab-btn');
+            const sections = document.querySelectorAll('.section-content');
+
+            // 导航按钮点击事件
+            navBtns.forEach(btn => {
+                btn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetSection = this.getAttribute('data-section');
+                    const targetElement = document.getElementById(targetSection);
+
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // 滚动监听，更新导航高亮
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const sectionId = entry.target.id;
+
+                        // 更新导航高亮
+                        navBtns.forEach(btn => {
+                            btn.classList.remove('active');
+                            if (btn.getAttribute('data-section') === sectionId) {
+                                btn.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, {
+                rootMargin: '-120px 0px -50% 0px',
+                threshold: 0
+            });
+
+            // 观察所有section
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        }
+
+        // 移动端菜单功能
+        function initMobileMenu() {
+            const menuToggle = document.getElementById('menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            if (menuToggle && mobileMenu) {
+                menuToggle.addEventListener('click', function () {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+        }
+
+        // 模态框功能
+        function initModals() {
+            const purchaseBtn = document.getElementById('purchase-btn');
+            const demoBtn = document.getElementById('demo-btn');
+            const purchaseModal = document.getElementById('purchase-modal');
+            const modalClose = document.querySelector('.modal-close');
+            const purchaseForm = document.getElementById('purchase-form');
+
+            // 打开购买咨询模态框
+            purchaseBtn.addEventListener('click', function () {
+                openModal(purchaseModal);
+            });
+
+            // 申请试用按钮
+            demoBtn.addEventListener('click', function () {
+                // 预填充试用申请
+                document.getElementById('purchase-type').value = 'trial';
+                openModal(purchaseModal);
+            });
+
+            // 关闭模态框
+            modalClose.addEventListener('click', function () {
+                closeModal(purchaseModal);
+            });
+
+            // 点击背景关闭模态框
+            purchaseModal.addEventListener('click', function (e) {
+                if (e.target === this) {
+                    closeModal(this);
+                }
+            });
+
+            // 表单提交
+            purchaseForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                // 这里可以添加表单提交逻辑
+                alert('咨询信息已提交，我们将尽快与您联系！');
+                closeModal(purchaseModal);
+
+                // 重置表单
+                this.reset();
+            });
+        }
+
+        // 打开模态框
+        function openModal(modal) {
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modal.querySelector('.transform').classList.remove('scale-95');
+            }, 10);
+        }
+
+        // 关闭模态框
+        function closeModal(modal) {
+            modal.classList.add('opacity-0');
+            modal.querySelector('.transform').classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        // 导航栏滚动效果
+        function initNavbarScroll() {
+            window.addEventListener('scroll', function () {
+                const header = document.querySelector('header');
+                if (window.scrollY > 50) {
+                    header.classList.add('shadow-md');
+                    header.classList.remove('shadow-sm');
+                } else {
+                    header.classList.remove('shadow-md');
+                    header.classList.add('shadow-sm');
+                }
+            });
+        }
+
+        // 页面初始化
+        document.addEventListener('DOMContentLoaded', function () {
+            loadProductData();
+            initScrollNavigation();
+            initMobileMenu();
+            initModals();
+            initNavbarScroll();
+        });
+    </script>
+</body>
+
+</html>

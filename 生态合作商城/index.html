@@ -1,12 +1,14 @@
-<html lang="zh-CN"><head>
+<html lang="zh-CN">
+
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>U+平台 - 生态合作</title>
     <!-- 引入Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- 引入Font Awesome -->
-    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
     <!-- 配置Tailwind自定义颜色和字体 -->
     <script>
         tailwind.config = {
@@ -31,7 +33,7 @@
             }
         }
     </script>
-    
+
     <!-- 自定义工具类 -->
     <style type="text/tailwindcss">
         @layer utilities {
@@ -56,6 +58,7 @@
         }
     </style>
 </head>
+
 <body class="bg-white font-sans text-dark antialiased">
     <!-- 导航栏 -->
     <header class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm z-50 shadow-sm transition-navbar">
@@ -63,32 +66,39 @@
             <div class="flex justify-between items-center h-16 md:h-20">
                 <!-- Logo -->
                 <a href="#" class="flex items-center space-x-2">
-                    <img src="https://www.eduplus.net/static/svg/logo_small.703818281757685780344.svg" alt="U+平台logo" class="w-21 h-9 object-contain">
+                    <img src="img/logo1.svg" alt="U+平台logo" class="w-21 h-9 object-contain">
                     <span class="text-lg font-semibold text-dark hidden sm:inline-block">· 生态合作</span>
                 </a>
-                
+
                 <!-- 桌面端导航 -->
                 <nav class="hidden md:flex space-x-8">
-                    <a href="#overview" class="nav-link text-dark hover:text-primary font-medium py-2 border-b-2 border-primary" data-page="overview">概述</a>
-                    <a href="#market" class="nav-link text-gray-medium hover:text-primary font-medium py-2 border-b-2 border-transparent" data-page="market">生态市场</a>
-                    <a href="#university" class="nav-link text-gray-medium hover:text-primary font-medium py-2 border-b-2 border-transparent" data-page="university">院校合作</a>
-                    <a href="#news" class="nav-link text-gray-medium hover:text-primary font-medium py-2 border-b-2 border-transparent" data-page="news">新闻动态</a>
+                    <a href="#overview"
+                        class="nav-link text-dark hover:text-primary font-medium py-2 border-b-2 border-primary"
+                        data-page="overview">概述</a>
+                    <a href="#market"
+                        class="nav-link text-gray-medium hover:text-primary font-medium py-2 border-b-2 border-transparent"
+                        data-page="market">生态市场</a>
+                    <a href="#university"
+                        class="nav-link text-gray-medium hover:text-primary font-medium py-2 border-b-2 border-transparent"
+                        data-page="university">院校合作</a>
                 </nav>
-                
+
                 <!-- 移动端汉堡菜单 -->
                 <button id="menu-toggle" class="md:hidden text-dark hover:text-primary focus:outline-none">
                     <i class="fa fa-bars text-xl"></i>
                 </button>
             </div>
         </div>
-        
+
         <!-- 移动端导航菜单 -->
         <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-light">
             <div class="container mx-auto px-4 py-3 space-y-3">
-                <a href="#overview" class="block text-dark hover:text-primary font-medium py-2" data-page="overview">概述</a>
-                <a href="#market" class="block text-gray-medium hover:text-primary font-medium py-2" data-page="market">生态市场</a>
-                <a href="#university" class="block text-gray-medium hover:text-primary font-medium py-2" data-page="university">院校合作</a>
-                <a href="#news" class="block text-gray-medium hover:text-primary font-medium py-2" data-page="news">新闻动态</a>
+                <a href="#overview" class="block text-dark hover:text-primary font-medium py-2"
+                    data-page="overview">概述</a>
+                <a href="#market" class="block text-gray-medium hover:text-primary font-medium py-2"
+                    data-page="market">生态市场</a>
+                <a href="#university" class="block text-gray-medium hover:text-primary font-medium py-2"
+                    data-page="university">院校合作</a>
             </div>
         </div>
     </header>
@@ -104,19 +114,23 @@
                         <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-bold leading-tight mb-6 text-balance">
                             共建产教融合新生态
                         </h1>
-                        <p class="text-[clamp(1rem,2vw,1.25rem)] text-gray-medium mb-8 leading-relaxed max-w-2xl mx-auto">
+                        <p
+                            class="text-[clamp(1rem,2vw,1.25rem)] text-gray-medium mb-8 leading-relaxed max-w-2xl mx-auto">
                             U+平台致力于连接高校与科技企业，打造产学研一体化的合作生态，推动人才培养与产业创新
                         </p>
-                        <button id="consult-btn" class="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-lg font-medium transition-button hover:shadow-lg active:scale-button">
+                        <button id="consult-btn"
+                            class="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-lg font-medium transition-button hover:shadow-lg active:scale-button">
                             合作咨询
                         </button>
                     </div>
                 </div>
                 <!-- 背景装饰 -->
-                <div class="absolute top-0 right-0 w-1/3 h-full bg-primary/5 -skew-x-12 transform origin-top-right"></div>
-                <div class="absolute bottom-0 left-0 w-1/4 h-1/2 bg-secondary/5 skew-x-12 transform origin-bottom-left"></div>
+                <div class="absolute top-0 right-0 w-1/3 h-full bg-primary/5 -skew-x-12 transform origin-top-right">
+                </div>
+                <div class="absolute bottom-0 left-0 w-1/4 h-1/2 bg-secondary/5 skew-x-12 transform origin-bottom-left">
+                </div>
             </div>
-            
+
             <!-- 介绍区 -->
             <div class="py-16 md:py-24">
                 <div class="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -136,42 +150,46 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- 联合解决方案展示 -->
             <div class="py-16 bg-gray-bg">
                 <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                     <h2 class="text-[clamp(1.5rem,3vw,2.25rem)] font-semibold mb-12 text-center">联合解决方案</h2>
-                    
+
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                         <!-- 解决方案1 -->
-                        <div class="bg-white rounded-xl p-6 shadow-card transition-card hover:shadow-card-hover hover:-translate-y-1">
+                        <div
+                            class="bg-white rounded-xl p-6 shadow-card transition-card hover:shadow-card-hover hover:-translate-y-1">
                             <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-5">
                                 <i class="fa fa-graduation-cap text-primary text-xl"></i>
                             </div>
                             <h3 class="text-xl font-semibold mb-3">智慧教学</h3>
                             <p class="text-gray-medium">整合AI技术与教学资源，打造沉浸式、个性化的智能教学体验</p>
                         </div>
-                        
+
                         <!-- 解决方案2 -->
-                        <div class="bg-white rounded-xl p-6 shadow-card transition-card hover:shadow-card-hover hover:-translate-y-1">
+                        <div
+                            class="bg-white rounded-xl p-6 shadow-card transition-card hover:shadow-card-hover hover:-translate-y-1">
                             <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-5">
                                 <i class="fa fa-flask text-primary text-xl"></i>
                             </div>
                             <h3 class="text-xl font-semibold mb-3">实验实训</h3>
                             <p class="text-gray-medium">提供高仿真虚拟实验环境，降低教学成本，提升实践效果</p>
                         </div>
-                        
+
                         <!-- 解决方案3 -->
-                        <div class="bg-white rounded-xl p-6 shadow-card transition-card hover:shadow-card-hover hover:-translate-y-1">
+                        <div
+                            class="bg-white rounded-xl p-6 shadow-card transition-card hover:shadow-card-hover hover:-translate-y-1">
                             <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-5">
                                 <i class="fa fa-users text-primary text-xl"></i>
                             </div>
                             <h3 class="text-xl font-semibold mb-3">人才培养</h3>
                             <p class="text-gray-medium">校企联合定制人才培养方案，实现人才供给与产业需求精准匹配</p>
                         </div>
-                        
+
                         <!-- 解决方案4 -->
-                        <div class="bg-white rounded-xl p-6 shadow-card transition-card hover:shadow-card-hover hover:-translate-y-1">
+                        <div
+                            class="bg-white rounded-xl p-6 shadow-card transition-card hover:shadow-card-hover hover:-translate-y-1">
                             <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-5">
                                 <i class="fa fa-lightbulb-o text-primary text-xl"></i>
                             </div>
@@ -181,20 +199,24 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- 生态合作产品展示 -->
             <div class="py-16 md:py-24">
                 <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                     <h2 class="text-[clamp(1.5rem,3vw,2.25rem)] font-semibold mb-4 text-center">精选合作产品</h2>
-                    <p class="text-gray-medium text-center max-w-2xl mx-auto mb-8">我们精选了生态系统中的优质产品，为教育机构提供全方位的智能科技教学支持</p>
-                    
+                    <p class="text-gray-medium text-center max-w-2xl mx-auto mb-8">我们精选了生态系统中的优质产品，为教育机构提供全方位的智能科技教学支持
+                    </p>
+
                     <!-- 精选合作产品展示（一行4个卡片，无筛选） -->
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                         <!-- 产品1 - 本科方向 -->
-                        <div class="product-card bg-white rounded-xl overflow-hidden shadow-card transition-card hover:shadow-card-hover hover:-translate-y-1 cursor-pointer" data-product="1" data-type="undergraduate">
+                        <div class="product-card bg-white rounded-xl overflow-hidden shadow-card transition-card hover:shadow-card-hover hover:-translate-y-1 cursor-pointer"
+                            data-product="1" data-type="undergraduate">
                             <div class="relative h-40 overflow-hidden">
-                                <span class="absolute top-2 left-2 bg-primary text-white text-xs px-2 py-1 rounded-full z-10">本科</span>
-                                <img src="https://picsum.photos/id/1/600/400" alt="光学场景实验平台" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                                <span
+                                    class="absolute top-2 left-2 bg-primary text-white text-xs px-2 py-1 rounded-full z-10">本科</span>
+                                <img src="https://picsum.photos/id/1/600/400" alt="光学场景实验平台"
+                                    class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
                             </div>
                             <div class="p-4">
                                 <h3 class="text-lg font-semibold mb-2">光学场景实验平台</h3>
@@ -205,12 +227,15 @@
                                 <p class="text-gray-medium text-sm">提供多种光学场景模拟与实验环境，支持学生进行沉浸式光学实验操作与数据分析。</p>
                             </div>
                         </div>
-                        
+
                         <!-- 产品2 - 本科方向 -->
-                        <div class="product-card bg-white rounded-xl overflow-hidden shadow-card transition-card hover:shadow-card-hover hover:-translate-y-1 cursor-pointer" data-product="2" data-type="undergraduate">
+                        <div class="product-card bg-white rounded-xl overflow-hidden shadow-card transition-card hover:shadow-card-hover hover:-translate-y-1 cursor-pointer"
+                            data-product="2" data-type="undergraduate">
                             <div class="relative h-40 overflow-hidden">
-                                <span class="absolute top-2 left-2 bg-primary text-white text-xs px-2 py-1 rounded-full z-10">本科</span>
-                                <img src="https://picsum.photos/id/20/600/400" alt="2D/3D视觉场景验证平台" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                                <span
+                                    class="absolute top-2 left-2 bg-primary text-white text-xs px-2 py-1 rounded-full z-10">本科</span>
+                                <img src="https://picsum.photos/id/20/600/400" alt="2D/3D视觉场景验证平台"
+                                    class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
                             </div>
                             <div class="p-4">
                                 <h3 class="text-lg font-semibold mb-2">2D/3D视觉场景验证平台</h3>
@@ -221,12 +246,15 @@
                                 <p class="text-gray-medium text-sm">集成2D与3D视觉技术，支持多场景下的视觉算法开发、测试与验证，适用于计算机视觉教学。</p>
                             </div>
                         </div>
-                        
+
                         <!-- 产品3 - 高职方向 -->
-                        <div class="product-card bg-white rounded-xl overflow-hidden shadow-card transition-card hover:shadow-card-hover hover:-translate-y-1 cursor-pointer" data-product="3" data-type="vocational">
+                        <div class="product-card bg-white rounded-xl overflow-hidden shadow-card transition-card hover:shadow-card-hover hover:-translate-y-1 cursor-pointer"
+                            data-product="3" data-type="vocational">
                             <div class="relative h-40 overflow-hidden">
-                                <span class="absolute top-2 left-2 bg-secondary text-white text-xs px-2 py-1 rounded-full z-10">高职</span>
-                                <img src="https://picsum.photos/id/42/600/400" alt="智能质检一体化实训平台" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                                <span
+                                    class="absolute top-2 left-2 bg-secondary text-white text-xs px-2 py-1 rounded-full z-10">高职</span>
+                                <img src="https://picsum.photos/id/42/600/400" alt="智能质检一体化实训平台"
+                                    class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
                             </div>
                             <div class="p-4">
                                 <h3 class="text-lg font-semibold mb-2">智能质检一体化实训平台</h3>
@@ -237,12 +265,15 @@
                                 <p class="text-gray-medium text-sm">模拟工业生产中的智能质检流程，集成机器视觉与自动化技术，培养智能制造领域专业人才。</p>
                             </div>
                         </div>
-                        
+
                         <!-- 产品4 - 本科方向 -->
-                        <div class="product-card bg-white rounded-xl overflow-hidden shadow-card transition-card hover:shadow-card-hover hover:-translate-y-1 cursor-pointer" data-product="4" data-type="undergraduate">
+                        <div class="product-card bg-white rounded-xl overflow-hidden shadow-card transition-card hover:shadow-card-hover hover:-translate-y-1 cursor-pointer"
+                            data-product="4" data-type="undergraduate">
                             <div class="relative h-40 overflow-hidden">
-                                <span class="absolute top-2 left-2 bg-primary text-white text-xs px-2 py-1 rounded-full z-10">本科</span>
-                                <img src="https://picsum.photos/id/96/600/400" alt="AI算法训练与部署平台" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                                <span
+                                    class="absolute top-2 left-2 bg-primary text-white text-xs px-2 py-1 rounded-full z-10">本科</span>
+                                <img src="https://picsum.photos/id/96/600/400" alt="AI算法训练与部署平台"
+                                    class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
                             </div>
                             <div class="p-4">
                                 <h3 class="text-lg font-semibold mb-2">AI算法训练与部署平台</h3>
@@ -256,7 +287,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- 成为合作伙伴模块 -->
             <div class="py-16 md:py-24 bg-gray-bg">
                 <div class="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -264,13 +295,15 @@
                         <h2 class="text-[clamp(1.5rem,3vw,2.25rem)] font-semibold mb-4">成为U+生态合作伙伴</h2>
                         <p class="text-gray-medium">加入我们的生态系统，共享资源，协同创新，共同推动智能科技教育发展</p>
                     </div>
-                    
+
                     <div class="max-w-4xl mx-auto">
                         <!-- 合作流程 -->
                         <div class="relative mb-12">
                             <!-- 连接线 -->
-                            <div class="hidden md:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-gray-light transform -translate-x-1/2"></div>
-                            
+                            <div
+                                class="hidden md:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-gray-light transform -translate-x-1/2">
+                            </div>
+
                             <div class="space-y-12 relative">
                                 <!-- 步骤1 -->
                                 <div class="flex flex-col md:flex-row items-center">
@@ -279,23 +312,29 @@
                                         <p class="text-gray-medium">填写合作申请表，提供机构信息与合作意向</p>
                                     </div>
                                     <div class="md:w-12 flex justify-center order-1 md:order-2">
-                                        <div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-medium">1</div>
+                                        <div
+                                            class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-medium">
+                                            1</div>
                                     </div>
                                     <div class="md:w-1/2 md:pl-12 order-3 hidden md:block"></div>
                                 </div>
-                                
+
                                 <!-- 步骤2 -->
                                 <div class="flex flex-col md:flex-row items-center">
-                                    <div class="md:w-1/2 md:pr-12 md:text-right order-2 md:order-1 mt-4 md:mt-0 hidden md:block"></div>
+                                    <div
+                                        class="md:w-1/2 md:pr-12 md:text-right order-2 md:order-1 mt-4 md:mt-0 hidden md:block">
+                                    </div>
                                     <div class="md:w-12 flex justify-center order-1 md:order-2">
-                                        <div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-medium">2</div>
+                                        <div
+                                            class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-medium">
+                                            2</div>
                                     </div>
                                     <div class="md:w-1/2 md:pl-12 order-3 mt-4 md:mt-0">
                                         <h3 class="text-xl font-semibold mb-2">需求评估与沟通</h3>
                                         <p class="text-gray-medium">我们将评估您的需求，并进行深入沟通，确定合作方向</p>
                                     </div>
                                 </div>
-                                
+
                                 <!-- 步骤3 -->
                                 <div class="flex flex-col md:flex-row items-center">
                                     <div class="md:w-1/2 md:pr-12 md:text-right order-2 md:order-1 mt-4 md:mt-0">
@@ -303,16 +342,22 @@
                                         <p class="text-gray-medium">根据沟通结果，制定个性化的合作方案与实施计划</p>
                                     </div>
                                     <div class="md:w-12 flex justify-center order-1 md:order-2">
-                                        <div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-medium">3</div>
+                                        <div
+                                            class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-medium">
+                                            3</div>
                                     </div>
                                     <div class="md:w-1/2 md:pl-12 order-3 hidden md:block"></div>
                                 </div>
-                                
+
                                 <!-- 步骤4 -->
                                 <div class="flex flex-col md:flex-row items-center">
-                                    <div class="md:w-1/2 md:pr-12 md:text-right order-2 md:order-1 mt-4 md:mt-0 hidden md:block"></div>
+                                    <div
+                                        class="md:w-1/2 md:pr-12 md:text-right order-2 md:order-1 mt-4 md:mt-0 hidden md:block">
+                                    </div>
                                     <div class="md:w-12 flex justify-center order-1 md:order-2">
-                                        <div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-medium">4</div>
+                                        <div
+                                            class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-medium">
+                                            4</div>
                                     </div>
                                     <div class="md:w-1/2 md:pl-12 order-3 mt-4 md:mt-0">
                                         <h3 class="text-xl font-semibold mb-2">合作实施与支持</h3>
@@ -321,9 +366,10 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="text-center">
-                            <button id="apply-btn" class="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-lg font-medium transition-button hover:shadow-lg active:scale-button">
+                            <button id="apply-btn"
+                                class="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-lg font-medium transition-button hover:shadow-lg active:scale-button">
                                 立即申请
                             </button>
                         </div>
@@ -331,7 +377,7 @@
                 </div>
             </div>
         </section>
-        
+
         <!-- 生态市场页面 -->
         <section id="market-page" class="page-content hidden">
             <div class="py-16 md:py-24 bg-gray-bg">
@@ -340,21 +386,30 @@
                         <h1 class="text-[clamp(2rem,4vw,3rem)] font-bold mb-4">生态市场</h1>
                         <p class="text-gray-medium">探索U+生态系统中的优质产品与解决方案，为教育与科研提供全方位支持</p>
                     </div>
-                    
+
                     <!-- 产品分类标签 -->
                     <div class="flex flex-wrap justify-center gap-4 mb-12">
-                        <button class="product-filter-btn bg-primary text-white px-4 py-2 rounded-full text-sm font-medium" data-type="all">全部产品</button>
-                        <button class="product-filter-btn bg-gray-light text-gray-medium hover:bg-primary/10 hover:text-primary px-4 py-2 rounded-full text-sm font-medium transition-colors" data-type="undergraduate">本科方向</button>
-                        <button class="product-filter-btn bg-gray-light text-gray-medium hover:bg-primary/10 hover:text-primary px-4 py-2 rounded-full text-sm font-medium transition-colors" data-type="vocational">高职方向</button>
+                        <button
+                            class="product-filter-btn bg-primary text-white px-4 py-2 rounded-full text-sm font-medium"
+                            data-type="all">全部产品</button>
+                        <button
+                            class="product-filter-btn bg-gray-light text-gray-medium hover:bg-primary/10 hover:text-primary px-4 py-2 rounded-full text-sm font-medium transition-colors"
+                            data-type="undergraduate">本科方向</button>
+                        <button
+                            class="product-filter-btn bg-gray-light text-gray-medium hover:bg-primary/10 hover:text-primary px-4 py-2 rounded-full text-sm font-medium transition-colors"
+                            data-type="vocational">高职方向</button>
                     </div>
-                    
+
                     <!-- 商品列表 -->
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
                         <!-- 产品1 - 本科方向 -->
-                        <div class="product-card bg-white rounded-xl overflow-hidden shadow-card transition-card hover:shadow-card-hover hover:-translate-y-1 cursor-pointer" data-product="1" data-type="undergraduate">
+                        <div class="product-card bg-white rounded-xl overflow-hidden shadow-card transition-card hover:shadow-card-hover hover:-translate-y-1 cursor-pointer"
+                            data-product="1" data-type="undergraduate">
                             <div class="relative h-48 overflow-hidden">
-                                <span class="absolute top-3 left-3 bg-primary text-white text-xs px-2 py-1 rounded-full z-10">本科</span>
-                                <img src="https://picsum.photos/id/1/600/400" alt="光学场景实验平台" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                                <span
+                                    class="absolute top-3 left-3 bg-primary text-white text-xs px-2 py-1 rounded-full z-10">本科</span>
+                                <img src="https://picsum.photos/id/1/600/400" alt="光学场景实验平台"
+                                    class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
                             </div>
                             <div class="p-6">
                                 <h3 class="text-xl font-semibold mb-2">光学场景实验平台</h3>
@@ -362,15 +417,19 @@
                                     <span class="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">光学实验</span>
                                     <span class="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">智能分析</span>
                                 </div>
-                                <p class="text-gray-medium text-sm line-clamp-3">提供多种光学场景模拟与实验环境，支持学生进行沉浸式光学实验操作与数据分析。</p>
+                                <p class="text-gray-medium text-sm line-clamp-3">提供多种光学场景模拟与实验环境，支持学生进行沉浸式光学实验操作与数据分析。
+                                </p>
                             </div>
                         </div>
-                        
+
                         <!-- 产品2 - 本科方向 -->
-                        <div class="product-card bg-white rounded-xl overflow-hidden shadow-card transition-card hover:shadow-card-hover hover:-translate-y-1 cursor-pointer" data-product="2" data-type="undergraduate">
+                        <div class="product-card bg-white rounded-xl overflow-hidden shadow-card transition-card hover:shadow-card-hover hover:-translate-y-1 cursor-pointer"
+                            data-product="2" data-type="undergraduate">
                             <div class="relative h-48 overflow-hidden">
-                                <span class="absolute top-3 left-3 bg-primary text-white text-xs px-2 py-1 rounded-full z-10">本科</span>
-                                <img src="https://picsum.photos/id/20/600/400" alt="2D/3D视觉场景验证平台" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                                <span
+                                    class="absolute top-3 left-3 bg-primary text-white text-xs px-2 py-1 rounded-full z-10">本科</span>
+                                <img src="https://picsum.photos/id/20/600/400" alt="2D/3D视觉场景验证平台"
+                                    class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
                             </div>
                             <div class="p-6">
                                 <h3 class="text-xl font-semibold mb-2">2D/3D视觉场景验证平台</h3>
@@ -378,15 +437,19 @@
                                     <span class="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">机器视觉</span>
                                     <span class="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">3D建模</span>
                                 </div>
-                                <p class="text-gray-medium text-sm line-clamp-3">集成2D与3D视觉技术，支持多场景下的视觉算法开发、测试与验证，适用于计算机视觉教学。</p>
+                                <p class="text-gray-medium text-sm line-clamp-3">
+                                    集成2D与3D视觉技术，支持多场景下的视觉算法开发、测试与验证，适用于计算机视觉教学。</p>
                             </div>
                         </div>
-                        
+
                         <!-- 产品3 - 高职方向 -->
-                        <div class="product-card bg-white rounded-xl overflow-hidden shadow-card transition-card hover:shadow-card-hover hover:-translate-y-1 cursor-pointer" data-product="3" data-type="vocational">
+                        <div class="product-card bg-white rounded-xl overflow-hidden shadow-card transition-card hover:shadow-card-hover hover:-translate-y-1 cursor-pointer"
+                            data-product="3" data-type="vocational">
                             <div class="relative h-48 overflow-hidden">
-                                <span class="absolute top-3 left-3 bg-secondary text-white text-xs px-2 py-1 rounded-full z-10">高职</span>
-                                <img src="https://picsum.photos/id/42/600/400" alt="智能质检一体化实训平台" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                                <span
+                                    class="absolute top-3 left-3 bg-secondary text-white text-xs px-2 py-1 rounded-full z-10">高职</span>
+                                <img src="https://picsum.photos/id/42/600/400" alt="智能质检一体化实训平台"
+                                    class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
                             </div>
                             <div class="p-6">
                                 <h3 class="text-xl font-semibold mb-2">智能质检一体化实训平台</h3>
@@ -394,15 +457,19 @@
                                     <span class="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">智能制造</span>
                                     <span class="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">质量检测</span>
                                 </div>
-                                <p class="text-gray-medium text-sm line-clamp-3">模拟工业生产中的智能质检流程，集成机器视觉与自动化技术，培养智能制造领域专业人才。</p>
+                                <p class="text-gray-medium text-sm line-clamp-3">
+                                    模拟工业生产中的智能质检流程，集成机器视觉与自动化技术，培养智能制造领域专业人才。</p>
                             </div>
                         </div>
-                        
+
                         <!-- 产品4 - 本科方向 -->
-                        <div class="product-card bg-white rounded-xl overflow-hidden shadow-card transition-card hover:shadow-card-hover hover:-translate-y-1 cursor-pointer" data-product="4" data-type="undergraduate">
+                        <div class="product-card bg-white rounded-xl overflow-hidden shadow-card transition-card hover:shadow-card-hover hover:-translate-y-1 cursor-pointer"
+                            data-product="4" data-type="undergraduate">
                             <div class="relative h-48 overflow-hidden">
-                                <span class="absolute top-3 left-3 bg-primary text-white text-xs px-2 py-1 rounded-full z-10">本科</span>
-                                <img src="https://picsum.photos/id/96/600/400" alt="AI算法训练与部署平台" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                                <span
+                                    class="absolute top-3 left-3 bg-primary text-white text-xs px-2 py-1 rounded-full z-10">本科</span>
+                                <img src="https://picsum.photos/id/96/600/400" alt="AI算法训练与部署平台"
+                                    class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
                             </div>
                             <div class="p-6">
                                 <h3 class="text-xl font-semibold mb-2">AI算法训练与部署平台</h3>
@@ -410,15 +477,19 @@
                                     <span class="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">人工智能</span>
                                     <span class="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">算法开发</span>
                                 </div>
-                                <p class="text-gray-medium text-sm line-clamp-3">提供完整的AI模型开发、训练、部署流程，支持多种主流框架，适合人工智能教学与科研。</p>
+                                <p class="text-gray-medium text-sm line-clamp-3">
+                                    提供完整的AI模型开发、训练、部署流程，支持多种主流框架，适合人工智能教学与科研。</p>
                             </div>
                         </div>
-                        
+
                         <!-- 产品5 - 高职方向 -->
-                        <div class="product-card bg-white rounded-xl overflow-hidden shadow-card transition-card hover:shadow-card-hover hover:-translate-y-1 cursor-pointer" data-product="5" data-type="vocational">
+                        <div class="product-card bg-white rounded-xl overflow-hidden shadow-card transition-card hover:shadow-card-hover hover:-translate-y-1 cursor-pointer"
+                            data-product="5" data-type="vocational">
                             <div class="relative h-48 overflow-hidden">
-                                <span class="absolute top-3 left-3 bg-secondary text-white text-xs px-2 py-1 rounded-full z-10">高职</span>
-                                <img src="https://picsum.photos/id/119/600/400" alt="物联网教学实验箱" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                                <span
+                                    class="absolute top-3 left-3 bg-secondary text-white text-xs px-2 py-1 rounded-full z-10">高职</span>
+                                <img src="https://picsum.photos/id/119/600/400" alt="物联网教学实验箱"
+                                    class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
                             </div>
                             <div class="p-6">
                                 <h3 class="text-xl font-semibold mb-2">物联网教学实验箱</h3>
@@ -426,15 +497,19 @@
                                     <span class="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">物联网</span>
                                     <span class="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">嵌入式</span>
                                 </div>
-                                <p class="text-gray-medium text-sm line-clamp-3">集成传感器、通信模块与控制器，提供完整的物联网系统开发与实验环境，适合物联网课程教学。</p>
+                                <p class="text-gray-medium text-sm line-clamp-3">
+                                    集成传感器、通信模块与控制器，提供完整的物联网系统开发与实验环境，适合物联网课程教学。</p>
                             </div>
                         </div>
-                        
+
                         <!-- 产品6 - 本科方向 -->
-                        <div class="product-card bg-white rounded-xl overflow-hidden shadow-card transition-card hover:shadow-card-hover hover:-translate-y-1 cursor-pointer" data-product="6" data-type="undergraduate">
+                        <div class="product-card bg-white rounded-xl overflow-hidden shadow-card transition-card hover:shadow-card-hover hover:-translate-y-1 cursor-pointer"
+                            data-product="6" data-type="undergraduate">
                             <div class="relative h-48 overflow-hidden">
-                                <span class="absolute top-3 left-3 bg-primary text-white text-xs px-2 py-1 rounded-full z-10">本科</span>
-                                <img src="https://picsum.photos/id/180/600/400" alt="数字孪生虚拟仿真平台" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                                <span
+                                    class="absolute top-3 left-3 bg-primary text-white text-xs px-2 py-1 rounded-full z-10">本科</span>
+                                <img src="https://picsum.photos/id/180/600/400" alt="数字孪生虚拟仿真平台"
+                                    class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
                             </div>
                             <div class="p-6">
                                 <h3 class="text-xl font-semibold mb-2">数字孪生虚拟仿真平台</h3>
@@ -442,15 +517,19 @@
                                     <span class="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">数字孪生</span>
                                     <span class="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">虚拟仿真</span>
                                 </div>
-                                <p class="text-gray-medium text-sm line-clamp-3">构建物理系统的数字化镜像，支持实时模拟与分析，适用于智能制造、智能城市等领域教学。</p>
+                                <p class="text-gray-medium text-sm line-clamp-3">
+                                    构建物理系统的数字化镜像，支持实时模拟与分析，适用于智能制造、智能城市等领域教学。</p>
                             </div>
                         </div>
-                        
+
                         <!-- 产品7 - 高职方向 -->
-                        <div class="product-card bg-white rounded-xl overflow-hidden shadow-card transition-card hover:shadow-card-hover hover:-translate-y-1 cursor-pointer" data-product="7" data-type="vocational">
+                        <div class="product-card bg-white rounded-xl overflow-hidden shadow-card transition-card hover:shadow-card-hover hover:-translate-y-1 cursor-pointer"
+                            data-product="7" data-type="vocational">
                             <div class="relative h-48 overflow-hidden">
-                                <span class="absolute top-3 left-3 bg-secondary text-white text-xs px-2 py-1 rounded-full z-10">高职</span>
-                                <img src="https://picsum.photos/id/239/600/400" alt="工业机器人编程实训平台" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                                <span
+                                    class="absolute top-3 left-3 bg-secondary text-white text-xs px-2 py-1 rounded-full z-10">高职</span>
+                                <img src="https://picsum.photos/id/239/600/400" alt="工业机器人编程实训平台"
+                                    class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
                             </div>
                             <div class="p-6">
                                 <h3 class="text-xl font-semibold mb-2">工业机器人编程实训平台</h3>
@@ -458,15 +537,19 @@
                                     <span class="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">机器人</span>
                                     <span class="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">编程控制</span>
                                 </div>
-                                <p class="text-gray-medium text-sm line-clamp-3">提供工业机器人虚拟仿真与实物操作相结合的实训环境，培养机器人编程与应用能力。</p>
+                                <p class="text-gray-medium text-sm line-clamp-3">提供工业机器人虚拟仿真与实物操作相结合的实训环境，培养机器人编程与应用能力。
+                                </p>
                             </div>
                         </div>
-                        
+
                         <!-- 产品8 - 本科方向 -->
-                        <div class="product-card bg-white rounded-xl overflow-hidden shadow-card transition-card hover:shadow-card-hover hover:-translate-y-1 cursor-pointer" data-product="8" data-type="undergraduate">
+                        <div class="product-card bg-white rounded-xl overflow-hidden shadow-card transition-card hover:shadow-card-hover hover:-translate-y-1 cursor-pointer"
+                            data-product="8" data-type="undergraduate">
                             <div class="relative h-48 overflow-hidden">
-                                <span class="absolute top-3 left-3 bg-primary text-white text-xs px-2 py-1 rounded-full z-10">本科</span>
-                                <img src="https://picsum.photos/id/250/600/400" alt="大数据分析教学平台" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                                <span
+                                    class="absolute top-3 left-3 bg-primary text-white text-xs px-2 py-1 rounded-full z-10">本科</span>
+                                <img src="https://picsum.photos/id/250/600/400" alt="大数据分析教学平台"
+                                    class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
                             </div>
                             <div class="p-6">
                                 <h3 class="text-xl font-semibold mb-2">大数据分析教学平台</h3>
@@ -474,14 +557,15 @@
                                     <span class="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">大数据</span>
                                     <span class="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">数据分析</span>
                                 </div>
-                                <p class="text-gray-medium text-sm line-clamp-3">集成大数据采集、处理、分析与可视化工具，提供真实的大数据应用场景，适合数据分析教学。</p>
+                                <p class="text-gray-medium text-sm line-clamp-3">
+                                    集成大数据采集、处理、分析与可视化工具，提供真实的大数据应用场景，适合数据分析教学。</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        
+
         <!-- 院校合作页面 -->
         <section id="university-page" class="page-content hidden">
             <div class="py-16 md:py-24 bg-gray-bg">
@@ -492,12 +576,12 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- 教学资源 -->
             <div class="py-16 md:py-24">
                 <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                     <h2 class="text-[clamp(1.5rem,3vw,2.25rem)] font-semibold mb-12 text-center">教学资源</h2>
-                    
+
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
                         <!-- 资源1 -->
                         <div class="bg-white rounded-xl p-6 shadow-card transition-card hover:shadow-card-hover">
@@ -511,7 +595,7 @@
                                 <i class="fa fa-arrow-right ml-2"></i>
                             </div>
                         </div>
-                        
+
                         <!-- 资源2 -->
                         <div class="bg-white rounded-xl p-6 shadow-card transition-card hover:shadow-card-hover">
                             <div class="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center mb-5">
@@ -524,7 +608,7 @@
                                 <i class="fa fa-arrow-right ml-2"></i>
                             </div>
                         </div>
-                        
+
                         <!-- 资源3 -->
                         <div class="bg-white rounded-xl p-6 shadow-card transition-card hover:shadow-card-hover">
                             <div class="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center mb-5">
@@ -540,18 +624,19 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- 科研资源 -->
             <div class="py-16 md:py-24 bg-gray-bg">
                 <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                     <h2 class="text-[clamp(1.5rem,3vw,2.25rem)] font-semibold mb-12 text-center">科研资源</h2>
-                    
+
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
                         <!-- 合作实验室 -->
                         <div>
                             <div class="bg-white rounded-xl overflow-hidden shadow-card h-full">
                                 <div class="h-56 overflow-hidden">
-                                    <img src="https://picsum.photos/id/28/800/500" alt="合作实验室" class="w-full h-full object-cover">
+                                    <img src="https://picsum.photos/id/28/800/500" alt="合作实验室"
+                                        class="w-full h-full object-cover">
                                 </div>
                                 <div class="p-6">
                                     <h3 class="text-xl font-semibold mb-3">合作实验室</h3>
@@ -573,12 +658,13 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <!-- 项目类型 -->
                         <div>
                             <div class="bg-white rounded-xl overflow-hidden shadow-card h-full">
                                 <div class="h-56 overflow-hidden">
-                                    <img src="https://picsum.photos/id/48/800/500" alt="科研项目" class="w-full h-full object-cover">
+                                    <img src="https://picsum.photos/id/48/800/500" alt="科研项目"
+                                        class="w-full h-full object-cover">
                                 </div>
                                 <div class="p-6">
                                     <h3 class="text-xl font-semibold mb-3">项目类型</h3>
@@ -603,210 +689,128 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- 合作高校 -->
             <div class="py-16 md:py-24">
                 <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                     <h2 class="text-[clamp(1.5rem,3vw,2.25rem)] font-semibold mb-4 text-center">合作高校</h2>
                     <p class="text-gray-medium text-center max-w-2xl mx-auto mb-8">目前已与全国多所高校建立合作关系，共同推进智能科技教育发展</p>
-                    
+
                     <!-- 高校分类标签 -->
                     <div class="flex flex-wrap justify-center gap-4 mb-12 hidden">
-                        <button class="university-filter-btn bg-primary text-white px-4 py-2 rounded-full text-sm font-medium" data-type="all">全部院校</button>
-                        <button class="university-filter-btn bg-gray-light text-gray-medium hover:bg-primary/10 hover:text-primary px-4 py-2 rounded-full text-sm font-medium transition-colors" data-type="undergraduate">本科院校</button>
-                        <button class="university-filter-btn bg-gray-light text-gray-medium hover:bg-primary/10 hover:text-primary px-4 py-2 rounded-full text-sm font-medium transition-colors" data-type="vocational">高职院校</button>
+                        <button
+                            class="university-filter-btn bg-primary text-white px-4 py-2 rounded-full text-sm font-medium"
+                            data-type="all">全部院校</button>
+                        <button
+                            class="university-filter-btn bg-gray-light text-gray-medium hover:bg-primary/10 hover:text-primary px-4 py-2 rounded-full text-sm font-medium transition-colors"
+                            data-type="undergraduate">本科院校</button>
+                        <button
+                            class="university-filter-btn bg-gray-light text-gray-medium hover:bg-primary/10 hover:text-primary px-4 py-2 rounded-full text-sm font-medium transition-colors"
+                            data-type="vocational">高职院校</button>
                     </div>
-                    
+
                     <div class="max-w-6xl mx-auto">
                         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
                             <!-- 本科院校1 -->
-                            <div class="university-logo bg-white rounded-lg p-4 shadow-card transition-card hover:shadow-card-hover hover:-translate-y-1 cursor-pointer flex items-center justify-center h-24" data-university="1" data-type="undergraduate">
-                                <img src="https://staticfile.eduplus.net/athena/athenaHome/%E5%86%85%E8%92%99%E5%8F%A4%E5%B8%88%E8%8C%83.jpg" alt="内蒙古示范大学" class="max-h-full max-w-full object-contain grayscale hover:grayscale-0 transition-all duration-300">
+                            <div class="university-logo bg-white rounded-lg p-4 shadow-card transition-card hover:shadow-card-hover hover:-translate-y-1 cursor-pointer flex items-center justify-center h-24"
+                                data-university="1" data-type="undergraduate">
+                                <img src="https://staticfile.eduplus.net/athena/athenaHome/%E5%86%85%E8%92%99%E5%8F%A4%E5%B8%88%E8%8C%83.jpg"
+                                    alt="内蒙古示范大学"
+                                    class="max-h-full max-w-full object-contain grayscale hover:grayscale-0 transition-all duration-300">
                             </div>
-                            
+
                             <!-- 本科院校2 -->
-                            <div class="university-logo bg-white rounded-lg p-4 shadow-card transition-card hover:shadow-card-hover hover:-translate-y-1 cursor-pointer flex items-center justify-center h-24" data-university="2" data-type="undergraduate">
-                                <img src="https://staticfile.eduplus.net/athena/athenaHome/%E5%B9%BF%E8%A5%BF%E6%B0%91%E6%97%8F.png" alt="广西民族大学" class="max-h-full max-w-full object-contain grayscale hover:grayscale-0 transition-all duration-300">
+                            <div class="university-logo bg-white rounded-lg p-4 shadow-card transition-card hover:shadow-card-hover hover:-translate-y-1 cursor-pointer flex items-center justify-center h-24"
+                                data-university="2" data-type="undergraduate">
+                                <img src="https://staticfile.eduplus.net/athena/athenaHome/%E5%B9%BF%E8%A5%BF%E6%B0%91%E6%97%8F.png"
+                                    alt="广西民族大学"
+                                    class="max-h-full max-w-full object-contain grayscale hover:grayscale-0 transition-all duration-300">
                             </div>
-                            
+
                             <!-- 本科院校3 -->
-                            <div class="university-logo bg-white rounded-lg p-4 shadow-card transition-card hover:shadow-card-hover hover:-translate-y-1 cursor-pointer flex items-center justify-center h-24" data-university="3" data-type="undergraduate">
-                                <img src="https://staticfile.eduplus.net/athena/athenaHome/%E5%AE%89%E5%BE%BD%E5%A4%A7%E5%AD%A6.png" alt="安徽大学" class="max-h-full max-w-full object-contain grayscale hover:grayscale-0 transition-all duration-300">
+                            <div class="university-logo bg-white rounded-lg p-4 shadow-card transition-card hover:shadow-card-hover hover:-translate-y-1 cursor-pointer flex items-center justify-center h-24"
+                                data-university="3" data-type="undergraduate">
+                                <img src="https://staticfile.eduplus.net/athena/athenaHome/%E5%AE%89%E5%BE%BD%E5%A4%A7%E5%AD%A6.png"
+                                    alt="安徽大学"
+                                    class="max-h-full max-w-full object-contain grayscale hover:grayscale-0 transition-all duration-300">
                             </div>
-                            
+
                             <!-- 高职院校1 -->
-                            <div class="university-logo bg-white rounded-lg p-4 shadow-card transition-card hover:shadow-card-hover hover:-translate-y-1 cursor-pointer flex items-center justify-center h-24" data-university="11" data-type="vocational">
-                                <img src="https://staticfile.eduplus.net/athena/athenaHome/%E4%B8%8A%E6%B5%B7%E6%9D%89%E8%BE%BE.png" alt="上海杉达学院" class="max-h-full max-w-full object-contain grayscale hover:grayscale-0 transition-all duration-300">
+                            <div class="university-logo bg-white rounded-lg p-4 shadow-card transition-card hover:shadow-card-hover hover:-translate-y-1 cursor-pointer flex items-center justify-center h-24"
+                                data-university="11" data-type="vocational">
+                                <img src="https://staticfile.eduplus.net/athena/athenaHome/%E4%B8%8A%E6%B5%B7%E6%9D%89%E8%BE%BE.png"
+                                    alt="上海杉达学院"
+                                    class="max-h-full max-w-full object-contain grayscale hover:grayscale-0 transition-all duration-300">
                             </div>
-                            
+
                             <!-- 高职院校2 -->
-                            <div class="university-logo bg-white rounded-lg p-4 shadow-card transition-card hover:shadow-card-hover hover:-translate-y-1 cursor-pointer flex items-center justify-center h-24" data-university="12" data-type="vocational">
-                                <img src="https://staticfile.eduplus.net/athena/athenaHome/%E6%A1%82%E6%9E%97%E8%88%AA%E5%A4%A9.png" alt="桂林航天工业学院" class="max-h-full max-w-full object-contain grayscale hover:grayscale-0 transition-all duration-300">
+                            <div class="university-logo bg-white rounded-lg p-4 shadow-card transition-card hover:shadow-card-hover hover:-translate-y-1 cursor-pointer flex items-center justify-center h-24"
+                                data-university="12" data-type="vocational">
+                                <img src="https://staticfile.eduplus.net/athena/athenaHome/%E6%A1%82%E6%9E%97%E8%88%AA%E5%A4%A9.png"
+                                    alt="桂林航天工业学院"
+                                    class="max-h-full max-w-full object-contain grayscale hover:grayscale-0 transition-all duration-300">
                             </div>
-                            
+
                             <!-- 本科院校4 -->
-                            <div class="university-logo bg-white rounded-lg p-4 shadow-card transition-card hover:shadow-card-hover hover:-translate-y-1 cursor-pointer flex items-center justify-center h-24" data-university="4" data-type="undergraduate">
-                                <img src="https://staticfile.eduplus.net/athena/athenaHome/265%E8%A5%BF%E5%8C%97%E5%B7%A5%E4%B8%9A%E5%A4%A7%E5%AD%A6.jpg" alt="西北工业大学" class="max-h-full max-w-full object-contain grayscale hover:grayscale-0 transition-all duration-300">
+                            <div class="university-logo bg-white rounded-lg p-4 shadow-card transition-card hover:shadow-card-hover hover:-translate-y-1 cursor-pointer flex items-center justify-center h-24"
+                                data-university="4" data-type="undergraduate">
+                                <img src="https://staticfile.eduplus.net/athena/athenaHome/265%E8%A5%BF%E5%8C%97%E5%B7%A5%E4%B8%9A%E5%A4%A7%E5%AD%A6.jpg"
+                                    alt="西北工业大学"
+                                    class="max-h-full max-w-full object-contain grayscale hover:grayscale-0 transition-all duration-300">
                             </div>
-                            
+
                             <!-- 本科院校5 -->
-                            <div class="university-logo bg-white rounded-lg p-4 shadow-card transition-card hover:shadow-card-hover hover:-translate-y-1 cursor-pointer flex items-center justify-center h-24" data-university="5" data-type="undergraduate">
-                                <img src="https://staticfile.eduplus.net/athena/athenaHome/%E5%B1%B1%E4%B8%9C%E7%A7%91%E6%8A%80%E5%A4%A7%E5%AD%A6.png" alt="山东科技大学" class="max-h-full max-w-full object-contain grayscale hover:grayscale-0 transition-all duration-300">
+                            <div class="university-logo bg-white rounded-lg p-4 shadow-card transition-card hover:shadow-card-hover hover:-translate-y-1 cursor-pointer flex items-center justify-center h-24"
+                                data-university="5" data-type="undergraduate">
+                                <img src="https://staticfile.eduplus.net/athena/athenaHome/%E5%B1%B1%E4%B8%9C%E7%A7%91%E6%8A%80%E5%A4%A7%E5%AD%A6.png"
+                                    alt="山东科技大学"
+                                    class="max-h-full max-w-full object-contain grayscale hover:grayscale-0 transition-all duration-300">
                             </div>
-                            
+
                             <!-- 高职院校3 -->
-                            <div class="university-logo bg-white rounded-lg p-4 shadow-card transition-card hover:shadow-card-hover hover:-translate-y-1 cursor-pointer flex items-center justify-center h-24" data-university="13" data-type="vocational">
-                                <img src="https://staticfile.eduplus.net/athena/athenaHome/%E5%B9%BF%E5%B7%9E%E5%B7%A5%E5%95%86%E5%AD%A6%E9%99%A2.png" alt="广州工商职业学院" class="max-h-full max-w-full object-contain grayscale hover:grayscale-0 transition-all duration-300">
+                            <div class="university-logo bg-white rounded-lg p-4 shadow-card transition-card hover:shadow-card-hover hover:-translate-y-1 cursor-pointer flex items-center justify-center h-24"
+                                data-university="13" data-type="vocational">
+                                <img src="https://staticfile.eduplus.net/athena/athenaHome/%E5%B9%BF%E5%B7%9E%E5%B7%A5%E5%95%86%E5%AD%A6%E9%99%A2.png"
+                                    alt="广州工商职业学院"
+                                    class="max-h-full max-w-full object-contain grayscale hover:grayscale-0 transition-all duration-300">
                             </div>
-                            
+
                             <!-- 高职院校4 -->
-                            <div class="university-logo bg-white rounded-lg p-4 shadow-card transition-card hover:shadow-card-hover hover:-translate-y-1 cursor-pointer flex items-center justify-center h-24" data-university="14" data-type="vocational">
-                                <img src="https://staticfile.eduplus.net/athena/athenaHome/%E5%BB%8A%E5%9D%8A%E8%81%8C%E4%B8%9A.png" alt="廊坊职业技术学院" class="max-h-full max-w-full object-contain grayscale hover:grayscale-0 transition-all duration-300">
+                            <div class="university-logo bg-white rounded-lg p-4 shadow-card transition-card hover:shadow-card-hover hover:-translate-y-1 cursor-pointer flex items-center justify-center h-24"
+                                data-university="14" data-type="vocational">
+                                <img src="https://staticfile.eduplus.net/athena/athenaHome/%E5%BB%8A%E5%9D%8A%E8%81%8C%E4%B8%9A.png"
+                                    alt="廊坊职业技术学院"
+                                    class="max-h-full max-w-full object-contain grayscale hover:grayscale-0 transition-all duration-300">
                             </div>
-                            
+
                             <!-- 本科院校6 -->
-                            <div class="university-logo bg-white rounded-lg p-4 shadow-card transition-card hover:shadow-card-hover hover:-translate-y-1 cursor-pointer flex items-center justify-center h-24" data-university="6" data-type="undergraduate">
-                                <img src="https://staticfile.eduplus.net/athena/athenaHome/369%E5%8C%97%E4%BA%AC%E4%BA%A4%E9%80%9A%E5%A4%A7%E5%AD%A6.png" alt="北京交通大学" class="max-h-full max-w-full object-contain grayscale hover:grayscale-0 transition-all duration-300">
+                            <div class="university-logo bg-white rounded-lg p-4 shadow-card transition-card hover:shadow-card-hover hover:-translate-y-1 cursor-pointer flex items-center justify-center h-24"
+                                data-university="6" data-type="undergraduate">
+                                <img src="https://staticfile.eduplus.net/athena/athenaHome/369%E5%8C%97%E4%BA%AC%E4%BA%A4%E9%80%9A%E5%A4%A7%E5%AD%A6.png"
+                                    alt="北京交通大学"
+                                    class="max-h-full max-w-full object-contain grayscale hover:grayscale-0 transition-all duration-300">
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        
-        <!-- 新闻动态页面 -->
-        <section id="news-page" class="page-content hidden">
-            <div class="py-16 md:py-24 bg-gray-bg">
-                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="max-w-3xl mx-auto text-center mb-16">
-                        <h1 class="text-[clamp(2rem,4vw,3rem)] font-bold mb-4">新闻动态</h1>
-                        <p class="text-gray-medium">了解U+生态合作的最新动态、活动资讯与成果展示</p>
-                    </div>
-                    
-                    <!-- 新闻列表 -->
-                    <div class="max-w-6xl mx-auto">
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                            <!-- 新闻1 -->
-                            <div class="bg-white rounded-xl overflow-hidden shadow-card transition-card hover:shadow-card-hover hover:-translate-y-1">
-                                <div class="h-48 overflow-hidden">
-                                    <img src="https://picsum.photos/id/160/600/400" alt="U+平台与10所高校签署战略合作协议" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
-                                </div>
-                                <div class="p-6">
-                                    <div class="text-sm text-gray-medium mb-3">2023-06-15</div>
-                                    <h3 class="text-xl font-semibold mb-3">U+平台与10所高校签署战略合作协议</h3>
-                                    <p class="text-gray-medium text-sm mb-4 line-clamp-3">近日，U+平台与国内10所知名高校签署战略合作协议，将共同建设智能科技实验室，开发课程资源，培养高素质技术人才。</p>
-                                    <a href="#" class="text-primary font-medium flex items-center hover:underline">
-                                        阅读全文 <i class="fa fa-angle-right ml-1"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            
-                            <!-- 新闻2 -->
-                            <div class="bg-white rounded-xl overflow-hidden shadow-card transition-card hover:shadow-card-hover hover:-translate-y-1">
-                                <div class="h-48 overflow-hidden">
-                                    <img src="https://picsum.photos/id/169/600/400" alt="2023智能科技教育论坛成功举办" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
-                                </div>
-                                <div class="p-6">
-                                    <div class="text-sm text-gray-medium mb-3">2023-05-28</div>
-                                    <h3 class="text-xl font-semibold mb-3">2023智能科技教育论坛成功举办</h3>
-                                    <p class="text-gray-medium text-sm mb-4 line-clamp-3">由U+平台主办的2023智能科技教育论坛在上海成功举办，来自全国的200多位高校专家与企业代表共同探讨智能科技教育的发展方向。</p>
-                                    <a href="#" class="text-primary font-medium flex items-center hover:underline">
-                                        阅读全文 <i class="fa fa-angle-right ml-1"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            
-                            <!-- 新闻3 -->
-                            <div class="bg-white rounded-xl overflow-hidden shadow-card transition-card hover:shadow-card-hover hover:-translate-y-1">
-                                <div class="h-48 overflow-hidden">
-                                    <img src="https://picsum.photos/id/180/600/400" alt="U+生态市场新增5款智能教学产品" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
-                                </div>
-                                <div class="p-6">
-                                    <div class="text-sm text-gray-medium mb-3">2023-04-12</div>
-                                    <h3 class="text-xl font-semibold mb-3">U+生态市场新增5款智能教学产品</h3>
-                                    <p class="text-gray-medium text-sm mb-4 line-clamp-3">U+生态市场近期新增5款智能教学产品，涵盖人工智能、物联网、机器人等多个领域，为高校提供更丰富的教学资源选择。</p>
-                                    <a href="#" class="text-primary font-medium flex items-center hover:underline">
-                                        阅读全文 <i class="fa fa-angle-right ml-1"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            
-                            <!-- 新闻4 -->
-                            <div class="bg-white rounded-xl overflow-hidden shadow-card transition-card hover:shadow-card-hover hover:-translate-y-1">
-                                <div class="h-48 overflow-hidden">
-                                    <img src="https://picsum.photos/id/201/600/400" alt="U+平台发布智能教育白皮书" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
-                                </div>
-                                <div class="p-6">
-                                    <div class="text-sm text-gray-medium mb-3">2023-03-25</div>
-                                    <h3 class="text-xl font-semibold mb-3">U+平台发布智能教育白皮书</h3>
-                                    <p class="text-gray-medium text-sm mb-4 line-clamp-3">U+平台联合行业专家发布《2023智能科技教育发展白皮书》，分析当前智能教育发展现状，预测未来发展趋势，提出人才培养建议。</p>
-                                    <a href="#" class="text-primary font-medium flex items-center hover:underline">
-                                        阅读全文 <i class="fa fa-angle-right ml-1"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            
-                            <!-- 新闻5 -->
-                            <div class="bg-white rounded-xl overflow-hidden shadow-card transition-card hover:shadow-card-hover hover:-translate-y-1">
-                                <div class="h-48 overflow-hidden">
-                                    <img src="https://picsum.photos/id/235/600/400" alt="U+合作实验室在全国教学成果展获奖" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
-                                </div>
-                                <div class="p-6">
-                                    <div class="text-sm text-gray-medium mb-3">2023-02-18</div>
-                                    <h3 class="text-xl font-semibold mb-3">U+合作实验室在全国教学成果展获奖</h3>
-                                    <p class="text-gray-medium text-sm mb-4 line-clamp-3">由U+平台与浙江大学共建的智能视觉实验室项目在全国高校教学成果展中荣获一等奖，得到教育界专家的高度评价。</p>
-                                    <a href="#" class="text-primary font-medium flex items-center hover:underline">
-                                        阅读全文 <i class="fa fa-angle-right ml-1"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            
-                            <!-- 新闻6 -->
-                            <div class="bg-white rounded-xl overflow-hidden shadow-card transition-card hover:shadow-card-hover hover:-translate-y-1">
-                                <div class="h-48 overflow-hidden">
-                                    <img src="https://picsum.photos/id/242/600/400" alt="U+平台启动" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
-                                </div>
-                                <div class="p-6">
-                                    <div class="text-sm text-gray-medium mb-3">2023-01-05</div>
-                                    <h3 class="text-xl font-semibold mb-3">U+平台正式启动，打造智能教育新生态</h3>
-                                    <p class="text-gray-medium text-sm mb-4 line-clamp-3">U+智能科技教育生态合作平台今日正式启动，平台旨在连接高校、企业与研究机构，构建产学研一体化的智能教育生态系统。</p>
-                                    <a href="#" class="text-primary font-medium flex items-center hover:underline">
-                                        阅读全文 <i class="fa fa-angle-right ml-1"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+
+
     </main>
-    
-    <!-- 产品详情页面 -->
-    <section id="product-detail-page" class="page-content py-20 bg-gray-bg hidden">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="mb-8">
-                <button onclick="goBackToProducts()" class="flex items-center text-primary hover:text-primary/80 transition-colors">
-                    <i class="fa fa-arrow-left mr-2"></i>
-                    返回产品列表
-                </button>
-            </div>
-            <div class="bg-white rounded-xl shadow-card p-8">
-                <div id="product-content"></div>
-            </div>
-        </div>
-    </section>
-    
+
+
+
     <!-- 页脚 - 与eduplus.net保持一致 -->
     <footer class="bg-[#0A0C10] text-white pt-16 pb-8">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
                 <div>
                     <div class="mb-6">
-                        <img src="https://www.eduplus.net/static/svg/logo_footer.24c2fe591757685780344.svg" alt="U+平台logo" class="h-8">
+                        <img src="img/logo2.svg" alt="U+平台logo" class="h-8">
                     </div>
                     <p class="text-gray-400 text-sm mb-6 leading-relaxed">
-                         U+ 平台是专注于智能科技教育的生态平台，致力于通过技术创新推动教育变革，连接全球优质教育资源，培养面向未来的创新人才。
+                        U+ 平台是专注于智能科技教育的生态平台，致力于通过技术创新推动教育变革，连接全球优质教育资源，培养面向未来的创新人才。
                     </p>
                     <div class="flex space-x-4">
                         <a href="#" class="text-gray-400 hover:text-white transition-colors">
@@ -820,7 +824,7 @@
                         </a>
                     </div>
                 </div>
-                
+
                 <div>
                     <h3 class="text-lg font-semibold mb-6">平台产品</h3>
                     <ul class="space-y-3">
@@ -831,18 +835,17 @@
                         <li><a href="#" class="text-gray-400 hover:text-white transition-colors text-sm">产教融合平台</a></li>
                     </ul>
                 </div>
-                
+
                 <div>
                     <h3 class="text-lg font-semibold mb-6">关于我们</h3>
                     <ul class="space-y-3">
                         <li><a href="#" class="text-gray-400 hover:text-white transition-colors text-sm">公司简介</a></li>
                         <li><a href="#" class="text-gray-400 hover:text-white transition-colors text-sm">生态合作</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors text-sm">新闻动态</a></li>
                         <li><a href="#" class="text-gray-400 hover:text-white transition-colors text-sm">加入我们</a></li>
                         <li><a href="#" class="text-gray-400 hover:text-white transition-colors text-sm">联系我们</a></li>
                     </ul>
                 </div>
-                
+
                 <div>
                     <h3 class="text-lg font-semibold mb-6">联系方式</h3>
                     <ul class="space-y-4">
@@ -861,7 +864,7 @@
                     </ul>
                 </div>
             </div>
-            
+
             <div class="border-t border-gray-800 pt-8">
                 <div class="flex flex-col md:flex-row justify-between items-center">
                     <p class="text-gray-500 text-sm mb-4 md:mb-0">© 2025 深圳优加 版权所有 | 深ICP备12345678号</p>
@@ -874,10 +877,12 @@
             </div>
         </div>
     </footer>
-    
+
     <!-- 模态框 - 咨询表单 -->
-    <div id="consult-modal" class="fixed inset-0 bg-black/30 z-50 flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
-        <div class="bg-white rounded-xl max-w-md w-full mx-4 max-h-[90vh] overflow-y-auto transform transition-transform duration-300 scale-95">
+    <div id="consult-modal"
+        class="fixed inset-0 bg-black/30 z-50 flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
+        <div
+            class="bg-white rounded-xl max-w-md w-full mx-4 max-h-[90vh] overflow-y-auto transform transition-transform duration-300 scale-95">
             <div class="p-6 border-b border-gray-light flex justify-between items-center">
                 <h3 class="text-xl font-semibold">合作咨询</h3>
                 <button class="modal-close text-gray-medium hover:text-dark">
@@ -888,35 +893,43 @@
                 <form>
                     <div class="mb-4">
                         <label for="name" class="block text-gray-medium mb-2">姓名</label>
-                        <input type="text" id="name" class="w-full px-4 py-2 border border-gray-light rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary">
+                        <input type="text" id="name"
+                            class="w-full px-4 py-2 border border-gray-light rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary">
                     </div>
                     <div class="mb-4">
                         <label for="organization" class="block text-gray-medium mb-2">单位/机构</label>
-                        <input type="text" id="organization" class="w-full px-4 py-2 border border-gray-light rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary">
+                        <input type="text" id="organization"
+                            class="w-full px-4 py-2 border border-gray-light rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary">
                     </div>
                     <div class="mb-4">
                         <label for="phone" class="block text-gray-medium mb-2">联系电话</label>
-                        <input type="tel" id="phone" class="w-full px-4 py-2 border border-gray-light rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary">
+                        <input type="tel" id="phone"
+                            class="w-full px-4 py-2 border border-gray-light rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary">
                     </div>
                     <div class="mb-4">
                         <label for="email" class="block text-gray-medium mb-2">邮箱</label>
-                        <input type="email" id="email" class="w-full px-4 py-2 border border-gray-light rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary">
+                        <input type="email" id="email"
+                            class="w-full px-4 py-2 border border-gray-light rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary">
                     </div>
                     <div class="mb-6">
                         <label for="message" class="block text-gray-medium mb-2">咨询内容</label>
-                        <textarea id="message" rows="4" class="w-full px-4 py-2 border border-gray-light rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary"></textarea>
+                        <textarea id="message" rows="4"
+                            class="w-full px-4 py-2 border border-gray-light rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary"></textarea>
                     </div>
-                    <button type="submit" class="w-full bg-primary hover:bg-primary/90 text-white py-3 rounded-lg font-medium transition-button hover:shadow-lg active:scale-button">
+                    <button type="submit"
+                        class="w-full bg-primary hover:bg-primary/90 text-white py-3 rounded-lg font-medium transition-button hover:shadow-lg active:scale-button">
                         提交咨询
                     </button>
                 </form>
             </div>
         </div>
     </div>
-    
+
     <!-- 模态框 - 申请表单 -->
-    <div id="apply-modal" class="fixed inset-0 bg-black/30 z-50 flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
-        <div class="bg-white rounded-xl max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto transform transition-transform duration-300 scale-95">
+    <div id="apply-modal"
+        class="fixed inset-0 bg-black/30 z-50 flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
+        <div
+            class="bg-white rounded-xl max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto transform transition-transform duration-300 scale-95">
             <div class="p-6 border-b border-gray-light flex justify-between items-center">
                 <h3 class="text-xl font-semibold">合作伙伴申请</h3>
                 <button class="modal-close text-gray-medium hover:text-dark">
@@ -928,28 +941,33 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                         <div>
                             <label for="apply-name" class="block text-gray-medium mb-2">联系人姓名</label>
-                            <input type="text" id="apply-name" class="w-full px-4 py-2 border border-gray-light rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary">
+                            <input type="text" id="apply-name"
+                                class="w-full px-4 py-2 border border-gray-light rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary">
                         </div>
                         <div>
                             <label for="apply-phone" class="block text-gray-medium mb-2">联系电话</label>
-                            <input type="tel" id="apply-phone" class="w-full px-4 py-2 border border-gray-light rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary">
+                            <input type="tel" id="apply-phone"
+                                class="w-full px-4 py-2 border border-gray-light rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary">
                         </div>
                     </div>
-                    
+
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                         <div>
                             <label for="apply-email" class="block text-gray-medium mb-2">邮箱</label>
-                            <input type="email" id="apply-email" class="w-full px-4 py-2 border border-gray-light rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary">
+                            <input type="email" id="apply-email"
+                                class="w-full px-4 py-2 border border-gray-light rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary">
                         </div>
                         <div>
                             <label for="apply-organization" class="block text-gray-medium mb-2">单位/机构名称</label>
-                            <input type="text" id="apply-organization" class="w-full px-4 py-2 border border-gray-light rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary">
+                            <input type="text" id="apply-organization"
+                                class="w-full px-4 py-2 border border-gray-light rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary">
                         </div>
                     </div>
-                    
+
                     <div class="mb-4">
                         <label for="apply-type" class="block text-gray-medium mb-2">合作类型</label>
-                        <select id="apply-type" class="w-full px-4 py-2 border border-gray-light rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary">
+                        <select id="apply-type"
+                            class="w-full px-4 py-2 border border-gray-light rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary">
                             <option value="">请选择合作类型</option>
                             <option value="university">本科院校合作</option>
                             <option value="vocational">高职院校合作</option>
@@ -958,45 +976,35 @@
                             <option value="other">其他合作</option>
                         </select>
                     </div>
-                    
+
                     <div class="mb-4">
                         <label for="apply-introduction" class="block text-gray-medium mb-2">单位/机构简介</label>
-                        <textarea id="apply-introduction" rows="3" class="w-full px-4 py-2 border border-gray-light rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary"></textarea>
+                        <textarea id="apply-introduction" rows="3"
+                            class="w-full px-4 py-2 border border-gray-light rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary"></textarea>
                     </div>
-                    
+
                     <div class="mb-6">
                         <label for="apply-purpose" class="block text-gray-medium mb-2">合作意向与需求</label>
-                        <textarea id="apply-purpose" rows="4" class="w-full px-4 py-2 border border-gray-light rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary"></textarea>
+                        <textarea id="apply-purpose" rows="4"
+                            class="w-full px-4 py-2 border border-gray-light rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary"></textarea>
                     </div>
-                    
-                    <button type="submit" class="w-full bg-primary hover:bg-primary/90 text-white py-3 rounded-lg font-medium transition-button hover:shadow-lg active:scale-button">
+
+                    <button type="submit"
+                        class="w-full bg-primary hover:bg-primary/90 text-white py-3 rounded-lg font-medium transition-button hover:shadow-lg active:scale-button">
                         提交申请
                     </button>
                 </form>
             </div>
         </div>
     </div>
-    
-    <!-- 模态框 - 产品详情 -->
-    <div id="product-modal" class="fixed inset-0 bg-black/30 z-50 flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
-        <div class="bg-white rounded-xl max-w-5xl w-full mx-4 max-h-[90vh] overflow-y-auto transform transition-transform duration-300 scale-95">
-            <div class="p-6 border-b border-gray-light flex justify-between items-center sticky top-0 bg-white z-10">
-                <h3 id="product-title" class="text-xl font-semibold">产品详情</h3>
-                <button class="modal-close text-gray-medium hover:text-dark">
-                    <i class="fa fa-times text-xl"></i>
-                </button>
-            </div>
-            <div class="p-6">
-                <div id="product-content">
-                    <!-- 产品详情内容将通过JavaScript动态填充 -->
-                </div>
-            </div>
-        </div>
-    </div>
-    
+
+
+
     <!-- 模态框 - 高校合作详情 -->
-    <div id="university-modal" class="fixed inset-0 bg-black/30 z-50 flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
-        <div class="bg-white rounded-xl max-w-3xl w-full mx-4 max-h-[90vh] overflow-y-auto transform transition-transform duration-300 scale-95">
+    <div id="university-modal"
+        class="fixed inset-0 bg-black/30 z-50 flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
+        <div
+            class="bg-white rounded-xl max-w-3xl w-full mx-4 max-h-[90vh] overflow-y-auto transform transition-transform duration-300 scale-95">
             <div class="p-6 border-b border-gray-light flex justify-between items-center sticky top-0 bg-white z-10">
                 <h3 id="university-title" class="text-xl font-semibold">高校合作详情</h3>
                 <button class="modal-close text-gray-medium hover:text-dark">
@@ -1010,86 +1018,135 @@
             </div>
         </div>
     </div>
-    
+
     <script>
         // 页面导航切换
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
+            // 处理URL哈希导航
+            function handleHashNavigation() {
+                const hash = window.location.hash.substring(1); // 移除 # 符号
+                if (hash) {
+                    // 哈希到页面的映射
+                    const hashToPage = {
+                        'overview': 'overview',
+                        'market': 'market', 
+                        'university': 'university'
+                    };
+                    
+                    const targetPage = hashToPage[hash];
+                    if (targetPage) {
+                        // 隐藏所有页面
+                        document.querySelectorAll('.page-content').forEach(page => {
+                            page.classList.add('hidden');
+                        });
+                        
+                        // 显示目标页面
+                        const targetPageElement = document.getElementById(`${targetPage}-page`);
+                        if (targetPageElement) {
+                            targetPageElement.classList.remove('hidden');
+                        }
+                        
+                        // 更新导航高亮状态
+                        const navLinks = document.querySelectorAll('.nav-link');
+                        navLinks.forEach(nav => {
+                            nav.classList.remove('text-dark', 'border-primary');
+                            nav.classList.add('text-gray-medium', 'border-transparent');
+                            
+                            // 检查当前链接是否对应目标页面
+                            const navPage = nav.getAttribute('data-page');
+                            if (navPage === targetPage) {
+                                nav.classList.remove('text-gray-medium', 'border-transparent');
+                                nav.classList.add('text-dark', 'border-primary');
+                            }
+                        });
+                        
+                        // 滚动到顶部
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }
+                }
+            }
+            
+            // 页面加载时处理哈希
+            handleHashNavigation();
+            
+            // 监听哈希变化
+            window.addEventListener('hashchange', handleHashNavigation);
             // 导航链接点击事件
             const navLinks = document.querySelectorAll('.nav-link, footer a[data-page]');
             navLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
+                link.addEventListener('click', function (e) {
                     e.preventDefault();
-                    
+
                     // 获取目标页面
                     const targetPage = this.getAttribute('data-page');
-                    
+
                     // 隐藏所有页面
                     document.querySelectorAll('.page-content').forEach(page => {
                         page.classList.add('hidden');
                     });
-                    
+
                     // 显示目标页面
                     document.getElementById(`${targetPage}-page`).classList.remove('hidden');
-                    
+
                     // 更新导航高亮状态
                     navLinks.forEach(nav => {
                         nav.classList.remove('text-dark', 'border-primary');
                         nav.classList.add('text-gray-medium', 'border-transparent');
                     });
-                    
+
                     this.classList.remove('text-gray-medium', 'border-transparent');
                     this.classList.add('text-dark', 'border-primary');
-                    
+
                     // 关闭移动菜单（如果打开）
                     document.getElementById('mobile-menu').classList.add('hidden');
-                    
+
                     // 滚动到顶部
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 });
             });
-            
+
             // 移动端菜单切换
-            document.getElementById('menu-toggle').addEventListener('click', function() {
+            document.getElementById('menu-toggle').addEventListener('click', function () {
                 const mobileMenu = document.getElementById('mobile-menu');
                 mobileMenu.classList.toggle('hidden');
             });
-            
+
             // 移动端导航链接点击事件
             const mobileNavLinks = document.querySelectorAll('#mobile-menu a[data-page]');
             mobileNavLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
+                link.addEventListener('click', function (e) {
                     e.preventDefault();
                     const targetPage = this.getAttribute('data-page');
-                    
+
                     // 隐藏所有页面
                     document.querySelectorAll('.page-content').forEach(page => {
                         page.classList.add('hidden');
                     });
-                    
+
                     // 显示目标页面
                     const targetPageElement = document.getElementById(targetPage + '-page');
                     if (targetPageElement) {
                         targetPageElement.classList.remove('hidden');
                     }
-                    
+
                     // 关闭移动端菜单
                     document.getElementById('mobile-menu').classList.add('hidden');
-                    
+
                     // 滚动到顶部
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 });
             });
-            
+
             // 介绍内容展开/收起
             const toggleIntroBtn = document.getElementById('toggle-intro');
             const moreIntro = document.getElementById('more-intro');
             const introBtnText = document.getElementById('intro-btn-text');
             const introBtnIcon = document.getElementById('intro-btn-icon');
-            
+
             if (toggleIntroBtn && moreIntro && introBtnText && introBtnIcon) {
-                toggleIntroBtn.addEventListener('click', function() {
+                toggleIntroBtn.addEventListener('click', function () {
                     moreIntro.classList.toggle('hidden');
-                    
+
                     if (moreIntro.classList.contains('hidden')) {
                         introBtnText.textContent = '了解详情';
                         introBtnIcon.classList.remove('rotate-180');
@@ -1099,13 +1156,13 @@
                     }
                 });
             }
-            
+
             // 产品筛选功能
             const productFilterBtns = document.querySelectorAll('.product-filter-btn');
             productFilterBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
+                btn.addEventListener('click', function () {
                     const filterType = this.getAttribute('data-type');
-                    
+
                     // 更新按钮样式
                     productFilterBtns.forEach(b => {
                         b.classList.remove('bg-primary', 'text-white');
@@ -1113,7 +1170,7 @@
                     });
                     this.classList.remove('bg-gray-light', 'text-gray-medium', 'hover:bg-primary/10', 'hover:text-primary');
                     this.classList.add('bg-primary', 'text-white');
-                    
+
                     // 筛选产品
                     const productCards = document.querySelectorAll('.product-card');
                     productCards.forEach(card => {
@@ -1125,13 +1182,13 @@
                     });
                 });
             });
-            
+
             // 高校筛选功能
             const universityFilterBtns = document.querySelectorAll('.university-filter-btn');
             universityFilterBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
+                btn.addEventListener('click', function () {
                     const filterType = this.getAttribute('data-type');
-                    
+
                     // 更新按钮样式
                     universityFilterBtns.forEach(b => {
                         b.classList.remove('bg-primary', 'text-white');
@@ -1139,7 +1196,7 @@
                     });
                     this.classList.remove('bg-gray-light', 'text-gray-medium', 'hover:bg-primary/10', 'hover:text-primary');
                     this.classList.add('bg-primary', 'text-white');
-                    
+
                     // 筛选高校
                     const universityLogos = document.querySelectorAll('.university-logo');
                     universityLogos.forEach(logo => {
@@ -1151,357 +1208,78 @@
                     });
                 });
             });
-            
+
             // 模态框相关
             const modalCloseButtons = document.querySelectorAll('.modal-close');
             const modals = {
                 consult: document.getElementById('consult-modal'),
                 apply: document.getElementById('apply-modal'),
-                product: document.getElementById('product-modal'),
                 university: document.getElementById('university-modal')
             };
-            
+
             // 打开咨询模态框
             const consultBtn = document.getElementById('consult-btn');
             if (consultBtn) {
-                consultBtn.addEventListener('click', function() {
+                consultBtn.addEventListener('click', function () {
                     openModal(modals.consult);
                 });
             }
-            
+
             // 打开申请模态框
             const applyBtn = document.getElementById('apply-btn');
             if (applyBtn) {
-                applyBtn.addEventListener('click', function() {
+                applyBtn.addEventListener('click', function () {
                     openModal(modals.apply);
                 });
             }
-            
+
             // 关闭模态框按钮
             modalCloseButtons.forEach(button => {
-                button.addEventListener('click', function() {
+                button.addEventListener('click', function () {
                     const modal = this.closest('.fixed.inset-0');
                     if (modal) {
                         closeModal(modal);
                     }
                 });
             });
-            
+
             // 点击模态框背景关闭
             Object.values(modals).forEach(modal => {
                 if (modal) {
-                    modal.addEventListener('click', function(e) {
+                    modal.addEventListener('click', function (e) {
                         if (e.target === this) {
                             closeModal(this);
                         }
                     });
                 }
             });
-            
-            // 产品卡片点击事件 - 跳转到产品详情页面
+
+            // 产品卡片点击事件 - 跳转到独立的产品详情页面
             const productCards = document.querySelectorAll('.product-card');
             productCards.forEach(card => {
-                card.addEventListener('click', function() {
+                card.addEventListener('click', function () {
                     const productId = this.getAttribute('data-product');
                     if (productId) {
-                        // 隐藏所有页面内容
-                        document.querySelectorAll('main > section').forEach(section => {
-                            section.classList.add('hidden');
-                        });
-                        
-                        // 显示产品详情页面
-                        const productDetailPage = document.getElementById('product-detail-page');
-                        if (productDetailPage) {
-                            productDetailPage.classList.remove('hidden');
-                            // 加载产品详情数据
-                            loadProductDetail(productId);
-                        }
-                        
-                        // 滚动到页面顶部
-                        window.scrollTo(0, 0);
+                        // 跳转到独立的产品详情页面
+                        window.location.href = `product-detail.html?id=${productId}`;
                     }
                 });
             });
-            
-            // 返回产品列表函数
-            window.goBackToProducts = function() {
-                // 隐藏产品详情页面
-                document.getElementById('product-detail-page').classList.add('hidden');
-                
-                // 隐藏所有页面内容
-                document.querySelectorAll('.page-content').forEach(page => {
-                    page.classList.add('hidden');
-                });
-                
-                // 显示生态市场页面
-                document.getElementById('market-page').classList.remove('hidden');
-                
-                // 滚动到页面顶部
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            };
-            
-            // 加载产品详情页面
-            function loadProductDetail(productId) {
-                // 产品数据
-                const products = {
-                    1: {
-                        title: "光学场景实验平台",
-                        type: "本科",
-                        partner: "星科瑞升",
-                        image: "https://picsum.photos/id/1/800/600",
-                        tags: ["光学实验", "智能分析", "虚拟仿真", "教学评估"],
-                        features: [
-                            "提供10+种典型光学场景模拟环境，涵盖几何光学、物理光学等多个领域",
-                            "集成高精度光学参数测量与分析系统，支持实时数据采集与处理",
-                            "具备虚拟仿真与实物操作双重模式，满足不同教学场景需求",
-                            "内置教学评估系统，自动记录学生实验过程与结果，生成评估报告"
-                        ],
-                        parameters: [
-                            "光谱范围：380nm-1100nm",
-                            "空间分辨率：≤1μm",
-                            "数据采集速率：≥100fps",
-                            "仿真精度：≥98%",
-                            "支持同时在线用户：≥50人"
-                        ],
-                        cases: [
-                            { university: "北京大学", scenario: "大学物理实验课程，年均覆盖学生2000+" },
-                            { university: "浙江大学", scenario: "光学工程专业实验教学与科研项目" },
-                            { university: "华中科技大学", scenario: "国家级物理实验教学示范中心建设" }
-                        ],
-                        effects: {
-                            efficiency: "45%",
-                            students: "15000+"
-                        }
-                    },
-                    2: {
-                        title: "2D/3D视觉场景验证平台",
-                        type: "本科",
-                        partner: "星科瑞升",
-                        image: "https://picsum.photos/id/20/800/600",
-                        tags: ["机器视觉", "3D建模", "算法验证", "深度学习"],
-                        features: [
-                            "支持2D图像与3D点云数据的同步采集与处理",
-                            "集成多种主流视觉算法库，支持自定义算法开发与验证",
-                            "提供丰富的场景库，包括工业检测、自动驾驶、机器人导航等",
-                            "具备算法性能评估系统，自动生成精度、速度等关键指标分析"
-                        ],
-                        parameters: [
-                            "2D分辨率：最高8K",
-                            "3D点云密度：≥500点/㎡",
-                            "深度测量范围：0.5m-50m",
-                            "算法处理延迟：≤10ms",
-                            "支持深度学习框架：TensorFlow, PyTorch, Caffe"
-                        ],
-                        cases: [
-                            { university: "清华大学", scenario: "计算机视觉课程教学与科研" },
-                            { university: "上海交通大学", scenario: "机器人研究所算法验证平台" },
-                            { university: "哈尔滨工业大学", scenario: "智能装备研究院科研项目" }
-                        ],
-                        effects: {
-                            efficiency: "60%",
-                            students: "8000+"
-                        }
-                    },
-                    3: {
-                        title: "智能质检一体化实训平台",
-                        type: "高职",
-                        partner: "星科瑞升",
-                        image: "https://picsum.photos/id/42/800/600",
-                        tags: ["智能制造", "质量检测", "自动化", "工业4.0"],
-                        features: [
-                            "模拟真实工业生产线的质检流程，集成视觉检测与传感器检测",
-                            "支持多种缺陷类型的检测与分类，包括表面缺陷、尺寸偏差等",
-                            "具备自动化决策与反馈系统，实现检测-判断-调整的闭环",
-                            "提供数字孪生功能，支持虚拟调试与优化"
-                        ],
-                        parameters: [
-                            "检测精度：≤0.01mm",
-                            "检测速度：≥100件/分钟",
-                            "缺陷识别率：≥99.5%",
-                            "支持产品类型：电子元件、机械零件、包装产品等",
-                            "通信接口：EtherCAT, PROFINET, OPC UA"
-                        ],
-                        cases: [
-                            { university: "北京工业职业技术学院", scenario: "智能制造专业实训课程" },
-                            { university: "深圳职业技术学院", scenario: "工业机器人应用技术实训基地" },
-                            { university: "江苏经贸职业技术学院", scenario: "现代制造技术实训中心建设" }
-                        ],
-                        effects: {
-                            efficiency: "55%",
-                            students: "6500+"
-                        }
-                    },
-                    4: {
-                        title: "AI算法训练与部署平台",
-                        type: "本科",
-                        partner: "星科瑞升",
-                        image: "https://picsum.photos/id/96/800/600",
-                        tags: ["人工智能", "算法开发", "模型训练", "边缘计算"],
-                        features: [
-                            "提供完整的AI模型开发、训练、部署一站式解决方案",
-                            "集成高性能计算集群，支持大规模并行训练",
-                            "支持云端训练与边缘部署相结合的混合模式",
-                            "内置模型管理与版本控制，方便教学与科研使用"
-                        ],
-                        parameters: [
-                            "计算节点：≥32个GPU节点",
-                            "单节点GPU：NVIDIA A100 80GB",
-                            "存储容量：≥100TB",
-                            "支持框架：TensorFlow, PyTorch, MXNet, MindSpore",
-                            "部署方式：云端、边缘端、嵌入式"
-                        ],
-                        cases: [
-                            { university: "南京大学", scenario: "人工智能学院教学与科研平台" },
-                            { university: "中国科学技术大学", scenario: "计算机科学与技术专业课程" },
-                            { university: "武汉大学", scenario: "国家人工智能开放创新平台" }
-                        ],
-                        effects: {
-                            efficiency: "70%",
-                            students: "12000+"
-                        }
-                    }
-                };
-                
-                // 获取产品数据
-                const product = products[productId] || products[1];
-                
-                // 填充产品详情内容（已移除标题显示）
-                
-                let content = `
-                    <!-- 产品图片和基本信息 -->
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
-                        <div>
-                            <div class="bg-white rounded-xl overflow-hidden shadow-lg mb-6">
-                                <img src="${product.image}" alt="${product.title}" class="w-full h-96 object-cover">
-                            </div>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                ${product.tags.map(tag => `<span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm">${tag}</span>`).join('')}
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <div class="mb-6">
-                                <div class="flex items-center mb-4">
-                                    <span class="text-sm bg-gray-light text-gray-medium px-3 py-1 rounded-full mr-3">合作方：${product.partner}</span>
-                                    <span class="text-sm ${product.type === '本科' ? 'bg-primary/10 text-primary' : 'bg-secondary/10 text-secondary'} px-3 py-1 rounded-full">${product.type}</span>
-                                </div>
-                                <h2 class="text-2xl font-bold mb-4">${product.title}</h2>
-                                <p class="text-gray-medium mb-6">专为${product.type === '本科' ? '本科' : '高职'}院校设计的智能教学解决方案，助力数字化教学改革。</p>
-                                
-                                <!-- 核心优势 -->
-                                <div class="bg-gray-bg p-6 rounded-xl mb-6">
-                                    <h3 class="text-lg font-semibold mb-4">核心优势</h3>
-                                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                        <div class="text-center p-4 bg-white rounded-lg">
-                                            <div class="text-2xl font-bold text-primary mb-1">${product.effects.efficiency}</div>
-                                            <div class="text-sm text-gray-medium">教学效率提升</div>
-                                        </div>
-                                        <div class="text-center p-4 bg-white rounded-lg">
-                                            <div class="text-2xl font-bold text-primary mb-1">${product.effects.students}</div>
-                                            <div class="text-sm text-gray-medium">覆盖学生人数</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <!-- 咨询按钮 -->
-                                <button onclick="openConsultModal('${product.title}')" class="w-full bg-primary hover:bg-primary/90 text-white py-4 rounded-lg font-medium transition-button hover:shadow-lg">
-                                    <i class="fa fa-comments mr-2"></i>咨询购买
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- 产品详情标签页 -->
-                    <div class="border-b border-gray-light mb-8">
-                        <nav class="flex space-x-8">
-                            <button class="tab-button active py-4 px-2 border-b-2 border-primary text-primary font-medium" data-tab="features">核心特性</button>
-                            <button class="tab-button py-4 px-2 border-b-2 border-transparent text-gray-medium hover:text-dark font-medium" data-tab="parameters">技术参数</button>
-                            <button class="tab-button py-4 px-2 border-b-2 border-transparent text-gray-medium hover:text-dark font-medium" data-tab="cases">应用案例</button>
-                        </nav>
-                    </div>
-                    
-                    <!-- 标签页内容 -->
-                    <div class="tab-content">
-                        <!-- 核心特性 -->
-                        <div id="features" class="tab-pane">
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                ${product.features.map(feature => `
-                                    <div class="flex items-start p-4 bg-gray-bg rounded-lg">
-                                        <i class="fa fa-check-circle text-primary mt-1 mr-3"></i>
-                                        <span>${feature}</span>
-                                    </div>
-                                `).join('')}
-                            </div>
-                        </div>
-                        
-                        <!-- 技术参数 -->
-                        <div id="parameters" class="tab-pane hidden">
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                ${product.parameters.map(param => `
-                                    <div class="flex items-start p-4 bg-gray-bg rounded-lg">
-                                        <i class="fa fa-cog text-primary mt-1 mr-3"></i>
-                                        <span>${param}</span>
-                                    </div>
-                                `).join('')}
-                            </div>
-                        </div>
-                        
-                        <!-- 应用案例 -->
-                        <div id="cases" class="tab-pane hidden">
-                            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                                ${product.cases.map(caseItem => `
-                                    <div class="bg-white border border-gray-light rounded-lg p-6 hover:shadow-lg transition-shadow">
-                                        <div class="flex items-center mb-4">
-                                            <i class="fa fa-university text-primary text-xl mr-3"></i>
-                                            <h4 class="font-semibold">${caseItem.university}</h4>
-                                        </div>
-                                        <p class="text-gray-medium text-sm">${caseItem.scenario}</p>
-                                    </div>
-                                `).join('')}
-                            </div>
-                        </div>
-                    </div>
-                `;
-                
-                document.getElementById('product-content').innerHTML = content;
-                
-                // 添加标签页切换功能
-                setTimeout(() => {
-                    const tabButtons = document.querySelectorAll('.tab-button');
-                    const tabPanes = document.querySelectorAll('.tab-pane');
-                    
-                    tabButtons.forEach(button => {
-                        button.addEventListener('click', () => {
-                            const targetTab = button.getAttribute('data-tab');
-                            
-                            // 移除所有活动状态
-                            tabButtons.forEach(btn => {
-                                btn.classList.remove('border-primary', 'text-primary');
-                                btn.classList.add('border-transparent', 'text-gray-medium');
-                            });
-                            tabPanes.forEach(pane => {
-                                pane.classList.add('hidden');
-                            });
-                            
-                            // 激活当前标签
-                            button.classList.remove('border-transparent', 'text-gray-medium');
-                            button.classList.add('border-primary', 'text-primary');
-                            document.getElementById(targetTab).classList.remove('hidden');
-                        });
-                    });
-                }, 100);
-            }
-            
+
+
+
+
+
             // 咨询购买模态框函数
             function openConsultModal(productName) {
                 // 填充产品名称到咨询表单
                 document.getElementById('consult-product-name').textContent = productName;
                 document.getElementById('product-name-input').value = productName;
-                
+
                 // 打开咨询模态框
                 openModal('consult-modal');
             }
-            
+
             // 高校logo点击事件 - 已移除模态弹窗功能
             // const universityLogos = document.querySelectorAll('.university-logo');
             // universityLogos.forEach(logo => {
@@ -1512,7 +1290,7 @@
             //         }
             //     });
             // });
-            
+
             // 打开高校合作详情模态框
             function openUniversityModal(universityId) {
                 // 高校数据
@@ -1572,13 +1350,13 @@
                         quote: "与U+平台的合作使我校的实训教学水平得到显著提升，学生实践能力和就业竞争力明显增强，得到用人单位的高度认可。"
                     }
                 };
-                
+
                 // 获取高校数据，默认使用北京大学数据
                 const university = universities[universityId] || universities[1];
-                
+
                 // 填充高校详情内容
                 document.getElementById('university-title').textContent = `${university.title} 合作详情（${university.type}）`;
-                
+
                 let content = `
                     <div class="text-center mb-8">
                         <img src="${university.logo}" alt="${university.title}" class="max-h-32 mx-auto mb-4">
@@ -1593,14 +1371,14 @@
                             </h4>
                             <ul class="space-y-3">
                 `;
-                
+
                 university.cooperation.forEach(item => {
                     content += `<li class="flex items-start">
                         <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
                         <span>${item}</span>
                     </li>`;
                 });
-                
+
                 content += `
                             </ul>
                         </div>
@@ -1610,14 +1388,14 @@
                             </h4>
                             <ul class="space-y-3">
                 `;
-                
+
                 university.achievements.forEach(item => {
                     content += `<li class="flex items-start">
                         <i class="fa fa-star text-primary mt-1 mr-2"></i>
                         <span>${item}</span>
                     </li>`;
                 });
-                
+
                 content += `
                             </ul>
                         </div>
@@ -1628,27 +1406,27 @@
                         <p class="text-gray-medium italic">${university.quote}</p>
                     </div>
                 `;
-                
+
                 document.getElementById('university-content').innerHTML = content;
-                
+
                 // 打开模态框
                 openModal(modals.university);
             }
-            
+
             // 咨询购买模态框函数
             function openConsultModal(productName) {
                 // 填充产品名称到咨询表单
                 document.getElementById('consult-product-name').textContent = productName;
                 document.getElementById('product-name-input').value = productName;
-                
+
                 // 打开咨询模态框
                 openModal('consult-modal');
             }
-            
+
             // 打开模态框函数
             function openModal(modal) {
                 if (!modal) return;
-                
+
                 modal.classList.remove('hidden');
                 // 触发重排后添加动画类
                 setTimeout(() => {
@@ -1661,26 +1439,26 @@
                 }, 10);
                 document.body.style.overflow = 'hidden';
             }
-            
+
             // 关闭模态框函数
             function closeModal(modal) {
                 if (!modal) return;
-                
+
                 modal.classList.add('opacity-0');
                 const modalContent = modal.querySelector('.bg-white');
                 if (modalContent) {
                     modalContent.classList.remove('scale-100');
                     modalContent.classList.add('scale-95');
                 }
-                
+
                 setTimeout(() => {
                     modal.classList.add('hidden');
                     document.body.style.overflow = '';
                 }, 300);
             }
-            
+
             // 导航栏滚动效果
-            window.addEventListener('scroll', function() {
+            window.addEventListener('scroll', function () {
                 const header = document.querySelector('header');
                 if (window.scrollY > 50) {
                     header.classList.add('shadow-md');
@@ -1690,24 +1468,26 @@
                     header.classList.add('shadow-sm');
                 }
             });
-            
+
             // 按钮点击缩放效果
             const buttons = document.querySelectorAll('button, .product-card, .university-logo');
             buttons.forEach(button => {
-                button.addEventListener('mousedown', function() {
+                button.addEventListener('mousedown', function () {
                     if (!this.classList.contains('modal-close')) {
                         this.classList.add('scale-button');
                     }
                 });
-                
-                button.addEventListener('mouseup', function() {
+
+                button.addEventListener('mouseup', function () {
                     this.classList.remove('scale-button');
                 });
-                
-                button.addEventListener('mouseleave', function() {
+
+                button.addEventListener('mouseleave', function () {
                     this.classList.remove('scale-button');
                 });
             });
         });
     </script>
-</body></html>
+</body>
+
+</html>
