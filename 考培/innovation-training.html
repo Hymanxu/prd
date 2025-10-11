@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>技能培训 - 职业技能等级认定平台</title>
+    <title>创新创业培训 - 职业技能等级认定平台</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root {
@@ -222,7 +222,7 @@
 
         /* 页面标题 */
         .page-header {
-            background: linear-gradient(135deg, var(--primary-color), #0056b3);
+            background: linear-gradient(135deg, #fd7e14, #e83e8c);
             color: var(--white-color);
             padding: 60px 0;
             text-align: center;
@@ -256,7 +256,7 @@
 
         .filter-group {
             display: flex;
-            align-items: flex-start; /* 改为靠上对齐 */
+            align-items: flex-start;
             gap: 20px;
         }
 
@@ -265,7 +265,7 @@
             color: var(--dark-blue);
             font-size: 16px;
             min-width: 100px;
-            padding-top: 8px; /* 垂直居中对齐 */
+            padding-top: 8px;
         }
 
         .filter-options {
@@ -285,20 +285,19 @@
             font-size: 14px;
         }
 
-        /* 选中的有气泡样式，未选中的没有气泡样式 */
         .filter-option.active {
-            background-color: var(--primary-color);
+            background-color: #fd7e14;
             color: var(--white-color);
-            border-color: var(--primary-color);
-            box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3); /* 气泡样式 */
-            transform: translateY(-2px); /* 轻微上移效果 */
+            border-color: #fd7e14;
+            box-shadow: 0 4px 8px rgba(253, 126, 20, 0.3);
+            transform: translateY(-2px);
         }
 
         .filter-option:not(.active) {
             background-color: var(--white-color);
             color: var(--text-color);
             border-color: var(--border-color);
-            box-shadow: none; /* 无气泡样式 */
+            box-shadow: none;
             transform: none;
         }
 
@@ -329,13 +328,13 @@
         }
 
         .search-box input:focus {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+            border-color: #fd7e14;
+            box-shadow: 0 0 0 3px rgba(253, 126, 20, 0.1);
         }
 
         .search-box button {
             padding: 12px 30px;
-            background-color: var(--primary-color);
+            background-color: #fd7e14;
             color: var(--white-color);
             border: none;
             border-radius: 30px;
@@ -346,7 +345,7 @@
         }
 
         .search-box button:hover {
-            background-color: #0056b3;
+            background-color: #e8690b;
             transform: translateY(-2px);
         }
 
@@ -378,7 +377,7 @@
 
         .course-card .card-img {
             width: 100%;
-            height: 120px; /* 改为120px */
+            height: 120px;
             object-fit: cover;
         }
 
@@ -387,12 +386,12 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 120px; /* 与图片高度一致 */
+            height: 120px;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.3)); /* 添加遮罩 */
-            color: var(--white-color); /* 改为白色字体 */
+            background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.3));
+            color: var(--white-color);
             font-size: 18px;
             font-weight: 600;
             text-align: center;
@@ -443,9 +442,9 @@
 
         .pagination a:hover,
         .pagination a.active {
-            background-color: var(--primary-color);
+            background-color: #fd7e14;
             color: var(--white-color);
-            border-color: var(--primary-color);
+            border-color: #fd7e14;
         }
 
         /* 底部 */
@@ -524,8 +523,8 @@
     <!-- 页面标题 -->
     <section class="page-header">
         <div class="container">
-            <h1>职业技能培训</h1>
-            <p>提升职业技能，成就美好未来</p>
+            <h1>创新创业培训</h1>
+            <p>激发创新思维，培养创业精神，成就创业梦想</p>
         </div>
     </section>
 
@@ -534,31 +533,29 @@
         <div class="container">
             <div class="filter-container">
                 <div class="filter-group">
-                    <label>职业类别</label>
+                    <label>培训方向</label>
                     <div class="filter-options">
                         <div class="filter-option active" data-category="all">全部</div>
-                        <div class="filter-option" data-category="computer">计算机程序设计员</div>
-                        <div class="filter-option" data-category="ai">人工智能训练师</div>
-                        <div class="filter-option" data-category="drone">无人机驾驶员</div>
-                        <div class="filter-option" data-category="semiconductor">半导体芯片制造工</div>
-                        <div class="filter-option" data-category="digital">数字化解决方案设计师</div>
-                        <div class="filter-option" data-category="security">网络与信息安全管理员</div>
-                        <div class="filter-option" data-category="chip">半导体分立器件和集成电路装调工</div>
+                        <div class="filter-option" data-category="innovation">创新思维</div>
+                        <div class="filter-option" data-category="startup">创业实践</div>
+                        <div class="filter-option" data-category="management">企业管理</div>
+                        <div class="filter-option" data-category="marketing">市场营销</div>
+                        <div class="filter-option" data-category="finance">投融资</div>
+                        <div class="filter-option" data-category="digital">数字化转型</div>
                     </div>
                 </div>
                 <div class="filter-group">
-                    <label>技能等级</label>
+                    <label>培训阶段</label>
                     <div class="filter-options">
                         <div class="filter-option active" data-level="all">全部</div>
-                        <div class="filter-option" data-level="junior">初级</div>
-                        <div class="filter-option" data-level="intermediate">中级</div>
-                        <div class="filter-option" data-level="senior">高级</div>
+                        <div class="filter-option" data-level="foundation">基础入门</div>
+                        <div class="filter-option" data-level="advanced">进阶提升</div>
+                        <div class="filter-option" data-level="expert">专家级</div>
                     </div>
                 </div>
-                <!-- 去除课程状态筛选条件 -->
                 <div class="search-group">
                     <div class="search-box">
-                        <input type="text" placeholder="搜索课程名称...">
+                        <input type="text" placeholder="搜索创新创业培训课程...">
                         <button type="button">搜索</button>
                     </div>
                 </div>
@@ -570,74 +567,68 @@
     <section class="courses-section">
         <div class="container">
             <div class="courses-grid">
-                <a href="course-detail.html?id=1" class="course-card">
-                    <img src="img/01.png"
-                        alt="课程封面" class="card-img">
-                    <div class="card-title-overlay">高级Web前端开发工程师</div>
+                <a href="course-detail.html?id=201" class="course-card">
+                    <img src="img/01.png" alt="课程封面" class="card-img">
+                    <div class="card-title-overlay">创新思维与方法论</div>
                     <div class="card-content">
                         <div class="card-meta">
-                            <span class="card-level">高级</span>
-                            <span class="card-duration">120课时</span>
+                            <span class="card-level">基础</span>
+                            <span class="card-duration">40课时</span>
                         </div>
                     </div>
                 </a>
 
-                <a href="course-detail.html?id=2" class="course-card">
-                    <img src="img/02.png"
-                        alt="课程封面" class="card-img">
-                    <div class="card-title-overlay">Python数据分析与机器学习</div>
+                <a href="course-detail.html?id=202" class="course-card">
+                    <img src="img/02.png" alt="课程封面" class="card-img">
+                    <div class="card-title-overlay">创业项目策划与实施</div>
                     <div class="card-content">
                         <div class="card-meta">
-                            <span class="card-level">中级</span>
+                            <span class="card-level">进阶</span>
                             <span class="card-duration">80课时</span>
                         </div>
                     </div>
                 </a>
 
-                <a href="course-detail.html?id=3" class="course-card">
-                    <img src="img/03.png"
-                        alt="课程封面" class="card-img">
-                    <div class="card-title-overlay">网络安全基础入门</div>
+                <a href="course-detail.html?id=203" class="course-card">
+                    <img src="img/03.png" alt="课程封面" class="card-img">
+                    <div class="card-title-overlay">初创企业管理实务</div>
                     <div class="card-content">
                         <div class="card-meta">
-                            <span class="card-level">初级</span>
+                            <span class="card-level">进阶</span>
                             <span class="card-duration">60课时</span>
                         </div>
                     </div>
                 </a>
 
-                <a href="course-detail.html?id=4" class="course-card">
-                    <img src="img/04.png"
-                        alt="课程封面" class="card-img">
-                    <div class="card-title-overlay">无人机航拍与后期制作</div>
+                <a href="course-detail.html?id=204" class="course-card">
+                    <img src="img/04.png" alt="课程封面" class="card-img">
+                    <div class="card-title-overlay">数字营销与品牌建设</div>
                     <div class="card-content">
                         <div class="card-meta">
-                            <span class="card-level">中级</span>
+                            <span class="card-level">进阶</span>
+                            <span class="card-duration">70课时</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="course-detail.html?id=205" class="course-card">
+                    <img src="img/01.png" alt="课程封面" class="card-img">
+                    <div class="card-title-overlay">投融资与财务管理</div>
+                    <div class="card-content">
+                        <div class="card-meta">
+                            <span class="card-level">专家级</span>
                             <span class="card-duration">100课时</span>
                         </div>
                     </div>
                 </a>
 
-                <a href="course-detail.html?id=5" class="course-card">
-                    <img src="img/01.png"
-                        alt="课程封面" class="card-img">
-                    <div class="card-title-overlay">人工智能训练师认证</div>
+                <a href="course-detail.html?id=206" class="course-card">
+                    <img src="img/02.png" alt="课程封面" class="card-img">
+                    <div class="card-title-overlay">企业数字化转型策略</div>
                     <div class="card-content">
                         <div class="card-meta">
-                            <span class="card-level">高级</span>
-                            <span class="card-duration">150课时</span>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="course-detail.html?id=6" class="course-card">
-                    <img src="img/02.png"
-                        alt="课程封面" class="card-img">
-                    <div class="card-title-overlay">半导体芯片制造工艺</div>
-                    <div class="card-content">
-                        <div class="card-meta">
-                            <span class="card-level">高级</span>
-                            <span class="card-duration">200课时</span>
+                            <span class="card-level">专家级</span>
+                            <span class="card-duration">90课时</span>
                         </div>
                     </div>
                 </a>
@@ -680,17 +671,12 @@
 
             filterOptions.forEach(option => {
                 option.addEventListener('click', function () {
-                    // 获取同组的其他选项
                     const group = this.parentElement;
                     const siblings = group.querySelectorAll('.filter-option');
 
-                    // 移除同组其他选项的active类
                     siblings.forEach(sibling => sibling.classList.remove('active'));
-
-                    // 为当前选项添加active类
                     this.classList.add('active');
 
-                    // 这里可以添加实际的筛选逻辑
                     console.log('筛选条件：', this.textContent, this.dataset);
                 });
             });

@@ -84,7 +84,8 @@
             gap: 50px;
         }
 
-        .navbar .nav-links a {
+        .navbar .nav-links > a,
+        .navbar .nav-links .nav-item {
             font-size: 16px;
             font-weight: 500;
             padding: 10px 0;
@@ -92,7 +93,8 @@
             transition: color 0.3s;
         }
 
-        .navbar .nav-links a::after {
+        .navbar .nav-links > a::after,
+        .navbar .nav-links .nav-item > a::after {
             content: '';
             position: absolute;
             bottom: -2px;
@@ -104,14 +106,88 @@
             transition: width 0.3s;
         }
 
-        .navbar .nav-links a:hover,
-        .navbar .nav-links a.active {
+        .navbar .nav-links > a:hover,
+        .navbar .nav-links > a.active,
+        .navbar .nav-links .nav-item:hover > a,
+        .navbar .nav-links .nav-item.active > a {
             color: var(--primary-color);
         }
 
-        .navbar .nav-links a:hover::after,
-        .navbar .nav-links a.active::after {
+        .navbar .nav-links > a:hover::after,
+        .navbar .nav-links > a.active::after,
+        .navbar .nav-links .nav-item:hover > a::after,
+        .navbar .nav-links .nav-item.active > a::after {
             width: 100%;
+        }
+
+        /* 培训下拉菜单 */
+        .nav-item {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--white-color);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 8px;
+            display: none;
+            min-width: 450px;
+            z-index: 1001;
+        }
+
+        .nav-item:hover .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-content {
+            display: flex;
+            gap: 8px;
+        }
+
+        .dropdown-item {
+            flex: 1;
+            text-align: center;
+            padding: 12px 8px;
+            border-radius: 4px;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .dropdown-item::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: width 0.3s;
+        }
+
+        .dropdown-item:hover {
+            background-color: var(--light-gray);
+            color: var(--primary-color);
+        }
+
+        .dropdown-item:hover::after {
+            width: 80%;
+        }
+
+        .dropdown-item h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--dark-blue);
+            transition: color 0.3s;
+        }
+
+        .dropdown-item:hover h4 {
+            color: var(--primary-color);
         }
 
         .navbar .user-area .login-btn {
@@ -132,15 +208,17 @@
         }
 
         /* --- Responsive Styles --- */
-        @media (max-width: 1280px) {
+        @media (min-width: 1280px) {
             .container {
                 max-width: 1200px;
             }
+        }
+        @media (max-width: 1280px) {
             .navbar {
                 height: 64px;
             }
             .navbar .logo img {
-                height: 64px;
+                height: 48px;
             }
         }
 
@@ -473,9 +551,24 @@
                 </a>
                 <div class="nav-links">
                     <a href="index.html">首页</a>
-                    <a href="training.html">技能培训</a>
+                    <div class="nav-item">
+                        <a href="#">培训</a>
+                        <div class="dropdown-menu">
+                            <div class="dropdown-content">
+                                <a href="training.html" class="dropdown-item">
+                                    <h4>职业技能培训</h4>
+                                </a>
+                                <a href="professional-training.html" class="dropdown-item">
+                                    <h4>专业技术培训</h4>
+                                </a>
+                                <a href="innovation-training.html" class="dropdown-item">
+                                    <h4>创新创业培训</h4>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                     <a href="exam.html" class="active">认证考试</a>
-                    <a href="competition.html">技能兴鲁大赛</a>
+                    <a href="competition.html">大赛</a>
                     <a href="notice.html">通知</a>
                 </div>
                 <div class="user-area">

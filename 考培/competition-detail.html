@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,7 +18,13 @@
             --success-color: #28a745;
         }
 
-        body, h1, h2, h3, p, ul, li {
+        body,
+        h1,
+        h2,
+        h3,
+        p,
+        ul,
+        li {
             margin: 0;
             padding: 0;
             font-family: "Helvetica Neue", "Hiragino Sans GB", "WenQuanYi Micro Hei", "Microsoft Yahei", sans-serif;
@@ -65,6 +72,7 @@
             display: flex;
             align-items: center;
         }
+
         .navbar .logo img {
             height: 64px;
         }
@@ -74,14 +82,17 @@
             gap: 50px;
         }
 
-        .navbar .nav-links a {
+        .navbar .nav-links>a,
+        .navbar .nav-links .nav-item {
             font-size: 16px;
             font-weight: 500;
             padding: 10px 0;
             position: relative;
             transition: color 0.3s;
         }
-        .navbar .nav-links a::after {
+
+        .navbar .nav-links>a::after,
+        .navbar .nav-links .nav-item>a::after {
             content: '';
             position: absolute;
             bottom: -2px;
@@ -93,13 +104,88 @@
             transition: width 0.3s;
         }
 
-        .navbar .nav-links a:hover,
-        .navbar .nav-links a.active {
+        .navbar .nav-links>a:hover,
+        .navbar .nav-links>a.active,
+        .navbar .nav-links .nav-item:hover>a,
+        .navbar .nav-links .nav-item.active>a {
             color: #007bff;
         }
-        .navbar .nav-links a:hover::after,
-        .navbar .nav-links a.active::after {
+
+        .navbar .nav-links>a:hover::after,
+        .navbar .nav-links>a.active::after,
+        .navbar .nav-links .nav-item:hover>a::after,
+        .navbar .nav-links .nav-item.active>a::after {
             width: 100%;
+        }
+
+        /* 培训下拉菜单 */
+        .nav-item {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--white-color);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 8px;
+            display: none;
+            min-width: 450px;
+            z-index: 1001;
+        }
+
+        .nav-item:hover .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-content {
+            display: flex;
+            gap: 8px;
+        }
+
+        .dropdown-item {
+            flex: 1;
+            text-align: center;
+            padding: 12px 8px;
+            border-radius: 4px;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .dropdown-item::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background-color: #007bff;
+            transition: width 0.3s;
+        }
+
+        .dropdown-item:hover {
+            background-color: var(--light-gray);
+            color: #007bff;
+        }
+
+        .dropdown-item:hover::after {
+            width: 80%;
+        }
+
+        .dropdown-item h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--dark-blue);
+            transition: color 0.3s;
+        }
+
+        .dropdown-item:hover h4 {
+            color: #007bff;
         }
 
         .navbar .user-area .login-btn {
@@ -120,15 +206,19 @@
         }
 
         /* --- Responsive Styles --- */
-        @media (max-width: 1280px) {
+        @media (min-width: 1280px) {
             .container {
                 max-width: 1200px;
             }
+        }
+
+        @media (max-width: 1280px) {
             .navbar {
                 height: 64px;
             }
+
             .navbar .logo img {
-                height: 64px;
+                height: 48px;
             }
         }
 
@@ -162,16 +252,17 @@
         }
 
         .competition-layout {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 40px;
+            display: flex;
+            justify-content: center;
         }
 
         .competition-main {
             background-color: var(--white-color);
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            max-width: 800px;
+            width: 100%;
         }
 
         .competition-hero {
@@ -196,7 +287,7 @@
         .competition-hero .status {
             display: inline-block;
             padding: 8px 20px;
-            background-color: rgba(255,255,255,0.2);
+            background-color: rgba(255, 255, 255, 0.2);
             border-radius: 20px;
             font-size: 14px;
             font-weight: 500;
@@ -227,8 +318,10 @@
         .rich-content {
             padding: 40px;
             line-height: 1.8;
-            max-width: 800px; /* 限制内容宽度 */
-            margin: 0 auto; /* 内容居中 */
+            max-width: 800px;
+            /* 限制内容宽度 */
+            margin: 0 auto;
+            /* 内容居中 */
         }
 
         .rich-content h2 {
@@ -238,7 +331,8 @@
             color: var(--dark-blue);
             border-bottom: 2px solid var(--primary-color);
             padding-bottom: 10px;
-            text-align: center; /* 标题居中 */
+            text-align: center;
+            /* 标题居中 */
         }
 
         .rich-content h3 {
@@ -246,7 +340,8 @@
             font-weight: 600;
             margin: 25px 0 15px;
             color: var(--dark-blue);
-            text-align: center; /* 标题居中 */
+            text-align: center;
+            /* 标题居中 */
         }
 
         .rich-content h4 {
@@ -261,7 +356,8 @@
             text-align: justify;
         }
 
-        .rich-content ul, .rich-content ol {
+        .rich-content ul,
+        .rich-content ol {
             margin: 15px 0;
             padding-left: 25px;
         }
@@ -274,10 +370,12 @@
         .rich-content img {
             max-width: 100%;
             height: auto;
-            margin: 20px auto; /* 图片居中 */
+            margin: 20px auto;
+            /* 图片居中 */
             border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            display: block; /* 使margin: auto生效 */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            display: block;
+            /* 使margin: auto生效 */
         }
 
         .rich-content blockquote {
@@ -376,48 +474,7 @@
             color: var(--text-secondary);
         }
 
-        /* 侧边栏 - 只保留赛事信息 */
-        .competition-sidebar {
-            display: grid;
-            gap: 30px;
-        }
 
-        .sidebar-card {
-            background-color: var(--white-color);
-            border-radius: 8px;
-            padding: 25px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
-
-        .sidebar-card h3 {
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 20px;
-            color: var(--dark-blue);
-            text-align: center; /* 标题居中 */
-        }
-
-        .quick-info-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 0;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .quick-info-item:last-child {
-            border-bottom: none;
-        }
-
-        .quick-info-item .label {
-            color: var(--text-secondary);
-            font-size: 14px;
-        }
-
-        .quick-info-item .value {
-            font-weight: 500;
-            color: var(--dark-blue);
-        }
 
         /* 底部 */
         .main-footer {
@@ -426,22 +483,27 @@
             padding: 50px 0;
             font-size: 14px;
         }
+
         .footer-container {
             text-align: center;
         }
+
         .footer-links {
             display: flex;
             justify-content: center;
             gap: 30px;
             margin-bottom: 25px;
         }
+
         .footer-links a {
             color: #f0f0f0;
             transition: color 0.3s;
         }
+
         .footer-links a:hover {
             color: var(--white-color);
         }
+
         .footer-container .footer-copyright p {
             color: #f0f0f0;
             margin-bottom: 8px;
@@ -449,6 +511,7 @@
         }
     </style>
 </head>
+
 <body>
     <!-- 导航栏 -->
     <header class="main-header">
@@ -459,9 +522,24 @@
                 </a>
                 <div class="nav-links">
                     <a href="index.html">首页</a>
-                    <a href="training.html">技能培训</a>
+                    <div class="nav-item">
+                        <a href="#">培训</a>
+                        <div class="dropdown-menu">
+                            <div class="dropdown-content">
+                                <a href="training.html" class="dropdown-item">
+                                    <h4>职业技能培训</h4>
+                                </a>
+                                <a href="professional-training.html" class="dropdown-item">
+                                    <h4>专业技术培训</h4>
+                                </a>
+                                <a href="innovation-training.html" class="dropdown-item">
+                                    <h4>创新创业培训</h4>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                     <a href="exam.html">认证考试</a>
-                    <a href="competition.html" class="active">技能兴鲁大赛</a>
+                    <a href="competition.html" class="active">大赛</a>
                     <a href="notice.html">通知</a>
                 </div>
                 <div class="user-area">
@@ -492,20 +570,17 @@
                     <div class="competition-hero">
                         <h1>计算机程序设计员技能竞赛</h1>
                         <div class="date">2025年11月15日 - 11月17日</div>
-                        <span class="status">报名中</span>
                         <!-- 添加前往查看按钮 -->
                         <a href="#" class="view-btn">前往查看</a>
                     </div>
-                    
+
                     <div class="rich-content">
                         <h2>赛事概述</h2>
-                        
-                        <img src="img/01.png" alt="竞赛现场">
-                        
+
                         <p>计算机程序设计员技能竞赛是2025年技能兴鲁大赛的重要组成部分，旨在展示我省计算机程序设计领域的技能水平，推动行业技术进步和人才培养。</p>
-                        
+
                         <p>本次竞赛面向全省从事计算机程序设计工作的专业技术人员，通过理论考核和实际操作相结合的方式，全面考查参赛选手的编程能力、算法设计、系统开发、问题解决等综合技能。</p>
-                        
+
                         <div class="highlight-box">
                             <h4>重要提醒</h4>
                             <p>竞赛设置个人赛和团体赛两个组别，采用现场编程的形式进行，所有参赛选手将在统一的环境下完成指定的编程任务。</p>
@@ -519,7 +594,7 @@
                             <li>优胜者将获得直通知名企业的就业机会</li>
                             <li>所有参赛选手均可获得技能认定证书</li>
                         </ul>
-                        
+
                         <h3>参赛对象</h3>
                         <ul>
                             <li>山东省内从事计算机程序设计工作的在职人员</li>
@@ -529,9 +604,7 @@
                         </ul>
 
                         <h2>赛程安排</h2>
-                        
-                        <img src="img/02.png" alt="赛程安排">
-                        
+
                         <table>
                             <thead>
                                 <tr>
@@ -594,7 +667,7 @@
                         </table>
 
                         <h2>参赛规则</h2>
-                        
+
                         <h3>参赛条件</h3>
                         <ul>
                             <li>具有中华人民共和国国籍</li>
@@ -602,7 +675,7 @@
                             <li>身体健康，能够胜任竞赛要求</li>
                             <li>具备相应的专业技能和实践经验</li>
                         </ul>
-                        
+
                         <h3>竞赛规则</h3>
                         <ul>
                             <li>个人赛：每位选手独立完成所有竞赛项目</li>
@@ -617,9 +690,7 @@
                         </blockquote>
 
                         <h2>奖项设置</h2>
-                        
-                        <img src="img/03.png" alt="奖项设置">
-                        
+
                         <h3>主要奖项</h3>
                         <ul>
                             <li><strong>一等奖：</strong>1名，奖金20万元</li>
@@ -627,7 +698,7 @@
                             <li><strong>三等奖：</strong>3名，奖金5万元</li>
                             <li><strong>优秀奖：</strong>10名，奖金1万元</li>
                         </ul>
-                        
+
                         <h3>特殊奖项</h3>
                         <ul>
                             <li>最佳创新奖：1名，奖金5万元</li>
@@ -635,7 +706,7 @@
                             <li>最佳新人奖：1名，奖金2万元</li>
                             <li>优秀指导教师奖：若干名，奖金5000元</li>
                         </ul>
-                        
+
                         <h3>其他奖励</h3>
                         <ul>
                             <li>获奖选手将获得技能兴鲁大赛荣誉证书</li>
@@ -644,47 +715,6 @@
                             <li>所有参赛选手均可获得参赛证明</li>
                             <li>获奖作品将有机会在技术大会上展示</li>
                         </ul>
-                    </div>
-                </div>
-
-                <div class="competition-sidebar">
-                    <div class="sidebar-card">
-                        <h3>赛事信息</h3>
-                        <div class="quick-info-item">
-                            <span class="label">举办地点</span>
-                            <span class="value">济南市</span>
-                        </div>
-                        <div class="quick-info-item">
-                            <span class="label">已报名</span>
-                            <span class="value">156人</span>
-                        </div>
-                        <div class="quick-info-item">
-                            <span class="label">总奖金</span>
-                            <span class="value">50万元</span>
-                        </div>
-                        <div class="quick-info-item">
-                            <span class="label">竞赛时长</span>
-                            <span class="value">3天</span>
-                        </div>
-                        <div class="quick-info-item">
-                            <span class="label">报名费用</span>
-                            <span class="value">免费</span>
-                        </div>
-                    </div>
-                    <div class="sidebar-card">
-                        <h3>联系方式</h3>
-                        <div class="quick-info-item">
-                            <span class="label">咨询电话</span>
-                            <span class="value">0531-12345678</span>
-                        </div>
-                        <div class="quick-info-item">
-                            <span class="label">邮箱</span>
-                            <span class="value">competition@example.com</span>
-                        </div>
-                        <div class="quick-info-item">
-                            <span class="label">QQ群</span>
-                            <span class="value">123456789</span>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -710,18 +740,18 @@
 
     <script>
         // 标签页切换功能
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const tabs = document.querySelectorAll('.competition-tab');
             const contents = document.querySelectorAll('.tab-content');
 
             tabs.forEach(tab => {
-                tab.addEventListener('click', function() {
+                tab.addEventListener('click', function () {
                     const targetTab = this.getAttribute('data-tab');
-                    
+
                     // 移除所有active类
                     tabs.forEach(t => t.classList.remove('active'));
                     contents.forEach(c => c.classList.remove('active'));
-                    
+
                     // 添加active类
                     this.classList.add('active');
                     document.getElementById(targetTab).classList.add('active');
@@ -730,4 +760,5 @@
         });
     </script>
 </body>
+
 </html>

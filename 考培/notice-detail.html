@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,7 +17,13 @@
             --text-secondary: #6c757d;
         }
 
-        body, h1, h2, h3, p, ul, li {
+        body,
+        h1,
+        h2,
+        h3,
+        p,
+        ul,
+        li {
             margin: 0;
             padding: 0;
             font-family: "Helvetica Neue", "Hiragino Sans GB", "WenQuanYi Micro Hei", "Microsoft Yahei", sans-serif;
@@ -64,6 +71,7 @@
             display: flex;
             align-items: center;
         }
+
         .navbar .logo img {
             height: 64px;
         }
@@ -73,14 +81,17 @@
             gap: 50px;
         }
 
-        .navbar .nav-links a {
+        .navbar .nav-links > a,
+        .navbar .nav-links .nav-item {
             font-size: 16px;
             font-weight: 500;
             padding: 10px 0;
             position: relative;
             transition: color 0.3s;
         }
-        .navbar .nav-links a::after {
+
+        .navbar .nav-links > a::after,
+        .navbar .nav-links .nav-item > a::after {
             content: '';
             position: absolute;
             bottom: -2px;
@@ -92,13 +103,88 @@
             transition: width 0.3s;
         }
 
-        .navbar .nav-links a:hover,
-        .navbar .nav-links a.active {
+        .navbar .nav-links > a:hover,
+        .navbar .nav-links > a.active,
+        .navbar .nav-links .nav-item:hover > a,
+        .navbar .nav-links .nav-item.active > a {
             color: var(--primary-color);
         }
-        .navbar .nav-links a:hover::after,
-        .navbar .nav-links a.active::after {
+
+        .navbar .nav-links > a:hover::after,
+        .navbar .nav-links > a.active::after,
+        .navbar .nav-links .nav-item:hover > a::after,
+        .navbar .nav-links .nav-item.active > a::after {
             width: 100%;
+        }
+
+        /* 培训下拉菜单 */
+        .nav-item {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--white-color);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 8px;
+            display: none;
+            min-width: 450px;
+            z-index: 1001;
+        }
+
+        .nav-item:hover .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-content {
+            display: flex;
+            gap: 8px;
+        }
+
+        .dropdown-item {
+            flex: 1;
+            text-align: center;
+            padding: 12px 8px;
+            border-radius: 4px;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .dropdown-item::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: width 0.3s;
+        }
+
+        .dropdown-item:hover {
+            background-color: var(--light-gray);
+            color: var(--primary-color);
+        }
+
+        .dropdown-item:hover::after {
+            width: 80%;
+        }
+
+        .dropdown-item h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--dark-blue);
+            transition: color 0.3s;
+        }
+
+        .dropdown-item:hover h4 {
+            color: var(--primary-color);
         }
 
         .navbar .user-area .login-btn {
@@ -119,15 +205,19 @@
         }
 
         /* --- Responsive Styles --- */
-        @media (max-width: 1280px) {
+        @media (min-width: 1280px) {
             .container {
                 max-width: 1200px;
             }
+        }
+
+        @media (max-width: 1280px) {
             .navbar {
                 height: 64px;
             }
+
             .navbar .logo img {
-                height: 64px;
+                height: 48px;
             }
         }
 
@@ -161,16 +251,17 @@
         }
 
         .notice-layout {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 40px;
+            display: flex;
+            justify-content: center;
         }
 
         .notice-main {
             background-color: var(--white-color);
             border-radius: 8px;
             padding: 40px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            max-width: 800px;
+            width: 100%;
         }
 
         .notice-header {
@@ -260,7 +351,7 @@
             height: auto;
             margin: 20px 0;
             border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
         .notice-content blockquote {
@@ -334,76 +425,7 @@
             width: 16px;
         }
 
-        /* 侧边栏 */
-        .notice-sidebar {
-            display: grid;
-            gap: 30px;
-        }
 
-        .sidebar-card {
-            background-color: var(--white-color);
-            border-radius: 8px;
-            padding: 25px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
-
-        .sidebar-card h3 {
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 20px;
-            color: var(--dark-blue);
-        }
-
-        .related-notice {
-            display: block;
-            padding: 15px 0;
-            border-bottom: 1px solid var(--border-color);
-            transition: color 0.3s;
-        }
-
-        .related-notice:last-child {
-            border-bottom: none;
-        }
-
-        .related-notice:hover {
-            color: var(--primary-color);
-        }
-
-        .related-notice .title {
-            font-size: 14px;
-            font-weight: 500;
-            margin-bottom: 5px;
-            line-height: 1.4;
-        }
-
-        .related-notice .date {
-            font-size: 12px;
-            color: var(--text-secondary);
-        }
-
-        .share-buttons {
-            display: flex;
-            gap: 10px;
-        }
-
-        .share-btn {
-            flex: 1;
-            padding: 10px;
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            background-color: var(--white-color);
-            color: var(--text-secondary);
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-size: 14px;
-        }
-
-        .share-btn:hover {
-            background-color: var(--primary-color);
-            color: var(--white-color);
-            border-color: var(--primary-color);
-        }
 
         .back-btn {
             display: inline-flex;
@@ -430,22 +452,27 @@
             padding: 50px 0;
             font-size: 14px;
         }
+
         .footer-container {
             text-align: center;
         }
+
         .footer-links {
             display: flex;
             justify-content: center;
             gap: 30px;
             margin-bottom: 25px;
         }
+
         .footer-links a {
             color: #f0f0f0;
             transition: color 0.3s;
         }
+
         .footer-links a:hover {
             color: var(--white-color);
         }
+
         .footer-container .footer-copyright p {
             color: #f0f0f0;
             margin-bottom: 8px;
@@ -453,6 +480,7 @@
         }
     </style>
 </head>
+
 <body>
     <!-- 导航栏 -->
     <header class="main-header">
@@ -463,9 +491,24 @@
                 </a>
                 <div class="nav-links">
                     <a href="index.html">首页</a>
-                    <a href="training.html">技能培训</a>
+                    <div class="nav-item">
+                        <a href="#">培训</a>
+                        <div class="dropdown-menu">
+                            <div class="dropdown-content">
+                                <a href="training.html" class="dropdown-item">
+                                    <h4>职业技能培训</h4>
+                                </a>
+                                <a href="professional-training.html" class="dropdown-item">
+                                    <h4>专业技术培训</h4>
+                                </a>
+                                <a href="innovation-training.html" class="dropdown-item">
+                                    <h4>创新创业培训</h4>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                     <a href="exam.html">认证考试</a>
-                    <a href="competition.html">技能兴鲁大赛</a>
+                    <a href="competition.html">大赛</a>
                     <a href="notice.html" class="active">通知</a>
                 </div>
                 <div class="user-area">
@@ -498,19 +541,16 @@
                         <div class="notice-meta">
                             <span><i class="fas fa-calendar"></i> 发布时间：2025-09-15</span>
                             <span><i class="fas fa-user"></i> 发布部门：平台管理员</span>
-                            <span><i class="fas fa-eye"></i> 浏览次数：1,256</span>
                         </div>
                     </div>
-                    
+
                     <div class="notice-content">
                         <p>各位考生：</p>
-                        
+
                         <p>根据国家相关部门要求，结合当前疫情防控形势和实际工作需要，现对2025年下半年职业技能等级认定考试时间进行调整。具体调整安排如下：</p>
 
-                        <img src="img/01.png" alt="考试时间调整通知" style="width: 100%; margin: 20px 0;">
-
                         <h2>一、调整的考试项目</h2>
-                        
+
                         <h3>1. 计算机程序设计员考试</h3>
                         <ul>
                             <li>原定时间：2025年10月8日</li>
@@ -538,9 +578,9 @@
                         </div>
 
                         <h2>二、报名时间调整</h2>
-                        
+
                         <p>为配合考试时间调整，相应的报名截止时间也进行了延长：</p>
-                        
+
                         <table>
                             <thead>
                                 <tr>
@@ -569,19 +609,17 @@
                         </table>
 
                         <h2>三、准考证打印时间</h2>
-                        
+
                         <p>各项考试的准考证打印时间相应调整如下：</p>
-                        
+
                         <ul>
                             <li>计算机程序设计员：2025年10月12日起可打印准考证</li>
                             <li>人工智能训练师：2025年10月17日起可打印准考证</li>
                             <li>无人机驾驶员：2025年10月22日起可打印准考证</li>
                         </ul>
 
-                        <img src="img/02.png" alt="准考证打印流程" style="width: 100%; margin: 20px 0;">
-
                         <h2>四、注意事项</h2>
-                        
+
                         <ol>
                             <li>请各位考生及时关注官方网站和微信公众号的最新通知</li>
                             <li>如因时间调整无法参加考试，可申请退费或转至下次考试</li>
@@ -610,7 +648,7 @@
                         </div>
 
                         <p>感谢各位考生的理解与配合！</p>
-                        
+
                         <p style="text-align: right; margin-top: 30px;">
                             <strong>职业技能等级认定平台</strong><br>
                             <strong>2025年9月15日</strong>
@@ -619,43 +657,6 @@
                         <a href="notice.html" class="back-btn">
                             <i class="fas fa-arrow-left"></i>
                             返回通知列表
-                        </a>
-                    </div>
-                </div>
-
-                <div class="notice-sidebar">
-                    <div class="sidebar-card">
-                        <h3>分享</h3>
-                        <div class="share-buttons">
-                            <button class="share-btn">
-                                <i class="fab fa-weixin"></i>
-                            </button>
-                            <button class="share-btn">
-                                <i class="fab fa-weibo"></i>
-                            </button>
-                            <button class="share-btn">
-                                <i class="fas fa-link"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="sidebar-card">
-                        <h3>相关通知</h3>
-                        <a href="notice-detail.html?id=2" class="related-notice">
-                            <div class="title">新课程《人工智能训练师高级实战》上线通知</div>
-                            <div class="date">2025-09-12</div>
-                        </a>
-                        <a href="notice-detail.html?id=3" class="related-notice">
-                            <div class="title">平台将于10月1日凌晨进行系统维护升级</div>
-                            <div class="date">2025-09-10</div>
-                        </a>
-                        <a href="notice-detail.html?id=4" class="related-notice">
-                            <div class="title">无人机驾驶员新版考纲发布通知</div>
-                            <div class="date">2025-09-05</div>
-                        </a>
-                        <a href="notice-detail.html?id=5" class="related-notice">
-                            <div class="title">2025年技能兴鲁大赛报名开始</div>
-                            <div class="date">2025-09-01</div>
                         </a>
                     </div>
                 </div>
@@ -680,4 +681,5 @@
         </div>
     </footer>
 </body>
+
 </html>
